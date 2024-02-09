@@ -4,76 +4,25 @@ const App = () => {
       <svg width={837} height={700}>
         {/* its colors inside */}
         <defs>
-          <pattern id="mdf" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-            <image
-              style={{ MozUserSelect: "text" }}
-              href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+          {["mdf", "oak", "redwood", "whitewood", "whiteprimed", "false", 0].map((id) => (
+            <pattern
+              key={id}
+              id={id || ""}
+              patternUnits="userSpaceOnUse"
               width="1000px"
               height="1000px"
-              preserveAspectRatio="none"
-              transform="translate (0,0) rotate(0)"
-            />
-          </pattern>
-          <pattern id="oak" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-            <image
-              style={{ MozUserSelect: "text" }}
-              href="https://cdn.stairbox.com/assets/stairbuilder/textures/oak.jpg"
-              width="1000px"
-              height="1000px"
-              preserveAspectRatio="none"
-              transform="translate (0,0) rotate(0)"
-            />
-          </pattern>
-          <pattern id="redwood" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-            <image
-              style={{ MozUserSelect: "text" }}
-              href="https://cdn.stairbox.com/assets/stairbuilder/textures/pine.jpg"
-              width="1000px"
-              height="1000px"
-              preserveAspectRatio="none"
-              transform="translate (0,0) rotate(0)"
-            />
-          </pattern>
-          <pattern id="whitewood" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-            <image
-              style={{ MozUserSelect: "text" }}
-              href="https://cdn.stairbox.com/assets/stairbuilder/textures/softwood.jpg"
-              width="1000px"
-              height="1000px"
-              preserveAspectRatio="none"
-              transform="translate (0,0) rotate(0)"
-            />
-          </pattern>
-          <pattern id="whiteprimed" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-            <image
-              style={{ MozUserSelect: "text" }}
-              href="https://cdn.stairbox.com/assets/stairbuilder/textures/whiteprimed.jpg"
-              width="1000px"
-              height="1000px"
-              preserveAspectRatio="none"
-              transform="translate (0,0) rotate(0)"
-            />
-          </pattern>
-          <pattern id="false" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-            <image
-              style={{ MozUserSelect: "text" }}
-              href="https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg"
-              width="1000px"
-              height="1000px"
-              preserveAspectRatio="none"
-              transform="translate (0,0) rotate(0)"
-            />
-          </pattern>
-          <pattern id={0} patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-            <image
-              style={{ MozUserSelect: "text" }}
-              href="https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg"
-              width="1000px"
-              height="1000px"
-              preserveAspectRatio="none"
-              transform="translate (0,0) rotate(0)"
-            />
-          </pattern>
+            >
+              <image
+                style={{ MozUserSelect: "text" }}
+                href={`https://cdn.stairbox.com/assets/stairbuilder/textures/${id || "none"}.jpg`}
+                width="1000px"
+                height="1000px"
+                preserveAspectRatio="none"
+                transform="translate (0,0) rotate(0)"
+              />
+            </pattern>
+          ))}
+
           <marker
             id="startarrow"
             markerWidth={10}
