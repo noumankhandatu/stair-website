@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Button, MenuItem, Select, Slider, Typography } from "@mui/material";
 import { myColorsAry } from "../style/global";
 import Div from "./Div";
+import { Appheading } from "../theme";
+import Button from "@mui/material/Button";
+import Select from "@mui/material/Select";
+import Slider from "@mui/material/Slider";
+import MenuItem from "@mui/material/MenuItem";
 
 const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   const handleWidthChange = (event, newValue) => {
@@ -44,10 +48,8 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
     let updatedPositions = [];
 
     if (appState.svgPlates.positions.includes(selectedPosition)) {
-      // If the selected position is already in the array, remove all positions after it
       updatedPositions = appState.svgPlates.positions.filter((pos) => pos <= selectedPosition);
     } else {
-      // If the selected position is not in the array, add all positions up to it
       updatedPositions = [];
       appState.svgPlates.positions.forEach((pos) => {
         if (pos <= selectedPosition) {
@@ -56,7 +58,6 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
       });
     }
 
-    // Update the state with the updated positions array
     setAppState((prevState) => ({
       ...prevState,
       svgPlates: {
@@ -74,7 +75,7 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
       svgPlates: {
         ...prevState.svgPlates,
         positions: newPositions,
-        height: prevState.svgPlates.height - 0.02, // Decrease height by 0.02
+        height: prevState.svgPlates.height - 0.02,
       },
       leftRightPencilBorder: {
         ...prevState.leftRightPencilBorder,
@@ -91,7 +92,7 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
       svgPlates: {
         ...prevState.svgPlates,
         positions: newPositions,
-        height: prevState.svgPlates.height + 0.02, // Decrease height by 0.02
+        height: prevState.svgPlates.height + 0.02,
       },
       leftRightPencilBorder: {
         ...prevState.leftRightPencilBorder,
@@ -100,10 +101,9 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
     }));
   };
 
-  console.log(appState, "appState");
   return (
     <div>
-      <Typography variant="h3">Stairs</Typography>
+      <Appheading variant="h3">Stairs</Appheading>
       <p>Increase Width</p>
       <Slider
         value={appState.svgPlates.width}
