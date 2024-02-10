@@ -12,19 +12,20 @@ const App = () => {
     svgPlates: {
       color: "whitewood",
       positions: [0, 220, 440, 660, 880, 1100, 1320],
-      width: -0.3540416047548291,
-      height: 0.3340416047548291,
+      width: -0.3640416047548291,
+      height: 0.2840416047548291,
       rotation: 180,
     },
     leftRightPencilBorder: {
-      height: [473, -500],
+      height: 1750,
+      towardsLeftRight: [473, -500],
       rotation: 0,
       color: "whitewood",
     },
   });
 
   return (
-    <Grid container sx={{ alignItems: "center" }}>
+    <Grid container sx={{ alignItems: "center", justifyContent: "center" }}>
       <Grid xs={3}>
         <StairsWidthHeightSliders appState={appState} setAppState={setAppState} />
       </Grid>
@@ -131,7 +132,7 @@ const App = () => {
               run1
             </text>
             {/* left &  right heing  pencil border*/}
-            {appState.leftRightPencilBorder.height.map((items, index) => {
+            {appState.leftRightPencilBorder.towardsLeftRight.map((items, index) => {
               return (
                 <g
                   key={index}
@@ -141,7 +142,7 @@ const App = () => {
                     x={0}
                     y={-120}
                     width={27}
-                    height={1750}
+                    height={appState.leftRightPencilBorder.height}
                     fill={`url(#${appState.leftRightPencilBorder.color})`}
                     style={{ stroke: "black", strokeWidth: 1 }}
                     id="run1_rightString"

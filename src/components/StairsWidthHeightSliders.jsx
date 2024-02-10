@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Button, MenuItem, Select, Slider, Typography } from "@mui/material";
 import { myColorsAry } from "../style/global";
+import Div from "./Div";
 
 const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   const handleWidthChange = (event, newValue) => {
@@ -73,6 +74,11 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
       svgPlates: {
         ...prevState.svgPlates,
         positions: newPositions,
+        height: prevState.svgPlates.height - 0.02, // Decrease height by 0.02
+      },
+      leftRightPencilBorder: {
+        ...prevState.leftRightPencilBorder,
+        height: prevState.leftRightPencilBorder.height + 230,
       },
     }));
   };
@@ -85,6 +91,11 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
       svgPlates: {
         ...prevState.svgPlates,
         positions: newPositions,
+        height: prevState.svgPlates.height + 0.02, // Decrease height by 0.02
+      },
+      leftRightPencilBorder: {
+        ...prevState.leftRightPencilBorder,
+        height: prevState.leftRightPencilBorder.height - 230,
       },
     }));
   };
@@ -136,7 +147,7 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
         ))}
       </Select>
       <p> Plate Increment </p>
-      <Select fullWidth value="" onChange={handlePositionChange}>
+      <select value="" onChange={handlePositionChange}>
         <option value="" disabled>
           Select a position
         </option>
@@ -145,8 +156,8 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
             {option}
           </option>
         ))}
-      </Select>
-
+      </select>
+      <Div height={30} />
       {/* increment plates */}
       <Button color="primary" variant="contained" onClick={addRiser}>
         Add Riser
