@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import Div from './Div';
+import Div from "./Div";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -39,7 +39,22 @@ function ResponsiveAppBar() {
     <AppBar sx={{ background: "white" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src="https://cdn.stairbox.com/assets/logo.svg" alt="" style={{ width: 170 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontWeight: 700,
+              letterSpacing: ".2rem",
+              textDecoration: "none",
+              color: "black",
+            }}
+          >
+            EasyStairs
+          </Typography>{" "}
           <Div sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -104,7 +119,6 @@ function ResponsiveAppBar() {
               ></Button>
             ))}
           </Div>
-
           <Div sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

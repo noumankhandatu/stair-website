@@ -158,7 +158,7 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
         <MenuItem value="add">Add Riser</MenuItem>
         <MenuItem value="remove">Remove Riser</MenuItem>
       </Select>
-      <Appheading sx={{ mt: 2 }}>Straight staircase - Add a turn</Appheading>
+      <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Paper className="turnLeft" sx={{ p: 3, textAlign: "center" }}>
           <p style={textT}>

@@ -47,7 +47,7 @@ const Home = () => {
   return (
     <>
       <AppMainheading sx={{ mt: 4 }}>
-        Interactive Staircase Design Tool - StairBuilder®
+        Interactive EasyStairs Design Tool - StairBuilder®
       </AppMainheading>
       <Divider sx={{ mt: 1 }} />
       <Div height={40} />
