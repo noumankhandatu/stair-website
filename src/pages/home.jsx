@@ -27,6 +27,7 @@ const Home = () => {
       width: -0.3040416047548291,
       height: 0.3540416047548291,
       rotation: 180,
+      
     },
     leftRightPencilBorder: {
       height: 1760,
@@ -126,7 +127,7 @@ const Home = () => {
               <g
                 transform={`translate (418.5,589.1753343239227) rotate(${appState.svgPlates.rotation}) scale(${appState.svgPlates.width},${appState.svgPlates.height})`}
               >
-                {/* plates */}
+                {/* risers */}
                 <g>
                   {appState.svgPlates.positions.map((items, index) => {
                     return (
@@ -168,6 +169,7 @@ const Home = () => {
                     );
                   })}
                 </g>
+                {/* run */}
                 <text
                   x={0}
                   y={-0}

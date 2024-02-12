@@ -108,7 +108,7 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   };
   return (
     <div>
-      {/* drop of riser */}
+      {/* Floor Height */}
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
       <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
         <MenuItem value="" disabled>
@@ -145,8 +145,18 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
-      {/* hign height */}
-
+      {/* Celling Height */}
+      <Appheading sx={{ mt: 2 }}>Ceiling Height</Appheading>
+      <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
+        <MenuItem value="" disabled>
+          Select a position
+        </MenuItem>
+        {positionOptions.map((option, index) => (
+          <MenuItem onClick={() => dispatch(setHeight(option + 79))} key={index} value={option}>
+            {option + 79} mm
+          </MenuItem>
+        ))}
+      </Select>
       {/* Riser */}
       <Appheading sx={{ mt: 2 }}>Remove Add Riser</Appheading>
       <Select
