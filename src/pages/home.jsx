@@ -10,7 +10,11 @@ import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import StairsWidthHeightSliders from "../components/tabs/StairsWidthHeightSliders";
 import Div from "./../components/atom/Div";
 import StairsMaterialConstruciton from "../components/tabs/StairsMaterialConstruciton";
+import { useSelector } from "react-redux";
 const Home = () => {
+  const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
+  const heightArrow = useSelector((state) => state?.stairHeightWidthSlice?.height);
+
   // states
   const [appState, setAppState] = useState({
     svgInsideContainer: {
@@ -123,45 +127,47 @@ const Home = () => {
                 transform={`translate (418.5,589.1753343239227) rotate(${appState.svgPlates.rotation}) scale(${appState.svgPlates.width},${appState.svgPlates.height})`}
               >
                 {/* plates */}
-                {appState.svgPlates.positions.map((items, index) => {
-                  return (
-                    <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={962}
-                        height={236}
-                        fill={`url(#${appState.svgPlates.color})`}
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run1_tread1"
-                        className=""
-                      />
+                <g>
+                  {appState.svgPlates.positions.map((items, index) => {
+                    return (
+                      <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
+                        <rect
+                          x={0}
+                          y={-16}
+                          width={962}
+                          height={236}
+                          fill={`url(#${appState.svgPlates.color})`}
+                          style={{ stroke: "black", strokeWidth: 2 }}
+                          id="run1_tread1"
+                          className=""
+                        />
 
-                      <rect
-                        x={0}
-                        y={0}
-                        width={962}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run1_tread1"
-                        className=""
-                      />
-                      <text
-                        x={456}
-                        y={-130}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #{index + 1}
-                      </text>
-                    </g>
-                  );
-                })}
+                        <rect
+                          x={0}
+                          y={0}
+                          width={962}
+                          height={10}
+                          fill="none"
+                          style={{ stroke: "black", strokeWidth: 1 }}
+                          id="run1_tread1"
+                          className=""
+                        />
+                        <text
+                          x={456}
+                          y={-130}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                          }}
+                          transform="translate (0,0) rotate(180) scale(-1,1)"
+                        >
+                          #{index + 1}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </g>
                 <text
                   x={0}
                   y={-0}
@@ -226,7 +232,8 @@ const Home = () => {
                         transform="translate (0,0) rotate(180) scale(-1,1)"
                         className=""
                       >
-                        {Math.floor(appState.svgPlates.height * 1000)}
+                        {heightArrow}
+                        {/* {Math.floor(appState.svgPlates.height * 1000)} */}
                       </text>
                       <line
                         x1={-500}
@@ -256,7 +263,8 @@ const Home = () => {
                         transform="translate (0,0) rotate(180) scale(-1,1)"
                         className=""
                       >
-                        {Math.floor(Math.abs(appState.svgPlates.width) * 1000)}
+                        {widhtArrow}
+                        {/* {Math.floor(Math.abs(appState.svgPlates.width) * 1000)} */}
                       </text>
                     </g>
                   );

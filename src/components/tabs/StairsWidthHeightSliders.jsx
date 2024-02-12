@@ -2,8 +2,12 @@
 import { Appheading } from "../../theme/index";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { useDispatch } from "react-redux";
+import { setHeight, setWidth } from "../../toolkit/slices/stairHeightWidth";
 
 const StairsWidthHeightSliders = ({ setAppState, appState }) => {
+  const dispatch = useDispatch();
+
   //number of Rises
   const positionOptions = [];
   for (let i = 1; i <= 5000; i += 220) {
@@ -80,15 +84,6 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
       },
     }));
   };
-  const handleHeightChange = (newValue) => {
-    setAppState((prevState) => ({
-      ...prevState,
-      svgPlates: {
-        ...prevState.svgPlates,
-        height: newValue,
-      },
-    }));
-  };
 
   const handleWidthChange = (newValue) => {
     setAppState((prevState) => ({
@@ -108,45 +103,33 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
           Select a position
         </MenuItem>
         {positionOptions.map((option, index) => (
-          <MenuItem key={index} value={option}>
+          <MenuItem onClick={() => dispatch(setHeight(option + 79))} key={index} value={option}>
             {option + 79} mm
           </MenuItem>
         ))}
       </Select>
-      {/* height */}
-      <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
-      <Select
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
-        value={appState.svgPlates.height}
-        onChange={(e) => handleHeightChange(parseFloat(e.target.value))}
-      >
-        {[
-          0.1940416047548291, 0.2140416047548291, 0.2340416047548291, 0.2540416047548291,
-          0.2740416047548291, 0.2840416047548291, 0.3040416047548291, 0.3240416047548291,
-        ].map((value, index) => (
-          <MenuItem key={index} value={value.toString()}>
-            {/* {value.toString()} */}
-            {index} mm
-          </MenuItem>
-        ))}
-      </Select>
+
       {/* width */}
       <Appheading sx={{ mt: 2 }}>Floor Width</Appheading>
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        value={appState.svgPlates.width}
+        // value={appState.svgPlates.width}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
         {[
           -0.2040416047548291, -0.2240416047548291, -0.2440416047548291, -0.2640416047548291,
           -0.2840416047548291, -0.3040416047548291, -0.3240416047548291, -0.3440416047548291,
-          -0.3640416047548291, -0.3840416047548291, -0.4040416047548291,
+          -0.3640416047548291, -0.3840416047548291, -0.4040416047548291, -0.4240416047548291,
+          -0.4440416047548291, -0.4640416047548291, -0.4840416047548291, -0.5040416047548291,
+          -0.5240416047548291, -0.5440416047548291, -0.5640416047548291,
         ].map((value, index) => (
-          <MenuItem key={index} value={value.toString()}>
-            {/* {value.toString()} */}
-            {index} mm
+          <MenuItem
+            onClick={() => dispatch(setWidth(index * 50 + 300))}
+            key={index}
+            value={value.toString()}
+          >
+            {index === 0 ? null : <> {index * 50 + 300} mm</>}
           </MenuItem>
         ))}
       </Select>
@@ -207,3 +190,34 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
 };
 
 export default StairsWidthHeightSliders;
+// const handleHeightChange = (newValue) => {
+//   setAppState((prevState) => ({
+//     ...prevState,
+//     svgPlates: {
+//       ...prevState.svgPlates,
+//       height: newValue,
+//     },
+//   }));
+// };
+
+{
+  /* height */
+}
+{
+  /* <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        value={appState.svgPlates.height}
+        onChange={(e) => handleHeightChange(parseFloat(e.target.value))}
+      >
+        {[
+          0.1940416047548291, 0.2140416047548291, 0.2340416047548291, 0.2540416047548291,
+          0.2740416047548291, 0.2840416047548291, 0.3040416047548291, 0.3240416047548291,
+        ].map((value, index) => (
+          <MenuItem key={index} value={value.toString()}>
+            {index} mm
+          </MenuItem>
+        ))}
+      </Select> */
+}
