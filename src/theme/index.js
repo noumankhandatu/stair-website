@@ -20,10 +20,10 @@ export const Appfont = styled(Typography)({
 });
 
 export const AppLabel = styled(Typography)({
-  fontWeight: 500,
+  fontWeight: 600,
   fontSize: "16px",
   lineHeight: "16px",
-  color: "#9393AA",
+  color: "black",
 });
 
 export const Appcaption = styled(Typography)({

@@ -1,1 +1,1 @@
-export const myColorsAry = ["mdf", "oak", "redwood", "whiteprimed", "false", 0];
+export const myColorsAry = ["mdf", "oak", "whiteprimed", "whitewood"];

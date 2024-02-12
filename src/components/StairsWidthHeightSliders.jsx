@@ -1,45 +1,11 @@
 /* eslint-disable react/prop-types */
-import { myColorsAry } from "../style/global";
-import Div from "./Div";
 import { Appheading } from "../theme";
-import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
-import Slider from "@mui/material/Slider";
 import MenuItem from "@mui/material/MenuItem";
 
 const StairsWidthHeightSliders = ({ setAppState, appState }) => {
-  const handleWidthChange = (event, newValue) => {
-    setAppState((prevState) => ({
-      ...prevState,
-      svgPlates: {
-        ...prevState.svgPlates,
-        width: newValue,
-      },
-    }));
-  };
-
-  const handleHeightChange = (event, newValue) => {
-    setAppState((prevState) => ({
-      ...prevState,
-      svgPlates: {
-        ...prevState.svgPlates,
-        height: newValue,
-      },
-    }));
-  };
-
-  const handleHeingColor = (event, property) => {
-    const selectedColor = event.target.value;
-    setAppState((prevState) => ({
-      ...prevState,
-      [property]: {
-        ...prevState[property],
-        color: selectedColor,
-      },
-    }));
-  };
   const positionOptions = [];
-  for (let i = 0; i <= 2000; i += 220) {
+  for (let i = 0; i <= 1600; i += 220) {
     positionOptions.push(i);
   }
 
@@ -47,15 +13,8 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
     const selectedPosition = parseInt(event.target.value);
     let updatedPositions = [];
 
-    if (appState.svgPlates.positions.includes(selectedPosition)) {
-      updatedPositions = appState.svgPlates.positions.filter((pos) => pos <= selectedPosition);
-    } else {
-      updatedPositions = [];
-      appState.svgPlates.positions.forEach((pos) => {
-        if (pos <= selectedPosition) {
-          updatedPositions.push(pos);
-        }
-      });
+    if (selectedPosition !== "") {
+      updatedPositions = positionOptions.filter((pos) => pos <= selectedPosition);
     }
 
     setAppState((prevState) => ({
@@ -100,71 +59,97 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
       },
     }));
   };
+  const handleHeightChange = (newValue) => {
+    setAppState((prevState) => ({
+      ...prevState,
+      svgPlates: {
+        ...prevState.svgPlates,
+        height: newValue,
+      },
+    }));
+  };
 
+  const handleWidthChange = (newValue) => {
+    setAppState((prevState) => ({
+      ...prevState,
+      svgPlates: {
+        ...prevState.svgPlates,
+        width: newValue,
+      },
+    }));
+  };
   return (
     <div>
-      <Appheading variant="h3">Stairs</Appheading>
-      <p>Increase Width</p>
-      <Slider
-        value={appState.svgPlates.width}
-        min={-1}
-        max={1}
-        step={0.000000000000000000000000000000000000000000000001}
-        onChange={handleWidthChange}
-        aria-labelledby="width-slider"
-      />
-      <p>Increase Height</p>
-      <Slider
+      {/* height */}
+      <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
         value={appState.svgPlates.height}
-        min={-1}
-        max={1}
-        step={0.000000000000000000000000000000000000000000000001}
-        onChange={handleHeightChange}
-        aria-labelledby="height-slider"
-      />
-      <p>Variants Background</p>
-      <Select
-        fullWidth
-        value={appState.svgPlates.color}
-        onChange={(e) => handleHeingColor(e, "svgPlates")}
+        onChange={(e) => handleHeightChange(parseFloat(e.target.value))}
       >
-        {myColorsAry.map((color) => (
-          <MenuItem key={color} value={color}>
-            {color}
+        {[
+          0.1940416047548291, 0.2140416047548291, 0.2340416047548291, 0.2540416047548291,
+          0.2740416047548291, 0.2840416047548291, 0.3040416047548291, 0.3240416047548291,
+        ].map((value, index) => (
+          <MenuItem key={index} value={value.toString()}>
+            {/* {value.toString()} */}
+            {index} mm
           </MenuItem>
         ))}
       </Select>
-      <p>Heing Variants </p>
+      {/* width */}
+      <Appheading sx={{ mt: 2 }}>Floor Width</Appheading>
       <Select
         fullWidth
-        value={appState.leftRightPencilBorder.color}
-        onChange={(e) => handleHeingColor(e, "leftRightPencilBorder")}
+        sx={{ height: 40, mt: 1 }}
+        value={appState.svgPlates.width}
+        onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
-        {myColorsAry.map((color) => (
-          <MenuItem key={color} value={color}>
-            {color}
+        {[
+          -0.2040416047548291, -0.2240416047548291, -0.2440416047548291, -0.2640416047548291,
+          -0.2840416047548291, -0.3040416047548291, -0.3240416047548291, -0.3440416047548291,
+          -0.3640416047548291, -0.3840416047548291, -0.4040416047548291,
+        ].map((value, index) => (
+          <MenuItem key={index} value={value.toString()}>
+            {/* {value.toString()} */}
+            {index} mm
           </MenuItem>
         ))}
       </Select>
-      <p> Plate Increment </p>
-      <select value="" onChange={handlePositionChange}>
-        <option value="" disabled>
+      {/* Riser */}
+      <Appheading sx={{ mt: 2 }}>Remove Add Riser</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 2 }}
+        value=""
+        onChange={(e) => {
+          const action = e.target.value;
+          if (action === "add") {
+            addRiser();
+          } else if (action === "remove") {
+            removePlate();
+          }
+        }}
+      >
+        <MenuItem value="" disabled>
+          Select an action
+        </MenuItem>
+        <MenuItem value="add">Add Riser</MenuItem>
+        <MenuItem value="remove">Remove Riser</MenuItem>
+      </Select>
+
+      <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
+      <Select fullWidth sx={{ height: 40, mt: 2 }} value="" onChange={handlePositionChange}>
+        <MenuItem value="" disabled>
           Select a position
-        </option>
+        </MenuItem>
         {positionOptions.map((option, index) => (
-          <option key={index} value={option}>
+          <MenuItem key={index} value={option}>
             {option}
-          </option>
+          </MenuItem>
         ))}
-      </select>
-      <Div height={30} />
-      {/* increment plates */}
-      <Button color="primary" variant="contained" onClick={addRiser}>
-        Add Riser
-      </Button>
-      <Button color="primary" variant="contained" onClick={removePlate}>
-        Remove Plate
-      </Button>
+      </Select>
     </div>
   );
 };

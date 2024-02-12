@@ -3,8 +3,15 @@ import StairsWidthHeightSliders from "./../components/StairsWidthHeightSliders";
 import { myColorsAry } from "./../style/global";
 import { AppMainheading } from "../theme";
 import Grid from "@mui/material/Unstable_Grid2";
-
+import { Divider, Tooltip } from "@mui/material";
+import Div from "../components/Div";
+import FeatureCard from "../components/molecules/FeatureCard";
+import StairsMaterialConstruciton from "../components/StairsMaterialConstruciton";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import { primary } from "../theme/colors";
+import NoteAddIcon from "@mui/icons-material/NoteAdd";
 const Home = () => {
+  // states
   const [appState, setAppState] = useState({
     svgInsideContainer: {
       height: "100vh",
@@ -13,8 +20,8 @@ const Home = () => {
     svgPlates: {
       color: "whitewood",
       positions: [0, 220, 440, 660, 880, 1100, 1320],
-      width: -0.3640416047548291,
-      height: 0.2840416047548291,
+      width: -0.3040416047548291,
+      height: 0.2540416047548291,
       rotation: 180,
     },
     leftRightPencilBorder: {
@@ -24,208 +31,253 @@ const Home = () => {
       color: "whitewood",
     },
   });
-
+  const [showStairsLayout, setshowStairsLayout] = useState(false);
+  const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
+  // fns
+  const handleshowStairLayout = () => {
+    setshowStairsLayout((prev) => !prev);
+  };
+  const handleshowMaterialConstruciton = () => {
+    setshowMaterialConstruction((prev) => !prev);
+  };
   return (
     <>
-      <AppMainheading>Interactive Staircase Design Tool - StairBuilder®</AppMainheading>
-      <Grid container sx={{ alignItems: "center", justifyContent: "center" }}>
-        <Grid xs={3}>
-          <StairsWidthHeightSliders appState={appState} setAppState={setAppState} />
+      <AppMainheading sx={{ mt: 4 }}>
+        Interactive Staircase Design Tool - StairBuilder®
+      </AppMainheading>
+      <Divider sx={{ mt: 1 }} />
+      <Div height={40} />
+
+      <Grid container>
+        <Grid xs={2}>
+          <FeatureCard
+            title={"Stairs Layout"}
+            showStairsLayout={showStairsLayout}
+            handleshowStairLayout={handleshowStairLayout}
+          />
+          {showStairsLayout && (
+            <StairsWidthHeightSliders appState={appState} setAppState={setAppState} />
+          )}
+          <Div height={20} />
+          <FeatureCard
+            title={"Material & Construction"}
+            showStairsLayout={showMaterialConstruction}
+            handleshowStairLayout={handleshowMaterialConstruciton}
+          />
+          {showMaterialConstruction && (
+            <StairsMaterialConstruciton appState={appState} setAppState={setAppState} />
+          )}
         </Grid>
-        <Grid xs={6}>
-          <svg
-            width={appState.svgInsideContainer.width}
-            height={appState.svgInsideContainer.height}
-          >
-            {/* its colors inside */}
-            <defs>
-              {myColorsAry.map((id) => (
-                <pattern
-                  key={id}
-                  id={id}
-                  patternUnits="userSpaceOnUse"
-                  width="1000px"
-                  height="1000px"
-                >
-                  <image
-                    style={{ MozUserSelect: "text" }}
-                    href={`https://cdn.stairbox.com/assets/stairbuilder/textures/${id}.jpg`}
+        <Grid xs={8}>
+          <div>
+            <svg
+              width={appState.svgInsideContainer.width}
+              height={appState.svgInsideContainer.height}
+            >
+              {/* its colors inside */}
+              <defs>
+                {myColorsAry.map((id) => (
+                  <pattern
+                    key={id}
+                    id={id}
+                    patternUnits="userSpaceOnUse"
                     width="1000px"
                     height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-              ))}
-              {/* tip of arrows */}
-              <marker
-                id="startarrow"
-                markerWidth={10}
-                markerHeight={7}
-                refX={0}
-                refY="3.5"
-                orient="auto"
-              >
-                <polygon points="10 0, 10 7, 0 3.5" fill="red" />
-              </marker>
-              <marker
-                id="endarrow"
-                markerWidth={10}
-                markerHeight={7}
-                refX={10}
-                refY="3.5"
-                orient="auto"
-                markerUnits="strokeWidth"
-              >
-                <polygon points="0 0, 10 3.5, 0 7" fill="red" />
-              </marker>
-            </defs>
-            {/* its the layout  */}
-            {/* entire height can be set from here */}
-            <g
-              transform={`translate (418.5,589.1753343239227) rotate(${appState.svgPlates.rotation}) scale(${appState.svgPlates.width},${appState.svgPlates.height})`}
-            >
-              {/* plates */}
-              {appState.svgPlates.positions.map((items, index) => {
-                return (
-                  <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
-                    <rect
-                      x={0}
-                      y={-16}
-                      width={962}
-                      height={236}
-                      fill={`url(#${appState.svgPlates.color})`}
-                      style={{ stroke: "black", strokeWidth: 2 }}
-                      id="run1_tread1"
-                      className=""
-                    />
-
-                    <rect
-                      x={0}
-                      y={0}
-                      width={962}
-                      height={10}
-                      fill="none"
-                      style={{ stroke: "black", strokeWidth: 1 }}
-                      id="run1_tread1"
-                      className=""
-                    />
-                    <text
-                      x={456}
-                      y={-130}
-                      style={{
-                        fontSize: 55,
-                        fontFamily: "Arial, Helvetica, sans-serif",
-                        color: "black",
-                      }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                    >
-                      #{index + 1}
-                    </text>
-                  </g>
-                );
-              })}
-              <text
-                x={0}
-                y={-0}
-                style={{
-                  fontSize: 55,
-                  fontFamily: "Arial, Helvetica, sans-serif",
-                  color: "black",
-                }}
-                transform={`translate (0,0) rotate(${appState.svgPlates.rotation}) scale(-1,1)`}
-              >
-                run1
-              </text>
-              {/* left &  right heing  pencil border*/}
-              {appState.leftRightPencilBorder.towardsLeftRight.map((items, index) => {
-                return (
-                  <g
-                    key={index}
-                    transform={`translate(${items} 0)  rotate(${appState.leftRightPencilBorder.rotation})`}
                   >
-                    <rect
-                      x={0}
-                      y={-120}
-                      width={27}
-                      height={appState.leftRightPencilBorder.height}
-                      fill={`url(#${appState.leftRightPencilBorder.color})`}
-                      style={{ stroke: "black", strokeWidth: 1 }}
-                      id="run1_rightString"
-                      className=""
+                    <image
+                      style={{ MozUserSelect: "text" }}
+                      href={`https://cdn.stairbox.com/assets/stairbuilder/textures/${id}.jpg`}
+                      width="1000px"
+                      height="1000px"
+                      preserveAspectRatio="none"
+                      transform="translate (0,0) rotate(0)"
                     />
-                  </g>
-                );
-              })}
-              {/* make this dynamic */}
-              {[600, -500].map((items, index) => {
-                return (
-                  <g key={index}>
-                    <line
-                      x1={600}
-                      y1={-16}
-                      x2={600}
-                      y2={1330}
-                      stroke="black"
-                      strokeWidth={3}
-                      markerEnd="url(#endarrow)"
-                      markerStart="url(#startarrow)"
-                      className=""
-                    />
-                    <rect
-                      x={545}
-                      y={647}
-                      width={200}
-                      height={100}
-                      fill="white"
-                      transform="translate (-20,-30)"
-                      opacity="0.6"
-                      className=""
-                    />
-                    <text
-                      x={545}
-                      y={-647}
-                      style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                      className=""
+                  </pattern>
+                ))}
+                {/* tip of arrows */}
+                <marker
+                  id="startarrow"
+                  markerWidth={10}
+                  markerHeight={7}
+                  refX={0}
+                  refY="3.5"
+                  orient="auto"
+                >
+                  <polygon points="10 0, 10 7, 0 3.5" fill="red" />
+                </marker>
+                <marker
+                  id="endarrow"
+                  markerWidth={10}
+                  markerHeight={7}
+                  refX={10}
+                  refY="3.5"
+                  orient="auto"
+                  markerUnits="strokeWidth"
+                >
+                  <polygon points="0 0, 10 3.5, 0 7" fill="red" />
+                </marker>
+              </defs>
+              {/* its the layout  */}
+              {/* entire height can be set from here */}
+              <g
+                transform={`translate (418.5,589.1753343239227) rotate(${appState.svgPlates.rotation}) scale(${appState.svgPlates.width},${appState.svgPlates.height})`}
+              >
+                {/* plates */}
+                {appState.svgPlates.positions.map((items, index) => {
+                  return (
+                    <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
+                      <rect
+                        x={0}
+                        y={-16}
+                        width={962}
+                        height={236}
+                        fill={`url(#${appState.svgPlates.color})`}
+                        style={{ stroke: "black", strokeWidth: 2 }}
+                        id="run1_tread1"
+                        className=""
+                      />
+
+                      <rect
+                        x={0}
+                        y={0}
+                        width={962}
+                        height={10}
+                        fill="none"
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="run1_tread1"
+                        className=""
+                      />
+                      <text
+                        x={456}
+                        y={-130}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #{index + 1}
+                      </text>
+                    </g>
+                  );
+                })}
+                <text
+                  x={0}
+                  y={-0}
+                  style={{
+                    fontSize: 55,
+                    fontFamily: "Arial, Helvetica, sans-serif",
+                    color: "black",
+                  }}
+                  transform={`translate (0,0) rotate(${appState.svgPlates.rotation}) scale(-1,1)`}
+                >
+                  run1
+                </text>
+                {/* left &  right heing  pencil border*/}
+                {appState.leftRightPencilBorder.towardsLeftRight.map((items, index) => {
+                  return (
+                    <g
+                      key={index}
+                      transform={`translate(${items} 0)  rotate(${appState.leftRightPencilBorder.rotation})`}
                     >
-                      1346
-                    </text>
-                    <line
-                      x1={-500}
-                      y1={-250}
-                      x2={500}
-                      y2={-250}
-                      stroke="black"
-                      strokeWidth={3}
-                      markerEnd="url(#endarrow)"
-                      markerStart="url(#startarrow)"
-                      className=""
-                    />
-                    <rect
-                      x={-50}
-                      y={-250}
-                      width={200}
-                      height={100}
-                      fill="white"
-                      transform="translate (-20,-30)"
-                      opacity="0.6"
-                      className=""
-                    />
-                    <text
-                      x={-50}
-                      y={270}
-                      style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                      className=""
-                    >
-                      1000
-                    </text>
-                  </g>
-                );
-              })}
-            </g>
-          </svg>
+                      <rect
+                        x={0}
+                        y={-120}
+                        width={27}
+                        height={appState.leftRightPencilBorder.height}
+                        fill={`url(#${appState.leftRightPencilBorder.color})`}
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="run1_rightString"
+                        className=""
+                      />
+                    </g>
+                  );
+                })}
+                {/* make this dynamic */}
+                {[600, -500].map((items, index) => {
+                  return (
+                    <g key={index}>
+                      <line
+                        x1={600}
+                        y1={-16}
+                        x2={600}
+                        y2={1330}
+                        stroke="black"
+                        strokeWidth={3}
+                        markerEnd="url(#endarrow)"
+                        markerStart="url(#startarrow)"
+                        className=""
+                      />
+                      <rect
+                        x={545}
+                        y={647}
+                        width={200}
+                        height={100}
+                        fill="white"
+                        transform="translate (-20,-30)"
+                        opacity="0.6"
+                        className=""
+                      />
+                      <text
+                        x={545}
+                        y={-647}
+                        style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                        className=""
+                      >
+                        {Math.floor(appState.svgPlates.height * 1000)}
+                      </text>
+                      <line
+                        x1={-500}
+                        y1={-250}
+                        x2={500}
+                        y2={-250}
+                        stroke="black"
+                        strokeWidth={3}
+                        markerEnd="url(#endarrow)"
+                        markerStart="url(#startarrow)"
+                        className=""
+                      />
+                      <rect
+                        x={-50}
+                        y={-250}
+                        width={200}
+                        height={100}
+                        fill="white"
+                        transform="translate (-20,-30)"
+                        opacity="0.6"
+                        className=""
+                      />
+                      <text
+                        x={-50}
+                        y={270}
+                        style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                        className=""
+                      >
+                        {Math.floor(Math.abs(appState.svgPlates.width) * 1000)}
+                      </text>
+                    </g>
+                  );
+                })}
+              </g>
+            </svg>
+          </div>
+        </Grid>
+        <Grid xs={2}>
+          <Tooltip title="New Design">
+            <NoteAddIcon sx={iconCol} onClick={() => window.location.reload()} />
+          </Tooltip>
+          <Tooltip title="Refresh">
+            <RefreshIcon
+              onClick={() => window.location.reload()}
+              sx={{
+                ...iconCol,
+                ml: 3,
+              }}
+            />
+          </Tooltip>
         </Grid>
       </Grid>
     </>
@@ -233,3 +285,12 @@ const Home = () => {
 };
 
 export default Home;
+
+const iconCol = {
+  background: ` ${primary}`,
+  height: 40,
+  p: 1,
+  width: 40,
+  borderRadius: 1,
+  cursor: "pointer",
+};
