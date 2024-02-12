@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setHeight, setWidth } from "../../toolkit/slices/stairHeightWidth";
 import Div from "../atom/Div";
 import { Paper } from "@mui/material";
+import { ceilingArray, stairWidth } from "../../data";
 
 const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   const dispatch = useDispatch();
@@ -25,8 +26,8 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
     if (selectedPosition >= 1 && selectedPosition < 1400) {
       setAppState((prevState) => ({
         ...prevState,
-        svgPlates: {
-          ...prevState.svgPlates,
+        svgRiser: {
+          ...prevState.svgRiser,
           positions: updatedPositions,
           height: 0.3540416047548291,
         },
@@ -35,8 +36,8 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
     if (selectedPosition >= 1400 && selectedPosition < 2940) {
       setAppState((prevState) => ({
         ...prevState,
-        svgPlates: {
-          ...prevState.svgPlates,
+        svgRiser: {
+          ...prevState.svgRiser,
           positions: updatedPositions,
           height: 0.1840416047548291,
         },
@@ -45,8 +46,8 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
     if (selectedPosition >= 1400 && selectedPosition >= 2940) {
       setAppState((prevState) => ({
         ...prevState,
-        svgPlates: {
-          ...prevState.svgPlates,
+        svgRiser: {
+          ...prevState.svgRiser,
           positions: updatedPositions,
           height: 0.1140416047548291,
         },
@@ -55,8 +56,8 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
     // update states here
     setAppState((prevState) => ({
       ...prevState,
-      svgPlates: {
-        ...prevState.svgPlates,
+      svgRiser: {
+        ...prevState.svgRiser,
         positions: updatedPositions,
       },
     }));
@@ -64,14 +65,14 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
 
   const addRiser = () => {
     console.log(appState, "appState");
-    const lastPosition = appState.svgPlates.positions[appState.svgPlates.positions.length - 1];
-    const newPositions = [...appState.svgPlates.positions, lastPosition + 230];
+    const lastPosition = appState.svgRiser.positions[appState.svgRiser.positions.length - 1];
+    const newPositions = [...appState.svgRiser.positions, lastPosition + 230];
     setAppState((prevState) => ({
       ...prevState,
-      svgPlates: {
-        ...prevState.svgPlates,
+      svgRiser: {
+        ...prevState.svgRiser,
         positions: newPositions,
-        height: prevState.svgPlates.height - 0.02,
+        height: prevState.svgRiser.height - 0.02,
       },
       leftRightPencilBorder: {
         ...prevState.leftRightPencilBorder,
@@ -81,14 +82,14 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   };
 
   const removePlate = () => {
-    const newPositions = [...appState.svgPlates.positions];
+    const newPositions = [...appState.svgRiser.positions];
     newPositions.pop();
     setAppState((prevState) => ({
       ...prevState,
-      svgPlates: {
-        ...prevState.svgPlates,
+      svgRiser: {
+        ...prevState.svgRiser,
         positions: newPositions,
-        height: prevState.svgPlates.height + 0.02,
+        height: prevState.svgRiser.height + 0.02,
       },
       leftRightPencilBorder: {
         ...prevState.leftRightPencilBorder,
@@ -100,9 +101,18 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   const handleWidthChange = (newValue) => {
     setAppState((prevState) => ({
       ...prevState,
-      svgPlates: {
-        ...prevState.svgPlates,
+      svgRiser: {
+        ...prevState.svgRiser,
         width: newValue,
+      },
+    }));
+  };
+  const handleCelingsHeight = (newHeight) => {
+    setAppState((prevState) => ({
+      ...prevState,
+      svgRiser: {
+        ...prevState.svgRiser,
+        ceilingHeight: newHeight,
       },
     }));
   };
@@ -122,20 +132,14 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
       </Select>
 
       {/* width */}
-      <Appheading sx={{ mt: 2 }}>Floor Width</Appheading>
+      <Appheading sx={{ mt: 1 }}>Floor Width</Appheading>
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        // value={appState.svgPlates.width}
+        // value={appState.svgRiser.width}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
-        {[
-          -0.2040416047548291, -0.2240416047548291, -0.2440416047548291, -0.2640416047548291,
-          -0.2840416047548291, -0.3040416047548291, -0.3240416047548291, -0.3440416047548291,
-          -0.3640416047548291, -0.3840416047548291, -0.4040416047548291, -0.4240416047548291,
-          -0.4440416047548291, -0.4640416047548291, -0.4840416047548291, -0.5040416047548291,
-          -0.5240416047548291, -0.5440416047548291, -0.5640416047548291,
-        ].map((value, index) => (
+        {stairWidth.map((value, index) => (
           <MenuItem
             onClick={() => dispatch(setWidth(index * 50 + 300))}
             key={index}
@@ -146,14 +150,18 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
         ))}
       </Select>
       {/* Celling Height */}
-      <Appheading sx={{ mt: 2 }}>Ceiling Height</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
+      <Appheading sx={{ mt: 1 }}>Ceiling Height</Appheading>
+      <Select fullWidth sx={{ height: 40, mt: 1 }}>
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
-        {positionOptions.map((option, index) => (
-          <MenuItem onClick={() => dispatch(setHeight(option + 79))} key={index} value={option}>
-            {option + 79} mm
+        {ceilingArray.map((option, index) => (
+          <MenuItem
+            onClick={() => handleCelingsHeight(parseFloat(option))}
+            key={index}
+            value={option}
+          >
+            {option} mm
           </MenuItem>
         ))}
       </Select>
@@ -202,8 +210,8 @@ const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };
 // const handleHeightChange = (newValue) => {
 //   setAppState((prevState) => ({
 //     ...prevState,
-//     svgPlates: {
-//       ...prevState.svgPlates,
+//     svgRiser: {
+//       ...prevState.svgRiser,
 //       height: newValue,
 //     },
 //   }));
@@ -217,7 +225,7 @@ const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        value={appState.svgPlates.height}
+        value={appState.svgRiser.height}
         onChange={(e) => handleHeightChange(parseFloat(e.target.value))}
       >
         {[
@@ -236,7 +244,7 @@ const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        value={appState.svgPlates.leftRightPencilBorder}
+        value={appState.svgRiser.leftRightPencilBorder}
         onChange={(e) => {
           const action = parseInt(e.target.value);
           if (!isNaN(action)) {

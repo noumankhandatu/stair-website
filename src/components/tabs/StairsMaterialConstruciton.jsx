@@ -20,8 +20,8 @@ const StairsMaterialConstruciton = ({ appState, setAppState }) => {
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        value={appState.svgPlates.color}
-        onChange={(e) => handleHeingColor(e, "svgPlates")}
+        value={appState.svgRiser.color}
+        onChange={(e) => handleHeingColor(e, "svgRiser")}
       >
         {myColorsAry.map((color) => (
           <MenuItem key={color} value={color}>

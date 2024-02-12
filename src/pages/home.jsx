@@ -21,13 +21,13 @@ const Home = () => {
       height: "100vh",
       width: 900,
     },
-    svgPlates: {
+    svgRiser: {
       color: "whitewood",
       positions: [0, 220, 440, 660, 880, 1100, 1320],
       width: -0.3040416047548291,
       height: 0.3540416047548291,
       rotation: 180,
-      
+      ceilingHeight: 236,
     },
     leftRightPencilBorder: {
       height: 1760,
@@ -125,19 +125,19 @@ const Home = () => {
               {/* its the layout  */}
               {/* entire height can be set from here */}
               <g
-                transform={`translate (418.5,589.1753343239227) rotate(${appState.svgPlates.rotation}) scale(${appState.svgPlates.width},${appState.svgPlates.height})`}
+                transform={`translate (418.5,589.1753343239227) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
               >
                 {/* risers */}
                 <g>
-                  {appState.svgPlates.positions.map((items, index) => {
+                  {appState.svgRiser.positions.map((items, index) => {
                     return (
                       <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
                         <rect
                           x={0}
                           y={-16}
                           width={962}
-                          height={236}
-                          fill={`url(#${appState.svgPlates.color})`}
+                          height={appState.svgRiser.ceilingHeight}
+                          fill={`url(#${appState.svgRiser.color})`}
                           style={{ stroke: "black", strokeWidth: 2 }}
                           id="run1_tread1"
                           className=""
@@ -178,7 +178,7 @@ const Home = () => {
                     fontFamily: "Arial, Helvetica, sans-serif",
                     color: "black",
                   }}
-                  transform={`translate (0,0) rotate(${appState.svgPlates.rotation}) scale(-1,1)`}
+                  transform={`translate (0,0) rotate(${appState.svgRiser.rotation}) scale(-1,1)`}
                 >
                   run1
                 </text>
@@ -235,7 +235,7 @@ const Home = () => {
                         className=""
                       >
                         {heightArrow}
-                        {/* {Math.floor(appState.svgPlates.height * 1000)} */}
+                        {/* {Math.floor(appState.svgRiser.height * 1000)} */}
                       </text>
                       <line
                         x1={-500}
@@ -266,7 +266,7 @@ const Home = () => {
                         className=""
                       >
                         {widhtArrow}
-                        {/* {Math.floor(Math.abs(appState.svgPlates.width) * 1000)} */}
+                        {/* {Math.floor(Math.abs(appState.svgRiser.width) * 1000)} */}
                       </text>
                     </g>
                   );
