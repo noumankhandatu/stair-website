@@ -2,9 +2,9 @@
 import { IconButton, Paper } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import Div from "../Div";
 import { AppLabel } from "../../theme";
 import { primary } from "../../theme/colors";
+import Div from "./../atom/Div";
 
 const FeatureCard = ({ showStairsLayout, handleshowStairLayout, title }) => {
   return (

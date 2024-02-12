@@ -1,22 +1,42 @@
 /* eslint-disable react/prop-types */
-import { Appheading } from "../theme";
+import { Appheading } from "../../theme/index";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
 const StairsWidthHeightSliders = ({ setAppState, appState }) => {
+  //number of Rises
   const positionOptions = [];
-  for (let i = 0; i <= 1600; i += 220) {
+  for (let i = 1; i <= 5000; i += 220) {
     positionOptions.push(i);
   }
 
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
     let updatedPositions = [];
-
     if (selectedPosition !== "") {
       updatedPositions = positionOptions.filter((pos) => pos <= selectedPosition);
     }
-
+    if (selectedPosition >= 1400 && selectedPosition < 2940) {
+      setAppState((prevState) => ({
+        ...prevState,
+        svgPlates: {
+          ...prevState.svgPlates,
+          positions: updatedPositions,
+          height: 0.1840416047548291,
+        },
+      }));
+    }
+    if (selectedPosition >= 1400 && selectedPosition >= 2940) {
+      setAppState((prevState) => ({
+        ...prevState,
+        svgPlates: {
+          ...prevState.svgPlates,
+          positions: updatedPositions,
+          height: 0.1140416047548291,
+        },
+      }));
+    }
+    // update states here
     setAppState((prevState) => ({
       ...prevState,
       svgPlates: {
@@ -27,8 +47,9 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   };
 
   const addRiser = () => {
+    console.log(appState, "appState");
     const lastPosition = appState.svgPlates.positions[appState.svgPlates.positions.length - 1];
-    const newPositions = [...appState.svgPlates.positions, lastPosition + 220];
+    const newPositions = [...appState.svgPlates.positions, lastPosition + 230];
     setAppState((prevState) => ({
       ...prevState,
       svgPlates: {
@@ -80,6 +101,18 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   };
   return (
     <div>
+      {/* drop of riser */}
+      <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
+      <Select fullWidth sx={{ height: 40, mt: 2 }} onChange={handlePositionChange}>
+        <MenuItem value="" disabled>
+          Select a position
+        </MenuItem>
+        {positionOptions.map((option, index) => (
+          <MenuItem key={index} value={option}>
+            {option + 79} mm
+          </MenuItem>
+        ))}
+      </Select>
       {/* height */}
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
       <Select
@@ -168,18 +201,6 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
         </MenuItem>
         <MenuItem value="add">Add Riser</MenuItem>
         <MenuItem value="remove">Remove Riser</MenuItem>
-      </Select>
-        {/* drop of riser */}
-      <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 2 }} value="" onChange={handlePositionChange}>
-        <MenuItem value="" disabled>
-          Select a position
-        </MenuItem>
-        {positionOptions.map((option, index) => (
-          <MenuItem key={index} value={option}>
-            {option}
-          </MenuItem>
-        ))}
       </Select>
     </div>
   );

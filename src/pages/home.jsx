@@ -1,15 +1,15 @@
 import { useState } from "react";
-import StairsWidthHeightSliders from "./../components/StairsWidthHeightSliders";
 import { myColorsAry } from "./../style/global";
 import { AppMainheading } from "../theme";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Divider, Tooltip } from "@mui/material";
-import Div from "../components/Div";
 import FeatureCard from "../components/molecules/FeatureCard";
-import StairsMaterialConstruciton from "../components/StairsMaterialConstruciton";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { primary } from "../theme/colors";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import StairsWidthHeightSliders from "../components/tabs/StairsWidthHeightSliders";
+import Div from "./../components/atom/Div";
+import StairsMaterialConstruciton from "../components/tabs/StairsMaterialConstruciton";
 const Home = () => {
   // states
   const [appState, setAppState] = useState({
@@ -21,7 +21,7 @@ const Home = () => {
       color: "whitewood",
       positions: [0, 220, 440, 660, 880, 1100, 1320],
       width: -0.3040416047548291,
-      height: 0.2540416047548291,
+      height: 0.3540416047548291,
       rotation: 180,
     },
     leftRightPencilBorder: {
