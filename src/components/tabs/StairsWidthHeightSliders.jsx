@@ -63,41 +63,6 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
     }));
   };
 
-  const addRiser = () => {
-    console.log(appState, "appState");
-    const lastPosition = appState.svgRiser.positions[appState.svgRiser.positions.length - 1];
-    const newPositions = [...appState.svgRiser.positions, lastPosition + 230];
-    setAppState((prevState) => ({
-      ...prevState,
-      svgRiser: {
-        ...prevState.svgRiser,
-        positions: newPositions,
-        height: prevState.svgRiser.height - 0.02,
-      },
-      leftRightPencilBorder: {
-        ...prevState.leftRightPencilBorder,
-        height: prevState.leftRightPencilBorder.height + 230,
-      },
-    }));
-  };
-
-  const removePlate = () => {
-    const newPositions = [...appState.svgRiser.positions];
-    newPositions.pop();
-    setAppState((prevState) => ({
-      ...prevState,
-      svgRiser: {
-        ...prevState.svgRiser,
-        positions: newPositions,
-        height: prevState.svgRiser.height + 0.02,
-      },
-      leftRightPencilBorder: {
-        ...prevState.leftRightPencilBorder,
-        height: prevState.leftRightPencilBorder.height - 230,
-      },
-    }));
-  };
-
   const handleWidthChange = (newValue) => {
     setAppState((prevState) => ({
       ...prevState,
@@ -116,6 +81,7 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
       },
     }));
   };
+  console.log(appState, "appState");
   return (
     <div>
       {/* Floor Height */}
@@ -166,25 +132,16 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
         ))}
       </Select>
       {/* Riser */}
-      <Appheading sx={{ mt: 2 }}>Remove Add Riser</Appheading>
-      <Select
-        fullWidth
-        sx={{ height: 40, mt: 2 }}
-        value=""
-        onChange={(e) => {
-          const action = e.target.value;
-          if (action === "add") {
-            addRiser();
-          } else if (action === "remove") {
-            removePlate();
-          }
-        }}
-      >
+      <Appheading sx={{ mt: 2 }}>Number of Rises</Appheading>
+      <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
         <MenuItem value="" disabled>
-          Select an action
+          Select a position
         </MenuItem>
-        <MenuItem value="add">Add Riser</MenuItem>
-        <MenuItem value="remove">Remove Riser</MenuItem>
+        {appState.svgRiser.positions.map((option, index) => (
+          <MenuItem key={index} value={option}>
+            {index + 1} @ {option + 79} mm
+          </MenuItem>
+        ))}
       </Select>
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
