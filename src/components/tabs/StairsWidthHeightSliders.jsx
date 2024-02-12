@@ -102,7 +102,7 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   return (
     <div>
       {/* drop of riser */}
-      <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
+      <Appheading sx={{ mt: 2 }}>Height & Number of Risers</Appheading>
       <Select fullWidth sx={{ height: 40, mt: 2 }} onChange={handlePositionChange}>
         <MenuItem value="" disabled>
           Select a position
