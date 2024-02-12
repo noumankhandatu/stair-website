@@ -4,6 +4,8 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
 import { setHeight, setWidth } from "../../toolkit/slices/stairHeightWidth";
+import Div from "../atom/Div";
+import { Paper } from "@mui/material";
 
 const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   const dispatch = useDispatch();
@@ -156,11 +158,27 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
         <MenuItem value="add">Add Riser</MenuItem>
         <MenuItem value="remove">Remove Riser</MenuItem>
       </Select>
+      <Appheading sx={{ mt: 2 }}>Straight staircase - Add a turn</Appheading>
+      <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <Paper className="turnLeft" sx={{ p: 3, textAlign: "center" }}>
+          <p style={textT}>
+            add a left <br />
+            turn
+          </p>
+        </Paper>
+        <Paper className="turnRight" sx={{ p: 3, textAlign: "center" }}>
+          <p style={textT}>
+            add a Right <br />
+            turn
+          </p>
+        </Paper>
+      </Div>
     </div>
   );
 };
 
 export default StairsWidthHeightSliders;
+const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };
 // const handleHeightChange = (newValue) => {
 //   setAppState((prevState) => ({
 //     ...prevState,

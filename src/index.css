@@ -7,3 +7,12 @@
   text-decoration: none;
   font-family: "Oxygen";
 }
+
+.turnLeft {
+  background-image: url(https://cdn.stairbox.com/assets/stairbox-com/pages/stairbuilder/left_turn.png);
+  background-size: cover;
+}
+.turnRight {
+  background-image: url(https://cdn.stairbox.com/assets/stairbox-com/pages/stairbuilder/right_turn.png);
+  background-size: cover;
+}

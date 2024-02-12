@@ -9,7 +9,7 @@ export const AppMainheading = styled(Typography)({
 
 export const Appheading = styled(Typography)({
   fontWeight: 600,
-  fontSize: "15.91px",
+  fontSize: "12.91px",
   lineHeight: "26.87px",
 });
 
