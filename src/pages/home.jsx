@@ -191,7 +191,7 @@ const Home = () => {
                         x={0}
                         y={-120}
                         width={27}
-                        height={appState.leftRightPencilBorder.height}
+                        height={heightArrow * 1.2}
                         fill={`url(#${appState.leftRightPencilBorder.color})`}
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run1_rightString"
@@ -208,7 +208,7 @@ const Home = () => {
                         x1={600}
                         y1={-16}
                         x2={600}
-                        y2={1330}
+                        y2={heightArrow}
                         stroke="black"
                         strokeWidth={3}
                         markerEnd="url(#endarrow)"
