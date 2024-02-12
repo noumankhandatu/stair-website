@@ -22,6 +22,16 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
     if (selectedPosition !== "") {
       updatedPositions = positionOptions.filter((pos) => pos <= selectedPosition);
     }
+    if (selectedPosition >= 1 && selectedPosition < 1400) {
+      setAppState((prevState) => ({
+        ...prevState,
+        svgPlates: {
+          ...prevState.svgPlates,
+          positions: updatedPositions,
+          height: 0.3540416047548291,
+        },
+      }));
+    }
     if (selectedPosition >= 1400 && selectedPosition < 2940) {
       setAppState((prevState) => ({
         ...prevState,
@@ -99,8 +109,8 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   return (
     <div>
       {/* drop of riser */}
-      <Appheading sx={{ mt: 2 }}>Height & Number of Risers</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 2 }} onChange={handlePositionChange}>
+      <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
+      <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
