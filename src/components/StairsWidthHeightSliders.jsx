@@ -117,6 +117,37 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
+      {/* hign height */}
+
+      <Appheading sx={{ mt: 2 }}>Hinges Height</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        value={appState.svgPlates.leftRightPencilBorder}
+        onChange={(e) => {
+          const action = parseInt(e.target.value);
+          if (!isNaN(action)) {
+            // Check if the selected value is a number
+            const updatedHeight = action;
+            setAppState((prevState) => ({
+              ...prevState,
+              leftRightPencilBorder: {
+                ...prevState.leftRightPencilBorder,
+                height: updatedHeight,
+              },
+            }));
+          }
+        }}
+      >
+        <MenuItem value="" disabled>
+          Select a height
+        </MenuItem>
+        <MenuItem value="1260">180</MenuItem>
+        <MenuItem value="1460">254</MenuItem>
+        <MenuItem value="1660">304</MenuItem>
+        <MenuItem value="1760">324</MenuItem>
+        <MenuItem value="1795">410</MenuItem>
+      </Select>
       {/* Riser */}
       <Appheading sx={{ mt: 2 }}>Remove Add Riser</Appheading>
       <Select
@@ -138,7 +169,7 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
         <MenuItem value="add">Add Riser</MenuItem>
         <MenuItem value="remove">Remove Riser</MenuItem>
       </Select>
-
+        {/* drop of riser */}
       <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
       <Select fullWidth sx={{ height: 40, mt: 2 }} value="" onChange={handlePositionChange}>
         <MenuItem value="" disabled>

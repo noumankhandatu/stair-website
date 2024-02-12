@@ -25,7 +25,7 @@ const Home = () => {
       rotation: 180,
     },
     leftRightPencilBorder: {
-      height: 1750,
+      height: 1760,
       towardsLeftRight: [473, -500],
       rotation: 0,
       color: "whitewood",
