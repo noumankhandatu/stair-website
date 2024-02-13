@@ -1,15 +1,17 @@
-# React + Vite
+Main Tasks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1 :number of riser will get their array back
+2 :Pencil Border height
+3: Shapes of model
+4: Left & Right Turn
+5 : Left Feature Step Right Feature Step
 
-Currently, two official plugins are available:
+<!-- Task 4 -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+we have 4 shapes
+3 Winder , TShape , Half Handing , Quater Landing
 
-
-  {/* drop of riser */}
-      <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 2 }} value="" onChange={handlePositionChange}>
-        <MenuItem value="" disabled>
-          Select a position  values set
+T Shape -> You cant add more left and rights
+3 Winder -> You can add 2 turns
+Half Handing -> You can 1 turns
+Quater Landing -> You can 2 turns

@@ -18,14 +18,16 @@ const Home = () => {
   // states
   const [appState, setAppState] = useState({
     svgInsideContainer: {
-      height: "100vh",
+      height: "200vh",
       width: 900,
     },
     svgRiser: {
       color: "whitewood",
       positions: [0, 220, 440, 660, 880, 1100, 1320],
       width: -0.3040416047548291,
-      height: 0.3540416047548291,
+      // height: 0.3540416047548291,
+      height: 0.1540416047548291,
+
       rotation: 180,
       ceilingHeight: 236,
     },
@@ -45,6 +47,29 @@ const Home = () => {
   const handleshowMaterialConstruciton = () => {
     setshowMaterialConstruction((prev) => !prev);
   };
+  const polylineData = [
+    {
+      points: "451,-16,-451,-16,-452,856.03,489,37,37",
+      fill: "url(#turn1_tread1)",
+      strokeWidth: 2,
+      textContent: "#5",
+      textPosition: { x: 70, y: -100 },
+    },
+    {
+      points: "489,18.47,-451,847.5,-460,1488,-136.03,1488,454,55",
+      fill: "url(#turn1_tread2)",
+      strokeWidth: 2,
+      textContent: "#6",
+      textPosition: { x: 250, y: -280 },
+    },
+    {
+      points: "415.4,55,-134.63,1488,457,1488,477,26,334,26",
+      fill: "url(#turn1_tread3)",
+      strokeWidth: 2,
+      textContent: "#7",
+      textPosition: { x: 550, y: -400 },
+    },
+  ];
   return (
     <>
       <AppMainheading sx={{ mt: 4 }}>
@@ -129,6 +154,123 @@ const Home = () => {
               >
                 {/* risers */}
                 <g>
+                  <g transform="translate(-13 1600)  rotate(-0.3)">
+                    <g transform="translate(0 0)  rotate(0)">
+                      <polyline
+                        points="451,-16,-451,-16,-452,856.03,489,37,37"
+                        fill="url(#turn1_tread1)"
+                        stroke="black"
+                        strokeWidth={2}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />
+                      <polyline
+                        points="431,0,-431,0,-431,10,451,10"
+                        fill="url(#turn1_tread1)"
+                        stroke="black"
+                        strokeWidth={1}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />
+                      <text
+                        x={70}
+                        y={-100}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #5
+                      </text>
+                    </g>
+                    <g transform="translate(0 0)  rotate(0)">
+                      <polyline
+                        points="489,18.47,-451,847.5,-460,1488,-136.03,1488,454,55"
+                        fill="url(#turn1_tread2)"
+                        stroke="black"
+                        strokeWidth={2}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />
+                      {/* <polyline
+                        points="689,37,-731,866.03,-731,877.6,689,48.58"
+                        fill="url(#turn1_tread2)"
+                        stroke="black"
+                        strokeWidth={1}
+                      /> */}
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />
+                      <text
+                        x={250}
+                        y={-280}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #6
+                      </text>
+                    </g>
+                    <g transform="translate(0 0)  rotate(0)">
+                      <polyline
+                        points="415.4,55,-134.63,1488,457,1488,477,26,334,26"
+                        fill="url(#turn1_tread3)"
+                        stroke="black"
+                        strokeWidth={2}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />
+                      <polyline
+                        points="434,55,-116.03,1488,-104.4,1488,434.63,55"
+                        fill="url(#turn1_tread3)"
+                        stroke="black"
+                        strokeWidth={1}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />
+                      <text
+                        x={550}
+                        y={-400}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #7
+                      </text>
+                    </g>
+                  </g>
+                  {/* horizatinal stairs */}
                   {appState.svgRiser.positions.map((items, index) => {
                     return (
                       <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
