@@ -180,3 +180,77 @@
                     );
                   })}
                 </g>
+
+
+
+
+
+
+
+
+
+
+                height wagira jo phele kiya tha 
+                // const handleHeightChange = (newValue) => {
+//   setAppState((prevState) => ({
+//     ...prevState,
+//     svgRiser: {
+//       ...prevState.svgRiser,
+//       height: newValue,
+//     },
+//   }));
+// };
+
+{
+  /* height */
+}
+{
+  /* <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        value={appState.svgRiser.height}
+        onChange={(e) => handleHeightChange(parseFloat(e.target.value))}
+      >
+        {[
+          0.1940416047548291, 0.2140416047548291, 0.2340416047548291, 0.2540416047548291,
+          0.2740416047548291, 0.2840416047548291, 0.3040416047548291, 0.3240416047548291,
+        ].map((value, index) => (
+          <MenuItem key={index} value={value.toString()}>
+            {index} mm
+          </MenuItem>
+        ))}
+      </Select> */
+}
+
+{
+  /* <Appheading sx={{ mt: 2 }}>Hinges Height</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        value={appState.svgRiser.leftRightPencilBorder}
+        onChange={(e) => {
+          const action = parseInt(e.target.value);
+          if (!isNaN(action)) {
+            // Check if the selected value is a number
+            const updatedHeight = action;
+            setAppState((prevState) => ({
+              ...prevState,
+              leftRightPencilBorder: {
+                ...prevState.leftRightPencilBorder,
+                height: updatedHeight,
+              },
+            }));
+          }
+        }}
+      >
+        <MenuItem value="" disabled>
+          Select a height
+        </MenuItem>
+        <MenuItem value="1260">180</MenuItem>
+        <MenuItem value="1460">254</MenuItem>
+        <MenuItem value="1660">304</MenuItem>
+        <MenuItem value="1760">324</MenuItem>
+        <MenuItem value="1795">410</MenuItem>
+      </Select> */
+}

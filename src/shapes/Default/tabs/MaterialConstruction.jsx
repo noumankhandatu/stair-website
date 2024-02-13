@@ -8,18 +8,40 @@ import Div from "../../../components/atom/Div";
 import { Paper } from "@mui/material";
 import { ceilingArray, stairWidth } from "../../../utils/data/index";
 
+const positionOptions = [];
+let updatedPositions = [];
+
+for (let i = 1; i <= 5000; i += 220) {
+  positionOptions.push(i);
+}
+
 const MaterialConstruction = ({ setAppState, appState }) => {
+  // hooks
   const dispatch = useDispatch();
+  // width changer
+  const handleWidthChange = (newValue) => {
+    setAppState((prevState) => ({
+      ...prevState,
+      svgRiser: {
+        ...prevState.svgRiser,
+        width: newValue,
+      },
+    }));
+  };
+  // ceiling height changer
+  const handleCelingsHeight = (newHeight) => {
+    setAppState((prevState) => ({
+      ...prevState,
+      svgRiser: {
+        ...prevState.svgRiser,
+        ceilingHeight: newHeight,
+      },
+    }));
+  };
 
-  //number of Rises
-  const positionOptions = [];
-  for (let i = 1; i <= 5000; i += 220) {
-    positionOptions.push(i);
-  }
-
+  //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
-    let updatedPositions = [];
     if (selectedPosition !== "") {
       updatedPositions = positionOptions.filter((pos) => pos <= selectedPosition);
     }
@@ -63,28 +85,10 @@ const MaterialConstruction = ({ setAppState, appState }) => {
     }));
   };
 
-  const handleWidthChange = (newValue) => {
-    setAppState((prevState) => ({
-      ...prevState,
-      svgRiser: {
-        ...prevState.svgRiser,
-        width: newValue,
-      },
-    }));
-  };
-  const handleCelingsHeight = (newHeight) => {
-    setAppState((prevState) => ({
-      ...prevState,
-      svgRiser: {
-        ...prevState.svgRiser,
-        ceilingHeight: newHeight,
-      },
-    }));
-  };
-  console.log(appState, "appState");
   return (
     <div>
       {/* Floor Height */}
+
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
       <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
         <MenuItem value="" disabled>
@@ -97,7 +101,8 @@ const MaterialConstruction = ({ setAppState, appState }) => {
         ))}
       </Select>
 
-      {/* width */}
+      {/* Floor Width */}
+
       <Appheading sx={{ mt: 1 }}>Floor Width</Appheading>
       <Select
         fullWidth
@@ -115,8 +120,10 @@ const MaterialConstruction = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
-      {/* Celling Height */}
-      <Appheading sx={{ mt: 1 }}>Ceiling Height</Appheading>
+
+      {/* Individual Going */}
+
+      <Appheading sx={{ mt: 1 }}>Individual Going</Appheading>
       <Select fullWidth sx={{ height: 40, mt: 1 }}>
         <MenuItem value="" disabled>
           Select a position
@@ -131,18 +138,33 @@ const MaterialConstruction = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
-      {/* Riser */}
-      <Appheading sx={{ mt: 2 }}>Number of Rises</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
+
+      {/* Number of Rises */}
+
+      <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
+      <Select
+        disabled={updatedPositions.length === 0}
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        onChange={handlePositionChange}
+      >
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
-        {appState.svgRiser.positions.map((option, index) => (
-          <MenuItem key={index} value={option}>
-            {index + 1} @ {option + 79} mm
-          </MenuItem>
-        ))}
+        {updatedPositions.slice(-3).map((option, index) => {
+          return (
+            <MenuItem key={index} value={option}>
+              {index + updatedPositions.length - 1} @ {option + 79}
+            </MenuItem>
+          );
+        })}
+        <MenuItem value={updatedPositions && updatedPositions[updatedPositions?.length - 1] + 220}>
+          {updatedPositions?.length + 2} @ {updatedPositions[updatedPositions?.length - 1] + 220}
+        </MenuItem>
       </Select>
+
+      {/* Turns -> Left & Right  */}
+
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Paper className="turnLeft" sx={{ p: 3, textAlign: "center" }}>
@@ -165,66 +187,3 @@ const MaterialConstruction = ({ setAppState, appState }) => {
 export default MaterialConstruction;
 
 const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };
-// const handleHeightChange = (newValue) => {
-//   setAppState((prevState) => ({
-//     ...prevState,
-//     svgRiser: {
-//       ...prevState.svgRiser,
-//       height: newValue,
-//     },
-//   }));
-// };
-
-{
-  /* height */
-}
-{
-  /* <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
-      <Select
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
-        value={appState.svgRiser.height}
-        onChange={(e) => handleHeightChange(parseFloat(e.target.value))}
-      >
-        {[
-          0.1940416047548291, 0.2140416047548291, 0.2340416047548291, 0.2540416047548291,
-          0.2740416047548291, 0.2840416047548291, 0.3040416047548291, 0.3240416047548291,
-        ].map((value, index) => (
-          <MenuItem key={index} value={value.toString()}>
-            {index} mm
-          </MenuItem>
-        ))}
-      </Select> */
-}
-
-{
-  /* <Appheading sx={{ mt: 2 }}>Hinges Height</Appheading>
-      <Select
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
-        value={appState.svgRiser.leftRightPencilBorder}
-        onChange={(e) => {
-          const action = parseInt(e.target.value);
-          if (!isNaN(action)) {
-            // Check if the selected value is a number
-            const updatedHeight = action;
-            setAppState((prevState) => ({
-              ...prevState,
-              leftRightPencilBorder: {
-                ...prevState.leftRightPencilBorder,
-                height: updatedHeight,
-              },
-            }));
-          }
-        }}
-      >
-        <MenuItem value="" disabled>
-          Select a height
-        </MenuItem>
-        <MenuItem value="1260">180</MenuItem>
-        <MenuItem value="1460">254</MenuItem>
-        <MenuItem value="1660">304</MenuItem>
-        <MenuItem value="1760">324</MenuItem>
-        <MenuItem value="1795">410</MenuItem>
-      </Select> */
-}
