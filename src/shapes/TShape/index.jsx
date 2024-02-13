@@ -1,153 +1,139 @@
-import { Tooltip } from "@mui/material";
+import { Divider, Tooltip } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { iconCol } from "../Default";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import FeatureCard from "../../components/molecules/FeatureCard";
+import { useState } from "react";
+import Div from "../../components/atom/Div";
+import { AppMainheading } from "../../theme";
+import StairsLayout from "./tabs/stairsLayout";
 
+
+const patternsData = [
+  {
+    id: "mdf",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg",
+  },
+  {
+    id: "oak",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/oak.jpg",
+  },
+  {
+    id: "redwood",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/pine.jpg",
+  },
+  {
+    id: "whitewood",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/softwood.jpg",
+  },
+  {
+    id: "whiteprimed",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/whiteprimed.jpg",
+  },
+  {
+    id: "false",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg",
+  },
+  {
+    id: "0",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg",
+  },
+  {
+    id: "turn1_tread1",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg",
+  },
+];
+
+const markersData = [
+  {
+    id: "startarrow",
+    markerWidth: 10,
+    markerHeight: 7,
+    refY: "3.5",
+  },
+  {
+    id: "endarrow",
+    markerWidth: 10,
+    markerHeight: 7,
+    refX: 10,
+    refY: "3.5",
+    markerUnits: "strokeWidth",
+  },
+];
 const TShape = () => {
+  const [showStairsLayout, setshowStairsLayout] = useState(false);
+  const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
+  const handleshowStairLayout = () => {
+    setshowStairsLayout((prev) => !prev);
+  };
+  const handleshowMaterialConstruciton = () => {
+    setshowMaterialConstruction((prev) => !prev);
+  };
   return (
     <>
+      <AppMainheading sx={{ mt: 4 }}>
+        Interactive EasyStairs Design Tool - StairBuilder®
+      </AppMainheading>
+      <Divider sx={{ mt: 1 }} />
+      <Div height={40} />
       <Grid container>
         <Grid xs={2}>
-          asd Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore, perspiciatis?{" "}
+          <Grid xs={2}>
+            <FeatureCard
+              title={"Stairs Layout"}
+              showStairsLayout={showStairsLayout}
+              handleshowStairLayout={handleshowStairLayout}
+            />
+            {showStairsLayout && <StairsLayout />}
+            <Div height={20} />
+            <FeatureCard
+              title={"Material & Construction"}
+              showStairsLayout={showMaterialConstruction}
+              handleshowStairLayout={handleshowMaterialConstruciton}
+            />
+          </Grid>
         </Grid>
         <Grid xs={8}>
           <div>
             <svg width={594} height={700}>
               <defs>
-                <pattern id="mdf" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                  <image
-                    style={{ MozUserSelect: "text" }}
-                    href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                {patternsData.map((pattern) => (
+                  <pattern
+                    key={pattern.id}
+                    id={pattern.id}
+                    patternUnits="userSpaceOnUse"
                     width="1000px"
                     height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-                <pattern id="oak" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                  <image
-                    style={{ MozUserSelect: "text" }}
-                    href="https://cdn.stairbox.com/assets/stairbuilder/textures/oak.jpg"
-                    width="1000px"
-                    height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-                <pattern id="redwood" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                  <image
-                    style={{ MozUserSelect: "text" }}
-                    href="https://cdn.stairbox.com/assets/stairbuilder/textures/pine.jpg"
-                    width="1000px"
-                    height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-                <pattern
-                  id="whitewood"
-                  patternUnits="userSpaceOnUse"
-                  width="1000px"
-                  height="1000px"
-                >
-                  <image
-                    style={{ MozUserSelect: "text" }}
-                    href="https://cdn.stairbox.com/assets/stairbuilder/textures/softwood.jpg"
-                    width="1000px"
-                    height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-                <pattern
-                  id="whiteprimed"
-                  patternUnits="userSpaceOnUse"
-                  width="1000px"
-                  height="1000px"
-                >
-                  <image
-                    style={{ MozUserSelect: "text" }}
-                    href="https://cdn.stairbox.com/assets/stairbuilder/textures/whiteprimed.jpg"
-                    width="1000px"
-                    height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-                <pattern id="false" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                  <image
-                    style={{ MozUserSelect: "text" }}
-                    href="https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg"
-                    width="1000px"
-                    height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-                <pattern id={0} patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                  <image
-                    style={{ MozUserSelect: "text" }}
-                    href="https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg"
-                    width="1000px"
-                    height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-                <pattern
-                  id="turn1_tread1"
-                  patternUnits="userSpaceOnUse"
-                  width="1000px"
-                  height="1000px"
-                >
-                  <image
-                    href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                    width="1000px"
-                    height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-                <pattern
-                  id="turn1_tread1"
-                  patternUnits="userSpaceOnUse"
-                  width="1000px"
-                  height="1000px"
-                >
-                  <image
-                    href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                    width="1000px"
-                    height="1000px"
-                    preserveAspectRatio="none"
-                    transform="translate (0,0) rotate(0)"
-                  />
-                </pattern>
-                <marker
-                  id="startarrow"
-                  markerWidth={10}
-                  markerHeight={7}
-                  refX={0}
-                  refY="3.5"
-                  orient="auto"
-                >
-                  <polygon points="10 0, 10 7, 0 3.5" fill="red" />
-                </marker>
-                <marker
-                  id="endarrow"
-                  markerWidth={10}
-                  markerHeight={7}
-                  refX={10}
-                  refY="3.5"
-                  orient="auto"
-                  markerUnits="strokeWidth"
-                >
-                  <polygon points="0 0, 10 3.5, 0 7" fill="red" />
-                </marker>
+                  >
+                    <image
+                      href={pattern.href}
+                      width="1000px"
+                      height="1000px"
+                      preserveAspectRatio="none"
+                      transform="translate (0,0) rotate(0)"
+                    />
+                  </pattern>
+                ))}
+
+                {markersData.map((marker) => (
+                  <marker
+                    key={marker.id}
+                    id={marker.id}
+                    markerWidth={marker.markerWidth}
+                    markerHeight={marker.markerHeight}
+                    refX={marker.refX || 0}
+                    refY={marker.refY}
+                    orient={marker.orient || "auto"}
+                    markerUnits={marker.markerUnits || "userSpaceOnUse"}
+                  >
+                    <polygon points="0 0, 10 3.5, 0 7" fill="red" />
+                  </marker>
+                ))}
               </defs>
               <g transform="translate (297,440.3296894723554) rotate(180) scale(-0.10497349154253975,0.10497349154253975)">
                 <g>
-                  <g transform="translate(0 0)  rotate(0)" />
+                  {/* bottom  */}
                   <g transform="translate(0 0)  rotate(0)">
                     <g>
                       <g transform="translate(-413.5 0)  rotate(0)">
@@ -305,6 +291,7 @@ const TShape = () => {
                       run1
                     </text>
                   </g>
+                  {/* center */}
                   <g transform="translate(0 888)  rotate(0)">
                     <g transform="translate(0 849)  rotate(-90)" />
                     <g transform="translate(0 0)  rotate(0)">
@@ -346,6 +333,7 @@ const TShape = () => {
                     <g transform="translate(-419 -2.5)  rotate(0)" />
                     <g transform="translate(419 -2.5)  rotate(0)" />
                   </g>
+                  {/* left */}
                   <g transform="translate(-416.5 1304.5)  rotate(90)">
                     <g>
                       <g transform="translate(-413.5 0)  rotate(0)">
@@ -605,42 +593,7 @@ const TShape = () => {
                       run2
                     </text>
                   </g>
-                  <g transform="translate(-1970.5 1304.5)  rotate(90)">
-                    <g transform="translate(-413.5 0)  rotate(0)">
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={86}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="nosing_tread"
-                        className=""
-                      />
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="nosing_tread"
-                        className=""
-                      />
-                      <text
-                        x="388.5"
-                        y={-55}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #13
-                      </text>
-                    </g>
-                  </g>
+                  {/* right */}
                   <g transform="translate(416.5 1304.5)  rotate(-90)">
                     <g>
                       <g transform="translate(-413.5 0)  rotate(0)">
@@ -900,43 +853,8 @@ const TShape = () => {
                       run3
                     </text>
                   </g>
-                  <g transform="translate(1970.5 1304.5)  rotate(-90)">
-                    <g transform="translate(-413.5 0)  rotate(0)">
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={86}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="nosing2_tread"
-                        className=""
-                      />
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="nosing2_tread"
-                        className=""
-                      />
-                      <text
-                        x="388.5"
-                        y={-55}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #13
-                      </text>
-                    </g>
-                  </g>
                 </g>
+                {/* pencil border */}
                 <g>
                   <g transform="translate(0 0)  rotate(0)" />
                   <g transform="translate(0 0)  rotate(0)">
@@ -1074,82 +992,7 @@ const TShape = () => {
                     <g transform="translate(-413.5 0)  rotate(0)" />
                   </g>
                 </g>
-                <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width={80} height={80}>
-                  <path
-                    d="M-20,20 l40,-40
-  M0,80 l80,-80
-  M60,100 l40,-40"
-                    style={{ stroke: "grey", strokeWidth: 4 }}
-                  />
-                </pattern>
-                <path d="" fill="white" fillOpacity="0.3" />
-                <path
-                  d=""
-                  fill="url(#diagonalHatch)"
-                  fillOpacity={1}
-                  strokeWidth={6}
-                  stroke="black"
-                />
-                <g>
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
-                  </g>
-                  <g transform="translate(0 888)  rotate(0)">
-                    <g transform="translate(0 849)  rotate(-90)" />
-                    <g transform="translate(0 0)  rotate(0)" />
-                    <g transform="translate(-419 -2.5)  rotate(0)" />
-                    <g transform="translate(419 -2.5)  rotate(0)" />
-                  </g>
-                  <g transform="translate(-416.5 1304.5)  rotate(90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                      <g transform="translate(-413.5 888)  rotate(0)" />
-                      <g transform="translate(-413.5 1110)  rotate(0)" />
-                      <g transform="translate(-413.5 1332)  rotate(0)" />
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
-                  </g>
-                  <g transform="translate(-1970.5 1304.5)  rotate(90)">
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                  <g transform="translate(416.5 1304.5)  rotate(-90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                      <g transform="translate(-413.5 888)  rotate(0)" />
-                      <g transform="translate(-413.5 1110)  rotate(0)" />
-                      <g transform="translate(-413.5 1332)  rotate(0)" />
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
-                  </g>
-                  <g transform="translate(1970.5 1304.5)  rotate(-90)">
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                </g>
+                {/* little box  */}
                 <g>
                   <g transform="translate(0 0)  rotate(0)" />
                   <g transform="translate(0 0)  rotate(0)">
@@ -1232,6 +1075,7 @@ const TShape = () => {
                     <g transform="translate(-413.5 0)  rotate(0)" />
                   </g>
                 </g>
+                {/* arrows */}
                 <g>
                   <g transform="translate(0 0)  rotate(0)" />
                   <g transform="translate(0 0)  rotate(0)">

@@ -7,8 +7,9 @@ const AppShapes = () => {
   const currentShape = useSelector((state) => state?.ShapeSlice?.shape);
   return (
     <div>
-      {currentShape === DEFAULT_SHAPE && <DefaultShape />}
-      {currentShape === T_SHAPE && <TShape />}
+      <TShape />
+      {/* {currentShape === DEFAULT_SHAPE && <DefaultShape />}
+      {currentShape === T_SHAPE && <TShape />} */}
     </div>
   );
 };
