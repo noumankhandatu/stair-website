@@ -3,7 +3,7 @@ import { MenuItem, Select } from "@mui/material";
 import { myColorsAry } from "../../style/global";
 import { Appheading } from "../../theme";
 
-const StairsMaterialConstruciton = ({ appState, setAppState }) => {
+const StairLayout = ({ appState, setAppState }) => {
   const handleHeingColor = (event, property) => {
     const selectedColor = event.target.value;
     setAppState((prevState) => ({
@@ -46,4 +46,4 @@ const StairsMaterialConstruciton = ({ appState, setAppState }) => {
   );
 };
 
-export default StairsMaterialConstruciton;
+export default StairLayout;

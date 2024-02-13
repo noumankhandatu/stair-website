@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import ResponsiveAppBar from "./../atom/navbar";
-import Div from './../atom/Div';
+import ResponsiveAppBar from "../atom/Navbar.jsx";
+import Div from "./../atom/Div";
 
 const AppContainer = ({ children }) => {
   return (

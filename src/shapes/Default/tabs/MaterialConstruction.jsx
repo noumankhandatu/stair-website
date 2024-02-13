@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import { Appheading } from "../../theme/index";
+import { Appheading } from "../../../theme/index";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
-import { setHeight, setWidth } from "../../toolkit/slices/stairHeightWidth";
-import Div from "../atom/Div";
+import { setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
+import Div from "../../../components/atom/Div";
 import { Paper } from "@mui/material";
-import { ceilingArray, stairWidth } from "../../data";
+import { ceilingArray, stairWidth } from "../../../utils/data/index";
 
-const StairsWidthHeightSliders = ({ setAppState, appState }) => {
+const MaterialConstruction = ({ setAppState, appState }) => {
   const dispatch = useDispatch();
 
   //number of Rises
@@ -162,7 +162,8 @@ const StairsWidthHeightSliders = ({ setAppState, appState }) => {
   );
 };
 
-export default StairsWidthHeightSliders;
+export default MaterialConstruction;
+
 const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };
 // const handleHeightChange = (newValue) => {
 //   setAppState((prevState) => ({
