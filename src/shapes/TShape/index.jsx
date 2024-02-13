@@ -9,7 +9,6 @@ import Div from "../../components/atom/Div";
 import { AppMainheading } from "../../theme";
 import StairsLayout from "./tabs/stairsLayout";
 
-
 const patternsData = [
   {
     id: "mdf",
@@ -62,6 +61,30 @@ const markersData = [
   },
 ];
 const TShape = () => {
+  // states
+  const [appState, setAppState] = useState({
+    svgInsideContainer: {
+      height: "200vh",
+      width: 900,
+    },
+    svgRiser: {
+      color: "mdf",
+      positionsBottom: [0, 220, 440, 660, 880, 1100, 1320],
+      positionsLeft: [0, 220, 440, 660, 880, 1100, 1320],
+      positionsRight: [0, 220, 440, 660, 880, 1100, 1320],
+      width: -0.3040416047548291,
+      height: 0.3540416047548291,
+      rotation: 180,
+      ceilingHeight: 236,
+    },
+    leftRightPencilBorder: {
+      height: 1760,
+      towardsLeftRight: [473, -500],
+      rotation: 0,
+      color: "mdf",
+    },
+  });
+  // fns
   const [showStairsLayout, setshowStairsLayout] = useState(false);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const handleshowStairLayout = () => {
@@ -96,7 +119,10 @@ const TShape = () => {
         </Grid>
         <Grid xs={8}>
           <div>
-            <svg width={594} height={700}>
+            <svg
+              width={appState.svgInsideContainer.width}
+              height={appState.svgInsideContainer.height}
+            >
               <defs>
                 {patternsData.map((pattern) => (
                   <pattern
@@ -134,23 +160,24 @@ const TShape = () => {
               <g transform="translate (297,440.3296894723554) rotate(180) scale(-0.10497349154253975,0.10497349154253975)">
                 <g>
                   {/* bottom  */}
-                  <g transform="translate(0 0)  rotate(0)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)">
+                  {appState.svgRiser.positionsBottom.map((items, index) => {
+                    return (
+                      <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
                         <rect
                           x={0}
                           y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
+                          width={962}
+                          height={appState.svgRiser.ceilingHeight}
+                          fill={`url(#${appState.svgRiser.color})`}
                           style={{ stroke: "black", strokeWidth: 2 }}
                           id="run1_tread1"
                           className=""
                         />
+
                         <rect
                           x={0}
                           y={0}
-                          width={827}
+                          width={962}
                           height={10}
                           fill="none"
                           style={{ stroke: "black", strokeWidth: 1 }}
@@ -158,8 +185,8 @@ const TShape = () => {
                           className=""
                         />
                         <text
-                          x="388.5"
-                          y={-131}
+                          x={456}
+                          y={-130}
                           style={{
                             fontSize: 55,
                             fontFamily: "Arial, Helvetica, sans-serif",
@@ -167,130 +194,12 @@ const TShape = () => {
                           }}
                           transform="translate (0,0) rotate(180) scale(-1,1)"
                         >
-                          #1
+                          #{index + 1}
                         </text>
                       </g>
-                      <g transform="translate(-413.5 222)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run1_tread2"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run1_tread2"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #2
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 444)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run1_tread3"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run1_tread3"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #3
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 666)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run1_tread4"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run1_tread4"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #4
-                        </text>
-                      </g>
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
-                    <text
-                      x={0}
-                      y={-0}
-                      style={{
-                        fontSize: 55,
-                        fontFamily: "Arial, Helvetica, sans-serif",
-                        color: "black",
-                      }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                    >
-                      run1
-                    </text>
-                  </g>
+                    );
+                  })}
+
                   {/* center */}
                   <g transform="translate(0 888)  rotate(0)">
                     <g transform="translate(0 849)  rotate(-90)" />
@@ -334,252 +243,47 @@ const TShape = () => {
                     <g transform="translate(419 -2.5)  rotate(0)" />
                   </g>
                   {/* left */}
+
                   <g transform="translate(-416.5 1304.5)  rotate(90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run2_tread1"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run2_tread1"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #6
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 222)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run2_tread2"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run2_tread2"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #7
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 444)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run2_tread3"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run2_tread3"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #8
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 666)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run2_tread4"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run2_tread4"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #9
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 888)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run2_tread5"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run2_tread5"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #10
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 1110)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run2_tread6"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run2_tread6"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #11
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 1332)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run2_tread7"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run2_tread7"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #12
-                        </text>
-                      </g>
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
+                    {appState.svgRiser.positionsLeft.map((items, index) => {
+                      return (
+                        <g key={index} transform={`translate(-540 ${items})  rotate(0)`}>
+                          <rect
+                            x={0}
+                            y={-16}
+                            width={962}
+                            height={appState.svgRiser.ceilingHeight}
+                            fill={`url(#${appState.svgRiser.color})`}
+                            style={{ stroke: "black", strokeWidth: 2 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+
+                          <rect
+                            x={0}
+                            y={0}
+                            width={962}
+                            height={10}
+                            fill="none"
+                            style={{ stroke: "black", strokeWidth: 1 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+                          <text
+                            x={456}
+                            y={-130}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            #{index + 1}
+                          </text>
+                        </g>
+                      );
+                    })}
                     <text
                       x={0}
                       y={-0}
@@ -595,251 +299,45 @@ const TShape = () => {
                   </g>
                   {/* right */}
                   <g transform="translate(416.5 1304.5)  rotate(-90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run3_tread1"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run3_tread1"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #6
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 222)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run3_tread2"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run3_tread2"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #7
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 444)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run3_tread3"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run3_tread3"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #8
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 666)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run3_tread4"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run3_tread4"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #9
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 888)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run3_tread5"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run3_tread5"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #10
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 1110)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run3_tread6"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run3_tread6"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #11
-                        </text>
-                      </g>
-                      <g transform="translate(-413.5 1332)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={827}
-                          height={238}
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run3_tread7"
-                          className=""
-                        />
-                        <rect
-                          x={0}
-                          y={0}
-                          width={827}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run3_tread7"
-                          className=""
-                        />
-                        <text
-                          x="388.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #12
-                        </text>
-                      </g>
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
+                    {appState.svgRiser.positionsRight.map((items, index) => {
+                      return (
+                        <g key={index} transform={`translate(-420 ${items})  rotate(0)`}>
+                          <rect
+                            x={0}
+                            y={-16}
+                            width={962}
+                            height={appState.svgRiser.ceilingHeight}
+                            fill={`url(#${appState.svgRiser.color})`}
+                            style={{ stroke: "black", strokeWidth: 2 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+
+                          <rect
+                            x={0}
+                            y={0}
+                            width={962}
+                            height={10}
+                            fill="none"
+                            style={{ stroke: "black", strokeWidth: 1 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+                          <text
+                            x={456}
+                            y={-130}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            #{index + 1}
+                          </text>
+                        </g>
+                      );
+                    })}
                     <text
                       x={0}
                       y={-0}
