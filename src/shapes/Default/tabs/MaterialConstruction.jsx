@@ -85,6 +85,7 @@ const MaterialConstruction = ({ setAppState, appState }) => {
     }));
   };
 
+  console.log(appState, "appState");
   return (
     <div>
       {/* Floor Height */}
