@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import { AppMainheading } from "../../theme";
 import Div from "../../components/atom/Div";
 import FeatureCard from "./../../components/molecules/FeatureCard";
-import StairLayout from "./tabs/MaterialConstruction";
-import MaterialConstruction from "./tabs/MaterialConstruction";
+import StairLayout from "./tabs/StairLayout";
+import MaterialConstruction from "./tabs/StairLayout";
 import { myColorsAry } from "./../../style/global";
 import { primary } from "../../theme/colors";
 
@@ -294,7 +294,7 @@ const DefaultShape = () => {
 
 export default DefaultShape;
 
-const iconCol = {
+export const iconCol = {
   background: ` ${primary}`,
   height: 40,
   p: 1,

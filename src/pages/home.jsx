@@ -1,9 +1,9 @@
-import DefaultShape from "../shapes/Default";
+import AppShapes from "../shapes";
 
 const Home = () => {
   return (
     <div>
-      <DefaultShape />
+      <AppShapes />
     </div>
   );
 };
