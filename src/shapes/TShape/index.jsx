@@ -616,36 +616,6 @@ const TShape = () => {
                   >
                     3961
                   </text>
-                  <line
-                    x1="-432.5"
-                    y1={-250}
-                    x2="432.5"
-                    y2={-250}
-                    stroke="black"
-                    strokeWidth={3}
-                    markerEnd="url(#endarrow)"
-                    markerStart="url(#startarrow)"
-                    className=""
-                  />
-                  <rect
-                    x={-50}
-                    y={-250}
-                    width={200}
-                    height={100}
-                    fill="white"
-                    transform="translate (-20,-30)"
-                    opacity="0.6"
-                    className=""
-                  />
-                  <text
-                    x={-50}
-                    y={270}
-                    style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                    transform="translate (0,0) rotate(180) scale(-1,1)"
-                    className=""
-                  >
-                    865
-                  </text>
                 </g>
               </g>
             </svg>

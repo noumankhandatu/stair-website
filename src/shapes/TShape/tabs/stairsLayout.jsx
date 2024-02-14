@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 import { Appheading } from "../../../theme";
 import { MenuItem, Select } from "@mui/material";
 import { setHeight } from "../../../toolkit/slices/stairHeightWidth";
