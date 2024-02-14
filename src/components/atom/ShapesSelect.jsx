@@ -8,14 +8,14 @@ import {
 } from "../../utils/enum";
 
 // eslint-disable-next-line react/prop-types
-const ShapesSelect = ({ handleSelectShape }) => {
+const ShapesSelect = ({ handleSelectShape, defaultShape }) => {
   return (
     <div>
       <Select
         onChange={handleSelectShape}
         sx={{ height: 30 }}
         size="small"
-        // onChange={handleChange} // Add onChange handler if needed
+        value={defaultShape ? defaultShape : ""}
       >
         <MenuItem value={T_SHAPE}>T Shape</MenuItem>
         <MenuItem value={THREE_WINDER}>3 Winder</MenuItem>
