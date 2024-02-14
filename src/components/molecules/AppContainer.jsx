@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import ResponsiveAppBar from "../atom/Navbar.jsx";
+import Navbar from "../atom/Navbar";
 import Div from "./../atom/Div";
 
 const AppContainer = ({ children }) => {
   return (
     <Div>
-      <ResponsiveAppBar />
+      <Navbar />
       <Div sx={{ p: 2 }}>{children}</Div>
     </Div>
   );
