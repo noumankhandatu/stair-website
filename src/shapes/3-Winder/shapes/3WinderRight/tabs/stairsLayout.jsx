@@ -11,7 +11,8 @@ import { ThrreWidnerFirstRight, ceilingArray } from "../../../../../utils/data";
 import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
-import { THREE_WINDER } from "../../../../../utils/enum";
+import { THREE_WINDER, ThreeWinderRightRightTurn } from "../../../../../utils/enum";
+import { setShapeTurn } from "../../../../../toolkit/slices/shapeTurns";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -107,6 +108,7 @@ const StairLayout = ({ setAppState, appState }) => {
   };
   const handleTurnSecondRight = () => {
     setturnSecondRight(true);
+    dispatch(setShapeTurn(ThreeWinderRightRightTurn));
   };
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;

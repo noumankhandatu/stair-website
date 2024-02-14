@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
-import { Appheading } from "../../../theme/index";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
-import { setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
-import Div from "../../../components/atom/Div";
 import { Paper } from "@mui/material";
-import { ceilingArray, stairWidth } from "../../../utils/data/index";
-import { useState } from "react";
-import { setShape } from "../../../toolkit/slices/shapes";
-import AppDeleteIcon from "../../../components/atom/DeleteIcon";
-import ShapesSelect from "./../../../components/atom/ShapesSelect";
-import { THREE_WINDER, ThreeWinderLeftTurn } from "../../../utils/enum";
-import { setShapeTurn } from "../../../toolkit/slices/shapeTurns";
+import { useEffect, useState } from "react";
+import { Appheading } from "../../../../../theme";
+import { setHeight, setWidth } from "../../../../../toolkit/slices/stairHeightWidth";
+import { setShape } from "../../../../../toolkit/slices/shapes";
+import { ThrreWidnerFirstRight, ceilingArray } from "../../../../../utils/data";
+import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
+import Div from "../../../../../components/atom/Div";
+import ShapesSelect from "../../../../../components/atom/ShapesSelect";
+import { THREE_WINDER } from "../../../../../utils/enum";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -23,7 +22,9 @@ for (let i = 1; i <= 5000; i += 220) {
 
 const StairLayout = ({ setAppState, appState }) => {
   // states
-  const [turnFirstRight, setturnFirstRight] = useState(false);
+  const [turnFirstRight, setturnFirstRight] = useState(true);
+  const [turnSecondRight, setturnSecondRight] = useState(true);
+
   // hooks
   const dispatch = useDispatch();
   // width changer
@@ -59,7 +60,8 @@ const StairLayout = ({ setAppState, appState }) => {
         svgRiser: {
           ...prevState.svgRiser,
           positions: updatedPositions,
-          height: 0.3540416047548291,
+          height: 0.2540416047548291,
+          translateY: 489,
         },
       }));
     }
@@ -69,7 +71,9 @@ const StairLayout = ({ setAppState, appState }) => {
         svgRiser: {
           ...prevState.svgRiser,
           positions: updatedPositions,
-          height: 0.1840416047548291,
+          height: 0.1440416047548291,
+          width: -0.140416047548291,
+          translateY: 289,
         },
       }));
     }
@@ -79,7 +83,9 @@ const StairLayout = ({ setAppState, appState }) => {
         svgRiser: {
           ...prevState.svgRiser,
           positions: updatedPositions,
-          height: 0.1140416047548291,
+          height: 0.1440416047548291,
+          width: -0.140416047548291,
+          translateY: 289,
         },
       }));
     }
@@ -98,16 +104,18 @@ const StairLayout = ({ setAppState, appState }) => {
   // Turning Function Started
   const handleTurnFirstRight = () => {
     setturnFirstRight(true);
-    dispatch(setShape(THREE_WINDER));
+  };
+  const handleTurnSecondRight = () => {
+    setturnSecondRight(true);
   };
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;
     // Dispatch the setShape action with the selected value
     dispatch(setShape(selectedValue));
   };
-  const handleTurnFirstLeft = () => {
-    dispatch(setShapeTurn(ThreeWinderLeftTurn));
-  };
+  useEffect(() => {
+    handleTurnFirstRight();
+  }, []);
   return (
     <div>
       {/* Floor Height */}
@@ -133,7 +141,7 @@ const StairLayout = ({ setAppState, appState }) => {
         // value={appState.svgRiser.width}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
-        {stairWidth.map((value, index) => (
+        {ThrreWidnerFirstRight.map((value, index) => (
           <MenuItem
             onClick={() => dispatch(setWidth(index * 50 + 300))}
             key={index}
@@ -186,12 +194,12 @@ const StairLayout = ({ setAppState, appState }) => {
         </MenuItem>
       </Select>
 
-      {/* Turns -> Left & Right  */}
+      {/* Turns -> First Left & Right  */}
 
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Paper
-          onClick={handleTurnFirstLeft}
+          onClick={handleTurnFirstRight}
           className="turnLeft"
           sx={{ p: 3, textAlign: "center" }}
         >
@@ -221,7 +229,45 @@ const StairLayout = ({ setAppState, appState }) => {
             sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}
           >
             <Appheading>Turn Shape</Appheading>
-            <ShapesSelect handleSelectShape={handleSelectShape} />
+            <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
+          </Div>
+        </Paper>
+      )}
+      {/* Turns -> Second Left & Right  */}
+      <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
+      <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <Paper
+          onClick={handleTurnSecondRight}
+          className="turnLeft"
+          sx={{ p: 3, textAlign: "center" }}
+        >
+          <p style={textT}>
+            add a left <br />
+            turn
+          </p>
+        </Paper>
+        <Paper
+          onClick={handleTurnSecondRight}
+          className="turnRight"
+          sx={{ p: 3, textAlign: "center" }}
+        >
+          <p style={textT}>
+            add a Right <br />
+            turn
+          </p>
+        </Paper>
+      </Div>
+      {turnSecondRight && (
+        <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
+          <Div sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Appheading>Turn Shape</Appheading>
+            <AppDeleteIcon />
+          </Div>
+          <Div
+            sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}
+          >
+            <Appheading>Turn Shape</Appheading>
+            <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
           </Div>
         </Paper>
       )}
