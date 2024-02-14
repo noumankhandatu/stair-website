@@ -8,9 +8,9 @@ import Div from "../../../components/atom/Div";
 import { Paper } from "@mui/material";
 import { ceilingArray, stairWidth } from "../../../utils/data/index";
 import { useState } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { HALF_LANDING, QUARTER_LANDING, THREE_WINDER, T_SHAPE } from "../../../utils/enum";
 import { setShape } from "../../../toolkit/slices/shapes";
+import AppDeleteIcon from "../../../components/atom/DeleteIcon";
 const positionOptions = [];
 let updatedPositions = [];
 
@@ -91,6 +91,7 @@ const StairLayout = ({ setAppState, appState }) => {
   };
 
   console.log(appState, "appState");
+
   // Turning Function Started
   const handleTurnFirstRight = () => {
     setturnFirstRight(true);
@@ -183,7 +184,11 @@ const StairLayout = ({ setAppState, appState }) => {
 
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper className="turnLeft" sx={{ p: 3, textAlign: "center" }}>
+        <Paper
+          onClick={handleTurnFirstRight}
+          className="turnLeft"
+          sx={{ p: 3, textAlign: "center" }}
+        >
           <p style={textT}>
             add a left <br />
             turn
@@ -204,7 +209,7 @@ const StairLayout = ({ setAppState, appState }) => {
         <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
           <Div sx={{ display: "flex", justifyContent: "space-between" }}>
             <Appheading>Turn Shape</Appheading>
-            <DeleteIcon fontSize="small" />
+            <AppDeleteIcon />
           </Div>
           <Div
             sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}
@@ -226,11 +231,10 @@ const StairLayout = ({ setAppState, appState }) => {
           </Div>
         </Paper>
       )}
-      {/* Paper  */}
     </div>
   );
 };
 
 export default StairLayout;
 
-const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };
+export const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };

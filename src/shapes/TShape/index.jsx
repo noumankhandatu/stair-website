@@ -9,6 +9,7 @@ import Div from "../../components/atom/Div";
 import { AppMainheading } from "../../theme";
 import StairsLayout from "./tabs/stairsLayout";
 import MaterialConstruction from "./tabs/materialConstrction";
+import { useSelector } from "react-redux";
 
 const patternsData = [
   {
@@ -62,6 +63,8 @@ const markersData = [
   },
 ];
 const TShape = () => {
+  const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
+  const heightArrow = useSelector((state) => state?.stairHeightWidthSlice?.height);
   // states
   const [appState, setAppState] = useState({
     svgInsideContainer: {
@@ -570,7 +573,7 @@ const TShape = () => {
                     transform="translate (0,0) rotate(180) scale(-1,1)"
                     className=""
                   >
-                    1753
+                    {heightArrow}
                   </text>
                   <line
                     x1="-1980.5"
@@ -600,7 +603,7 @@ const TShape = () => {
                     transform="translate (0,0) rotate(180) scale(-1,1)"
                     className=""
                   >
-                    3961
+                    {widhtArrow}
                   </text>
                 </g>
               </g>

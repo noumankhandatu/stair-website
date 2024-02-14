@@ -1,8 +1,18 @@
 /* eslint-disable react/prop-types */
 import { Appheading } from "../../../theme";
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Paper, Select } from "@mui/material";
 import { setHeight } from "../../../toolkit/slices/stairHeightWidth";
 import { useDispatch } from "react-redux";
+import Div from "../../../components/atom/Div";
+import {
+  DEFAULT_SHAPE,
+  HALF_LANDING,
+  QUARTER_LANDING,
+  THREE_WINDER,
+  T_SHAPE,
+} from "../../../utils/enum";
+import { setShape } from "../../../toolkit/slices/shapes";
+import AppDeleteIcon from "./../../../components/atom/DeleteIcon";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -74,8 +84,16 @@ const StairsLayout = ({ setAppState }) => {
     }));
   };
 
+  const handleSelectShape = (event) => {
+    const selectedValue = event.target.value;
+    // Dispatch the setShape action with the selected value
+    dispatch(setShape(selectedValue));
+  };
+
   return (
     <div>
+      {/* floor height  */}
+
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
       <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
         <MenuItem value="" disabled>
@@ -87,6 +105,34 @@ const StairsLayout = ({ setAppState }) => {
           </MenuItem>
         ))}
       </Select>
+
+      {/* Turns -> Left & Right  */}
+
+      <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
+
+      <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
+        <Div sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Appheading>Turn Shape</Appheading>
+          <AppDeleteIcon />
+        </Div>
+        <Div sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}>
+          <Appheading>Turn Shape</Appheading>
+          {/* Create a select here */}
+          <Select
+            onChange={handleSelectShape}
+            sx={{ height: 30 }}
+            size="small"
+            defaultValue={T_SHAPE} // Set default value if needed
+            // onChange={handleChange} // Add onChange handler if needed
+          >
+            <MenuItem value={T_SHAPE}>TShape</MenuItem>
+            <MenuItem value={THREE_WINDER}>3 winder</MenuItem>
+            <MenuItem value={DEFAULT_SHAPE}>default</MenuItem>
+            <MenuItem value={QUARTER_LANDING}>Quarter Landing </MenuItem>
+            <MenuItem value={HALF_LANDING}>Half Landing</MenuItem>
+          </Select>
+        </Div>
+      </Paper>
     </div>
   );
 };
