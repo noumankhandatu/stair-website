@@ -4,15 +4,9 @@ import { MenuItem, Paper, Select } from "@mui/material";
 import { setHeight } from "../../../toolkit/slices/stairHeightWidth";
 import { useDispatch } from "react-redux";
 import Div from "../../../components/atom/Div";
-import {
-  DEFAULT_SHAPE,
-  HALF_LANDING,
-  QUARTER_LANDING,
-  THREE_WINDER,
-  T_SHAPE,
-} from "../../../utils/enum";
 import { setShape } from "../../../toolkit/slices/shapes";
 import AppDeleteIcon from "./../../../components/atom/DeleteIcon";
+import ShapesSelect from "../../../components/atom/ShapesSelect";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -86,7 +80,6 @@ const StairsLayout = ({ setAppState }) => {
 
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;
-    // Dispatch the setShape action with the selected value
     dispatch(setShape(selectedValue));
   };
 
@@ -118,19 +111,7 @@ const StairsLayout = ({ setAppState }) => {
         <Div sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}>
           <Appheading>Turn Shape</Appheading>
           {/* Create a select here */}
-          <Select
-            onChange={handleSelectShape}
-            sx={{ height: 30 }}
-            size="small"
-            defaultValue={T_SHAPE} // Set default value if needed
-            // onChange={handleChange} // Add onChange handler if needed
-          >
-            <MenuItem value={T_SHAPE}>TShape</MenuItem>
-            <MenuItem value={THREE_WINDER}>3 winder</MenuItem>
-            <MenuItem value={DEFAULT_SHAPE}>default</MenuItem>
-            <MenuItem value={QUARTER_LANDING}>Quarter Landing </MenuItem>
-            <MenuItem value={HALF_LANDING}>Half Landing</MenuItem>
-          </Select>
+          <ShapesSelect handleSelectShape={handleSelectShape} />
         </Div>
       </Paper>
     </div>

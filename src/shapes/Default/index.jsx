@@ -8,7 +8,7 @@ import { AppMainheading } from "../../theme";
 import Div from "../../components/atom/Div";
 import FeatureCard from "./../../components/molecules/FeatureCard";
 import StairLayout from "./tabs/StairLayout";
-import MaterialConstruction from "./tabs/StairLayout";
+import MaterialConstruction from "./tabs/MaterialConstruction";
 import { myColorsAry } from "./../../style/global";
 import { primary } from "../../theme/colors";
 
