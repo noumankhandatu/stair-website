@@ -72,9 +72,12 @@ const TShape = () => {
       positionsBottom: [0, 220, 440, 660, 880, 1100, 1320],
       positionsLeft: [0, 220, 440, 660, 880, 1100, 1320],
       positionsRight: [0, 220, 440, 660, 880, 1100, 1320],
-      width: -0.3040416047548291,
-      height: 0.3540416047548291,
-      rotation: 180,
+
+      translateY: 250,
+      translateX: 440,
+      height: 0.10497349154253975,
+      width: -0.10497349154253975,
+
       ceilingHeight: 236,
     },
     leftRightPencilBorder: {
@@ -108,7 +111,7 @@ const TShape = () => {
               showStairsLayout={showStairsLayout}
               handleshowStairLayout={handleshowStairLayout}
             />
-            {showStairsLayout && <StairsLayout />}
+            {showStairsLayout && <StairsLayout setAppState={setAppState} />}
             <Div height={20} />
             <FeatureCard
               title={"Material & Construction"}
@@ -117,7 +120,7 @@ const TShape = () => {
             />
           </Grid>
         </Grid>
-        <Grid xs={8}>
+        <Grid sx={{ textAlign: "center" }} xs={8}>
           <div>
             <svg
               width={appState.svgInsideContainer.width}
@@ -157,49 +160,52 @@ const TShape = () => {
                   </marker>
                 ))}
               </defs>
-              <g transform="translate (297,440.3296894723554) rotate(180) scale(-0.10497349154253975,0.10497349154253975)">
+              <g
+                transform={`translate (${appState.svgRiser.translateX},${appState.svgRiser.translateY}) rotate(180) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
+              >
                 <g>
                   {/* bottom  */}
-                  {appState.svgRiser.positionsBottom.map((items, index) => {
-                    return (
-                      <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
-                        <rect
-                          x={0}
-                          y={-16}
-                          width={962}
-                          height={appState.svgRiser.ceilingHeight}
-                          fill={`url(#${appState.svgRiser.color})`}
-                          style={{ stroke: "black", strokeWidth: 2 }}
-                          id="run1_tread1"
-                          className=""
-                        />
+                  <g transform={`translate(0 932)  rotate(180)`}>
+                    {appState.svgRiser.positionsBottom.map((items, index) => {
+                      return (
+                        <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
+                          <rect
+                            x={0}
+                            y={-16}
+                            width={962}
+                            height={appState.svgRiser.ceilingHeight}
+                            fill={`url(#${appState.svgRiser.color})`}
+                            style={{ stroke: "black", strokeWidth: 2 }}
+                            id="run1_tread1"
+                            className=""
+                          />
 
-                        <rect
-                          x={0}
-                          y={0}
-                          width={962}
-                          height={10}
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run1_tread1"
-                          className=""
-                        />
-                        <text
-                          x={456}
-                          y={-130}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #{index + 1}
-                        </text>
-                      </g>
-                    );
-                  })}
-
+                          <rect
+                            x={0}
+                            y={0}
+                            width={962}
+                            height={10}
+                            fill="none"
+                            style={{ stroke: "black", strokeWidth: 1 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+                          <text
+                            x={456}
+                            y={-130}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            #{index + 1}
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </g>
                   {/* center */}
                   <g transform="translate(0 888)  rotate(0)">
                     <g transform="translate(0 849)  rotate(-90)" />
@@ -483,89 +489,6 @@ const TShape = () => {
                           className=""
                         />
                       </g>
-                    </g>
-                    <g />
-                  </g>
-                  <g transform="translate(1970.5 1304.5)  rotate(-90)">
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                </g>
-                {/* little box  */}
-                <g>
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
-                  </g>
-                  <g transform="translate(0 888)  rotate(0)">
-                    <g transform="translate(0 849)  rotate(-90)" />
-                    <g transform="translate(0 0)  rotate(0)" />
-                    <g transform="translate(-419 -2.5)  rotate(0)">
-                      <rect
-                        x={-45}
-                        y={-45}
-                        width={90}
-                        height={90}
-                        fill="url(#redwood)"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="turn1_winderPostLeft"
-                        className="balustrade"
-                      />
-                    </g>
-                    <g transform="translate(419 -2.5)  rotate(0)">
-                      <rect
-                        x={-45}
-                        y={-45}
-                        width={90}
-                        height={90}
-                        fill="url(#redwood)"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="turn1_winderPostRight"
-                        className="balustrade"
-                      />
-                    </g>
-                  </g>
-                  <g transform="translate(-416.5 1304.5)  rotate(90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                      <g transform="translate(-413.5 888)  rotate(0)" />
-                      <g transform="translate(-413.5 1110)  rotate(0)" />
-                      <g transform="translate(-413.5 1332)  rotate(0)" />
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
-                  </g>
-                  <g transform="translate(-1970.5 1304.5)  rotate(90)">
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                  <g transform="translate(416.5 1304.5)  rotate(-90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                      <g transform="translate(-413.5 888)  rotate(0)" />
-                      <g transform="translate(-413.5 1110)  rotate(0)" />
-                      <g transform="translate(-413.5 1332)  rotate(0)" />
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
                     </g>
                     <g />
                   </g>
