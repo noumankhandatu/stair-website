@@ -8,6 +8,7 @@ import { useState } from "react";
 import Div from "../../components/atom/Div";
 import { AppMainheading } from "../../theme";
 import StairsLayout from "./tabs/stairsLayout";
+import MaterialConstruction from "./tabs/materialConstrction";
 
 const patternsData = [
   {
@@ -118,6 +119,9 @@ const TShape = () => {
               showStairsLayout={showMaterialConstruction}
               handleshowStairLayout={handleshowMaterialConstruciton}
             />
+            {showMaterialConstruction && (
+              <MaterialConstruction appState={appState} setAppState={setAppState} />
+            )}{" "}
           </Grid>
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={8}>
@@ -140,7 +144,6 @@ const TShape = () => {
                       width="1000px"
                       height="1000px"
                       preserveAspectRatio="none"
-                      transform="translate (0,0) rotate(0)"
                     />
                   </pattern>
                 ))}
@@ -180,16 +183,6 @@ const TShape = () => {
                             className=""
                           />
 
-                          <rect
-                            x={0}
-                            y={0}
-                            width={962}
-                            height={10}
-                            fill="none"
-                            style={{ stroke: "black", strokeWidth: 1 }}
-                            id="run1_tread1"
-                            className=""
-                          />
                           <text
                             x={456}
                             y={-130}
@@ -212,26 +205,19 @@ const TShape = () => {
                     <g transform="translate(0 0)  rotate(0)">
                       <polyline
                         points="418.5,-16,-418.5,-16,-418.5,-2.5,-416.5,-2.5,-416.5,835,416.5,835,416.5,-2.5,418.5,-2.5"
-                        fill="url(#turn1_tread1)"
                         stroke="black"
                         strokeWidth={2}
+                        height={appState.svgRiser.ceilingHeight}
+                        fill={`url(#${appState.svgRiser.color})`}
                       />
-                      <text
-                        className="heavy"
-                        textAnchor=""
-                        transform="translate(0,400) rotate(0) scale(-1,1)"
-                      />
+
                       <polyline
                         points="418.5,0,-418.5,0,-418.5,10,418.5,10"
                         fill="url(#turn1_tread1)"
                         stroke="black"
                         strokeWidth={1}
                       />
-                      <text
-                        className="heavy"
-                        textAnchor=""
-                        transform="translate(0,400) rotate(0) scale(-1,1)"
-                      />
+
                       <text
                         x="19.2"
                         y={-100}
@@ -242,7 +228,7 @@ const TShape = () => {
                         }}
                         transform="translate (0,0) rotate(180) scale(-1,1)"
                       >
-                        #5
+                        #run1
                       </text>
                     </g>
                     <g transform="translate(-419 -2.5)  rotate(0)" />
