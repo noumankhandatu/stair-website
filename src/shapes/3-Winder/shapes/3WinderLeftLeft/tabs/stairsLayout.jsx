@@ -11,7 +11,8 @@ import { ThrreWidnerFirstRight, ceilingArray } from "../../../../../utils/data";
 import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
-import { THREE_WINDER } from "../../../../../utils/enum";
+import { THREE_WINDER, ThreeWinderLeftLeftTurn } from "../../../../../utils/enum";
+import { setShapeTurn } from "../../../../../toolkit/slices/shapeTurns";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -24,8 +25,8 @@ for (let i = 1; i <= 5000; i += 220) {
 
 const StairLayout = ({ setAppState, appState }) => {
   // states
-  const [turnFirstRight, setturnFirstRight] = useState(true);
-  const [turnSecondRight, setturnSecondRight] = useState(true);
+  const [turnFirstRight, setturnFirstRight] = useState(false);
+  const [turnSecondRight, setturnSecondRight] = useState(false);
 
   // hooks
   const dispatch = useDispatch();
@@ -107,8 +108,9 @@ const StairLayout = ({ setAppState, appState }) => {
   const handleTurnFirstRight = () => {
     setturnFirstRight(true);
   };
-  const handleTurnSecondRight = () => {
+  const handleSecondLeft = () => {
     setturnSecondRight(true);
+    dispatch(setShapeTurn(ThreeWinderLeftLeftTurn));
   };
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;
@@ -200,7 +202,7 @@ const StairLayout = ({ setAppState, appState }) => {
 
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper onClick={handleTurnSecondRight} className="turnLeft">
+        <Paper className="turnLeft">
           add a left <br />
           turn
           <br />
@@ -227,9 +229,10 @@ const StairLayout = ({ setAppState, appState }) => {
         </Paper>
       )}
       {/* Turns -> Second Left & Right  */}
+
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper onClick={handleTurnSecondRight} className="turnLeft">
+        <Paper onClick={handleSecondLeft} className="turnLeft">
           add a left <br />
           turn
           <br />

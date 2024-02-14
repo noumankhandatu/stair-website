@@ -11,8 +11,10 @@ import { ThrreWidnerFirstRight, ceilingArray } from "../../../../../utils/data";
 import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
-import { THREE_WINDER, ThreeWinderRightRightTurn } from "../../../../../utils/enum";
+import { THREE_WINDER, ThreeWinderRightLeftTurn, ThreeWinderRightRightTurn } from "../../../../../utils/enum";
 import { setShapeTurn } from "../../../../../toolkit/slices/shapeTurns";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -115,6 +117,11 @@ const StairLayout = ({ setAppState, appState }) => {
     // Dispatch the setShape action with the selected value
     dispatch(setShape(selectedValue));
   };
+
+  const handleTurnSecondLeft = () => {
+    dispatch(setShapeTurn(ThreeWinderRightLeftTurn));
+
+  };
   useEffect(() => {
     handleTurnFirstRight();
   }, []);
@@ -200,27 +207,19 @@ const StairLayout = ({ setAppState, appState }) => {
 
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper
-          onClick={handleTurnFirstRight}
-          className="turnLeft"
-          sx={{ p: 3, textAlign: "center" }}
-        >
-          <p style={textT}>
-            add a left <br />
-            turn
-          </p>
+        <Paper onClick={handleTurnFirstRight} className="turnLeft">
+          add a left <br />
+          turn
+          <br />
+          <ArrowBackIcon sx={{ mt: 1 }} />
         </Paper>
-        <Paper
-          onClick={handleTurnFirstRight}
-          className="turnRight"
-          sx={{ p: 3, textAlign: "center" }}
-        >
-          <p style={textT}>
-            add a Right <br />
-            turn
-          </p>
+        <Paper onClick={handleTurnFirstRight} className="turnRight">
+          add a Right <br />
+          turn <br />
+          <ArrowForwardIcon sx={{ mt: 1 }} />
         </Paper>
       </Div>
+
       {turnFirstRight && (
         <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
           <Div sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -238,27 +237,19 @@ const StairLayout = ({ setAppState, appState }) => {
       {/* Turns -> Second Left & Right  */}
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper
-          onClick={handleTurnSecondRight}
-          className="turnLeft"
-          sx={{ p: 3, textAlign: "center" }}
-        >
-          <p style={textT}>
-            add a left <br />
-            turn
-          </p>
+        <Paper onClick={handleTurnSecondLeft} className="turnLeft">
+          add a left <br />
+          turn
+          <br />
+          <ArrowBackIcon sx={{ mt: 1 }} />
         </Paper>
-        <Paper
-          onClick={handleTurnSecondRight}
-          className="turnRight"
-          sx={{ p: 3, textAlign: "center" }}
-        >
-          <p style={textT}>
-            add a Right <br />
-            turn
-          </p>
+        <Paper onClick={handleTurnSecondRight} className="turnRight">
+          add a Right <br />
+          turn <br />
+          <ArrowForwardIcon sx={{ mt: 1 }} />
         </Paper>
       </Div>
+
       {turnSecondRight && (
         <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
           <Div sx={{ display: "flex", justifyContent: "space-between" }}>

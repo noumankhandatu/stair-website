@@ -13,7 +13,8 @@ import AppDeleteIcon from "../../../components/atom/DeleteIcon";
 import ShapesSelect from "./../../../components/atom/ShapesSelect";
 import { THREE_WINDER, ThreeWinderLeftTurn } from "../../../utils/enum";
 import { setShapeTurn } from "../../../toolkit/slices/shapeTurns";
-
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const positionOptions = [];
 let updatedPositions = [];
 
@@ -106,6 +107,7 @@ const StairLayout = ({ setAppState, appState }) => {
     dispatch(setShape(selectedValue));
   };
   const handleTurnFirstLeft = () => {
+    dispatch(setShape(THREE_WINDER));
     dispatch(setShapeTurn(ThreeWinderLeftTurn));
   };
   return (
@@ -190,25 +192,16 @@ const StairLayout = ({ setAppState, appState }) => {
 
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper
-          onClick={handleTurnFirstLeft}
-          className="turnLeft"
-          sx={{ p: 3, textAlign: "center" }}
-        >
-          <p style={textT}>
-            add a left <br />
-            turn
-          </p>
+        <Paper onClick={handleTurnFirstLeft} className="turnLeft">
+          add a left <br />
+          turn
+          <br />
+          <ArrowBackIcon sx={{ mt: 1 }} />
         </Paper>
-        <Paper
-          onClick={handleTurnFirstRight}
-          className="turnRight"
-          sx={{ p: 3, textAlign: "center" }}
-        >
-          <p style={textT}>
-            add a Right <br />
-            turn
-          </p>
+        <Paper onClick={handleTurnFirstRight} className="turnRight">
+          add a Right <br />
+          turn <br />
+          <ArrowForwardIcon sx={{ mt: 1 }} />
         </Paper>
       </Div>
       {turnFirstRight && (
@@ -230,5 +223,3 @@ const StairLayout = ({ setAppState, appState }) => {
 };
 
 export default StairLayout;
-
-export const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };

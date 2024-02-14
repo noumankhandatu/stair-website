@@ -24,7 +24,8 @@ for (let i = 1; i <= 5000; i += 220) {
 
 const StairLayout = ({ setAppState, appState }) => {
   // states
-  const [turnFirstRight, setturnFirstRight] = useState(true);
+  const [turnFirstRight, setturnFirstRight] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [turnSecondRight, setturnSecondRight] = useState(true);
 
   // hooks
@@ -107,9 +108,7 @@ const StairLayout = ({ setAppState, appState }) => {
   const handleTurnFirstRight = () => {
     setturnFirstRight(true);
   };
-  const handleTurnSecondRight = () => {
-    setturnSecondRight(true);
-  };
+
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;
     // Dispatch the setShape action with the selected value
@@ -200,7 +199,7 @@ const StairLayout = ({ setAppState, appState }) => {
 
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper onClick={handleTurnSecondRight} className="turnLeft">
+        <Paper onClick={handleTurnFirstRight} className="turnLeft">
           add a left <br />
           turn
           <br />
@@ -212,6 +211,7 @@ const StairLayout = ({ setAppState, appState }) => {
           <ArrowForwardIcon sx={{ mt: 1 }} />
         </Paper>
       </Div>
+
       {turnFirstRight && (
         <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
           <Div sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -229,18 +229,19 @@ const StairLayout = ({ setAppState, appState }) => {
       {/* Turns -> Second Left & Right  */}
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
       <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper onClick={handleTurnSecondRight} className="turnLeft">
+        <Paper className="turnLeft">
           add a left <br />
           turn
           <br />
           <ArrowBackIcon sx={{ mt: 1 }} />
         </Paper>
-        <Paper onClick={handleTurnFirstRight} className="turnRight">
+        <Paper className="turnRight">
           add a Right <br />
           turn <br />
           <ArrowForwardIcon sx={{ mt: 1 }} />
         </Paper>
       </Div>
+
       {turnSecondRight && (
         <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
           <Div sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -260,5 +261,3 @@ const StairLayout = ({ setAppState, appState }) => {
 };
 
 export default StairLayout;
-
-export const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };

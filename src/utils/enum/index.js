@@ -11,8 +11,11 @@ export const QUARTER_LANDING = "quarter landing";
 //  <-- all lefts
 
 export const ThreeWinderLeftTurn = "three-winder-left-turn";
+export const ThreeWinderLeftLeftTurn = "three-winder-left-left-turn";
+export const ThreeWinderLeftRightTurn = "three-winder-left-right-turn";
 
 // all rights -->
 
 export const ThreeWinderRightTurn = "three-winder-right-turn";
 export const ThreeWinderRightRightTurn = "three-winder-right-right-turn";
+export const ThreeWinderRightLeftTurn = "three-winder-right-left-turn";

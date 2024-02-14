@@ -11,8 +11,17 @@
 .turnLeft {
   background-image: url(https://cdn.stairbox.com/assets/stairbox-com/pages/stairbuilder/left_turn.png);
   background-size: cover;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bolder;
 }
 .turnRight {
   background-image: url(https://cdn.stairbox.com/assets/stairbox-com/pages/stairbuilder/right_turn.png);
-  background-size: cover;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bolder;
 }
