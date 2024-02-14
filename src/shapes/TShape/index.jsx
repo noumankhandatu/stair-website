@@ -92,7 +92,7 @@ const TShape = () => {
     },
   });
   // fns
-  const [showStairsLayout, setshowStairsLayout] = useState(false);
+  const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const handleshowStairLayout = () => {
     setshowStairsLayout((prev) => !prev);

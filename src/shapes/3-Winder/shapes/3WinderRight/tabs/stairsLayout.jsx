@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
-import { Appheading } from "../../../theme/index";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
-import { setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
-import Div from "../../../components/atom/Div";
 import { Paper } from "@mui/material";
-import { ThrreWidnerFirstRight, ceilingArray } from "../../../utils/data/index";
 import { useEffect, useState } from "react";
-import { setShape } from "../../../toolkit/slices/shapes";
-import AppDeleteIcon from "../../../components/atom/DeleteIcon";
-import ShapesSelect from "./../../../components/atom/ShapesSelect";
-import { THREE_WINDER } from "../../../utils/enum";
+import { Appheading } from "../../../../../theme";
+import { setHeight, setWidth } from "../../../../../toolkit/slices/stairHeightWidth";
+import { setShape } from "../../../../../toolkit/slices/shapes";
+import { ThrreWidnerFirstRight, ceilingArray } from "../../../../../utils/data";
+import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
+import Div from "../../../../../components/atom/Div";
+import ShapesSelect from "../../../../../components/atom/ShapesSelect";
+import { THREE_WINDER } from "../../../../../utils/enum";
 
 const positionOptions = [];
 let updatedPositions = [];

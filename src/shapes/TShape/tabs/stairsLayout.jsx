@@ -7,6 +7,7 @@ import Div from "../../../components/atom/Div";
 import { setShape } from "../../../toolkit/slices/shapes";
 import AppDeleteIcon from "./../../../components/atom/DeleteIcon";
 import ShapesSelect from "../../../components/atom/ShapesSelect";
+import { T_SHAPE } from "../../../utils/enum";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -111,7 +112,7 @@ const StairsLayout = ({ setAppState }) => {
         <Div sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}>
           <Appheading>Turn Shape</Appheading>
           {/* Create a select here */}
-          <ShapesSelect handleSelectShape={handleSelectShape} />
+          <ShapesSelect defaultShape={T_SHAPE} handleSelectShape={handleSelectShape} />
         </Div>
       </Paper>
     </div>

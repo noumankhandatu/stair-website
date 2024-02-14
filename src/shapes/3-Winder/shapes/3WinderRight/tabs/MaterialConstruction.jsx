@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { MenuItem, Select } from "@mui/material";
-import { myColorsAry } from "../../../style/global";
-import { Appheading } from "../../../theme";
+import { Appheading } from "../../../../../theme";
+import { myColorsAry } from "../../../../../style/global";
 
 const MaterialConstruction = ({ appState, setAppState }) => {
   const handleHeingColor = (event, property) => {
