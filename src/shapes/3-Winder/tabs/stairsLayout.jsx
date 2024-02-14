@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
 import Div from "../../../components/atom/Div";
 import { Paper } from "@mui/material";
-import { ceilingArray, stairWidth } from "../../../utils/data/index";
+import { ThrreWidnerFirstRight, ceilingArray } from "../../../utils/data/index";
 import { useState } from "react";
 import { setShape } from "../../../toolkit/slices/shapes";
 import AppDeleteIcon from "../../../components/atom/DeleteIcon";
@@ -133,7 +133,7 @@ const StairLayout = ({ setAppState, appState }) => {
         // value={appState.svgRiser.width}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
-        {stairWidth.map((value, index) => (
+        {ThrreWidnerFirstRight.map((value, index) => (
           <MenuItem
             onClick={() => dispatch(setWidth(index * 50 + 300))}
             key={index}

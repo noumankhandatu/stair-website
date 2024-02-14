@@ -11,6 +11,7 @@ import { useState } from "react";
 import { setShape } from "../../../toolkit/slices/shapes";
 import AppDeleteIcon from "../../../components/atom/DeleteIcon";
 import ShapesSelect from "./../../../components/atom/ShapesSelect";
+import { THREE_WINDER } from "../../../utils/enum";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -96,6 +97,7 @@ const StairLayout = ({ setAppState, appState }) => {
   // Turning Function Started
   const handleTurnFirstRight = () => {
     setturnFirstRight(true);
+    dispatch(setShape(THREE_WINDER));
   };
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;

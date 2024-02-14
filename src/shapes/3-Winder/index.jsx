@@ -12,7 +12,7 @@ import StairsLayout from "./tabs/stairsLayout";
 
 const ThreeWinderShape = () => {
   // states
-  const [showStairsLayout, setshowStairsLayout] = useState(false);
+  const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const [appState, setAppState] = useState({
     svgInsideContainer: {

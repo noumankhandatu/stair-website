@@ -37,7 +37,7 @@ const DefaultShape = () => {
       color: "mdf",
     },
   });
-  const [showStairsLayout, setshowStairsLayout] = useState(false);
+  const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   // fns
   const handleshowStairLayout = () => {

@@ -1,11 +1,7 @@
 import AppShapes from "../shapes";
 
 const Home = () => {
-  return (
-    <div>
-      <AppShapes />
-    </div>
-  );
+  return <AppShapes />;
 };
 
 export default Home;
