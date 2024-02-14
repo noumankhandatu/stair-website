@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import Navbar from "../atom/Navbar";
 import Div from "./../atom/Div";
+import Navbar from "../atom/Navbar";
 
 const AppContainer = ({ children }) => {
   return (
