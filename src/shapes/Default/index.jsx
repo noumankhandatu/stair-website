@@ -23,7 +23,7 @@ const DefaultShape = () => {
       width: 900,
     },
     svgRiser: {
-      color: "whitewood",
+      color: "mdf",
       positions: [0, 220, 440, 660, 880, 1100, 1320],
       width: -0.3040416047548291,
       height: 0.3540416047548291,
@@ -34,7 +34,7 @@ const DefaultShape = () => {
       height: 1760,
       towardsLeftRight: [473, -500],
       rotation: 0,
-      color: "whitewood",
+      color: "mdf",
     },
   });
   const [showStairsLayout, setshowStairsLayout] = useState(false);

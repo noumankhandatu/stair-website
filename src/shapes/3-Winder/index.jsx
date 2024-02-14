@@ -20,7 +20,7 @@ const ThreeWinderShape = () => {
       width: 900,
     },
     svgRiser: {
-      color: "whitewood",
+      color: "mdf",
       positions: [0, 220, 440, 660, 880, 1100, 1320],
       width: -0.3040416047548291,
       height: 0.3540416047548291,
@@ -31,7 +31,7 @@ const ThreeWinderShape = () => {
       height: 1760,
       towardsLeftRight: [473, -500],
       rotation: 0,
-      color: "whitewood",
+      color: "mdf",
     },
   });
   // fns
@@ -67,7 +67,10 @@ const ThreeWinderShape = () => {
           )}{" "}
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={8}>
-          <svg width={927} height={700}>
+          <svg
+            width={appState.svgInsideContainer.width}
+            height={appState.svgInsideContainer.height}
+          >
             <defs>
               <pattern id="mdf" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
                 <image
@@ -250,7 +253,9 @@ const ThreeWinderShape = () => {
                 <polygon points="0 0, 10 3.5, 0 7" fill="red" />
               </marker>
             </defs>
-            <g transform="translate (329.4549295774648,539.2625) rotate(180) scale(-0.38080985915492954,0.38080985915492954)">
+            <g
+              transform={`translate (418.5,589.1753343239227) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
+            >
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 0)  rotate(0)">
@@ -375,108 +380,33 @@ const ThreeWinderShape = () => {
                 </g>
                 <g transform="translate(510 510)  rotate(-90)">
                   <g>
-                    <g transform="translate(-481 0)  rotate(0)">
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={962}
-                        height={244}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run2_tread1"
-                        className=""
-                      />
-                      <rect
-                        x={0}
-                        y={0}
-                        width={962}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run2_tread1"
-                        className=""
-                      />
-                      <text
-                        x={456}
-                        y={-134}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #4
-                      </text>
-                    </g>
-                    <g transform="translate(-481 228)  rotate(0)">
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={962}
-                        height={244}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run2_tread2"
-                        className=""
-                      />
-                      <rect
-                        x={0}
-                        y={0}
-                        width={962}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run2_tread2"
-                        className=""
-                      />
-                      <text
-                        x={456}
-                        y={-134}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #5
-                      </text>
-                    </g>
-                    <g transform="translate(-481 456)  rotate(0)">
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={962}
-                        height={244}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run2_tread3"
-                        className=""
-                      />
-                      <rect
-                        x={0}
-                        y={0}
-                        width={962}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run2_tread3"
-                        className=""
-                      />
-                      <text
-                        x={456}
-                        y={-134}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #6
-                      </text>
-                    </g>
+                    {appState.svgRiser.positions.map((items, index) => {
+                      return (
+                        <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
+                          <rect
+                            x={0}
+                            y={-16}
+                            width={962}
+                            height={appState.svgRiser.ceilingHeight}
+                            fill={`url(#${appState.svgRiser.color})`}
+                            style={{ stroke: "black", strokeWidth: 2 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+
+                          <rect
+                            x={0}
+                            y={0}
+                            width={962}
+                            height={10}
+                            fill="none"
+                            style={{ stroke: "black", strokeWidth: 1 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+                        </g>
+                      );
+                    })}
                   </g>
                   <g>
                     <g transform="translate(473 0)  rotate(0)" />
