@@ -22,8 +22,10 @@ const ThreeWinderShape = () => {
     svgRiser: {
       color: "mdf",
       positions: [0, 220, 440, 660, 880, 1100, 1320],
-      width: -0.3040416047548291,
-      height: 0.3540416047548291,
+      width: -0.2040416047548291,
+      height: 0.2540416047548291,
+      translateX: 318,
+      translateY: 489,
       rotation: 180,
       ceilingHeight: 236,
     },
@@ -254,37 +256,18 @@ const ThreeWinderShape = () => {
               </marker>
             </defs>
             <g
-              transform={`translate (418.5,589.1753343239227) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
+              transform={`translate (${appState.svgRiser.translateX},${appState.svgRiser.translateY}) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
             >
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
+                {/* center */}
                 <g transform="translate(0 0)  rotate(0)">
-                  <g transform="translate(-500 0)  rotate(0)" />
-                  <g transform="translate(0 1010)  rotate(-90)" />
                   <g transform="translate(0 0)  rotate(0)">
                     <polyline
                       points="486,-16,-486,-16,-486,577.35,441.5,40,486,40"
-                      fill="url(#turn1_tread1)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={2}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
-                    />
-                    <polyline
-                      points="486,0,-486,0,-486,10,486,10"
-                      fill="url(#turn1_tread1)"
-                      stroke="black"
-                      strokeWidth={1}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
                     />
                     <text
                       x={30}
@@ -302,27 +285,9 @@ const ThreeWinderShape = () => {
                   <g transform="translate(0 0)  rotate(0)">
                     <polyline
                       points="441.5,21.51,-486,558.86,-486,996,-77.35,996,486.5,55.5"
-                      fill="url(#turn1_tread2)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={2}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
-                    />
-                    <polyline
-                      points="441.5,40,-486,577.35,-486,588.91,441.5,51.56"
-                      fill="url(#turn1_tread2)"
-                      stroke="black"
-                      strokeWidth={1}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
                     />
                     <text
                       x={150}
@@ -340,27 +305,15 @@ const ThreeWinderShape = () => {
                   <g transform="translate(0 0)  rotate(0)">
                     <polyline
                       points="467.84,55.5,-96.01,996,510,996,510,24,486.5,24"
-                      fill="url(#turn1_tread3)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={2}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
                     />
                     <polyline
                       points="486.5,55.5,-77.35,996,-65.69,996,498.16,55.5"
                       fill="url(#turn1_tread3)"
                       stroke="black"
                       strokeWidth={1}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
                     />
                     <text
                       x={350}
@@ -375,9 +328,8 @@ const ThreeWinderShape = () => {
                       #3
                     </text>
                   </g>
-                  <g transform="translate(486.5 23.5)  rotate(0)" />
-                  <g transform="translate(486.5 23.5)  rotate(0)" />
                 </g>
+                {/* right side */}
                 <g transform="translate(510 510)  rotate(-90)">
                   <g>
                     {appState.svgRiser.positions.map((items, index) => {
@@ -404,15 +356,23 @@ const ThreeWinderShape = () => {
                             id="run1_tread1"
                             className=""
                           />
+                          <text
+                            x={456}
+                            y={-130}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            #{index + 1}
+                          </text>
                         </g>
                       );
                     })}
                   </g>
-                  <g>
-                    <g transform="translate(473 0)  rotate(0)" />
-                    <g transform="translate(-500 0)  rotate(0)" />
-                  </g>
-                  <g />
+
                   <text
                     x={0}
                     y={-0}
@@ -426,43 +386,8 @@ const ThreeWinderShape = () => {
                     run2
                   </text>
                 </g>
-                <g transform="translate(1194 510)  rotate(-90)">
-                  <g transform="translate(-481 0)  rotate(0)">
-                    <rect
-                      x={0}
-                      y={-16}
-                      width={962}
-                      height={86}
-                      fill="url(#mdf)"
-                      style={{ stroke: "black", strokeWidth: 2 }}
-                      id="nosing_tread"
-                      className=""
-                    />
-                    <rect
-                      x={0}
-                      y={0}
-                      width={962}
-                      height={10}
-                      fill="none"
-                      style={{ stroke: "black", strokeWidth: 1 }}
-                      id="nosing_tread"
-                      className=""
-                    />
-                    <text
-                      x={456}
-                      y={-55}
-                      style={{
-                        fontSize: 55,
-                        fontFamily: "Arial, Helvetica, sans-serif",
-                        color: "black",
-                      }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                    >
-                      #7
-                    </text>
-                  </g>
-                </g>
               </g>
+              {/* pencil borders */}
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 0)  rotate(0)">
@@ -534,49 +459,7 @@ const ThreeWinderShape = () => {
                   <g transform="translate(-481 0)  rotate(0)" />
                 </g>
               </g>
-              <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width={80} height={80}>
-                <path
-                  d="M-20,20 l40,-40
-  M0,80 l80,-80
-  M60,100 l40,-40"
-                  style={{ stroke: "grey", strokeWidth: 4 }}
-                />
-              </pattern>
-              <path d="" fill="white" fillOpacity="0.3" />
-              <path
-                d=""
-                fill="url(#diagonalHatch)"
-                fillOpacity={1}
-                strokeWidth={6}
-                stroke="black"
-              />
-              <g>
-                <g transform="translate(0 0)  rotate(0)" />
-                <g transform="translate(0 0)  rotate(0)">
-                  <g transform="translate(-500 0)  rotate(0)" />
-                  <g transform="translate(0 1010)  rotate(-90)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(486.5 23.5)  rotate(0)" />
-                  <g transform="translate(486.5 23.5)  rotate(0)" />
-                </g>
-                <g transform="translate(510 510)  rotate(-90)">
-                  <g>
-                    <g transform="translate(-481 0)  rotate(0)" />
-                    <g transform="translate(-481 228)  rotate(0)" />
-                    <g transform="translate(-481 456)  rotate(0)" />
-                  </g>
-                  <g>
-                    <g transform="translate(473 0)  rotate(0)" />
-                    <g transform="translate(-500 0)  rotate(0)" />
-                  </g>
-                  <g />
-                </g>
-                <g transform="translate(1194 510)  rotate(-90)">
-                  <g transform="translate(-481 0)  rotate(0)" />
-                </g>
-              </g>
+              {/* dot */}
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 0)  rotate(0)">
@@ -626,6 +509,7 @@ const ThreeWinderShape = () => {
                   <g transform="translate(-481 0)  rotate(0)" />
                 </g>
               </g>
+              {/* arrows */}
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 0)  rotate(0)">
