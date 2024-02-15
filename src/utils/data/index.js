@@ -17,3 +17,56 @@ export const ThrreWidnerFirstRight = [
   -0.2440416047548291, -0.2540416047548291, -0.2640416047548291, -0.2740416047548291,
   -0.2840416047548291, -0.2940416047548291,
 ];
+
+
+export const patternsData = [
+  {
+    id: "mdf",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg",
+  },
+  {
+    id: "oak",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/oak.jpg",
+  },
+  {
+    id: "redwood",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/pine.jpg",
+  },
+  {
+    id: "whitewood",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/softwood.jpg",
+  },
+  {
+    id: "whiteprimed",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/whiteprimed.jpg",
+  },
+  {
+    id: "false",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg",
+  },
+  {
+    id: "0",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg",
+  },
+  {
+    id: "turn1_tread1",
+    href: "https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg",
+  },
+];
+
+export const markersData = [
+  {
+    id: "startarrow",
+    markerWidth: 10,
+    markerHeight: 7,
+    refY: "3.5",
+  },
+  {
+    id: "endarrow",
+    markerWidth: 10,
+    markerHeight: 7,
+    refX: 10,
+    refY: "3.5",
+    markerUnits: "strokeWidth",
+  },
+];

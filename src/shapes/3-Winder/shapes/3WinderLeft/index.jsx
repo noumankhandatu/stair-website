@@ -9,7 +9,7 @@ import FeatureCard from "../../../../components/molecules/FeatureCard";
 import { useState } from "react";
 import MaterialConstruction from "./tabs/MaterialConstruction";
 import StairsLayout from "./tabs/stairsLayout";
-import { markersData, patternsData } from "../../../TShape";
+import { markersData, patternsData } from "../../../../utils/data";
 
 const ThreeWinderLeft = () => {
   // states

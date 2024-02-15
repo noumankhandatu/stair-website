@@ -62,7 +62,8 @@ const StairLayout = ({ setAppState, appState }) => {
         ...prevState,
         svgRiser: {
           ...prevState.svgRiser,
-          positions: updatedPositions,
+          positionsBottom: updatedPositions,
+          positionsLeft: updatedPositions,
           height: 0.2540416047548291,
           translateY: 489,
         },
@@ -73,7 +74,8 @@ const StairLayout = ({ setAppState, appState }) => {
         ...prevState,
         svgRiser: {
           ...prevState.svgRiser,
-          positions: updatedPositions,
+          positionsBottom: updatedPositions,
+          positionsLeft: updatedPositions,
           height: 0.1440416047548291,
           width: -0.140416047548291,
           translateY: 289,
@@ -85,7 +87,8 @@ const StairLayout = ({ setAppState, appState }) => {
         ...prevState,
         svgRiser: {
           ...prevState.svgRiser,
-          positions: updatedPositions,
+          positionsBottom: updatedPositions,
+          positionsLeft: updatedPositions,
           height: 0.1440416047548291,
           width: -0.140416047548291,
           translateY: 289,
@@ -97,7 +100,8 @@ const StairLayout = ({ setAppState, appState }) => {
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        positions: updatedPositions,
+        positionsBottom: updatedPositions,
+        positionsLeft: updatedPositions,
       },
     }));
   };
