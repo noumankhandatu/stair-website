@@ -9,6 +9,7 @@ import FeatureCard from "../../../../components/molecules/FeatureCard";
 import { useState } from "react";
 import MaterialConstruction from "./tabs/MaterialConstruction";
 import StairsLayout from "./tabs/stairsLayout";
+import { markersData, patternsData } from "../../../../utils/data";
 
 const ThreeWinderLeftRight = () => {
   // states
@@ -21,10 +22,11 @@ const ThreeWinderLeftRight = () => {
     },
     svgRiser: {
       color: "mdf",
-      positions: [0, 220, 440, 660, 880, 1100, 1320],
+      positionsBottom: [0, 220, 440],
+      positionsLeft: [0, 220],
       width: -0.2040416047548291,
       height: 0.2540416047548291,
-      translateX: 318,
+      translateX: 518,
       translateY: 489,
       rotation: 180,
       ceilingHeight: 236,
@@ -69,321 +71,79 @@ const ThreeWinderLeftRight = () => {
           )}{" "}
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={8}>
-          <svg width={610} height={700}>
+          <svg
+            width={appState.svgInsideContainer.width}
+            height={appState.svgInsideContainer.height}
+          >
             <defs>
-              {" "}
-              <pattern id="mdf" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                <image
-                  style={{ MozUserSelect: "text" }}
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+              {patternsData.map((pattern) => (
+                <pattern
+                  key={pattern.id}
+                  id={pattern.id}
+                  patternUnits="userSpaceOnUse"
                   width="1000px"
                   height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern id="oak" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                <image
-                  style={{ MozUserSelect: "text" }}
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/oak.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern id="redwood" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                <image
-                  style={{ MozUserSelect: "text" }}
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/pine.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern id="whitewood" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                <image
-                  style={{ MozUserSelect: "text" }}
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/softwood.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="whiteprimed"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  style={{ MozUserSelect: "text" }}
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/whiteprimed.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern id="false" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                <image
-                  style={{ MozUserSelect: "text" }}
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern id={0} patternUnits="userSpaceOnUse" width="1000px" height="1000px">
-                <image
-                  style={{ MozUserSelect: "text" }}
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/none.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn1_tread1"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn1_tread1"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn1_tread2"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn1_tread2"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn1_tread3"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn1_tread3"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn2_tread1"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn2_tread1"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn2_tread2"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn2_tread2"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn2_tread3"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <pattern
-                id="turn2_tread3"
-                patternUnits="userSpaceOnUse"
-                width="1000px"
-                height="1000px"
-              >
-                <image
-                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
-                  width="1000px"
-                  height="1000px"
-                  preserveAspectRatio="none"
-                  transform="translate (0,0) rotate(0)"
-                />
-              </pattern>{" "}
-              <marker
-                id="startarrow"
-                markerWidth={10}
-                markerHeight={7}
-                refX={0}
-                refY="3.5"
-                orient="auto"
-              >
-                <polygon points="10 0, 10 7, 0 3.5" fill="red" />
-              </marker>
-              <marker
-                id="endarrow"
-                markerWidth={10}
-                markerHeight={7}
-                refX={10}
-                refY="3.5"
-                orient="auto"
-                markerUnits="strokeWidth"
-              >
-                <polygon points="0 0, 10 3.5, 0 7" fill="red" />
-              </marker>
-            </defs>{" "}
-            <g transform="translate (424.755076142132,492.947461928934) rotate(180) scale(-0.216751269035533,0.216751269035533)">
-              {" "}
+                >
+                  <image
+                    href={pattern.href}
+                    width="1000px"
+                    height="1000px"
+                    preserveAspectRatio="none"
+                  />
+                </pattern>
+              ))}
+
+              {markersData.map((marker) => (
+                <marker
+                  key={marker.id}
+                  id={marker.id}
+                  markerWidth={marker.markerWidth}
+                  markerHeight={marker.markerHeight}
+                  refX={marker.refX || 0}
+                  refY={marker.refY}
+                  orient={marker.orient || "auto"}
+                  markerUnits={marker.markerUnits || "userSpaceOnUse"}
+                >
+                  <polygon points="0 0, 10 3.5, 0 7" fill="red" />
+                </marker>
+              ))}
+            </defs>
+            <g
+              transform={`translate (${appState.svgRiser.translateX},${appState.svgRiser.translateY}) rotate(180) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
+            >
               <g>
-                <g transform="translate(0 0)  rotate(0)" />
-                <g transform="translate(0 0)  rotate(0)">
-                  <g>
-                    <g transform="translate(-413.5 0)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={236}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run1_tread1"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run1_tread1"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-130}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #1
-                      </text>
-                    </g>
-                  </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
-                  </g>
-                  <g />{" "}
+                {/* bottom */}
+
+                <g transform="translate(-30 190)  rotate(180)">
+                  {appState.svgRiser.positionsBottom.map((items, index) => {
+                    return (
+                      <g key={index} transform={`translate(-461 ${items})  rotate(0)`}>
+                        <rect
+                          x={0}
+                          y={-16}
+                          width={862}
+                          height={appState.svgRiser.ceilingHeight}
+                          fill={`url(#${appState.svgRiser.color})`}
+                          style={{ stroke: "black", strokeWidth: 2 }}
+                          id="run1_tread1"
+                          className=""
+                        />
+
+                        <text
+                          x={456}
+                          y={-130}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                          }}
+                          transform="translate (0,0) rotate(180) scale(-1,1)"
+                        >
+                          #{index + 1}
+                        </text>
+                      </g>
+                    );
+                  })}
                   <text
                     x={0}
                     y={-0}
@@ -397,6 +157,7 @@ const ThreeWinderLeftRight = () => {
                     run1
                   </text>
                 </g>
+                {/* right bottom */}
                 <g transform="translate(0 220)  rotate(0)">
                   <g transform="translate(405.5 0)  rotate(0)" />
                   <g transform="translate(0 875)  rotate(-90)" />
@@ -404,7 +165,7 @@ const ThreeWinderLeftRight = () => {
                     {" "}
                     <polyline
                       points="-418.5,-16,418.5,-16,418.5,499.41,-374,40,-418.5,40"
-                      fill="url(#turn1_tread1)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={2}
                     />
@@ -416,7 +177,7 @@ const ThreeWinderLeftRight = () => {
                     />{" "}
                     <polyline
                       points="-418.5,0,418.5,0,418.5,10,-418.5,10"
-                      fill="url(#turn1_tread1)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={1}
                     />
@@ -443,7 +204,7 @@ const ThreeWinderLeftRight = () => {
                     {" "}
                     <polyline
                       points="-374,21.51,418.5,480.91,418.5,861,66.91,861,-419,55.5"
-                      fill="url(#turn1_tread2)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={2}
                     />
@@ -455,7 +216,7 @@ const ThreeWinderLeftRight = () => {
                     />{" "}
                     <polyline
                       points="-374,40,418.5,499.41,418.5,510.97,-374,51.56"
-                      fill="url(#turn1_tread2)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={1}
                     />
@@ -482,7 +243,7 @@ const ThreeWinderLeftRight = () => {
                     {" "}
                     <polyline
                       points="-400.31,55.5,85.59,861,-442.5,861,-442.5,24,-419,24"
-                      fill="url(#turn1_tread3)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={2}
                     />
@@ -494,7 +255,7 @@ const ThreeWinderLeftRight = () => {
                     />{" "}
                     <polyline
                       points="-419,55.5,66.91,861,55.23,861,-430.68,55.5"
-                      fill="url(#turn1_tread3)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={1}
                     />
@@ -529,7 +290,7 @@ const ThreeWinderLeftRight = () => {
                         y={-16}
                         width={827}
                         height={236}
-                        fill="url(#mdf)"
+                        fill={`url(#${appState.svgRiser.color})`}
                         style={{ stroke: "black", strokeWidth: 2 }}
                         id="run2_tread1"
                         className=""
@@ -539,7 +300,7 @@ const ThreeWinderLeftRight = () => {
                         y={0}
                         width={827}
                         height={10}
-                        fill="none"
+                        fill={`url(#${appState.svgRiser.color})`}
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run2_tread1"
                         className=""
@@ -576,14 +337,13 @@ const ThreeWinderLeftRight = () => {
                     run2
                   </text>
                 </g>
+                {/* center */}
                 <g transform="translate(-662.5 662.5)  rotate(90)">
-                  <g transform="translate(-432.5 0)  rotate(0)" />
-                  <g transform="translate(0 875)  rotate(-90)" />
                   <g transform="translate(0 0)  rotate(0)">
                     {" "}
                     <polyline
                       points="418.5,-16,-418.5,-16,-418.5,499.41,374,40,418.5,40"
-                      fill="url(#turn2_tread1)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={2}
                     />
@@ -622,7 +382,7 @@ const ThreeWinderLeftRight = () => {
                     {" "}
                     <polyline
                       points="374,21.51,-418.5,480.91,-418.5,861,-66.91,861,419,55.5"
-                      fill="url(#turn2_tread2)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={2}
                     />
@@ -634,7 +394,7 @@ const ThreeWinderLeftRight = () => {
                     />{" "}
                     <polyline
                       points="374,40,-418.5,499.41,-418.5,510.97,374,51.56"
-                      fill="url(#turn2_tread2)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={1}
                     />
@@ -661,7 +421,7 @@ const ThreeWinderLeftRight = () => {
                     {" "}
                     <polyline
                       points="400.31,55.5,-85.59,861,442.5,861,442.5,24,419,24"
-                      fill="url(#turn2_tread3)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={2}
                     />
@@ -673,7 +433,7 @@ const ThreeWinderLeftRight = () => {
                     />{" "}
                     <polyline
                       points="419,55.5,-66.91,861,-55.23,861,430.68,55.5"
-                      fill="url(#turn2_tread3)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={1}
                     />
@@ -699,49 +459,49 @@ const ThreeWinderLeftRight = () => {
                   <g transform="translate(419 23.5)  rotate(0)" />
                   <g transform="translate(419 23.5)  rotate(0)" />
                 </g>
-                <g transform="translate(-1105 1105)  rotate(0)">
+
+                <g transform="translate(-942.5 1064.5)  rotate(0)">
                   <g>
-                    <g transform="translate(-413.5 0)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={236}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread1"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread1"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-130}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #9
-                      </text>
-                    </g>
+                    {appState.svgRiser.positionsLeft.map((items, index) => {
+                      return (
+                        <g key={index} transform={`translate(-570 ${items})  rotate(0)`}>
+                          <rect
+                            x={0}
+                            y={-16}
+                            width={820}
+                            height={appState.svgRiser.ceilingHeight}
+                            fill={`url(#${appState.svgRiser.color})`}
+                            style={{ stroke: "black", strokeWidth: 2 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+
+                          <rect
+                            x={0}
+                            y={0}
+                            width={962}
+                            height={10}
+                            fill="none"
+                            style={{ stroke: "black", strokeWidth: 1 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+                          <text
+                            x={456}
+                            y={-130}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            #{index + 1}
+                          </text>
+                        </g>
+                      );
+                    })}
                   </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
-                  </g>
-                  <g />{" "}
                   <text
                     x={0}
                     y={-0}
@@ -752,47 +512,11 @@ const ThreeWinderLeftRight = () => {
                     }}
                     transform="translate (0,0) rotate(180) scale(-1,1)"
                   >
-                    run3
+                    run2
                   </text>
                 </g>
-                <g transform="translate(-1105 1325)  rotate(0)">
-                  <g transform="translate(-413.5 0)  rotate(0)">
-                    {" "}
-                    <rect
-                      x={0}
-                      y={-16}
-                      width={827}
-                      height={86}
-                      fill="url(#mdf)"
-                      style={{ stroke: "black", strokeWidth: 2 }}
-                      id="nosing_tread"
-                      className=""
-                    />{" "}
-                    <rect
-                      x={0}
-                      y={0}
-                      width={827}
-                      height={10}
-                      fill="none"
-                      style={{ stroke: "black", strokeWidth: 1 }}
-                      id="nosing_tread"
-                      className=""
-                    />{" "}
-                    <text
-                      x="388.5"
-                      y={-55}
-                      style={{
-                        fontSize: 55,
-                        fontFamily: "Arial, Helvetica, sans-serif",
-                        color: "black",
-                      }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                    >
-                      #10
-                    </text>
-                  </g>
-                </g>
               </g>
+              {/* pencil borders */}
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 0)  rotate(0)">
@@ -967,76 +691,7 @@ const ThreeWinderLeftRight = () => {
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>
               </g>
-              <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width={80} height={80}>
-                <path
-                  d="M-20,20 l40,-40
-      M0,80 l80,-80
-      M60,100 l40,-40"
-                  style={{ stroke: "grey", strokeWidth: 4 }}
-                />
-              </pattern>
-              <path d="" fill="white" fillOpacity="0.3" />
-              <path
-                d=""
-                fill="url(#diagonalHatch)"
-                fillOpacity={1}
-                strokeWidth={6}
-                stroke="black"
-              />
-              <g>
-                <g transform="translate(0 0)  rotate(0)" />
-                <g transform="translate(0 0)  rotate(0)">
-                  <g>
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
-                  </g>
-                  <g />
-                </g>
-                <g transform="translate(0 220)  rotate(0)">
-                  <g transform="translate(405.5 0)  rotate(0)" />
-                  <g transform="translate(0 875)  rotate(-90)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(-419 23.5)  rotate(0)" />
-                  <g transform="translate(-419 23.5)  rotate(0)" />
-                </g>
-                <g transform="translate(-442.5 662.5)  rotate(90)">
-                  <g>
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
-                  </g>
-                  <g />
-                </g>
-                <g transform="translate(-662.5 662.5)  rotate(90)">
-                  <g transform="translate(-432.5 0)  rotate(0)" />
-                  <g transform="translate(0 875)  rotate(-90)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(419 23.5)  rotate(0)" />
-                  <g transform="translate(419 23.5)  rotate(0)" />
-                </g>
-                <g transform="translate(-1105 1105)  rotate(0)">
-                  <g>
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
-                  </g>
-                  <g />
-                </g>
-                <g transform="translate(-1105 1325)  rotate(0)">
-                  <g transform="translate(-413.5 0)  rotate(0)" />
-                </g>
-              </g>
+              {/* dots */}
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 0)  rotate(0)">
@@ -1139,6 +794,7 @@ const ThreeWinderLeftRight = () => {
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>
               </g>
+              {/* markers */}
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 0)  rotate(0)">
@@ -1223,36 +879,6 @@ const ThreeWinderLeftRight = () => {
                   1111
                 </text>{" "}
                 <line
-                  x1="-1537.5"
-                  y1={1425}
-                  x2="432.5"
-                  y2={1425}
-                  stroke="black"
-                  strokeWidth={3}
-                  markerEnd="url(#endarrow)"
-                  markerStart="url(#startarrow)"
-                  className=""
-                />{" "}
-                <rect
-                  x="-602.5"
-                  y={1425}
-                  width={200}
-                  height={100}
-                  fill="white"
-                  transform="translate (-20,-30)"
-                  opacity="0.6"
-                  className=""
-                />
-                <text
-                  x="-602.5"
-                  y={-1405}
-                  style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                  transform="translate (0,0) rotate(180) scale(-1,1)"
-                  className=""
-                >
-                  1970
-                </text>{" "}
-                <line
                   x1="-1637.5"
                   y1={-16}
                   x2="-1637.5"
@@ -1282,36 +908,6 @@ const ThreeWinderLeftRight = () => {
                 >
                   1351
                 </text>{" "}
-                <line
-                  x1="-432.5"
-                  y1={-200}
-                  x2="432.5"
-                  y2={-200}
-                  stroke="black"
-                  strokeWidth={3}
-                  markerEnd="url(#endarrow)"
-                  markerStart="url(#startarrow)"
-                  className=""
-                />{" "}
-                <rect
-                  x={-50}
-                  y={-200}
-                  width={200}
-                  height={100}
-                  fill="white"
-                  transform="translate (-20,-30)"
-                  opacity="0.6"
-                  className=""
-                />
-                <text
-                  x={-50}
-                  y={220}
-                  style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                  transform="translate (0,0) rotate(180) scale(-1,1)"
-                  className=""
-                >
-                  865
-                </text>
               </g>
             </g>
           </svg>
