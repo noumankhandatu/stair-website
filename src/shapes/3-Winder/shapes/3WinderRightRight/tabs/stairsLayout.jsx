@@ -18,7 +18,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const positionOptions = [];
 let updatedPositions = [];
 
-for (let i = 1; i <= 5000; i += 220) {
+for (let i = 1; i <= 3000; i += 220) {
   positionOptions.push(i);
 }
 
@@ -61,7 +61,7 @@ const StairLayout = ({ setAppState, appState }) => {
         ...prevState,
         svgRiser: {
           ...prevState.svgRiser,
-          positions: updatedPositions,
+          positionsBottom: updatedPositions,
           height: 0.2540416047548291,
           translateY: 489,
         },
@@ -72,7 +72,7 @@ const StairLayout = ({ setAppState, appState }) => {
         ...prevState,
         svgRiser: {
           ...prevState.svgRiser,
-          positions: updatedPositions,
+          positionsBottom: updatedPositions,
           height: 0.1440416047548291,
           width: -0.140416047548291,
           translateY: 289,
@@ -84,7 +84,7 @@ const StairLayout = ({ setAppState, appState }) => {
         ...prevState,
         svgRiser: {
           ...prevState.svgRiser,
-          positions: updatedPositions,
+          positionsBottom: updatedPositions,
           height: 0.1440416047548291,
           width: -0.140416047548291,
           translateY: 289,
@@ -96,7 +96,7 @@ const StairLayout = ({ setAppState, appState }) => {
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        positions: updatedPositions,
+        positionsBottom: updatedPositions,
       },
     }));
   };
