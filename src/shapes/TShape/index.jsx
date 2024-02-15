@@ -11,7 +11,7 @@ import StairsLayout from "./tabs/stairsLayout";
 import MaterialConstruction from "./tabs/materialConstrction";
 import { useSelector } from "react-redux";
 
-const patternsData = [
+export const patternsData = [
   {
     id: "mdf",
     href: "https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg",
@@ -46,7 +46,7 @@ const patternsData = [
   },
 ];
 
-const markersData = [
+export const markersData = [
   {
     id: "startarrow",
     markerWidth: 10,
@@ -109,23 +109,21 @@ const TShape = () => {
       <Div height={40} />
       <Grid container>
         <Grid xs={2}>
-          <Grid xs={2}>
-            <FeatureCard
-              title={"Stairs Layout"}
-              showStairsLayout={showStairsLayout}
-              handleshowStairLayout={handleshowStairLayout}
-            />
-            {showStairsLayout && <StairsLayout setAppState={setAppState} />}
-            <Div height={20} />
-            <FeatureCard
-              title={"Material & Construction"}
-              showStairsLayout={showMaterialConstruction}
-              handleshowStairLayout={handleshowMaterialConstruciton}
-            />
-            {showMaterialConstruction && (
-              <MaterialConstruction appState={appState} setAppState={setAppState} />
-            )}{" "}
-          </Grid>
+          <FeatureCard
+            title={"Stairs Layout"}
+            showStairsLayout={showStairsLayout}
+            handleshowStairLayout={handleshowStairLayout}
+          />
+          {showStairsLayout && <StairsLayout setAppState={setAppState} />}
+          <Div height={20} />
+          <FeatureCard
+            title={"Material & Construction"}
+            showStairsLayout={showMaterialConstruction}
+            handleshowStairLayout={handleshowMaterialConstruciton}
+          />
+          {showMaterialConstruction && (
+            <MaterialConstruction appState={appState} setAppState={setAppState} />
+          )}{" "}
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={8}>
           <div>
