@@ -12,7 +12,6 @@ import MaterialConstruction from "./tabs/MaterialConstruction";
 import { myColorsAry } from "./../../style/global";
 import { primary } from "../../theme/colors";
 
-
 const DefaultShape = () => {
   const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
   const heightArrow = useSelector((state) => state?.stairHeightWidthSlice?.height);
@@ -124,7 +123,7 @@ const DefaultShape = () => {
             {/* its the layout  */}
             {/* entire height can be set from here */}
             <g
-              transform={`translate (418.5,589.1753343239227) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
+              transform={`translate (438.5,589.1753343239227) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
             >
               {/* risers */}
               <g>
@@ -193,7 +192,7 @@ const DefaultShape = () => {
                       x={0}
                       y={-120}
                       width={27}
-                      height={heightArrow * 1.2}
+                      height={appState.leftRightPencilBorder.height}
                       fill={`url(#${appState.leftRightPencilBorder.color})`}
                       style={{ stroke: "black", strokeWidth: 1 }}
                       id="run1_rightString"
@@ -210,7 +209,7 @@ const DefaultShape = () => {
                       x1={600}
                       y1={-16}
                       x2={600}
-                      y2={heightArrow}
+                      height={appState.leftRightPencilBorder.height}
                       stroke="black"
                       strokeWidth={3}
                       markerEnd="url(#endarrow)"
