@@ -16,5 +16,6 @@ export const shapeTurnSlice = createSlice({
 });
 
 export const { setShapeTurn } = shapeTurnSlice.actions;
+export const selectShapeTurn = (state) => state.shapeTurnSlice.shapeTurn;
 
 export default shapeTurnSlice.reducer;

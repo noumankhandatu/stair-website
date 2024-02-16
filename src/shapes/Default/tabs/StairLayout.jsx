@@ -4,27 +4,21 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
 import { setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
-import Div from "../../../components/atom/Div";
-import { Paper } from "@mui/material";
 import { ceilingArray, stairWidth } from "../../../utils/data/index";
-import { useState } from "react";
 import { setShape } from "../../../toolkit/slices/shapes";
-import AppDeleteIcon from "../../../components/atom/DeleteIcon";
-import ShapesSelect from "./../../../components/atom/ShapesSelect";
 import { THREE_WINDER, ThreeWinderLeftTurn } from "../../../utils/enum";
 import { setShapeTurn } from "../../../toolkit/slices/shapeTurns";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-const positionOptions = [];
+import TurningArrowCard from "./../../../components/atom/TurningArrowCard";
+
+const heightLoopArray = [];
 let updatedPositions = [];
 
 for (let i = 1; i <= 3000; i += 220) {
-  positionOptions.push(i);
+  heightLoopArray.push(i);
 }
 
+// eslint-disable-next-line react/prop-types
 const StairLayout = ({ setAppState, appState }) => {
-  // states
-  const [turnFirstRight, setturnFirstRight] = useState(false);
   // hooks
   const dispatch = useDispatch();
   // width changer
@@ -51,8 +45,9 @@ const StairLayout = ({ setAppState, appState }) => {
   //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
+    console.log(selectedPosition, "selectedPosition");
     if (selectedPosition !== "") {
-      updatedPositions = positionOptions.filter((pos) => pos <= selectedPosition);
+      updatedPositions = heightLoopArray.filter((pos) => pos <= selectedPosition);
     }
     if (selectedPosition >= 1 && selectedPosition < 1400) {
       setAppState((prevState) => ({
@@ -106,22 +101,15 @@ const StairLayout = ({ setAppState, appState }) => {
     }));
   };
 
-  console.log(appState, "appState");
-
   // Turning Function Started
-  const handleTurnFirstRight = () => {
-    setturnFirstRight(true);
-    dispatch(setShape(THREE_WINDER));
-  };
-  const handleSelectShape = (event) => {
-    const selectedValue = event.target.value;
-    // Dispatch the setShape action with the selected value
-    dispatch(setShape(selectedValue));
-  };
-  const handleTurnFirstLeft = () => {
+  const handleLeft = () => {
     dispatch(setShape(THREE_WINDER));
     dispatch(setShapeTurn(ThreeWinderLeftTurn));
   };
+  const handletRight = () => {
+    dispatch(setShape(THREE_WINDER));
+  };
+
   return (
     <div>
       {/* Floor Height */}
@@ -131,7 +119,7 @@ const StairLayout = ({ setAppState, appState }) => {
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
-        {positionOptions.map((option, index) => (
+        {heightLoopArray.map((option, index) => (
           <MenuItem onClick={() => dispatch(setHeight(option + 79))} key={index} value={option}>
             {option + 79} mm
           </MenuItem>
@@ -177,59 +165,35 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
 
       {/* Number of Rises */}
-
       <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
-      <Select
-        disabled={updatedPositions.length === 0}
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
-        onChange={handlePositionChange}
-      >
-        <MenuItem value="" disabled>
-          Select a position
-        </MenuItem>
-        {updatedPositions.slice(-3).map((option, index) => {
+      <Select onChange={handlePositionChange} sx={{ height: 40, mt: 1 }} fullWidth>
+        {appState?.svgRiser?.positions.map((items, index) => {
           return (
-            <MenuItem key={index} value={option}>
-              {index + updatedPositions.length - 1} @ {option + 79}
+            <MenuItem key={items} value={items}>
+              {index + 1} @ {items}.mm
             </MenuItem>
           );
         })}
-        <MenuItem value={updatedPositions && updatedPositions[updatedPositions?.length - 1] + 220}>
-          {updatedPositions?.length + 2} @ {updatedPositions[updatedPositions?.length - 1] + 220}
+        <MenuItem
+          value={
+            appState.svgRiser.positions &&
+            appState.svgRiser.positions[appState.svgRiser.positions?.length - 1] + 220
+          }
+        >
+          {" "}
+          {appState.svgRiser.positions?.length + 1} @
+          {appState.svgRiser.positions[appState.svgRiser.positions?.length - 1] + 220} mm
+        </MenuItem>
+        <MenuItem
+          value={appState?.svgRiser.positions[appState?.svgRiser?.positions?.length - 1] + 440}
+        >
+          {appState.svgRiser.positions?.length + 2} @
+          {appState.svgRiser.positions[appState.svgRiser.positions?.length - 1] + 400} mm
         </MenuItem>
       </Select>
 
       {/* Turns -> Left & Right  */}
-
-      <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
-      <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper onClick={handleTurnFirstLeft} className="turnLeft">
-          add a left <br />
-          turn
-          <br />
-          <ArrowBackIcon sx={{ mt: 1 }} />
-        </Paper>
-        <Paper onClick={handleTurnFirstRight} className="turnRight">
-          add a Right <br />
-          turn <br />
-          <ArrowForwardIcon sx={{ mt: 1 }} />
-        </Paper>
-      </Div>
-      {turnFirstRight && (
-        <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
-          <Div sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Appheading>Turn Shape</Appheading>
-            <AppDeleteIcon />
-          </Div>
-          <Div
-            sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}
-          >
-            <Appheading>Turn Shape</Appheading>
-            <ShapesSelect handleSelectShape={handleSelectShape} />
-          </Div>
-        </Paper>
-      )}
+      <TurningArrowCard handleLeft={handleLeft} handletRight={handletRight} />
     </div>
   );
 };

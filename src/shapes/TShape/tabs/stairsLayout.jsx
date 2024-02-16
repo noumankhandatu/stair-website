@@ -10,6 +10,7 @@ import ShapesSelect from "../../../components/atom/ShapesSelect";
 import { T_SHAPE } from "../../../utils/enum";
 import { TShapeWidths, ceilingArray } from "../../../utils/data";
 import ThreadTurn from "../../../components/atom/ThreadTurn";
+import { TurnFlex } from "../../../style/global";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -199,16 +200,16 @@ const StairsLayout = ({ setAppState, appState }) => {
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
 
       <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
-        <Div sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Div sx={TurnFlex}>
           <Appheading>Turn ({reduxShapeName && reduxShapeName}) </Appheading>
           <AppDeleteIcon />
         </Div>
-        <Div sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}>
+        <Div sx={TurnFlex}>
           <Appheading>Type </Appheading>
           {/* Create a select here */}
           <ShapesSelect defaultShape={T_SHAPE} handleSelectShape={handleSelectShape} />
         </Div>
-        <Div sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}>
+        <Div sx={TurnFlex}>
           <Appheading>Treads before turn:</Appheading>
           {/* Create a select here */}
           <ThreadTurn

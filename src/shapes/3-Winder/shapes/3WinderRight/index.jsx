@@ -366,7 +366,7 @@ const ThreeWinderRight = () => {
                             }}
                             transform="translate (0,0) rotate(180) scale(-1,1)"
                           >
-                            #{index + 1}
+                            #{index + 4}
                           </text>
                         </g>
                       );

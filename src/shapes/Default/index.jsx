@@ -24,7 +24,7 @@ const DefaultShape = () => {
     },
     svgRiser: {
       color: "mdf",
-      positions: [0, 220, 440, 660, 880, 1100, 1320],
+      positions: [220, 440, 660, 880, 1100, 1320],
       width: -0.3040416047548291,
       height: 0.3540416047548291,
       rotation: 180,
@@ -234,7 +234,6 @@ const DefaultShape = () => {
                       className=""
                     >
                       {heightArrow}
-                      {/* {Math.floor(appState.svgRiser.height * 1000)} */}
                     </text>
                     <line
                       x1={-500}

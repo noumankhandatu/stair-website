@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Paper } from "@mui/material";
-import { useEffect, useState } from "react";
 import { Appheading } from "../../../../../theme";
 import { setHeight, setWidth } from "../../../../../toolkit/slices/stairHeightWidth";
 import { setShape } from "../../../../../toolkit/slices/shapes";
@@ -16,9 +15,10 @@ import {
   ThreeWinderLeftLeftTurn,
   ThreeWinderLeftRightTurn,
 } from "../../../../../utils/enum";
-import { setShapeTurn } from "../../../../../toolkit/slices/shapeTurns";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { selectShapeTurn, setShapeTurn } from "../../../../../toolkit/slices/shapeTurns";
+
+import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
+import TurningArrowCard from "../../../../../components/atom/TurningArrowCard";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -28,12 +28,10 @@ for (let i = 1; i <= 3000; i += 220) {
 }
 
 const StairLayout = ({ setAppState, appState }) => {
-  // states
-  const [turnFirstRight, setturnFirstRight] = useState(false);
-  const [turnSecondRight, setturnSecondRight] = useState(false);
-
   // hooks
   const dispatch = useDispatch();
+  const reduxShapeTurn = useSelector(selectShapeTurn);
+  console.log(reduxShapeTurn, "reduxShapeTurn");
   // width changer
   const handleWidthChange = (newValue) => {
     setAppState((prevState) => ({
@@ -112,25 +110,20 @@ const StairLayout = ({ setAppState, appState }) => {
   console.log(appState, "appState");
 
   // Turning Function Started
-  const handleTurnFirstRight = () => {
-    setturnFirstRight(true);
-  };
-  const handleSecondLeft = () => {
-    setturnSecondRight(true);
+
+  const handleLeft = () => {
     dispatch(setShapeTurn(ThreeWinderLeftLeftTurn));
   };
-  const handleSelectShape = (event) => {
-    const selectedValue = event.target.value;
-    // Dispatch the setShape action with the selected value
-    dispatch(setShape(selectedValue));
-  };
-  useEffect(() => {
-    handleTurnFirstRight();
-  }, []);
 
-  const handleLeftRight = () => {
+  const handleRight = () => {
     dispatch(setShapeTurn(ThreeWinderLeftRightTurn));
   };
+
+  const handleSelectShape = (event) => {
+    const selectedValue = event.target.value;
+    dispatch(setShape(selectedValue));
+  };
+
   return (
     <div>
       {/* Floor Height */}
@@ -210,69 +203,21 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
 
       {/* Turns -> First Left & Right  */}
-
-      <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
-      <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper className="turnLeft">
-          add a left <br />
-          turn
-          <br />
-          <ArrowBackIcon sx={{ mt: 1 }} />
-        </Paper>
-        <Paper onClick={handleTurnFirstRight} className="turnRight">
-          add a Right <br />
-          turn <br />
-          <ArrowForwardIcon sx={{ mt: 1 }} />
-        </Paper>
-      </Div>
-      {turnFirstRight && (
-        <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
-          <Div sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Appheading>Turn Shape</Appheading>
-            <AppDeleteIcon />
-          </Div>
-          <Div
-            sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}
-          >
-            <Appheading>Turn Shape</Appheading>
-            <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
-          </Div>
-        </Paper>
-      )}
-      {/* Turns -> Second Left & Right  */}
-
-      <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
-      <Div sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Paper onClick={handleSecondLeft} className="turnLeft">
-          add a left <br />
-          turn
-          <br />
-          <ArrowBackIcon sx={{ mt: 1 }} />
-        </Paper>
-        <Paper onClick={handleLeftRight} className="turnRight">
-          add a Right <br />
-          turn <br />
-          <ArrowForwardIcon sx={{ mt: 1 }} />
-        </Paper>
-      </Div>
-      {turnSecondRight && (
-        <Paper elevation={3} sx={{ p: 2, mt: 3, background: "#F6F6F6" }}>
-          <Div sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Appheading>Turn Shape</Appheading>
-            <AppDeleteIcon />
-          </Div>
-          <Div
-            sx={{ display: "flex", justifyContent: "space-between", mt: 3, alignItems: "center" }}
-          >
-            <Appheading>Turn Shape</Appheading>
-            <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
-          </Div>
-        </Paper>
-      )}
+      {/* Select Box */}
+      <Paper elevation={3} sx={TurnPaperStyle}>
+        <Div sx={TurnFlex}>
+          <Appheading>Turn 1 (Left)</Appheading>
+          <AppDeleteIcon />
+        </Div>
+        <Div sx={TurnFlex}>
+          <Appheading>Turn </Appheading>
+          <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
+        </Div>
+      </Paper>
+      {/*LeftRight-Card */}
+      <TurningArrowCard handleLeft={handleLeft} handletRight={handleRight} />
     </div>
   );
 };
 
 export default StairLayout;
-
-export const textT = { fontSize: 15, fontWeight: "bolder", cursor: "pointer" };
