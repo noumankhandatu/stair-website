@@ -12,7 +12,6 @@ import MaterialConstruction from "./tabs/materialConstrction";
 import { useSelector } from "react-redux";
 import { markersData, patternsData } from "../../utils/data";
 
-
 const TShape = () => {
   const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
   const heightArrow = useSelector((state) => state?.stairHeightWidthSlice?.height);
@@ -24,22 +23,24 @@ const TShape = () => {
     },
     svgRiser: {
       color: "mdf",
-      positionsBottom: [0, 220, 440, 660, 880, 1100, 1320],
-      positionsLeft: [0, 220, 440, 660, 880, 1100, 1320],
-      positionsRight: [0, 220, 440, 660, 880, 1100, 1320],
+      positionsBottom: [0],
+      positionsLeft: [0, 220, 440],
+      positionsRight: [0, 220, 440],
+      lengthOfRises: [0, 220, 440],
 
-      translateY: 250,
+      translateY: 450,
       translateX: 440,
-      height: 0.10497349154253975,
-      width: -0.10497349154253975,
+      height: 0.18497349154253975,
+      width: -0.18497349154253975,
 
       ceilingHeight: 236,
     },
-    leftRightPencilBorder: {
-      height: 1760,
-      towardsLeftRight: [473, -500],
-      rotation: 0,
+    handRails: {
       color: "mdf",
+      borderLeft: 720,
+      borderRight: "",
+      borderTop: "",
+      borderBottom: 40,
     },
   });
   // fns
@@ -65,7 +66,7 @@ const TShape = () => {
             showStairsLayout={showStairsLayout}
             handleshowStairLayout={handleshowStairLayout}
           />
-          {showStairsLayout && <StairsLayout setAppState={setAppState} />}
+          {showStairsLayout && <StairsLayout setAppState={setAppState} appState={appState} />}
           <Div height={20} />
           <FeatureCard
             title={"Material & Construction"}
@@ -74,7 +75,7 @@ const TShape = () => {
           />
           {showMaterialConstruction && (
             <MaterialConstruction appState={appState} setAppState={setAppState} />
-          )}{" "}
+          )}
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={8}>
           <div>
@@ -111,7 +112,7 @@ const TShape = () => {
                     orient={marker.orient || "auto"}
                     markerUnits={marker.markerUnits || "userSpaceOnUse"}
                   >
-                    <polygon points="0 0, 10 3.5, 0 7" fill="red" />
+                    <polygon points="0 0, 10 3.5, 0 7" fill={`url(#${appState.handRails.color})`} />
                   </marker>
                 ))}
               </defs>
@@ -298,42 +299,35 @@ const TShape = () => {
                 </g>
                 {/* pencil border */}
                 <g>
-                  <g transform="translate(0 0)  rotate(0)" />
+                  {/* bottom border */}
                   <g transform="translate(0 0)  rotate(0)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
+                    <g transform="translate(405.5 0)  rotate(180)">
+                      <rect
+                        x={0}
+                        y={-720}
+                        width={27}
+                        height={appState.handRails.borderBottom}
+                        fill={`url(#${appState.handRails.color})`}
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="run1_rightString"
+                        className=""
+                      />
                     </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-120}
-                          width={27}
-                          height={963}
-                          fill="url(#whitewood)"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run1_rightString"
-                          className=""
-                        />
-                      </g>
-                      <g transform="translate(-432.5 0)  rotate(0)">
-                        <rect
-                          x={0}
-                          y={-120}
-                          width={27}
-                          height={963}
-                          fill="url(#whitewood)"
-                          style={{ stroke: "black", strokeWidth: 1 }}
-                          id="run1_leftString"
-                          className=""
-                        />
-                      </g>
+                    <g transform="translate(-432.5 0)  rotate(180)">
+                      <rect
+                        x={0}
+                        y={-720}
+                        width={27}
+                        height={appState.handRails.borderBottom}
+                        fill={`url(#${appState.handRails.color})`}
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="run1_leftString"
+                        className=""
+                      />
                     </g>
                     <g />
                   </g>
+                  {/* center top border */}
                   <g transform="translate(0 888)  rotate(0)">
                     <g transform="translate(0 849)  rotate(-90)">
                       <rect
@@ -341,7 +335,7 @@ const TShape = () => {
                         y="-416.5"
                         width={27}
                         height={833}
-                        fill="url(#whitewood)"
+                        fill={`url(#${appState.handRails.color})`}
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="turn1_string1"
                         className=""
@@ -351,24 +345,16 @@ const TShape = () => {
                     <g transform="translate(-419 -2.5)  rotate(0)" />
                     <g transform="translate(419 -2.5)  rotate(0)" />
                   </g>
+                  {/* left borders */}
                   <g transform="translate(-416.5 1304.5)  rotate(90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                      <g transform="translate(-413.5 888)  rotate(0)" />
-                      <g transform="translate(-413.5 1110)  rotate(0)" />
-                      <g transform="translate(-413.5 1332)  rotate(0)" />
-                    </g>
                     <g>
                       <g transform="translate(405.5 0)  rotate(0)">
                         <rect
                           x={0}
                           y={0}
                           width={27}
-                          height={1674}
-                          fill="url(#whitewood)"
+                          height={appState.handRails.borderLeft}
+                          fill={`url(#${appState.handRails.color})`}
                           style={{ stroke: "black", strokeWidth: 1 }}
                           id="run2_rightString"
                           className=""
@@ -379,8 +365,8 @@ const TShape = () => {
                           x={0}
                           y={45}
                           width={27}
-                          height={1629}
-                          fill="url(#whitewood)"
+                          height={appState.handRails.borderLeft}
+                          fill={`url(#${appState.handRails.color})`}
                           style={{ stroke: "black", strokeWidth: 1 }}
                           id="run2_leftString"
                           className=""
@@ -389,27 +375,16 @@ const TShape = () => {
                     </g>
                     <g />
                   </g>
-                  <g transform="translate(-1970.5 1304.5)  rotate(90)">
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
+                  {/* right borders */}
                   <g transform="translate(416.5 1304.5)  rotate(-90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                      <g transform="translate(-413.5 888)  rotate(0)" />
-                      <g transform="translate(-413.5 1110)  rotate(0)" />
-                      <g transform="translate(-413.5 1332)  rotate(0)" />
-                    </g>
                     <g>
                       <g transform="translate(405.5 0)  rotate(0)">
                         <rect
                           x={0}
                           y={45}
                           width={27}
-                          height={1629}
-                          fill="url(#whitewood)"
+                          height={appState.handRails.borderLeft}
+                          fill={`url(#${appState.handRails.color})`}
                           style={{ stroke: "black", strokeWidth: 1 }}
                           id="run3_rightString"
                           className=""
@@ -420,8 +395,8 @@ const TShape = () => {
                           x={0}
                           y={0}
                           width={27}
-                          height={1674}
-                          fill="url(#whitewood)"
+                          height={appState.handRails.borderLeft}
+                          fill={`url(#${appState.handRails.color})`}
                           style={{ stroke: "black", strokeWidth: 1 }}
                           id="run3_leftString"
                           className=""
@@ -429,9 +404,6 @@ const TShape = () => {
                       </g>
                     </g>
                     <g />
-                  </g>
-                  <g transform="translate(1970.5 1304.5)  rotate(-90)">
-                    <g transform="translate(-413.5 0)  rotate(0)" />
                   </g>
                 </g>
                 {/* arrows */}
@@ -494,17 +466,7 @@ const TShape = () => {
                   <g transform="translate(1970.5 1304.5)  rotate(-90)">
                     <g transform="translate(-413.5 0)  rotate(0)" />
                   </g>
-                  <line
-                    x1="-2080.5"
-                    y1={-16}
-                    x2="-2080.5"
-                    y2={1737}
-                    stroke="black"
-                    strokeWidth={3}
-                    markerEnd="url(#endarrow)"
-                    markerStart="url(#startarrow)"
-                    className=""
-                  />
+
                   <rect
                     x="-2135.5"
                     y="850.5"
@@ -516,8 +478,8 @@ const TShape = () => {
                     className=""
                   />
                   <text
-                    x="-2135.5"
-                    y="-850.5"
+                    x="-1435.5"
+                    y="-630.5"
                     style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
                     transform="translate (0,0) rotate(180) scale(-1,1)"
                     className=""
