@@ -8,7 +8,7 @@ import { iconCol } from "../../../Default";
 import FeatureCard from "../../../../components/molecules/FeatureCard";
 import { useState } from "react";
 import MaterialConstruction from "./tabs/MaterialConstruction";
-import StairsLayout from "./tabs/stairsLayout";
+import StairLayout from "./tabs/stairsLayout";
 
 const ThreeWinderRight = () => {
   // states
@@ -21,10 +21,11 @@ const ThreeWinderRight = () => {
     },
     svgRiser: {
       color: "mdf",
-      positions: [0, 220, 440, 660, 880, 1100, 1320],
+      positions: [220, 440],
+      positionBottom: [220, 440],
       width: -0.2040416047548291,
       height: 0.2540416047548291,
-      translateX: 318,
+      translateX: 418,
       translateY: 489,
       rotation: 180,
       ceilingHeight: 236,
@@ -57,7 +58,7 @@ const ThreeWinderRight = () => {
             showStairsLayout={showStairsLayout}
             handleshowStairLayout={handleshowStairLayout}
           />
-          {showStairsLayout && <StairsLayout setAppState={setAppState} />}
+          {showStairsLayout && <StairLayout setAppState={setAppState} appState={appState} />}
           <Div height={20} />
           <FeatureCard
             title={"Material & Construction"}
@@ -260,6 +261,51 @@ const ThreeWinderRight = () => {
             >
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
+                <g transform="translate(0 -0)  rotate(180)">
+                  {/* bottom */}
+                  {appState.svgRiser.positionBottom.map((items, index) => {
+                    const reversedIndex = appState.svgRiser.positionBottom.length - index - 1;
+
+                    return (
+                      <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
+                        <rect
+                          x={0}
+                          y={-216}
+                          width={962}
+                          height={appState.svgRiser.ceilingHeight}
+                          fill={`url(#${appState.svgRiser.color})`}
+                          style={{ stroke: "black", strokeWidth: 2 }}
+                          id="run1_tread1"
+                          className=""
+                        />
+
+                        <rect
+                          x={0}
+                          y={0}
+                          width={962}
+                          height={10}
+                          fill="none"
+                          style={{ stroke: "black", strokeWidth: 1 }}
+                          id="run1_tread1"
+                          className=""
+                        />
+                        <text
+                          x={-500}
+                          y={-70}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                            zIndex: 99999,
+                          }}
+                          transform="translate (0,0) rotate(0) scale(-1,1)"
+                        >
+                          #{reversedIndex + 1}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </g>
                 {/* center */}
                 <g transform="translate(0 0)  rotate(0)">
                   <g transform="translate(0 0)  rotate(0)">
@@ -330,7 +376,7 @@ const ThreeWinderRight = () => {
                   </g>
                 </g>
                 {/* right side */}
-                <g transform="translate(510 510)  rotate(-90)">
+                <g transform="translate(310 510)  rotate(-90)">
                   <g>
                     {appState.svgRiser.positions.map((items, index) => {
                       return (
@@ -372,19 +418,6 @@ const ThreeWinderRight = () => {
                       );
                     })}
                   </g>
-
-                  <text
-                    x={0}
-                    y={-0}
-                    style={{
-                      fontSize: 55,
-                      fontFamily: "Arial, Helvetica, sans-serif",
-                      color: "black",
-                    }}
-                    transform="translate (0,0) rotate(180) scale(-1,1)"
-                  >
-                    run2
-                  </text>
                 </g>
               </g>
               {/* pencil borders */}
@@ -595,36 +628,6 @@ const ThreeWinderRight = () => {
                   className=""
                 >
                   1704
-                </text>
-                <line
-                  x1={-500}
-                  y1={-250}
-                  x2={500}
-                  y2={-250}
-                  stroke="black"
-                  strokeWidth={3}
-                  markerEnd="url(#endarrow)"
-                  markerStart="url(#startarrow)"
-                  className=""
-                />
-                <rect
-                  x={-50}
-                  y={-250}
-                  width={200}
-                  height={100}
-                  fill="white"
-                  transform="translate (-20,-30)"
-                  opacity="0.6"
-                  className=""
-                />
-                <text
-                  x={-50}
-                  y={270}
-                  style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                  transform="translate (0,0) rotate(180) scale(-1,1)"
-                  className=""
-                >
-                  1000
                 </text>
               </g>
             </g>
