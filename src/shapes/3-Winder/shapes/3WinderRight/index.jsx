@@ -21,8 +21,9 @@ const ThreeWinderRight = () => {
     },
     svgRiser: {
       color: "mdf",
-      positions: [220, 440],
-      positionBottom: [220, 440],
+      positions: [],
+      rightRisers: [],
+      bottomRisers: [],
       width: -0.2040416047548291,
       height: 0.2540416047548291,
       translateX: 418,
@@ -263,8 +264,8 @@ const ThreeWinderRight = () => {
                 <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 -0)  rotate(180)">
                   {/* bottom */}
-                  {appState.svgRiser.positionBottom.map((items, index) => {
-                    const reversedIndex = appState.svgRiser.positionBottom.length - index - 1;
+                  {appState.svgRiser.bottomRisers.map((items, index) => {
+                    const reversedIndex = appState.svgRiser.bottomRisers.length - index - 1;
 
                     return (
                       <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
@@ -325,7 +326,7 @@ const ThreeWinderRight = () => {
                       }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                     >
-                      #1
+                      #{appState.svgRiser.bottomRisers.length + 1}
                     </text>
                   </g>
                   <g transform="translate(0 0)  rotate(0)">
@@ -345,7 +346,7 @@ const ThreeWinderRight = () => {
                       }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                     >
-                      #2
+                      #{appState.svgRiser.bottomRisers.length + 2}
                     </text>
                   </g>
                   <g transform="translate(0 0)  rotate(0)">
@@ -371,14 +372,14 @@ const ThreeWinderRight = () => {
                       }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                     >
-                      #3
+                      #{appState.svgRiser.bottomRisers.length + 3}
                     </text>
                   </g>
                 </g>
                 {/* right side */}
                 <g transform="translate(310 510)  rotate(-90)">
                   <g>
-                    {appState.svgRiser.positions.map((items, index) => {
+                    {appState.svgRiser.rightRisers.map((items, index) => {
                       return (
                         <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
                           <rect
@@ -412,7 +413,9 @@ const ThreeWinderRight = () => {
                             }}
                             transform="translate (0,0) rotate(180) scale(-1,1)"
                           >
-                            #{index + 4}
+                            # {appState.svgRiser.bottomRisers.length === 0 && index + 4}
+                            {appState.svgRiser.bottomRisers.length > 0 &&
+                              index + appState.svgRiser.bottomRisers.length + 4}
                           </text>
                         </g>
                       );
