@@ -53,7 +53,6 @@ const StairLayout = ({ setAppState, appState }) => {
   //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
-    alert(selectedPosition);
     if (selectedPosition !== "") {
       updatedPositions = heightLoopArray.filter((pos) => pos <= selectedPosition);
     }

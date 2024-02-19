@@ -9,13 +9,12 @@ import AppDeleteIcon from "./../../../components/atom/DeleteIcon";
 import ShapesSelect from "../../../components/atom/ShapesSelect";
 import { T_SHAPE } from "../../../utils/enum";
 import { TShapeWidths, ceilingArray } from "../../../utils/data";
-import ThreadTurn from "../../../components/atom/ThreadTurn";
 import { TurnFlex } from "../../../style/global";
 
 const positionOptions = [];
 let updatedPositions = [];
 
-for (let i = 1; i <= 1500; i += 220) {
+for (let i = 220; i <= 1500; i += 220) {
   positionOptions.push(i);
 }
 
@@ -36,11 +35,9 @@ const StairsLayout = ({ setAppState, appState }) => {
         ...prevState,
         svgRiser: {
           ...prevState.svgRiser,
+          allRisers: updatedPositions,
           positionsLeft: updatedPositions,
           positionsRight: updatedPositions,
-          lengthOfRises: updatedPositions,
-
-          // positionsBottom: updatedPositions,
 
           height: 0.15497349154253975,
           width: -0.15497349154253975,
@@ -53,44 +50,48 @@ const StairsLayout = ({ setAppState, appState }) => {
         },
       }));
     }
-    // if (selectedPosition >= 1400 && selectedPosition < 2940) {
-    //   setAppState((prevState) => ({
-    //     ...prevState,
-    //     svgRiser: {
-    //       ...prevState.svgRiser,
-    //       positionsLeft: updatedPositions,
-    //       positionsRight: updatedPositions,
-    //       // positionsBottom: updatedPositions,
-    //       height: 0.10497349154253975,
-    //       width: -0.10497349154253975,
-    //     },
-    //   }));
-    // }
-    // if (selectedPosition >= 1400 && selectedPosition >= 2940) {
-    //   setAppState((prevState) => ({
-    //     ...prevState,
-    //     svgRiser: {
-    //       ...prevState.svgRiser,
-    //       positionsLeft: updatedPositions,
-    //       positionsRight: updatedPositions,
-    //       // positionsBottom: updatedPositions,
-    //       height: 0.10497349154253975,
-    //       width: -0.10497349154253975,
-    //     },
-    //   }));
-    // }
+    if (selectedPosition >= 1400 && selectedPosition < 2940) {
+      setAppState((prevState) => ({
+        ...prevState,
+        svgRiser: {
+          ...prevState.svgRiser,
+          allRisers: updatedPositions,
+          positionsLeft: updatedPositions,
+          positionsRight: updatedPositions,
+          // positionsBottom: updatedPositions,
+          height: 0.10497349154253975,
+          width: -0.10497349154253975,
+        },
+      }));
+    }
+    if (selectedPosition >= 1400 && selectedPosition >= 2940) {
+      setAppState((prevState) => ({
+        ...prevState,
+        svgRiser: {
+          ...prevState.svgRiser,
+          allRisers: updatedPositions,
+          positionsLeft: updatedPositions,
+          positionsRight: updatedPositions,
+          height: 0.10497349154253975,
+          width: -0.10497349154253975,
+        },
+      }));
+    }
     // update states here
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
+        allRisers: updatedPositions,
         positionsLeft: updatedPositions,
         positionsRight: updatedPositions,
-        // positionsBottom: updatedPositions,
+      },
+      handRails: {
+        ...prevState.handRails,
+        borderLeft: updatedPositions.length * 250,
       },
     }));
   };
-
   // width changer
   const handleWidthChange = (newValue) => {
     setAppState((prevState) => ({
@@ -117,6 +118,34 @@ const StairsLayout = ({ setAppState, appState }) => {
     dispatch(setShape(selectedValue));
   };
   console.log(appState.svgRiser.positionsBottom.length, "appStateasd");
+  const handleTurns = (event) => {
+    const selectedValue = parseInt(event.target.value);
+    const rightArray = [];
+    const bottomArray = [];
+
+    for (let i = 220; i <= (appState.svgRiser.allRisers.length - selectedValue) * 220; i += 220) {
+      rightArray.push(i);
+    }
+
+    for (let i = 220; i <= selectedValue * 220; i += 220) {
+      bottomArray.push(i);
+    }
+
+    setAppState((prevState) => ({
+      ...prevState,
+      svgRiser: {
+        ...prevState.svgRiser,
+        positionsBottom: bottomArray,
+        positionsLeft: rightArray,
+        positionsRight: rightArray,
+      },
+      handRails: {
+        ...prevState.handRails,
+        borderBottom: bottomArray.length * 250,
+        borderLeft: rightArray.length * 250,
+      },
+    }));
+  };
   return (
     <div>
       {/* floor height  */}
@@ -173,28 +202,40 @@ const StairsLayout = ({ setAppState, appState }) => {
 
       {/* Number of Rises */}
 
+      {/* Number of Rises */}
       <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
       <Select
-        disabled={updatedPositions.length === 0}
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
+        disabled={appState.svgRiser.allRisers.length <= 0}
         onChange={handlePositionChange}
+        sx={{ height: 40, mt: 1 }}
+        fullWidth
       >
-        <MenuItem value="" disabled>
-          Select a position
-        </MenuItem>
-        {updatedPositions.slice(-3).map((option, index) => {
+        <MenuItem disabled>1 @1.mm</MenuItem>
+
+        {appState.svgRiser.allRisers.map((items, index) => {
           return (
-            <MenuItem key={index} value={option}>
-              {index + updatedPositions.length - 1} @ {option + 79}
+            <MenuItem key={items} value={items}>
+              {index + 1} @ {items}.mm
             </MenuItem>
           );
         })}
-        <MenuItem value={updatedPositions && updatedPositions[updatedPositions?.length - 1] + 220}>
-          {updatedPositions?.length + 2} @ {updatedPositions[updatedPositions?.length - 1] + 220}
+        <MenuItem
+          value={
+            appState.svgRiser.allRisers &&
+            appState.svgRiser.allRisers[appState.svgRiser.allRisers?.length - 1] + 220
+          }
+        >
+          {" "}
+          {appState.svgRiser.allRisers?.length + 1} @
+          {appState.svgRiser.allRisers[appState.svgRiser.allRisers?.length - 1] + 220} mm
+        </MenuItem>
+        <MenuItem
+          value={appState?.svgRiser.allRisers[appState?.svgRiser?.allRisers?.length - 1] + 440}
+        >
+          {appState.svgRiser.allRisers?.length + 2} @
+          {appState.svgRiser.allRisers[appState.svgRiser.allRisers?.length - 1] + 400} mm
         </MenuItem>
       </Select>
-
       {/* Turns -> Left & Right  */}
 
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
@@ -211,12 +252,17 @@ const StairsLayout = ({ setAppState, appState }) => {
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Treads before turn:</Appheading>
-          {/* Create a select here */}
-          <ThreadTurn
-            defaultTurn={appState.svgRiser.lengthOfRises.length}
-            appState={appState}
-            setAppState={setAppState}
-          />
+          <Select
+            disabled={appState.svgRiser.allRisers.length <= 0}
+            sx={{ height: 30, borderRadius: 10, width: 70 }}
+            onChange={handleTurns}
+          >
+            {[...Array(appState.svgRiser.allRisers.length).keys()].map((item, index) => (
+              <MenuItem key={index + 1} value={index + 1}>
+                {index + 1}
+              </MenuItem>
+            ))}
+          </Select>
         </Div>
       </Paper>
     </div>

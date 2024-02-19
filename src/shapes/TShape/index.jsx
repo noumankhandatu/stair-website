@@ -23,11 +23,10 @@ const TShape = () => {
     },
     svgRiser: {
       color: "mdf",
-      positionsBottom: [0],
-      positionsLeft: [0, 220, 440],
-      positionsRight: [0, 220, 440],
-      lengthOfRises: [0, 220, 440],
-
+      allRisers: [220],
+      positionsBottom: [],
+      positionsLeft: [220],
+      positionsRight: [220],
       translateY: 450,
       translateX: 440,
       height: 0.18497349154253975,
@@ -37,10 +36,10 @@ const TShape = () => {
     },
     handRails: {
       color: "mdf",
-      borderLeft: 720,
+      borderLeft: 270,
       borderRight: "",
       borderTop: "",
-      borderBottom: 40,
+      borderBottom: 0,
     },
   });
   // fns
@@ -121,7 +120,7 @@ const TShape = () => {
               >
                 <g>
                   {/* bottom  */}
-                  <g transform={`translate(0 932)  rotate(180)`}>
+                  <g transform={`translate(0 1082)  rotate(180)`}>
                     {appState.svgRiser.positionsBottom.map((items, index) => {
                       return (
                         <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
@@ -189,10 +188,10 @@ const TShape = () => {
                   </g>
                   {/* left */}
 
-                  <g transform="translate(-416.5 1304.5)  rotate(90)">
+                  <g transform="translate(-218.5 1204.5)  rotate(90)">
                     {appState.svgRiser.positionsLeft.map((items, index) => {
                       return (
-                        <g key={index} transform={`translate(-540 ${items})  rotate(0)`}>
+                        <g key={index} transform={`translate(-440 ${items})  rotate(0)`}>
                           <rect
                             x={0}
                             y={-16}
@@ -243,7 +242,7 @@ const TShape = () => {
                     </text>
                   </g>
                   {/* right */}
-                  <g transform="translate(416.5 1304.5)  rotate(-90)">
+                  <g transform="translate(218.5 1304.5)  rotate(-90)">
                     {appState.svgRiser.positionsRight.map((items, index) => {
                       return (
                         <g key={index} transform={`translate(-420 ${items})  rotate(0)`}>
