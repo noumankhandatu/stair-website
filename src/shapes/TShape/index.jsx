@@ -122,6 +122,8 @@ const TShape = () => {
                   {/* bottom  */}
                   <g transform={`translate(0 1082)  rotate(180)`}>
                     {appState.svgRiser.positionsBottom.map((items, index) => {
+                      const reversedIndex = appState.svgRiser.positionsBottom.length - index - 1;
+
                       return (
                         <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
                           <rect
@@ -143,9 +145,9 @@ const TShape = () => {
                               fontFamily: "Arial, Helvetica, sans-serif",
                               color: "black",
                             }}
-                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                            transform="translate (940,270) rotate(360) scale(-1,1)"
                           >
-                            #{index + 1}
+                            #{reversedIndex + 1}
                           </text>
                         </g>
                       );
@@ -180,14 +182,13 @@ const TShape = () => {
                         }}
                         transform="translate (0,0) rotate(180) scale(-1,1)"
                       >
-                        #run1
+                        #{appState.svgRiser.positionsBottom.length + 1}
                       </text>
                     </g>
                     <g transform="translate(-419 -2.5)  rotate(0)" />
                     <g transform="translate(419 -2.5)  rotate(0)" />
                   </g>
                   {/* left */}
-
                   <g transform="translate(-218.5 1204.5)  rotate(90)">
                     {appState.svgRiser.positionsLeft.map((items, index) => {
                       return (
@@ -223,7 +224,9 @@ const TShape = () => {
                             }}
                             transform="translate (0,0) rotate(180) scale(-1,1)"
                           >
-                            #{index + 1}
+                            # {appState.svgRiser.positionsBottom.length === 0 && index + 4}
+                            {appState.svgRiser.positionsBottom.length > 0 &&
+                              index + appState.svgRiser.positionsBottom.length + 2}
                           </text>
                         </g>
                       );
@@ -277,7 +280,9 @@ const TShape = () => {
                             }}
                             transform="translate (0,0) rotate(180) scale(-1,1)"
                           >
-                            #{index + 1}
+                            # {appState.svgRiser.positionsBottom.length === 0 && index + 4}
+                            {appState.svgRiser.positionsBottom.length > 0 &&
+                              index + appState.svgRiser.positionsBottom.length + 2}
                           </text>
                         </g>
                       );
