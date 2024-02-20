@@ -156,7 +156,7 @@ const StairsLayout = ({ setAppState, appState }) => {
       },
       handRails: {
         ...prevState.handRails,
-        borderBottom: bottomArray.length * 250,
+        borderBottom: bottomArray.length * 220,
         borderLeft: rightArray.length * 250,
       },
     }));

@@ -85,7 +85,7 @@ const FeatureSteps = () => {
       <Div>
         <Appheading>Left Feature Step</Appheading>
         <Select
-          sx={{ height: 40, width: 100, fontSize: 10 }}
+          sx={{ height: 40, width: 110, fontSize: 10 }}
           value={leftValue}
           onChange={handleLeftChange}
         >
@@ -99,7 +99,7 @@ const FeatureSteps = () => {
       <Div>
         <Appheading>Right Feature Step</Appheading>
         <Select
-          sx={{ height: 40, width: 100, fontSize: 10 }}
+          sx={{ height: 40, width: 110, fontSize: 10 }}
           value={rightValue}
           onChange={handleRightChange}
         >

@@ -16,16 +16,22 @@ import {
   LEFT_CURTAIL,
   LEFT_CURTAIL_BULLNOSE,
   LEFT_D_STEP,
+  NONE_STEP_LEFT,
+  NONE_STEP_RIGHT,
   RIGHT_BULLNOSE,
   RIGHT_CURTAIL,
   RIGHT_CURTAIL_BULLNOSE,
   RIGHT_D_STEP,
 } from "../../utils/enum";
+import { leftFeatureStep, rightFeatureStep } from "../../toolkit/slices/featureSteps";
 
 const TShape = () => {
   const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
   const heightArrow = useSelector((state) => state?.stairHeightWidthSlice?.height);
   const rightArrow = useSelector((state) => state?.stairHeightWidthSlice?.rightArrow);
+  const reduxLeftStep = useSelector(leftFeatureStep);
+  const reduxRightStep = useSelector(rightFeatureStep);
+
   // states
   const [appState, setAppState] = useState({
     svgRiser: {
@@ -125,6 +131,7 @@ const TShape = () => {
                   <g transform={`translate(0 1082)  rotate(180)`}>
                     {appState.svgRiser.positionsBottom.map((items, index) => {
                       const reversedIndex = appState.svgRiser.positionsBottom.length - index - 1;
+                      console.log(reversedIndex, "reversedIndex");
                       return (
                         <g key={index} transform={`translate(-421 ${items})  rotate(0)`}>
                           <rect
@@ -150,32 +157,39 @@ const TShape = () => {
                           >
                             #{reversedIndex + 1}
                           </text>
+                          {reversedIndex === 1 &&
+                            reduxLeftStep === NONE_STEP_LEFT &&
+                            reduxRightStep === NONE_STEP_RIGHT && (
+                              <>
+                                {LEFT_D_STEP && (
+                                  <g transform="translate(832.5 420)  rotate(180)">
+                                    <path
+                                      d="M 4 222 V 244 q -130 0 -130 -130 q 0 -130 130 -130 H 851 V 222 z"
+                                      fill="url(#mdf)"
+                                      style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                                    />
+                                    <text
+                                      x="380.5"
+                                      y={-85}
+                                      style={{
+                                        fontSize: 55,
+                                        fontFamily: "Arial, Helvetica, sans-serif",
+                                        color: "black",
+                                      }}
+                                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                                    >
+                                      #{reversedIndex}
+                                    </text>
+                                  </g>
+                                )}
+                              </>
+                            )}
                         </g>
                       );
                     })}
                   </g>
                   {/* D-Step */}
-                  {!LEFT_D_STEP && (
-                    <g transform="translate(-432.5 -20)  rotate(0)">
-                      <path
-                        d="M 4 222 V 244 q -130 0 -130 -130 q 0 -130 130 -130 H 851 V 222 z"
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
-                      />
-                      <text
-                        x="380.5"
-                        y={-85}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #1
-                      </text>
-                    </g>
-                  )}
+
                   {!RIGHT_D_STEP && (
                     <g transform="translate(0 0)  rotate(0)">
                       <g transform="translate(-432.5 0)  rotate(0)">
@@ -623,7 +637,7 @@ const TShape = () => {
                       </g>
                     </>
                   )}
-                  
+
                   {/* center */}
                   <g transform="translate(0 888)  rotate(0)">
                     <g transform="translate(0 849)  rotate(-90)" />
