@@ -1,3 +1,18 @@
+// Left Right Feature Steps
+
+export const NONE_STEP_LEFT = "-- None --";
+export const LEFT_D_STEP = "Left D-step";
+export const LEFT_CURTAIL = "Left Curtail";
+export const LEFT_BULLNOSE = "Left Bullnose";
+export const LEFT_CURTAIL_BULLNOSE = "Left Curtail Bullnose";
+
+export const NONE_STEP_RIGHT = "-- None --";
+export const RIGHT_D_STEP = "Right D-step";
+export const RIGHT_CURTAIL = "Right Curtail";
+export const RIGHT_BULLNOSE = "Right Bullnose";
+export const RIGHT_CURTAIL_BULLNOSE = "Right Curtail Bullnose";
+
+// <---------------------------------------------------------------->
 // shapes
 
 export const DEFAULT_SHAPE = "default shape";
@@ -5,6 +20,8 @@ export const T_SHAPE = "Tshape";
 export const THREE_WINDER = "3 winder";
 export const HALF_LANDING = "half landing";
 export const QUARTER_LANDING = "quarter landing";
+
+// <---------------------------------------------------------------->
 
 // shapes turns
 

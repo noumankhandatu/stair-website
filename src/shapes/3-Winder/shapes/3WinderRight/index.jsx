@@ -31,11 +31,12 @@ const ThreeWinderRight = () => {
       rotation: 180,
       ceilingHeight: 236,
     },
-    leftRightPencilBorder: {
-      height: 1760,
-      towardsLeftRight: [473, -500],
-      rotation: 0,
+    handRails: {
       color: "mdf",
+      borderLeft: 270,
+      borderRight: "",
+      borderTop: "",
+      borderBottom: 640,
     },
   });
   // fns
@@ -425,14 +426,13 @@ const ThreeWinderRight = () => {
               </g>
               {/* pencil borders */}
               <g>
-                <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 0)  rotate(0)">
                   <g transform="translate(-500 0)  rotate(0)">
                     <rect
                       x={0}
                       y={-150}
                       width={27}
-                      height={1133}
+                      height={appState.handRails.borderBottom}
                       fill="url(#whitewood)"
                       style={{ stroke: "black", strokeWidth: 1 }}
                       id="turn1_string1"
@@ -444,7 +444,7 @@ const ThreeWinderRight = () => {
                       x={0}
                       y={-500}
                       width={27}
-                      height="986.5"
+                      height={appState.handRails.borderBottom}
                       fill="url(#whitewood)"
                       style={{ stroke: "black", strokeWidth: 1 }}
                       id="turn1_string2"
@@ -469,7 +469,7 @@ const ThreeWinderRight = () => {
                         x={0}
                         y="21.5"
                         width={27}
-                        height="782.5"
+                        height={appState.handRails.borderLeft}
                         fill="url(#whitewood)"
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run2_rightString"
@@ -481,7 +481,7 @@ const ThreeWinderRight = () => {
                         x={0}
                         y="-23.5"
                         width={27}
-                        height="827.5"
+                        height={appState.handRails.borderLeft}
                         fill="url(#whitewood)"
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run2_leftString"
@@ -490,9 +490,6 @@ const ThreeWinderRight = () => {
                     </g>
                   </g>
                   <g />
-                </g>
-                <g transform="translate(1194 510)  rotate(-90)">
-                  <g transform="translate(-481 0)  rotate(0)" />
                 </g>
               </g>
               {/* dot */}

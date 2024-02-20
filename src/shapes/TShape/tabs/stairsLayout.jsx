@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Appheading } from "../../../theme";
 import { MenuItem, Paper, Select } from "@mui/material";
-import { setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
+import { rightArrow, setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
 import { useDispatch, useSelector } from "react-redux";
 import Div from "../../../components/atom/Div";
 import { setShape } from "../../../toolkit/slices/shapes";
@@ -10,6 +10,7 @@ import ShapesSelect from "../../../components/atom/ShapesSelect";
 import { T_SHAPE } from "../../../utils/enum";
 import { TShapeWidths, ceilingArray } from "../../../utils/data";
 import { TurnFlex } from "../../../style/global";
+import FeatureSteps from "../../../components/atom/FeatureSteps";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -92,13 +93,26 @@ const StairsLayout = ({ setAppState, appState }) => {
       },
     }));
   };
-  // width changer
+  // width-run 1
   const handleWidthChange = (newValue) => {
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
         width: newValue,
+      },
+    }));
+  };
+  // width-run 1
+
+  const handleWidthChange2 = (newValue) => {
+    const positiveValue = Math.abs(newValue);
+    setAppState((prevState) => ({
+      ...prevState,
+      svgRiser: {
+        ...prevState.svgRiser,
+        height: positiveValue,
+        translateY: positiveValue * 2500,
       },
     }));
   };
@@ -112,12 +126,13 @@ const StairsLayout = ({ setAppState, appState }) => {
       },
     }));
   };
-
+  // redux shape
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;
     dispatch(setShape(selectedValue));
   };
-  console.log(appState.svgRiser.positionsBottom.length, "appStateasd");
+
+  //thread before turn
   const handleTurns = (event) => {
     const selectedValue = parseInt(event.target.value);
     const rightArray = [];
@@ -162,26 +177,6 @@ const StairsLayout = ({ setAppState, appState }) => {
         ))}
       </Select>
 
-      {/* Floor Width */}
-
-      <Appheading sx={{ mt: 1 }}>Floor Width</Appheading>
-      <Select
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
-        // value={appState.svgRiser.width}
-        onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
-      >
-        {TShapeWidths.map((value, index) => (
-          <MenuItem
-            onClick={() => dispatch(setWidth(index * 50 + 300))}
-            key={index}
-            value={value.toString()}
-          >
-            {index === 0 ? null : <> {index * 50 + 300} mm</>}
-          </MenuItem>
-        ))}
-      </Select>
-
       {/* Individual Going */}
 
       <Appheading sx={{ mt: 1 }}>Individual Going</Appheading>
@@ -199,8 +194,6 @@ const StairsLayout = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
-
-      {/* Number of Rises */}
 
       {/* Number of Rises */}
       <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
@@ -236,6 +229,26 @@ const StairsLayout = ({ setAppState, appState }) => {
           {appState.svgRiser.allRisers[appState.svgRiser.allRisers?.length - 1] + 400} mm
         </MenuItem>
       </Select>
+      {/* Width (Run 1)*/}
+
+      <Appheading sx={{ mt: 1 }}>Width (Run 1)</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        // value={appState.svgRiser.width}
+        onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
+      >
+        {TShapeWidths.map((value, index) => (
+          <MenuItem
+            onClick={() => dispatch(setWidth(index * 50 + 300))}
+            key={index}
+            value={value.toString()}
+          >
+            {index === 0 ? null : <> {index * 50 + 300} mm</>}
+          </MenuItem>
+        ))}
+      </Select>
+
       {/* Turns -> Left & Right  */}
 
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
@@ -265,6 +278,27 @@ const StairsLayout = ({ setAppState, appState }) => {
           </Select>
         </Div>
       </Paper>
+
+      {/* Width (Run 2)*/}
+
+      <Appheading sx={{ mt: 1 }}>Width (Run 2)</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        // value={appState.svgRiser.width}
+        onChange={(e) => handleWidthChange2(parseFloat(e.target.value))}
+      >
+        {TShapeWidths.map((value, index) => (
+          <MenuItem
+            onClick={() => dispatch(rightArrow(index * 50 + 300))}
+            key={index}
+            value={value.toString()}
+          >
+            {index === 0 ? null : <> {index * 50 + 300} mm</>}
+          </MenuItem>
+        ))}
+      </Select>
+      <FeatureSteps />
     </div>
   );
 };

@@ -11,24 +11,31 @@ import StairsLayout from "./tabs/stairsLayout";
 import MaterialConstruction from "./tabs/materialConstrction";
 import { useSelector } from "react-redux";
 import { markersData, patternsData } from "../../utils/data";
+import {
+  LEFT_BULLNOSE,
+  LEFT_CURTAIL,
+  LEFT_CURTAIL_BULLNOSE,
+  LEFT_D_STEP,
+  RIGHT_BULLNOSE,
+  RIGHT_CURTAIL,
+  RIGHT_CURTAIL_BULLNOSE,
+  RIGHT_D_STEP,
+} from "../../utils/enum";
 
 const TShape = () => {
   const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
   const heightArrow = useSelector((state) => state?.stairHeightWidthSlice?.height);
+  const rightArrow = useSelector((state) => state?.stairHeightWidthSlice?.rightArrow);
   // states
   const [appState, setAppState] = useState({
-    svgInsideContainer: {
-      height: "200vh",
-      width: 900,
-    },
     svgRiser: {
       color: "mdf",
       allRisers: [220],
       positionsBottom: [],
       positionsLeft: [220],
       positionsRight: [220],
-      translateY: 450,
-      translateX: 440,
+      translateY: 485,
+      translateX: 540,
       height: 0.18497349154253975,
       width: -0.18497349154253975,
 
@@ -37,8 +44,6 @@ const TShape = () => {
     handRails: {
       color: "mdf",
       borderLeft: 270,
-      borderRight: "",
-      borderTop: "",
       borderBottom: 0,
     },
   });
@@ -76,12 +81,9 @@ const TShape = () => {
             <MaterialConstruction appState={appState} setAppState={setAppState} />
           )}
         </Grid>
-        <Grid sx={{ textAlign: "center" }} xs={8}>
+        <Grid sx={{ textAlign: "center" }} xs={9}>
           <div>
-            <svg
-              width={appState.svgInsideContainer.width}
-              height={appState.svgInsideContainer.height}
-            >
+            <svg width={1200} height={"100vh"}>
               <defs>
                 {patternsData.map((pattern) => (
                   <pattern
@@ -123,13 +125,12 @@ const TShape = () => {
                   <g transform={`translate(0 1082)  rotate(180)`}>
                     {appState.svgRiser.positionsBottom.map((items, index) => {
                       const reversedIndex = appState.svgRiser.positionsBottom.length - index - 1;
-
                       return (
-                        <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
+                        <g key={index} transform={`translate(-421 ${items})  rotate(0)`}>
                           <rect
                             x={0}
                             y={-16}
-                            width={962}
+                            width={852}
                             height={appState.svgRiser.ceilingHeight}
                             fill={`url(#${appState.svgRiser.color})`}
                             style={{ stroke: "black", strokeWidth: 2 }}
@@ -153,6 +154,476 @@ const TShape = () => {
                       );
                     })}
                   </g>
+                  {/* D-Step */}
+                  {!LEFT_D_STEP && (
+                    <g transform="translate(-432.5 -20)  rotate(0)">
+                      <path
+                        d="M 4 222 V 244 q -130 0 -130 -130 q 0 -130 130 -130 H 851 V 222 z"
+                        fill="url(#mdf)"
+                        style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                      />
+                      <text
+                        x="380.5"
+                        y={-85}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #1
+                      </text>
+                    </g>
+                  )}
+                  {!RIGHT_D_STEP && (
+                    <g transform="translate(0 0)  rotate(0)">
+                      <g transform="translate(-432.5 0)  rotate(0)">
+                        <path
+                          d="
+                           M 4 222
+                           V -16
+                           H 856
+                           q 130 0 130 130
+                           q 0 130 -130 130
+                           V 222
+                           z"
+                          fill="url(#mdf)"
+                          style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                        />
+                        <path
+                          d="
+                           M 14 0
+                           H 856
+                           q 114 0 114 114
+                           q 0 114 -114 114
+                           v -10
+                           q 104 0 104 -104
+                           q 0 -104 -104 -104
+                           H 14
+                           z"
+                          fill="none"
+                          style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
+                        />{" "}
+                        <text
+                          x="407.5"
+                          y={-131}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                          }}
+                          transform="translate (0,0) rotate(180) scale(-1,1)"
+                        >
+                          #1
+                        </text>
+                      </g>
+                      <g transform="translate(419 222)  rotate(0)" />
+                    </g>
+                  )}
+                  {!LEFT_D_STEP && RIGHT_D_STEP && (
+                    <g transform="translate(0 0)  rotate(0)">
+                      <g transform="translate(-432.5 0)  rotate(0)">
+                        {" "}
+                        <path
+                          d="
+                         M 0 222
+                         V 244
+                         q -130 0 -130 -130
+                         q 0 -130 130 -130
+                         H 867.5
+                         q 130 0 130 130
+                         q 0 130 -130 130
+                         V 222
+                         z"
+                          fill="url(#mdf)"
+                          style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                        />
+                        <path
+                          d="
+                         M 0 228
+                         q -114 0 -114 -114
+                         q 0 -114 114 -114
+                         H 867.5
+                         q 114 0 114 114
+                         q 0 114 -114 114
+                         v -10
+                         q 104 0 104 -104
+                         q 0 -104 -104 -104
+                         H 0
+                         q -104 0 -104 104
+                         q 0 104 104 104
+                         z"
+                          fill="none"
+                          style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
+                        />
+                        <text
+                          x="407.5"
+                          y={-131}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                          }}
+                          transform="translate (0,0) rotate(180) scale(-1,1)"
+                        >
+                          #1
+                        </text>
+                      </g>
+                    </g>
+                  )}
+                  {/* Curtail */}
+                  {!LEFT_CURTAIL && (
+                    <>
+                      <g transform="translate(0 0)  rotate(0)">
+                        <g transform="translate(-432.5 0)  rotate(0)">
+                          {" "}
+                          <path
+                            d="
+          M 0 222
+          V 473
+          h -0
+          q -244.5 0 -244.5 -244.5
+          q 0 -244.5 244.5 -244.5
+          H 851
+          V 222
+          z"
+                            fill="url(#mdf)"
+                            style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                          />{" "}
+                          <path
+                            d="
+          M 0 457
+          q -228.5 0 -228.5 -228.5
+          q 0 -228.5 228.5 -228.5
+          H 851
+          v 10
+          H 0
+          q -218.5 0 -218.5 218.5
+          q 0 218.5 218.5 218.5
+          z"
+                            fill="none"
+                            style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
+                          />{" "}
+                          <text
+                            x="407.5"
+                            y={-131}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            #1
+                          </text>
+                        </g>
+                        <g transform="translate(-419 222)  rotate(0)" />
+                      </g>
+                    </>
+                  )}
+                  {!RIGHT_CURTAIL && (
+                    <>
+                      <g transform="translate(0 0)  rotate(0)">
+                        <g transform="translate(-432.5 0)  rotate(0)">
+                          {" "}
+                          <path
+                            d="
+          M 1 222
+          V -16
+          H 990
+          q 244.5 0 244.5 244.5
+          q 0 244.5 -244.5 244.5
+          h -150
+          V 222
+          z"
+                            fill="url(#mdf)"
+                            style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                          />{" "}
+                          <text
+                            x="407.5"
+                            y={-131}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            #1
+                          </text>
+                        </g>
+                        <g transform="translate(419 222)  rotate(0)" />
+                      </g>
+                    </>
+                  )}
+                  {!LEFT_CURTAIL && RIGHT_CURTAIL && (
+                    <>
+                      <g transform="translate(-432.5 0)  rotate(0)">
+                        <path
+                          d="
+          M 0 222
+          V 473
+          h 0
+          q -244.5 0 -244.5 -244.5
+          q 0 -244.5 244.5 -244.5
+          H 867.5
+          q 244.5 0 244.5 244.5
+          q 0 244.5 -244.5 244.5
+          h -0
+          V 222
+          z"
+                          fill="url(#mdf)"
+                          style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                        />{" "}
+                        <text
+                          x="407.5"
+                          y={-131}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                          }}
+                          transform="translate (0,0) rotate(180) scale(-1,1)"
+                        >
+                          #1
+                        </text>
+                      </g>
+                    </>
+                  )}
+                  {/* Bullnose */}
+                  {!LEFT_BULLNOSE && (
+                    <g transform="translate(-432.5 0)  rotate(0)">
+                      {" "}
+                      <path
+                        d="
+          M 16 222
+          v -137.5
+          q 0 -100.5 100.5 -100.5
+          H 851
+          V 222
+          z"
+                        fill="url(#mdf)"
+                        style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                      />{" "}
+                      <path
+                        d="
+          M 32 222
+          v -121.5
+          q 0 -100.5 84.5 -100.5
+          H 851
+          v 10
+          H 116.5
+          q -74.5 0 -74.5 84.5
+          V 222
+          z
+      "
+                        fill="none"
+                        style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
+                      />{" "}
+                      <text
+                        x="407.5"
+                        y={-131}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #1
+                      </text>
+                    </g>
+                  )}
+                  {!RIGHT_BULLNOSE && (
+                    <g transform="translate(-432.5 0)  rotate(0)">
+                      {" "}
+                      <path
+                        d="
+          M 14 222
+          V -16
+          H 767
+          q 100.5 0 100.5 100.5
+          V 222
+          z"
+                        fill="url(#mdf)"
+                        style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                      />{" "}
+                      <path
+                        d="
+          M 14 0
+          H 751
+          q 100.5 0 100.5 100.5
+          V 222
+          h -10
+          V 100.5
+          q 0 -90.5 -90.5 -90.5
+          H 14
+          z"
+                        fill="none"
+                        style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
+                      />{" "}
+                      <text
+                        x="407.5"
+                        y={-131}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #1
+                      </text>
+                    </g>
+                  )}
+                  {!LEFT_BULLNOSE && RIGHT_BULLNOSE && (
+                    <g transform="translate(-432.5 0)  rotate(0)">
+                      <path
+                        d="
+          M 16 222
+          v -137.5
+          q 0 -100.5 100.5 -100.5
+          H 767
+          q 100.5 0 100.5 100.5
+          V 222
+          z"
+                        fill="url(#mdf)"
+                        style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                      />
+                      <path
+                        d="
+          M 32 222
+          v -121.5
+          q 0 -100.5 84.5 -100.5
+
+          H 751
+          q 100.5 0 100.5 100.5
+          V 222
+          h -10
+          V 100.5
+          q 0 -90.5 -90.5 -90.5
+          H 116.5
+          q -74.5 0 -74.5 84.5
+          V 222
+          z"
+                        fill="none"
+                        style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
+                      />{" "}
+                      <text
+                        x="407.5"
+                        y={-131}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #1
+                      </text>
+                    </g>
+                  )}
+                  {/* Curtail & Bullnose */}
+                  {!LEFT_CURTAIL_BULLNOSE && (
+                    <>
+                      <g transform="translate(-432.5 0)  rotate(0)">
+                        {" "}
+                        <path
+                          d="
+          M 0 222
+          V 473
+          h -150
+          q -244.5 0 -244.5 -244.5
+          q 0 -244.5 244.5 -244.5
+          H 851
+          V 222
+          z"
+                          fill="url(#mdf)"
+                          style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                        />{" "}
+                        <text
+                          x="407.5"
+                          y={-131}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                          }}
+                          transform="translate (0,0) rotate(180) scale(-1,1)"
+                        >
+                          #1
+                        </text>
+                      </g>
+                    </>
+                  )}
+                  {!RIGHT_CURTAIL_BULLNOSE && (
+                    <>
+                      <g transform="translate(-432.5 0)  rotate(0)">
+                        <path
+                          d="
+                            M 14 222
+                            V -16
+                            H 867.5
+                            q 244.5 0 244.5 244.5
+                            q 0 244.5 -244.5 244.5
+                            h -30
+                            V 222
+                            z"
+                          fill="url(#mdf)"
+                          style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                        />
+                        <text
+                          x="407.5"
+                          y={-131}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                          }}
+                          transform="translate (0,0) rotate(180) scale(-1,1)"
+                        >
+                          #1
+                        </text>
+                      </g>
+                    </>
+                  )}
+                  {!LEFT_CURTAIL_BULLNOSE && RIGHT_CURTAIL_BULLNOSE && (
+                    <>
+                      <g transform="translate(-432.5 0)  rotate(0)">
+                        {" "}
+                        <path
+                          d="
+                              M 0 222
+                              V 473
+                              h -10
+                              q -244.5 0 -244.5 -244.5
+                              q 0 -244.5 244.5 -244.5
+                              H 867.5
+                              q 244.5 0 244.5 244.5
+                              q 0 244.5 -244.5 244.5
+                              h -0
+                              V 222
+                              z"
+                          fill="url(#mdf)"
+                          style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                        />{" "}
+                        <text
+                          x="407.5"
+                          y={-131}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                          }}
+                          transform="translate (0,0) rotate(180) scale(-1,1)"
+                        >
+                          #1
+                        </text>
+                      </g>
+                    </>
+                  )}
+                  
                   {/* center */}
                   <g transform="translate(0 888)  rotate(0)">
                     <g transform="translate(0 849)  rotate(-90)" />
@@ -189,34 +660,23 @@ const TShape = () => {
                     <g transform="translate(419 -2.5)  rotate(0)" />
                   </g>
                   {/* left */}
-                  <g transform="translate(-218.5 1204.5)  rotate(90)">
+                  <g transform="translate(-218.5 1004.5)  rotate(90)">
                     {appState.svgRiser.positionsLeft.map((items, index) => {
                       return (
-                        <g key={index} transform={`translate(-440 ${items})  rotate(0)`}>
+                        <g key={index} transform={`translate(-140 ${items})  rotate(0)`}>
                           <rect
                             x={0}
-                            y={-16}
-                            width={962}
+                            y={-18}
+                            width={862}
                             height={appState.svgRiser.ceilingHeight}
                             fill={`url(#${appState.svgRiser.color})`}
                             style={{ stroke: "black", strokeWidth: 2 }}
                             id="run1_tread1"
                             className=""
                           />
-
-                          <rect
-                            x={0}
-                            y={0}
-                            width={962}
-                            height={10}
-                            fill="none"
-                            style={{ stroke: "black", strokeWidth: 1 }}
-                            id="run1_tread1"
-                            className=""
-                          />
                           <text
-                            x={456}
-                            y={-130}
+                            x={406}
+                            y={-100}
                             style={{
                               fontSize: 55,
                               fontFamily: "Arial, Helvetica, sans-serif",
@@ -239,7 +699,7 @@ const TShape = () => {
                         fontFamily: "Arial, Helvetica, sans-serif",
                         color: "black",
                       }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                      transform="translate (250,0) rotate(180) scale(-1,1)"
                     >
                       run2
                     </text>
@@ -252,7 +712,7 @@ const TShape = () => {
                           <rect
                             x={0}
                             y={-16}
-                            width={962}
+                            width={842}
                             height={appState.svgRiser.ceilingHeight}
                             fill={`url(#${appState.svgRiser.color})`}
                             style={{ stroke: "black", strokeWidth: 2 }}
@@ -263,7 +723,7 @@ const TShape = () => {
                           <rect
                             x={0}
                             y={0}
-                            width={962}
+                            width={852}
                             height={10}
                             fill="none"
                             style={{ stroke: "black", strokeWidth: 1 }}
@@ -271,8 +731,8 @@ const TShape = () => {
                             className=""
                           />
                           <text
-                            x={456}
-                            y={-130}
+                            x={406}
+                            y={-100}
                             style={{
                               fontSize: 55,
                               fontFamily: "Arial, Helvetica, sans-serif",
@@ -295,7 +755,7 @@ const TShape = () => {
                         fontFamily: "Arial, Helvetica, sans-serif",
                         color: "black",
                       }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                      transform="translate (-40,0) rotate(180) scale(-1,1)"
                     >
                       run3
                     </text>
@@ -304,7 +764,7 @@ const TShape = () => {
                 {/* pencil border */}
                 <g>
                   {/* bottom border */}
-                  <g transform="translate(0 0)  rotate(0)">
+                  <g transform="translate(30 163)  rotate(0)">
                     <g transform="translate(405.5 0)  rotate(180)">
                       <rect
                         x={0}
@@ -383,6 +843,25 @@ const TShape = () => {
                   <g transform="translate(416.5 1304.5)  rotate(-90)">
                     <g>
                       <g transform="translate(405.5 0)  rotate(0)">
+                        <g transform="translate(0, -832.5)  rotate(0)">
+                          {" "}
+                          <rect
+                            x="-45"
+                            y="-45"
+                            width="90"
+                            height="90"
+                            fill="url(#redwood)"
+                            id="turn1_winderPostRight"
+                          ></rect>
+                        </g>
+                        <rect
+                          x="-45"
+                          y="-45"
+                          width="90"
+                          height="90"
+                          fill="url(#redwood)"
+                          id="turn1_winderPostLeft"
+                        ></rect>
                         <rect
                           x={0}
                           y={45}
@@ -412,84 +891,52 @@ const TShape = () => {
                 </g>
                 {/* arrows */}
                 <g>
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
-                  </g>
-                  <g transform="translate(0 888)  rotate(0)">
-                    <g transform="translate(0 849)  rotate(-90)" />
-                    <g transform="translate(0 0)  rotate(0)" />
-                    <g transform="translate(-419 -2.5)  rotate(0)" />
-                    <g transform="translate(419 -2.5)  rotate(0)" />
-                  </g>
-                  <g transform="translate(-416.5 1304.5)  rotate(90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                      <g transform="translate(-413.5 888)  rotate(0)" />
-                      <g transform="translate(-413.5 1110)  rotate(0)" />
-                      <g transform="translate(-413.5 1332)  rotate(0)" />
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
-                  </g>
-                  <g transform="translate(-1970.5 1304.5)  rotate(90)">
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                  <g transform="translate(416.5 1304.5)  rotate(-90)">
-                    <g>
-                      <g transform="translate(-413.5 0)  rotate(0)" />
-                      <g transform="translate(-413.5 222)  rotate(0)" />
-                      <g transform="translate(-413.5 444)  rotate(0)" />
-                      <g transform="translate(-413.5 666)  rotate(0)" />
-                      <g transform="translate(-413.5 888)  rotate(0)" />
-                      <g transform="translate(-413.5 1110)  rotate(0)" />
-                      <g transform="translate(-413.5 1332)  rotate(0)" />
-                    </g>
-                    <g>
-                      <g transform="translate(405.5 0)  rotate(0)" />
-                      <g transform="translate(-432.5 0)  rotate(0)" />
-                    </g>
-                    <g />
-                  </g>
-                  <g transform="translate(1970.5 1304.5)  rotate(-90)">
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-
-                  <rect
-                    x="-2135.5"
-                    y="850.5"
-                    width={200}
-                    height={100}
-                    fill="white"
-                    transform="translate (-20,-30)"
-                    opacity="0.6"
-                    className=""
-                  />
-                  <text
-                    x="-1435.5"
-                    y="-630.5"
-                    style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                    transform="translate (0,0) rotate(180) scale(-1,1)"
-                    className=""
-                  >
-                    {heightArrow}
-                  </text>
+                  {rightArrow && (
+                    <>
+                      <line
+                        x1="-2035.5"
+                        y1="726"
+                        x2="-2035.5"
+                        y2="1763"
+                        stroke="black"
+                        strokeWidth="3"
+                        markerEnd="url(#endarrow)"
+                        markerStart="url(#startarrow)"
+                      ></line>
+                      <text
+                        x="-2035.5"
+                        y="-1230.5"
+                        style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                        className=""
+                      >
+                        {rightArrow}
+                      </text>
+                    </>
+                  )}
+                  {widhtArrow && (
+                    <>
+                      <line
+                        x1="355.5"
+                        y1="-563"
+                        x2="-355.5"
+                        y2="-563"
+                        stroke="black"
+                        strokeWidth="3"
+                        markerEnd="url(#endarrow)"
+                        markerStart="url(#startarrow)"
+                      ></line>
+                      <text
+                        x="-35.5"
+                        y="540.5"
+                        style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                        className=""
+                      >
+                        {widhtArrow}
+                      </text>
+                    </>
+                  )}
                   <line
                     x1="-1980.5"
                     y1={1837}
@@ -500,17 +947,7 @@ const TShape = () => {
                     markerEnd="url(#endarrow)"
                     markerStart="url(#startarrow)"
                     className=""
-                  />
-                  <rect
-                    x={-50}
-                    y={1837}
-                    width={200}
-                    height={100}
-                    fill="white"
-                    transform="translate (-20,-30)"
-                    opacity="0.6"
-                    className=""
-                  />
+                  />{" "}
                   <text
                     x={-50}
                     y={-1817}
@@ -518,14 +955,14 @@ const TShape = () => {
                     transform="translate (0,0) rotate(180) scale(-1,1)"
                     className=""
                   >
-                    {widhtArrow}
+                    {heightArrow}
                   </text>
                 </g>
               </g>
             </svg>
           </div>
         </Grid>
-        <Grid xs={2}>
+        <Grid xs={1}>
           <Tooltip title="New Design">
             <NoteAddIcon sx={iconCol} onClick={() => window.location.reload()} />
           </Tooltip>

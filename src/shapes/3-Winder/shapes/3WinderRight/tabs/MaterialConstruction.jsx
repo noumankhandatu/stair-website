@@ -33,8 +33,8 @@ const MaterialConstruction = ({ appState, setAppState }) => {
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        value={appState.leftRightPencilBorder.color}
-        onChange={(e) => handleHeingColor(e, "leftRightPencilBorder")}
+        value={appState.handRails.color}
+        onChange={(e) => handleHeingColor(e, "handRails")}
       >
         {myColorsAry.map((color) => (
           <MenuItem key={color} value={color}>

@@ -143,6 +143,11 @@ const StairLayout = ({ setAppState, appState }) => {
         bottomRisers: bottomArray,
         rightRisers: rightArray,
       },
+      handRails: {
+        ...prevState.handRails,
+        borderBottom: bottomArray.length * 250,
+        borderLeft: rightArray.length * 250,
+      },
     }));
   };
 
