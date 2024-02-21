@@ -14,13 +14,25 @@ import {
   RIGHT_CURTAIL_BULLNOSE,
   NONE_STEP_LEFT,
 } from "../../utils/enum";
+import { useDispatch } from "react-redux";
+import { setLeftFeatureStep, setRightFeatureStep } from "../../toolkit/slices/featureSteps";
 
 const FeatureSteps = () => {
+  // states
+
   const [leftValue, setLeftValue] = useState(NONE_STEP_LEFT);
   const [rightValue, setRightValue] = useState(NONE_STEP_RIGHT);
 
+  // hooks
+  const dispatch = useDispatch();
+
   const handleLeftChange = (event) => {
     const selectedValue = event.target.value;
+    if (selectedValue === NONE_STEP_LEFT) {
+      dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
+      dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
+    }
+    dispatch(setLeftFeatureStep(selectedValue));
     setLeftValue(selectedValue);
     // Reset right dropdown if "NONE" is selected in the left dropdown
     if (selectedValue === NONE_STEP_LEFT) {
@@ -30,6 +42,11 @@ const FeatureSteps = () => {
 
   const handleRightChange = (event) => {
     const selectedValue = event.target.value;
+    if (selectedValue === NONE_STEP_RIGHT) {
+      dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
+      dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
+    }
+    dispatch(setRightFeatureStep(selectedValue));
     setRightValue(selectedValue);
     // Reset left dropdown if "NONE" is selected in the right dropdown
     if (selectedValue === NONE_STEP_RIGHT) {
