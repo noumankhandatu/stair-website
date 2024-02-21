@@ -303,22 +303,23 @@ const TShape = () => {
                                   </g>
                                 </>
                               )}
-                              {reduxLeftStep === LEFT_BULLNOSE && (
-                                <g transform="translate(872.5 470)  rotate(180)">
-                                  {" "}
-                                  <path
-                                    d="
+                              {reduxLeftStep === LEFT_BULLNOSE &&
+                                reduxRightStep !== RIGHT_BULLNOSE && (
+                                  <g transform="translate(872.5 540)  rotate(180)">
+                                    {" "}
+                                    <path
+                                      d="
           M 16 222
           v -137.5
           q 0 -100.5 100.5 -100.5
           H 851
           V 222
           z"
-                                    fill="url(#mdf)"
-                                    style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
-                                  />{" "}
-                                  <path
-                                    d="
+                                      fill="url(#mdf)"
+                                      style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                                    />{" "}
+                                    <path
+                                      d="
           M 32 222
           v -121.5
           q 0 -100.5 84.5 -100.5
@@ -329,39 +330,40 @@ const TShape = () => {
           V 222
           z
       "
-                                    fill="none"
-                                    style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
-                                  />{" "}
-                                  <text
-                                    x="407.5"
-                                    y={-131}
-                                    style={{
-                                      fontSize: 55,
-                                      fontFamily: "Arial, Helvetica, sans-serif",
-                                      color: "black",
-                                    }}
-                                    transform="translate (0,0) rotate(180) scale(-1,1)"
-                                  >
-                                    #1
-                                  </text>
-                                </g>
-                              )}
-                              {reduxRightStep === RIGHT_BULLNOSE && (
-                                <g transform="translate(842.5 470)  rotate(180)">
-                                  {" "}
-                                  <path
-                                    d="
+                                      fill="none"
+                                      style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
+                                    />{" "}
+                                    <text
+                                      x="407.5"
+                                      y={-131}
+                                      style={{
+                                        fontSize: 55,
+                                        fontFamily: "Arial, Helvetica, sans-serif",
+                                        color: "black",
+                                      }}
+                                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                                    >
+                                      #1
+                                    </text>
+                                  </g>
+                                )}
+                              {reduxRightStep === RIGHT_BULLNOSE &&
+                                reduxLeftStep !== LEFT_BULLNOSE && (
+                                  <g transform="translate(854.5 540)  rotate(180)">
+                                    {" "}
+                                    <path
+                                      d="
           M 14 222
           V -16
           H 767
           q 100.5 0 100.5 100.5
           V 222
           z"
-                                    fill="url(#mdf)"
-                                    style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
-                                  />{" "}
-                                  <path
-                                    d="
+                                      fill="url(#mdf)"
+                                      style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                                    />{" "}
+                                    <path
+                                      d="
           M 14 0
           H 751
           q 100.5 0 100.5 100.5
@@ -371,23 +373,71 @@ const TShape = () => {
           q 0 -90.5 -90.5 -90.5
           H 14
           z"
-                                    fill="none"
-                                    style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
-                                  />{" "}
-                                  <text
-                                    x="407.5"
-                                    y={-131}
-                                    style={{
-                                      fontSize: 55,
-                                      fontFamily: "Arial, Helvetica, sans-serif",
-                                      color: "black",
-                                    }}
-                                    transform="translate (0,0) rotate(180) scale(-1,1)"
-                                  >
-                                    #1
-                                  </text>
-                                </g>
-                              )}
+                                      fill="none"
+                                      style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
+                                    />{" "}
+                                    <text
+                                      x="407.5"
+                                      y={-131}
+                                      style={{
+                                        fontSize: 55,
+                                        fontFamily: "Arial, Helvetica, sans-serif",
+                                        color: "black",
+                                      }}
+                                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                                    >
+                                      #1
+                                    </text>
+                                  </g>
+                                )}
+                              {reduxLeftStep === LEFT_BULLNOSE &&
+                                reduxRightStep === RIGHT_BULLNOSE && (
+                                  <g transform="translate(862.5 540)  rotate(180)">
+                                    <path
+                                      d="
+          M 16 222
+          v -137.5
+          q 0 -100.5 100.5 -100.5
+          H 767
+          q 100.5 0 100.5 100.5
+          V 222
+          z"
+                                      fill="url(#mdf)"
+                                      style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
+                                    />
+                                    <path
+                                      d="
+          M 32 222
+          v -121.5
+          q 0 -100.5 84.5 -100.5
+
+          H 751
+          q 100.5 0 100.5 100.5
+          V 222
+          h -10
+          V 100.5
+          q 0 -90.5 -90.5 -90.5
+          H 116.5
+          q -74.5 0 -74.5 84.5
+          V 222
+          z"
+                                      fill="none"
+                                      style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
+                                    />{" "}
+                                    <text
+                                      x="407.5"
+                                      y={-131}
+                                      style={{
+                                        fontSize: 55,
+                                        fontFamily: "Arial, Helvetica, sans-serif",
+                                        color: "black",
+                                      }}
+                                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                                    >
+                                      #1
+                                    </text>
+                                  </g>
+                                )}
                               {reduxLeftStep === LEFT_CURTAIL_BULLNOSE && (
                                 <>
                                   <g transform="translate(832.5 440)  rotate(180)">
@@ -551,53 +601,6 @@ const TShape = () => {
                   )} */}
                   {/* Bullnose */}
 
-                  {/* {!LEFT_BULLNOSE && RIGHT_BULLNOSE && (
-                    <g transform="translate(-432.5 0)  rotate(0)">
-                      <path
-                        d="
-          M 16 222
-          v -137.5
-          q 0 -100.5 100.5 -100.5
-          H 767
-          q 100.5 0 100.5 100.5
-          V 222
-          z"
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
-                      />
-                      <path
-                        d="
-          M 32 222
-          v -121.5
-          q 0 -100.5 84.5 -100.5
-
-          H 751
-          q 100.5 0 100.5 100.5
-          V 222
-          h -10
-          V 100.5
-          q 0 -90.5 -90.5 -90.5
-          H 116.5
-          q -74.5 0 -74.5 84.5
-          V 222
-          z"
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
-                      />{" "}
-                      <text
-                        x="407.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #1
-                      </text>
-                    </g>
-                  )} */}
                   {/* Curtail & Bullnose */}
 
                   {/* {!LEFT_CURTAIL_BULLNOSE && RIGHT_CURTAIL_BULLNOSE && (

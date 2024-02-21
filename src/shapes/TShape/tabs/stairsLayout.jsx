@@ -151,13 +151,13 @@ const StairsLayout = ({ setAppState, appState }) => {
       svgRiser: {
         ...prevState.svgRiser,
         positionsBottom: bottomArray,
-        positionsLeft: rightArray,
-        positionsRight: rightArray,
+        // positionsLeft: rightArray,
+        // positionsRight: rightArray,
       },
       handRails: {
         ...prevState.handRails,
         borderBottom: bottomArray.length * 220,
-        borderLeft: rightArray.length * 250,
+        // borderLeft: rightArray.length * 250,
       },
     }));
   };
