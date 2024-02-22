@@ -85,7 +85,7 @@ const StairLayout = ({ setAppState, appState }) => {
         },
         handRails: {
           ...prevState.handRails,
-          borderLeft: updatedPositions.length * 250,
+          // borderLeft: updatedPositions.length * 250,
         },
       }));
     }
