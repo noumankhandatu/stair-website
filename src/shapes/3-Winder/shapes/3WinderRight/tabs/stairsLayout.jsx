@@ -64,14 +64,13 @@ const StairLayout = ({ setAppState, appState }) => {
       },
     }));
   };
-
   //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
     if (selectedPosition !== "") {
       updatedPositions = heightLoopArray.filter((pos) => pos <= selectedPosition);
     }
-    if (selectedPosition >= 1 && selectedPosition < 1400) {
+    if (selectedPosition >= 1 && selectedPosition < 1600) {
       setAppState((prevState) => ({
         ...prevState,
         svgRiser: {
@@ -89,21 +88,6 @@ const StairLayout = ({ setAppState, appState }) => {
         },
       }));
     }
-    if (selectedPosition >= 1400 && selectedPosition < 2940) {
-      setAppState((prevState) => ({
-        ...prevState,
-        svgRiser: {
-          ...prevState.svgRiser,
-          positions: updatedPositions,
-          rightRisers: updatedPositions,
-
-          height: 0.1540416047548291,
-          width: -0.140416047548291,
-          translateY: 289,
-        },
-      }));
-    }
-    // update states here
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
@@ -113,9 +97,7 @@ const StairLayout = ({ setAppState, appState }) => {
       },
     }));
   };
-
   // Turning Function Started
-
   const handleRight = () => {
     dispatch(setShapeTurn(ThreeWinderRightRightTurn));
   };

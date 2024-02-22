@@ -527,7 +527,7 @@ const DefaultShape = () => {
               </g>
               {/* run */}
               <text
-                x={0}
+                x={-100}
                 y={-0}
                 style={{
                   fontSize: 55,
@@ -564,10 +564,10 @@ const DefaultShape = () => {
                 return (
                   <g key={index}>
                     <line
-                      x1={600}
-                      y1={-16}
-                      x2={600}
-                      height={appState.leftRightPencilBorder.height}
+                      x1={500}
+                      y1={heightArrow}
+                      x2={500}
+                      y2={0}
                       stroke="black"
                       strokeWidth={3}
                       markerEnd="url(#endarrow)"
@@ -575,11 +575,11 @@ const DefaultShape = () => {
                       className=""
                     />
                     <rect
-                      x={545}
-                      y={647}
+                      x={-50}
+                      y={-250}
                       width={200}
                       height={100}
-                      fill="transparent"
+                      fill="white"
                       transform="translate (-20,-30)"
                       opacity="0.6"
                       className=""
