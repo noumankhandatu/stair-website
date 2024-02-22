@@ -9,6 +9,7 @@ import { setShape } from "../../../toolkit/slices/shapes";
 import { THREE_WINDER, ThreeWinderLeftTurn } from "../../../utils/enum";
 import { setShapeTurn } from "../../../toolkit/slices/shapeTurns";
 import TurningArrowCard from "./../../../components/atom/TurningArrowCard";
+import FeatureSteps from "../../../components/atom/FeatureSteps";
 
 const heightLoopArray = [];
 let updatedPositions = [];
@@ -194,6 +195,7 @@ const StairLayout = ({ setAppState, appState }) => {
 
       {/* Turns -> Left & Right  */}
       <TurningArrowCard handleLeft={handleLeft} handletRight={handletRight} />
+      <FeatureSteps />
     </div>
   );
 };

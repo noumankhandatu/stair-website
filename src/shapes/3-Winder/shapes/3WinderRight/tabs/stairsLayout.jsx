@@ -22,6 +22,7 @@ import {
 import { setShapeTurn } from "../../../../../toolkit/slices/shapeTurns";
 import TurningArrowCard from "./../../../../../components/atom/TurningArrowCard";
 import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
+import FeatureSteps from "../../../../../components/atom/FeatureSteps";
 
 const heightLoopArray = [];
 let updatedPositions = [];
@@ -132,7 +133,6 @@ const StairLayout = ({ setAppState, appState }) => {
     const selectedValue = parseInt(event.target.value);
     const rightArray = [];
     const bottomArray = [];
-
     for (let i = 220; i <= (appState.svgRiser.positions.length - selectedValue) * 220; i += 220) {
       rightArray.push(i);
     }
@@ -150,7 +150,7 @@ const StairLayout = ({ setAppState, appState }) => {
       },
       handRails: {
         ...prevState.handRails,
-        borderBottom: bottomArray.length * 250,
+        // borderBottom: bottomArray.length * 120,
         borderLeft: rightArray.length * 250,
       },
     }));
@@ -172,8 +172,6 @@ const StairLayout = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
-
-      {/* Floor Width */}
 
       {/* Individual Going */}
 
@@ -290,6 +288,7 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
       {/* Turns -> Second Left & Right  */}
       <TurningArrowCard handleLeft={handleLeft} handletRight={handleRight} />
+      <FeatureSteps />
     </div>
   );
 };
