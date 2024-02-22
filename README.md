@@ -1,3 +1,3 @@
-
-
-  const reduxShapeName = useSelector((state) => state?.ShapeSlice?.shape);
+2d Stairs 
+install modules 
+npm run dev to start
