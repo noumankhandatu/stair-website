@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Appheading } from "../../../theme";
 import { MenuItem, Paper, Select } from "@mui/material";
-import { rightArrow, setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
+import { setRightArrow, setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
 import { useDispatch, useSelector } from "react-redux";
 import Div from "../../../components/atom/Div";
 import { setShape } from "../../../toolkit/slices/shapes";
@@ -290,7 +290,7 @@ const StairsLayout = ({ setAppState, appState }) => {
       >
         {TShapeWidths.map((value, index) => (
           <MenuItem
-            onClick={() => dispatch(rightArrow(index * 50 + 300))}
+            onClick={() => dispatch(setRightArrow(index * 50 + 300))}
             key={index}
             value={value.toString()}
           >

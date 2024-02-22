@@ -9,15 +9,22 @@ import FeatureCard from "../../../../components/molecules/FeatureCard";
 import { useState } from "react";
 import MaterialConstruction from "./tabs/MaterialConstruction";
 import StairLayout from "./tabs/stairsLayout";
+import { useSelector } from "react-redux";
+import { ArrowHeight, WindRun1, WindRun2 } from "../../../../toolkit/slices/stairHeightWidth";
 
 const ThreeWinderRight = () => {
   // states
+
+  const ArrowHeightRedux = useSelector(ArrowHeight);
+  const WindRun1Redux = useSelector(WindRun1);
+  const WindRun2Redux = useSelector(WindRun2);
+
   const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const [appState, setAppState] = useState({
     svgInsideContainer: {
       height: "200vh",
-      width: 900,
+      width: "100wh",
     },
     svgRiser: {
       color: "mdf",
@@ -27,7 +34,7 @@ const ThreeWinderRight = () => {
       width: -0.2040416047548291,
       height: 0.2540416047548291,
       translateX: 418,
-      translateY: 489,
+      translateY: 389,
       rotation: 180,
       ceilingHeight: 236,
     },
@@ -36,7 +43,7 @@ const ThreeWinderRight = () => {
       borderLeft: 270,
       borderRight: "",
       borderTop: "",
-      borderBottom: 640,
+      borderBottom: 0,
     },
   });
   // fns
@@ -71,7 +78,7 @@ const ThreeWinderRight = () => {
             <MaterialConstruction appState={appState} setAppState={setAppState} />
           )}{" "}
         </Grid>
-        <Grid sx={{ textAlign: "center" }} xs={8}>
+        <Grid sx={{ textAlign: "center" }} xs={9}>
           <svg
             width={appState.svgInsideContainer.width}
             height={appState.svgInsideContainer.height}
@@ -286,7 +293,7 @@ const ThreeWinderRight = () => {
                           y={0}
                           width={962}
                           height={10}
-                          fill="none"
+                          fill={`url(#${appState.svgRiser.color})`}
                           style={{ stroke: "black", strokeWidth: 1 }}
                           id="run1_tread1"
                           className=""
@@ -359,7 +366,7 @@ const ThreeWinderRight = () => {
                     />
                     <polyline
                       points="486.5,55.5,-77.35,996,-65.69,996,498.16,55.5"
-                      fill="url(#turn1_tread3)"
+                      fill={`url(#${appState.svgRiser.color})`}
                       stroke="black"
                       strokeWidth={1}
                     />
@@ -399,7 +406,7 @@ const ThreeWinderRight = () => {
                             y={0}
                             width={962}
                             height={10}
-                            fill="none"
+                            fill={`url(#${appState.svgRiser.color})`}
                             style={{ stroke: "black", strokeWidth: 1 }}
                             id="run1_tread1"
                             className=""
@@ -427,25 +434,45 @@ const ThreeWinderRight = () => {
               {/* pencil borders */}
               <g>
                 <g transform="translate(0 0)  rotate(0)">
-                  <g transform="translate(-500 0)  rotate(0)">
+                  <g transform="translate(-480 0)  rotate(180)">
                     <rect
                       x={0}
-                      y={-150}
+                      y={-1000}
+                      width={27}
+                      height={1000}
+                      fill={`url(#${appState.handRails.color})`}
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn1_string1"
+                      className=""
+                    />
+                    <rect
+                      x={0}
+                      y={0}
                       width={27}
                       height={appState.handRails.borderBottom}
-                      fill="url(#whitewood)"
+                      fill={`url(#${appState.handRails.color})`}
                       style={{ stroke: "black", strokeWidth: 1 }}
                       id="turn1_string1"
                       className=""
                     />
                   </g>
-                  <g transform="translate(0 1010)  rotate(-90)">
+                  <g transform="translate(240 1010)  rotate(-90)">
+                    <rect
+                      x={0}
+                      y={-750}
+                      width={27}
+                      height={1000}
+                      fill={`url(#${appState.handRails.color})`}
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn1_string2"
+                      className=""
+                    />
                     <rect
                       x={0}
                       y={-500}
                       width={27}
-                      height={appState.handRails.borderBottom}
-                      fill="url(#whitewood)"
+                      height={appState.handRails.borderLeft}
+                      fill={`url(#${appState.handRails.color})`}
                       style={{ stroke: "black", strokeWidth: 1 }}
                       id="turn1_string2"
                       className=""
@@ -470,7 +497,7 @@ const ThreeWinderRight = () => {
                         y="21.5"
                         width={27}
                         height={appState.handRails.borderLeft}
-                        fill="url(#whitewood)"
+                        fill={`url(#${appState.handRails.color})`}
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run2_rightString"
                         className=""
@@ -482,7 +509,7 @@ const ThreeWinderRight = () => {
                         y="-23.5"
                         width={27}
                         height={appState.handRails.borderLeft}
-                        fill="url(#whitewood)"
+                        fill={`url(#${appState.handRails.color})`}
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run2_leftString"
                         className=""
@@ -507,7 +534,7 @@ const ThreeWinderRight = () => {
                       y={-45}
                       width={90}
                       height={90}
-                      fill="url(#redwood)"
+                      fill={`url(#${appState.handRails.color})`}
                       style={{ stroke: "black", strokeWidth: 1 }}
                       id="turn1_winderPost"
                       className="balustrade"
@@ -519,7 +546,7 @@ const ThreeWinderRight = () => {
                       y={-45}
                       width={90}
                       height={90}
-                      fill="url(#redwood)"
+                      fill={`url(#${appState.handRails.color})`}
                       style={{ stroke: "black", strokeWidth: 1 }}
                       id="turn1_winderPost"
                       className="balustrade"
@@ -570,6 +597,26 @@ const ThreeWinderRight = () => {
                   <g transform="translate(-481 0)  rotate(0)" />
                 </g>
                 <line
+                  x1={500}
+                  y1={-1916}
+                  x2={-400}
+                  y2={-1916}
+                  stroke="black"
+                  strokeWidth={3}
+                  markerEnd="url(#endarrow)"
+                  markerStart="url(#startarrow)"
+                  className=""
+                />
+                <text
+                  x={-10}
+                  y={1940}
+                  style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                  transform="translate (0,0) rotate(180) scale(-1,1)"
+                  className=""
+                >
+                  {WindRun2Redux}
+                </text>
+                <line
                   x1={-600}
                   y1={-16}
                   x2={-600}
@@ -585,7 +632,7 @@ const ThreeWinderRight = () => {
                   y={487}
                   width={200}
                   height={100}
-                  fill="white"
+                  fill={`url(#white)`}
                   transform="translate (-20,-30)"
                   opacity="0.6"
                   className=""
@@ -597,7 +644,7 @@ const ThreeWinderRight = () => {
                   transform="translate (0,0) rotate(180) scale(-1,1)"
                   className=""
                 >
-                  1026
+                  {WindRun1Redux}
                 </text>
                 <line
                   x1={-500}
@@ -615,7 +662,7 @@ const ThreeWinderRight = () => {
                   y={1110}
                   width={200}
                   height={100}
-                  fill="white"
+                  fill={`url(#white)`}
                   transform="translate (-20,-30)"
                   opacity="0.6"
                   className=""
@@ -627,13 +674,13 @@ const ThreeWinderRight = () => {
                   transform="translate (0,0) rotate(180) scale(-1,1)"
                   className=""
                 >
-                  1704
+                  {ArrowHeightRedux - 99}
                 </text>
               </g>
             </g>
           </svg>
         </Grid>
-        <Grid xs={2}>
+        <Grid xs={1}>
           <Tooltip title="New Design">
             <NoteAddIcon sx={iconCol} onClick={() => window.location.reload()} />
           </Tooltip>

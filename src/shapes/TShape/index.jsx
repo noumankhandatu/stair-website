@@ -35,9 +35,9 @@ const TShape = () => {
     svgRiser: {
       color: "mdf",
       allRisers: [220],
-      positionsBottom: [],
-      positionsLeft: [220],
-      positionsRight: [220],
+      positionsBottom: [220, 440],
+      positionsLeft: [220, 440],
+      positionsRight: [220, 440],
       translateY: 485,
       translateX: 540,
       height: 0.18497349154253975,
@@ -129,7 +129,6 @@ const TShape = () => {
                   <g transform={`translate(0 1082)  rotate(180)`}>
                     {appState.svgRiser.positionsBottom.map((items, index) => {
                       const reversedIndex = appState.svgRiser.positionsBottom.length - index - 1;
-                      console.log(reversedIndex, "reversedIndex");
                       return (
                         <g key={index} transform={`translate(-421 ${items})  rotate(0)`}>
                           <rect
@@ -510,135 +509,6 @@ const TShape = () => {
                       );
                     })}
                   </g>
-                  {/* D-Step */}
-
-                  {/* {!LEFT_D_STEP && RIGHT_D_STEP && (
-                    <g transform="translate(0 0)  rotate(0)">
-                      <g transform="translate(-432.5 0)  rotate(0)">
-                        {" "}
-                        <path
-                          d="
-                         M 0 222
-                         V 244
-                         q -130 0 -130 -130
-                         q 0 -130 130 -130
-                         H 867.5
-                         q 130 0 130 130
-                         q 0 130 -130 130
-                         V 222
-                         z"
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
-                        />
-                        <path
-                          d="
-                         M 0 228
-                         q -114 0 -114 -114
-                         q 0 -114 114 -114
-                         H 867.5
-                         q 114 0 114 114
-                         q 0 114 -114 114
-                         v -10
-                         q 104 0 104 -104
-                         q 0 -104 -104 -104
-                         H 0
-                         q -104 0 -104 104
-                         q 0 104 104 104
-                         z"
-                          fill="none"
-                          style={{ stroke: "black", strokeWidth: 1, opacity: 1 }}
-                        />
-                        <text
-                          x="407.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #1
-                        </text>
-                      </g>
-                    </g>
-                  )} */}
-                  {/* Curtail */}
-
-                  {/* {!LEFT_CURTAIL && RIGHT_CURTAIL && (
-                    <>
-                      <g transform="translate(-432.5 0)  rotate(0)">
-                        <path
-                          d="
-          M 0 222
-          V 473
-          h 0
-          q -244.5 0 -244.5 -244.5
-          q 0 -244.5 244.5 -244.5
-          H 867.5
-          q 244.5 0 244.5 244.5
-          q 0 244.5 -244.5 244.5
-          h -0
-          V 222
-          z"
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
-                        />{" "}
-                        <text
-                          x="407.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #1
-                        </text>
-                      </g>
-                    </>
-                  )} */}
-                  {/* Bullnose */}
-
-                  {/* Curtail & Bullnose */}
-
-                  {/* {!LEFT_CURTAIL_BULLNOSE && RIGHT_CURTAIL_BULLNOSE && (
-                    <>
-                      <g transform="translate(-432.5 0)  rotate(0)">
-                        {" "}
-                        <path
-                          d="
-                              M 0 222
-                              V 473
-                              h -10
-                              q -244.5 0 -244.5 -244.5
-                              q 0 -244.5 244.5 -244.5
-                              H 867.5
-                              q 244.5 0 244.5 244.5
-                              q 0 244.5 -244.5 244.5
-                              h -0
-                              V 222
-                              z"
-                          fill="url(#mdf)"
-                          style={{ stroke: "black", strokeWidth: 2, opacity: 1 }}
-                        />{" "}
-                        <text
-                          x="407.5"
-                          y={-131}
-                          style={{
-                            fontSize: 55,
-                            fontFamily: "Arial, Helvetica, sans-serif",
-                            color: "black",
-                          }}
-                          transform="translate (0,0) rotate(180) scale(-1,1)"
-                        >
-                          #1
-                        </text>
-                      </g>
-                    </>
-                  )} */}
-
                   {/* center */}
                   <g transform="translate(0 888)  rotate(0)">
                     <g transform="translate(0 849)  rotate(-90)" />

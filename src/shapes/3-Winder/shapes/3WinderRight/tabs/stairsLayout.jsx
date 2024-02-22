@@ -4,7 +4,11 @@ import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
 import { Paper } from "@mui/material";
 import { Appheading } from "../../../../../theme";
-import { setHeight, setWidth } from "../../../../../toolkit/slices/stairHeightWidth";
+import {
+  setRightArrow,
+  setHeight,
+  setBottomArrow,
+} from "../../../../../toolkit/slices/stairHeightWidth";
 import { setShape } from "../../../../../toolkit/slices/shapes";
 import { ThrreWidnerFirstRight, ceilingArray } from "../../../../../utils/data";
 import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
@@ -22,7 +26,7 @@ import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
 const heightLoopArray = [];
 let updatedPositions = [];
 
-for (let i = 220; i <= 3000; i += 220) {
+for (let i = 220; i <= 1700; i += 220) {
   heightLoopArray.push(i);
 }
 
@@ -36,6 +40,16 @@ const StairLayout = ({ setAppState, appState }) => {
       svgRiser: {
         ...prevState.svgRiser,
         width: newValue,
+      },
+    }));
+  };
+  const handleWidthChange2 = (newValue) => {
+    const positiveValue = Math.abs(newValue);
+    setAppState((prevState) => ({
+      ...prevState,
+      svgRiser: {
+        ...prevState.svgRiser,
+        height: positiveValue - 0.0540416047548291,
       },
     }));
   };
@@ -64,8 +78,13 @@ const StairLayout = ({ setAppState, appState }) => {
           positions: updatedPositions,
           rightRisers: updatedPositions,
 
-          height: 0.2540416047548291,
-          translateY: 489,
+          height: 0.1940416047548291,
+          width: -0.180416047548291,
+          translateY: 289,
+        },
+        handRails: {
+          ...prevState.handRails,
+          borderLeft: updatedPositions.length * 250,
         },
       }));
     }
@@ -77,21 +96,7 @@ const StairLayout = ({ setAppState, appState }) => {
           positions: updatedPositions,
           rightRisers: updatedPositions,
 
-          height: 0.1440416047548291,
-          width: -0.140416047548291,
-          translateY: 289,
-        },
-      }));
-    }
-    if (selectedPosition >= 1400 && selectedPosition >= 2940) {
-      setAppState((prevState) => ({
-        ...prevState,
-        svgRiser: {
-          ...prevState.svgRiser,
-          positions: updatedPositions,
-          rightRisers: updatedPositions,
-
-          height: 0.1440416047548291,
+          height: 0.1540416047548291,
           width: -0.140416047548291,
           translateY: 289,
         },
@@ -141,7 +146,7 @@ const StairLayout = ({ setAppState, appState }) => {
       svgRiser: {
         ...prevState.svgRiser,
         bottomRisers: bottomArray,
-        rightRisers: rightArray,
+        // rightRisers: rightArray,
       },
       handRails: {
         ...prevState.handRails,
@@ -169,24 +174,6 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
 
       {/* Floor Width */}
-
-      <Appheading sx={{ mt: 1 }}>Floor Width</Appheading>
-      <Select
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
-        // value={appState.svgRiser.width}
-        onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
-      >
-        {ThrreWidnerFirstRight.map((value, index) => (
-          <MenuItem
-            onClick={() => dispatch(setWidth(index * 50 + 300))}
-            key={index}
-            value={value.toString()}
-          >
-            {index === 0 ? null : <> {index * 50 + 300} mm</>}
-          </MenuItem>
-        ))}
-      </Select>
 
       {/* Individual Going */}
 
@@ -242,12 +229,29 @@ const StairLayout = ({ setAppState, appState }) => {
           {appState.svgRiser.positions[appState.svgRiser.positions?.length - 1] + 400} mm
         </MenuItem>
       </Select>
-
+      <Appheading sx={{ mt: 1 }}>Width (Run 1)</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        // value={appState.svgRiser.width}
+        onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
+      >
+        {ThrreWidnerFirstRight.map((value, index) => (
+          <MenuItem
+            onClick={() => dispatch(setBottomArrow(index * 50 + 300))}
+            key={index}
+            value={value.toString()}
+          >
+            {index === 0 ? null : <> {index * 50 + 300} mm</>}
+          </MenuItem>
+        ))}
+      </Select>
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
           <Appheading>Turn 1 (Right)</Appheading>
           <AppDeleteIcon />
         </Div>
+
         <Div sx={TurnFlex}>
           <Appheading>Type </Appheading>
           <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
@@ -267,6 +271,23 @@ const StairLayout = ({ setAppState, appState }) => {
           </Select>
         </Div>
       </Paper>
+      <Appheading sx={{ mt: 1 }}>Width (Run 2)</Appheading>
+      <Select
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        // value={appState.svgRiser.width}
+        onChange={(e) => handleWidthChange2(parseFloat(e.target.value))}
+      >
+        {ThrreWidnerFirstRight.map((value, index) => (
+          <MenuItem
+            onClick={() => dispatch(setRightArrow(index * 50 + 300))}
+            key={index}
+            value={value.toString()}
+          >
+            {index === 0 ? null : <> {index * 50 + 300} mm</>}
+          </MenuItem>
+        ))}
+      </Select>
       {/* Turns -> Second Left & Right  */}
       <TurningArrowCard handleLeft={handleLeft} handletRight={handleRight} />
     </div>

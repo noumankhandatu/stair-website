@@ -19,22 +19,27 @@ export const stairHeightWidthSlice = createSlice({
     setHeight: (state, action) => {
       state.height = action.payload;
     },
-    leftArrow: (state, action) => {
+    setLeftArrow: (state, action) => {
       state.leftArrow = action.payload;
     },
-    rightArrow: (state, action) => {
+    setRightArrow: (state, action) => {
       state.rightArrow = action.payload;
     },
-    topArrow: (state, action) => {
+    setTopArrow: (state, action) => {
       state.topArrow = action.payload;
     },
-    bottomArrow: (state, action) => {
+    setBottomArrow: (state, action) => {
       state.bottomArrow = action.payload;
     },
   },
 });
 
-export const { setWidth, setHeight, leftArrow, rightArrow, topArrow, bottomArrow } =
+export const { setWidth, setHeight, setLeftArrow, setRightArrow, setTopArrow, setBottomArrow } =
   stairHeightWidthSlice.actions;
+
+export const ArrowHeight = (state) => state.stairHeightWidthSlice.height;
+export const ArrowWidth = (state) => state.stairHeightWidthSlice.width;
+export const WindRun1 = (state) => state.stairHeightWidthSlice.rightArrow;
+export const WindRun2 = (state) => state.stairHeightWidthSlice.bottomArrow;
 
 export default stairHeightWidthSlice.reducer;
