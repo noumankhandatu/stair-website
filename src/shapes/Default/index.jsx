@@ -38,7 +38,7 @@ const DefaultShape = () => {
       color: "mdf",
       positions: [220, 440, 660, 880, 1100, 1320],
       width: -0.3040416047548291,
-      height: 0.3540416047548291,
+      height: 0.2540416047548291,
       rotation: 180,
       ceilingHeight: 236,
     },
@@ -145,7 +145,7 @@ const DefaultShape = () => {
                     <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
                       <rect
                         x={0}
-                        y={-16}
+                        y={106}
                         width={862}
                         height={appState.svgRiser.ceilingHeight}
                         fill={`url(#${appState.svgRiser.color})`}
@@ -155,8 +155,8 @@ const DefaultShape = () => {
                       />
 
                       <text
-                        x={386}
-                        y={-130}
+                        x={390}
+                        y={-230}
                         style={{
                           fontSize: 55,
                           fontFamily: "Arial, Helvetica, sans-serif",
@@ -167,7 +167,7 @@ const DefaultShape = () => {
                         #{index + 1}
                       </text>
 
-                      <g transform="translate(852.5 180)  rotate(180)">
+                      <g transform="translate(852.5 300)  rotate(180)">
                         {index === 1 && (
                           <>
                             {reduxLeftStep === LEFT_D_STEP && (
@@ -528,7 +528,7 @@ const DefaultShape = () => {
               {/* run */}
               <text
                 x={-100}
-                y={-0}
+                y={-350}
                 style={{
                   fontSize: 55,
                   fontFamily: "Arial, Helvetica, sans-serif",
@@ -563,17 +563,20 @@ const DefaultShape = () => {
               {[600, -500].map((items, index) => {
                 return (
                   <g key={index}>
-                    <line
-                      x1={500}
-                      y1={heightArrow}
-                      x2={500}
-                      y2={0}
-                      stroke="black"
-                      strokeWidth={3}
-                      markerEnd="url(#endarrow)"
-                      markerStart="url(#startarrow)"
-                      className=""
-                    />
+                    {heightArrow && (
+                      <line
+                        x1={500}
+                        y1={heightArrow}
+                        x2={500}
+                        y2={0}
+                        stroke="black"
+                        strokeWidth={3}
+                        markerEnd="url(#endarrow)"
+                        markerStart="url(#startarrow)"
+                        className=""
+                      />
+                    )}
+
                     <rect
                       x={-50}
                       y={-250}
@@ -586,24 +589,27 @@ const DefaultShape = () => {
                     />
                     <text
                       x={545}
-                      y={-647}
+                      y={-1047}
                       style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                       className=""
                     >
                       {heightArrow}
                     </text>
-                    <line
-                      x1={-500}
-                      y1={-250}
-                      x2={500}
-                      y2={-250}
-                      stroke="black"
-                      strokeWidth={3}
-                      markerEnd="url(#endarrow)"
-                      markerStart="url(#startarrow)"
-                      className=""
-                    />
+                    {widhtArrow && (
+                      <line
+                        x1={-500}
+                        y1={-250}
+                        x2={500}
+                        y2={-250}
+                        stroke="black"
+                        strokeWidth={3}
+                        markerEnd="url(#endarrow)"
+                        markerStart="url(#startarrow)"
+                        className=""
+                      />
+                    )}
+
                     <rect
                       x={-50}
                       y={-250}
