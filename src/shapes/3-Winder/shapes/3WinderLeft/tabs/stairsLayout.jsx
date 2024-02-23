@@ -240,7 +240,7 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
-          <Appheading>Turn 1 (Right)</Appheading>
+          <Appheading>Turn 1 (Left)</Appheading>
           <AppDeleteIcon />
         </Div>
 
