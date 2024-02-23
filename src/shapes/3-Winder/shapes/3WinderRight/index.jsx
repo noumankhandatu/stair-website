@@ -777,7 +777,7 @@ const ThreeWinderRight = () => {
                       width={27}
                       height={
                         reduxLeftStep !== NONE_STEP_LEFT || reduxRightStep !== NONE_STEP_LEFT
-                          ? appState.handRails.borderBottom - 80
+                          ? appState.handRails.borderBottom - 150
                           : appState.handRails.borderBottom
                       }
                       fill={`url(#${appState.handRails.color})`}
@@ -791,7 +791,7 @@ const ThreeWinderRight = () => {
                       width={27}
                       height={
                         reduxLeftStep !== NONE_STEP_LEFT || reduxRightStep !== NONE_STEP_LEFT
-                          ? appState.handRails.borderBottom - 80
+                          ? appState.handRails.borderBottom - 150
                           : appState.handRails.borderBottom
                       }
                       fill={`url(#${appState.handRails.color})`}

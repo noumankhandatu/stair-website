@@ -21,6 +21,7 @@ import {
   RIGHT_CURTAIL,
   RIGHT_CURTAIL_BULLNOSE,
   RIGHT_D_STEP,
+  NONE_STEP_LEFT,
 } from "../../../../utils/enum";
 
 const ThreeWinderLeft = () => {
@@ -41,19 +42,19 @@ const ThreeWinderLeft = () => {
     },
     svgRiser: {
       color: "mdf",
-      positions: [],
-      rightRisers: [],
+      positions: [220],
+      rightRisers: [220],
       bottomRisers: [],
       width: -0.2040416047548291,
       height: 0.2540416047548291,
-      translateX: 618,
+      translateX: 658,
       translateY: 389,
       rotation: 180,
       ceilingHeight: 236,
     },
     handRails: {
       color: "mdf",
-      borderLeft: 720,
+      borderLeft: 270,
       borderRight: "",
       borderTop: "",
       borderBottom: 0,
@@ -91,7 +92,7 @@ const ThreeWinderLeft = () => {
             <MaterialConstruction appState={appState} setAppState={setAppState} />
           )}{" "}
         </Grid>
-        <Grid sx={{ textAlign: "center", justifyContent: "center" }} xs={9}>
+        <Grid sx={{ textAlign: "center" }} xs={9}>
           <svg
             width={appState.svgInsideContainer.width}
             height={appState.svgInsideContainer.height}
@@ -323,7 +324,7 @@ const ThreeWinderLeft = () => {
                           #{reversedIndex + 1}
                         </text>
                         {reversedIndex === 1 && (
-                          <>
+                          <g>
                             {reduxLeftStep === LEFT_D_STEP && (
                               <g transform="translate(970.5 225)  rotate(180)">
                                 <path
@@ -634,7 +635,7 @@ const ThreeWinderLeft = () => {
                                 </g>
                               </>
                             )}
-                          </>
+                          </g>
                         )}
                       </g>
                     );
@@ -650,7 +651,7 @@ const ThreeWinderLeft = () => {
                       strokeWidth={2}
                     />
                     <text
-                      x={-40}
+                      x={-30}
                       y={-100}
                       style={{
                         fontSize: 55,
@@ -670,8 +671,8 @@ const ThreeWinderLeft = () => {
                       strokeWidth={2}
                     />
                     <text
-                      x={-50}
-                      y={-350}
+                      x={-80}
+                      y={-370}
                       style={{
                         fontSize: 55,
                         fontFamily: "Arial, Helvetica, sans-serif",
@@ -696,7 +697,7 @@ const ThreeWinderLeft = () => {
                       strokeWidth={1}
                     />
                     <text
-                      x={-300}
+                      x={-350}
                       y={-500}
                       style={{
                         fontSize: 55,
@@ -710,7 +711,7 @@ const ThreeWinderLeft = () => {
                   </g>
                 </g>
                 {/* right side */}
-                <g transform="translate(-280 510)  rotate(90)">
+                <g transform="translate(-290 510)  rotate(90)">
                   <g>
                     {appState.svgRiser.rightRisers.map((items, index) => {
                       return (
@@ -759,9 +760,9 @@ const ThreeWinderLeft = () => {
               {/* pencil borders */}
               <g>
                 <g transform="translate(0 0)  rotate(0)">
-                  <g transform="translate(500 0)  rotate(180)">
+                  <g transform="translate(-480 0)  rotate(180)">
                     <rect
-                      x={0}
+                      x={-1000}
                       y={-1000}
                       width={27}
                       height={1000}
@@ -771,10 +772,28 @@ const ThreeWinderLeft = () => {
                       className=""
                     />
                     <rect
+                      x={-980}
+                      y={0}
+                      width={27}
+                      height={
+                        reduxLeftStep !== NONE_STEP_LEFT || reduxRightStep !== NONE_STEP_LEFT
+                          ? appState.handRails.borderBottom - 150
+                          : appState.handRails.borderBottom
+                      }
+                      fill={`url(#${appState.handRails.color})`}
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn1_string1"
+                      className=""
+                    />
+                    <rect
                       x={0}
                       y={0}
                       width={27}
-                      height={appState.handRails.borderBottom}
+                      height={
+                        reduxLeftStep !== NONE_STEP_LEFT || reduxRightStep !== NONE_STEP_LEFT
+                          ? appState.handRails.borderBottom - 150
+                          : appState.handRails.borderBottom
+                      }
                       fill={`url(#${appState.handRails.color})`}
                       style={{ stroke: "black", strokeWidth: 1 }}
                       id="turn1_string1"
@@ -792,24 +811,15 @@ const ThreeWinderLeft = () => {
                       id="turn1_string2"
                       className=""
                     />
-                    <rect
-                      x={0}
-                      y={-500}
-                      width={27}
-                      height={appState.handRails.borderLeft}
-                      fill={`url(#${appState.handRails.color})`}
-                      style={{ stroke: "black", strokeWidth: 1 }}
-                      id="turn1_string2"
-                      className=""
-                    />
                   </g>
                 </g>
-                <g transform="translate(510 510)  rotate(90)">
+                {/* right arrows */}
+                <g transform="translate(510 510)  rotate(-90)">
                   <g>
-                    <g transform="translate(473 0)  rotate(0)">
+                    <g transform="translate(473 0)  rotate(180)">
                       <rect
                         x={0}
-                        y="21.5"
+                        y={1000}
                         width={27}
                         height={appState.handRails.borderLeft}
                         fill={`url(#${appState.handRails.color})`}
@@ -818,10 +828,10 @@ const ThreeWinderLeft = () => {
                         className=""
                       />
                     </g>
-                    <g transform="translate(-520 50)  rotate(0)">
+                    <g transform="translate(-470 0)  rotate(180)">
                       <rect
                         x={0}
-                        y="-23.5"
+                        y={1000}
                         width={27}
                         height={appState.handRails.borderLeft}
                         fill={`url(#${appState.handRails.color})`}
@@ -836,9 +846,8 @@ const ThreeWinderLeft = () => {
               </g>
               {/* dot */}
               <g>
-                <g transform="translate(0 0)  rotate(0)" />
                 <g transform="translate(0 0)  rotate(0)">
-                  <g transform="translate(-486 23)  rotate(0)">
+                  <g transform="translate(-486.5 23.5)  rotate(0)">
                     <rect
                       x={-45}
                       y={-45}
@@ -850,7 +859,7 @@ const ThreeWinderLeft = () => {
                       className="balustrade"
                     />
                   </g>
-                  <g transform="translate(-486 1000)  rotate(0)">
+                  <g transform="translate(-486.5 983.5)  rotate(0)">
                     <rect
                       x={-45}
                       y={-45}
@@ -862,35 +871,15 @@ const ThreeWinderLeft = () => {
                       className="balustrade"
                     />
                   </g>
+                </g>
+
+                <g transform="translate(1194 510)  rotate(-90)">
+                  <g transform="translate(-481 0)  rotate(0)" />
                 </g>
               </g>
               {/* arrows */}
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
-                <g transform="translate(0 0)  rotate(0)">
-                  <g transform="translate(-500 0)  rotate(0)" />
-                  <g transform="translate(0 1010)  rotate(-90)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(486.5 23.5)  rotate(0)" />
-                  <g transform="translate(486.5 23.5)  rotate(0)" />
-                </g>
-                <g transform="translate(510 510)  rotate(-90)">
-                  <g>
-                    <g transform="translate(-481 0)  rotate(0)" />
-                    <g transform="translate(-481 228)  rotate(0)" />
-                    <g transform="translate(-481 456)  rotate(0)" />
-                  </g>
-                  <g>
-                    <g transform="translate(473 0)  rotate(0)" />
-                    <g transform="translate(-500 0)  rotate(0)" />
-                  </g>
-                  <g />
-                </g>
-                <g transform="translate(1194 510)  rotate(-90)">
-                  <g transform="translate(-481 0)  rotate(0)" />
-                </g>
                 <line
                   x1={500}
                   y1={-1916}
@@ -912,14 +901,24 @@ const ThreeWinderLeft = () => {
                   {WindRun2Redux}
                 </text>
                 <line
-                  x1={600}
+                  x1={800}
                   y1={16}
-                  x2={600}
+                  x2={800}
                   y2={1010}
                   stroke="black"
                   strokeWidth={3}
                   markerEnd="url(#endarrow)"
                   markerStart="url(#startarrow)"
+                  className=""
+                />
+                <rect
+                  x={-655}
+                  y={487}
+                  width={200}
+                  height={100}
+                  fill={`url(#white)`}
+                  transform="translate (-20,-30)"
+                  opacity="0.6"
                   className=""
                 />
                 <text
@@ -932,9 +931,9 @@ const ThreeWinderLeft = () => {
                   {WindRun1Redux}
                 </text>
                 <line
-                  x1={500}
+                  x1={-1000}
                   y1={1110}
-                  x2={-1204}
+                  x2={104}
                   y2={1110}
                   stroke="black"
                   strokeWidth={3}
