@@ -23,6 +23,8 @@ import { setShapeTurn } from "../../../../../toolkit/slices/shapeTurns";
 import TurningArrowCard from "./../../../../../components/atom/TurningArrowCard";
 import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
 import FeatureSteps from "../../../../../components/atom/FeatureSteps";
+import CeilingHeight from "../../../../../components/molecules/CeliningHeight";
+import { useState } from "react";
 
 const heightLoopArray = [];
 let updatedPositions = [];
@@ -32,6 +34,8 @@ for (let i = 220; i <= 1700; i += 220) {
 }
 
 const StairLayout = ({ setAppState, appState }) => {
+  // states
+  const [selectedValue, setSelectedValue] = useState(ThrreWidnerFirstRight[6]);
   // hooks
   const dispatch = useDispatch();
   // width changer
@@ -50,7 +54,7 @@ const StairLayout = ({ setAppState, appState }) => {
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        height: positiveValue - 0.0540416047548291,
+        height: positiveValue - 0.0140416047548291,
       },
     }));
   };
@@ -132,19 +136,23 @@ const StairLayout = ({ setAppState, appState }) => {
       },
       handRails: {
         ...prevState.handRails,
-        // borderBottom: bottomArray.length * 120,
-        borderLeft: rightArray.length * 250,
+        borderBottom: bottomArray.length * 245,
+        borderLeft: updatedPositions.length * 250,
       },
     }));
   };
 
-  console.log(appState, "appState");
   return (
     <div>
       {/* Floor Height */}
 
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
+      <Select
+        defaultValue={heightLoopArray[0]}
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        onChange={handlePositionChange}
+      >
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
@@ -158,7 +166,7 @@ const StairLayout = ({ setAppState, appState }) => {
       {/* Individual Going */}
 
       <Appheading sx={{ mt: 1 }}>Individual Going</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }}>
+      <Select defaultValue={ceilingArray[15]} fullWidth sx={{ height: 40, mt: 1 }}>
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
@@ -172,10 +180,11 @@ const StairLayout = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
-
+      <CeilingHeight />
       {/* Number of Rises */}
       <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
       <Select
+        defaultValue={appState?.svgRiser?.positions[appState?.svgRiser?.positions.length - 1]}
         disabled={appState.svgRiser.positions.length <= 0}
         onChange={handlePositionChange}
         sx={{ height: 40, mt: 1 }}
@@ -212,13 +221,16 @@ const StairLayout = ({ setAppState, appState }) => {
       <Appheading sx={{ mt: 1 }}>Width (Run 1)</Appheading>
       <Select
         fullWidth
+        defaultValue={ThrreWidnerFirstRight[2]}
         sx={{ height: 40, mt: 1 }}
-        // value={appState.svgRiser.width}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
         {ThrreWidnerFirstRight.map((value, index) => (
           <MenuItem
-            onClick={() => dispatch(setBottomArrow(index * 50 + 300))}
+            onClick={() => {
+              dispatch(setBottomArrow(index * 50 + 300));
+              setSelectedValue(value);
+            }}
             key={index}
             value={value.toString()}
           >
@@ -255,12 +267,15 @@ const StairLayout = ({ setAppState, appState }) => {
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        // value={appState.svgRiser.width}
+        value={selectedValue}
         onChange={(e) => handleWidthChange2(parseFloat(e.target.value))}
       >
         {ThrreWidnerFirstRight.map((value, index) => (
           <MenuItem
-            onClick={() => dispatch(setRightArrow(index * 50 + 300))}
+            onClick={() => {
+              dispatch(setRightArrow(index * 50 + 300));
+              setSelectedValue(value);
+            }}
             key={index}
             value={value.toString()}
           >

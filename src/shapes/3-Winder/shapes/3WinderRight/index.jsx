@@ -21,6 +21,7 @@ import {
   RIGHT_CURTAIL,
   RIGHT_CURTAIL_BULLNOSE,
   RIGHT_D_STEP,
+  NONE_STEP_LEFT,
 } from "../../../../utils/enum";
 
 const ThreeWinderRight = () => {
@@ -41,8 +42,8 @@ const ThreeWinderRight = () => {
     },
     svgRiser: {
       color: "mdf",
-      positions: [],
-      rightRisers: [],
+      positions: [220],
+      rightRisers: [220],
       bottomRisers: [],
       width: -0.2040416047548291,
       height: 0.2540416047548291,
@@ -323,7 +324,7 @@ const ThreeWinderRight = () => {
                           #{reversedIndex + 1}
                         </text>
                         {reversedIndex === 1 && (
-                          <>
+                          <g>
                             {reduxLeftStep === LEFT_D_STEP && (
                               <g transform="translate(970.5 225)  rotate(180)">
                                 <path
@@ -634,7 +635,7 @@ const ThreeWinderRight = () => {
                                 </g>
                               </>
                             )}
-                          </>
+                          </g>
                         )}
                       </g>
                     );
@@ -774,7 +775,25 @@ const ThreeWinderRight = () => {
                       x={0}
                       y={0}
                       width={27}
-                      height={appState.handRails.borderBottom}
+                      height={
+                        reduxLeftStep !== NONE_STEP_LEFT || reduxRightStep !== NONE_STEP_LEFT
+                          ? appState.handRails.borderBottom - 80
+                          : appState.handRails.borderBottom
+                      }
+                      fill={`url(#${appState.handRails.color})`}
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn1_string1"
+                      className=""
+                    />
+                    <rect
+                      x={-980}
+                      y={0}
+                      width={27}
+                      height={
+                        reduxLeftStep !== NONE_STEP_LEFT || reduxRightStep !== NONE_STEP_LEFT
+                          ? appState.handRails.borderBottom - 80
+                          : appState.handRails.borderBottom
+                      }
                       fill={`url(#${appState.handRails.color})`}
                       style={{ stroke: "black", strokeWidth: 1 }}
                       id="turn1_string1"
@@ -803,18 +822,8 @@ const ThreeWinderRight = () => {
                       className=""
                     />
                   </g>
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(486.5 23.5)  rotate(0)" />
-                  <g transform="translate(486.5 23.5)  rotate(0)" />
                 </g>
                 <g transform="translate(510 510)  rotate(-90)">
-                  <g>
-                    <g transform="translate(-481 0)  rotate(0)" />
-                    <g transform="translate(-481 228)  rotate(0)" />
-                    <g transform="translate(-481 456)  rotate(0)" />
-                  </g>
                   <g>
                     <g transform="translate(473 0)  rotate(0)">
                       <rect
