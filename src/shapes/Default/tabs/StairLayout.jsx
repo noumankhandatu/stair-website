@@ -15,7 +15,7 @@ import CeilingHeight from "./../../../components/molecules/CeliningHeight";
 const heightLoopArray = [];
 let updatedPositions = [];
 
-for (let i = 220; i <= 2500; i += 220) {
+for (let i = 200; i <= 2500; i += 20) {
   heightLoopArray.push(i);
 }
 
@@ -47,9 +47,12 @@ const StairLayout = ({ setAppState, appState }) => {
   //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
-    console.log(selectedPosition, "selectedPosition");
+
+    const roundedPosition = Math.round(selectedPosition / 220) * 220;
+    updatedPositions = [roundedPosition];
+
     if (selectedPosition !== "") {
-      updatedPositions = heightLoopArray.filter((pos) => pos <= selectedPosition);
+      updatedPositions = heightLoopArray.filter((pos) => pos % 220 === 0 && pos <= roundedPosition);
     }
 
     if (selectedPosition >= 1 && selectedPosition <= 600) {
@@ -114,7 +117,6 @@ const StairLayout = ({ setAppState, appState }) => {
   const handletRight = () => {
     dispatch(setShape(THREE_WINDER));
   };
-  console.log(appState?.svgRiser?.positions[appState?.svgRiser?.positions.length - 1], "asd");
   return (
     <div>
       {/* Floor Height */}
@@ -142,16 +144,16 @@ const StairLayout = ({ setAppState, appState }) => {
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        defaultValue={stairWidth[4]}
+        defaultValue={stairWidth[4]} // Use the actual value from the array for default
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
         {stairWidth.map((value, index) => (
           <MenuItem
-            onClick={() => dispatch(setWidth(index * 50 + 300))}
+            onClick={() => dispatch(setWidth(index * 20 + 280))} // Use the actual value from the array
             key={index}
-            value={value.toString()}
+            value={value.toString()} // Use the actual value from the array
           >
-            {index === 0 ? null : <> {index * 50 + 300} mm</>}
+            {index === 0 ? null : <> {index * 20 + 280} mm</>} {/* Calculate desired values */}
           </MenuItem>
         ))}
       </Select>

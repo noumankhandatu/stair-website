@@ -135,7 +135,7 @@ const DefaultShape = () => {
             {/* its the layout  */}
             {/* entire height can be set from here */}
             <g
-              transform={`translate (438.5,589.1753343239227) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
+              transform={`translate (530.5,590) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
             >
               {/* risers */}
               <g>
