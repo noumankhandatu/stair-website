@@ -13,7 +13,7 @@ import { setShape } from "../../../toolkit/slices/shapes";
 import AppDeleteIcon from "./../../../components/atom/DeleteIcon";
 import ShapesSelect from "../../../components/atom/ShapesSelect";
 import { T_SHAPE } from "../../../utils/enum";
-import { TShapeWidths, ceilingArray } from "../../../utils/data";
+import { ceilingArray } from "../../../utils/data";
 import { TurnFlex } from "../../../style/global";
 import FeatureSteps from "../../../components/atom/FeatureSteps";
 import { setIsDivisible } from "../../../toolkit/slices/singleFeatures";
@@ -116,7 +116,7 @@ const StairsLayout = ({ setAppState, appState }) => {
   // width-run 1
   const handleWidthChange = (newValue) => {
     let x = newValue;
-    x = x / 5041.45870644;
+    x = x / 10041.45870644;
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
@@ -130,7 +130,7 @@ const StairsLayout = ({ setAppState, appState }) => {
 
   const handleWidthChange2 = (newValue) => {
     let x = newValue;
-    x = x / 5041.45870644;
+    x = x / 6041.45870644;
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
