@@ -4,19 +4,32 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
 import { setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
-import { ceilingArray, stairWidth } from "../../../utils/data/index";
+import { ceilingArray } from "../../../utils/data/index";
 import { setShape } from "../../../toolkit/slices/shapes";
-import { THREE_WINDER, ThreeWinderLeftTurn } from "../../../utils/enum";
+import {
+  NONE_STEP_LEFT,
+  NONE_STEP_RIGHT,
+  THREE_WINDER,
+  ThreeWinderLeftTurn,
+} from "../../../utils/enum";
 import { setShapeTurn } from "../../../toolkit/slices/shapeTurns";
 import TurningArrowCard from "./../../../components/atom/TurningArrowCard";
 import FeatureSteps from "../../../components/atom/FeatureSteps";
 import CeilingHeight from "./../../../components/molecules/CeliningHeight";
+import { setLeftFeatureStep, setRightFeatureStep } from "../../../toolkit/slices/featureSteps";
+import { setIsDivisible } from "../../../toolkit/slices/singleFeatures";
 
 const heightLoopArray = [];
 let updatedPositions = [];
 
-for (let i = 200; i <= 2500; i += 20) {
+for (let i = 220; i <= 4000; i += 5) {
   heightLoopArray.push(i);
+}
+
+const widthLoopArray = [];
+
+for (let i = 600; i <= 1000; i += 5) {
+  widthLoopArray.push(i);
 }
 
 // eslint-disable-next-line react/prop-types
@@ -25,13 +38,17 @@ const StairLayout = ({ setAppState, appState }) => {
   const dispatch = useDispatch();
   // width changer
   const handleWidthChange = (newValue) => {
+    let x = newValue;
+    x = x / 2941.45870644;
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        width: newValue,
+        width: -x,
       },
     }));
+
+    dispatch(setWidth(newValue));
   };
   // ceiling height changer
   const handleCelingsHeight = (newHeight) => {
@@ -47,8 +64,15 @@ const StairLayout = ({ setAppState, appState }) => {
   //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
+    // it will pop up half riser
+    if (selectedPosition % 220 !== 0) {
+      dispatch(setIsDivisible(true));
+    } else {
+      dispatch(setIsDivisible(false));
+    }
 
     const roundedPosition = Math.round(selectedPosition / 220) * 220;
+
     updatedPositions = [roundedPosition];
 
     if (selectedPosition !== "") {
@@ -61,11 +85,11 @@ const StairLayout = ({ setAppState, appState }) => {
         svgRiser: {
           ...prevState.svgRiser,
           positions: updatedPositions,
-          height: 0.2540416047548291,
+          height: 0.25,
         },
         leftRightPencilBorder: {
           ...prevState.leftRightPencilBorder,
-          height: 300 * updatedPositions.length,
+          height: selectedPosition * 1.9,
         },
       }));
     }
@@ -76,11 +100,11 @@ const StairLayout = ({ setAppState, appState }) => {
         svgRiser: {
           ...prevState.svgRiser,
           positions: updatedPositions,
-          height: 0.2540416047548291,
+          height: 0.25,
         },
         leftRightPencilBorder: {
           ...prevState.leftRightPencilBorder,
-          height: 250 * updatedPositions.length,
+          height: selectedPosition * 1.4,
         },
       }));
     }
@@ -90,15 +114,28 @@ const StairLayout = ({ setAppState, appState }) => {
         svgRiser: {
           ...prevState.svgRiser,
           positions: updatedPositions,
-          height: 0.1840416047548291,
+          height: 0.25,
         },
         leftRightPencilBorder: {
           ...prevState.leftRightPencilBorder,
-          height: 240 * updatedPositions.length,
+          height: selectedPosition * 1.1,
         },
       }));
     }
-
+    if (selectedPosition > 2940 && selectedPosition < 4000) {
+      setAppState((prevState) => ({
+        ...prevState,
+        svgRiser: {
+          ...prevState.svgRiser,
+          positions: updatedPositions,
+          height: 0.19,
+        },
+        leftRightPencilBorder: {
+          ...prevState.leftRightPencilBorder,
+          height: selectedPosition * 1.1,
+        },
+      }));
+    }
     // update states here
     setAppState((prevState) => ({
       ...prevState,
@@ -113,17 +150,22 @@ const StairLayout = ({ setAppState, appState }) => {
   const handleLeft = () => {
     dispatch(setShape(THREE_WINDER));
     dispatch(setShapeTurn(ThreeWinderLeftTurn));
+    // close feature steps
+    dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
+    dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
   };
   const handletRight = () => {
     dispatch(setShape(THREE_WINDER));
+    // close feature steps
+    dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
+    dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
   };
   return (
     <div>
       {/* Floor Height */}
-
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
       <Select
-        defaultValue={heightLoopArray[55]}
+        defaultValue={heightLoopArray[476]}
         fullWidth
         sx={{ height: 40, mt: 1 }}
         onChange={handlePositionChange}
@@ -144,16 +186,12 @@ const StairLayout = ({ setAppState, appState }) => {
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        defaultValue={stairWidth[15]} 
+        defaultValue={widthLoopArray[53]}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
-        {stairWidth.map((value, index) => (
-          <MenuItem
-            onClick={() => dispatch(setWidth(index * 20 + 280))} 
-            key={index}
-            value={value.toString()}
-          >
-            {index === 0 ? null : <> {index * 20 + 280} mm</>}
+        {widthLoopArray.map((value, index) => (
+          <MenuItem key={index} value={value.toString()}>
+            {value}
           </MenuItem>
         ))}
       </Select>
@@ -211,7 +249,7 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
 
       {/* Turns -> Left & Right  */}
-      
+
       <TurningArrowCard handleLeft={handleLeft} handletRight={handletRight} />
       <FeatureSteps />
     </div>

@@ -22,12 +22,14 @@ import {
   RIGHT_CURTAIL_BULLNOSE,
   RIGHT_D_STEP,
 } from "../../utils/enum";
+import { selectDivisble } from "../../toolkit/slices/singleFeatures";
 
 const DefaultShape = () => {
   const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
   const heightArrow = useSelector((state) => state?.stairHeightWidthSlice?.height);
   const reduxLeftStep = useSelector(leftFeatureStep);
   const reduxRightStep = useSelector(rightFeatureStep);
+  const reduxSelectDivisble = useSelector(selectDivisble);
   // states
   const [appState, setAppState] = useState({
     svgInsideContainer: {
@@ -36,14 +38,14 @@ const DefaultShape = () => {
     },
     svgRiser: {
       color: "mdf",
-      positions: [220, 440, 660, 880, 1100, 1320],
-      width: -0.3040416047548291,
-      height: 0.2540416047548291,
+      positions: [220, 440, 660, 880, 1100, 1320, 1540, 1760, 1980, 2200, 2420, 2640],
+      width: -0.25,
+      height: 0.25,
       rotation: 180,
       ceilingHeight: 236,
     },
     leftRightPencilBorder: {
-      height: 1760,
+      height: 2950,
       towardsLeftRight: [373, -500],
       rotation: 0,
       color: "mdf",
@@ -135,12 +137,13 @@ const DefaultShape = () => {
             {/* its the layout  */}
             {/* entire height can be set from here */}
             <g
-              transform={`translate (530.5,590) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
+              transform={`translate (530.5,890) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
             >
               {/* risers */}
               <g>
                 {/* horizatinal stairs */}
                 {appState.svgRiser.positions.map((items, index) => {
+                  const isLastIndex = index === appState.svgRiser.positions.length - 1;
                   return (
                     <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
                       <rect
@@ -153,7 +156,6 @@ const DefaultShape = () => {
                         id="run1_tread1"
                         className=""
                       />
-
                       <text
                         x={390}
                         y={-230}
@@ -166,7 +168,35 @@ const DefaultShape = () => {
                       >
                         #{index + 1}
                       </text>
+                      {/* half layer */}
+                      {isLastIndex && reduxSelectDivisble && (
+                        <g transform="translate(10.5 360)  rotate(0)">
+                          <rect
+                            x={0}
+                            y={-16}
+                            width={857}
+                            height={86}
+                            fill={`url(#${appState.svgRiser.color})`}
+                            style={{ stroke: "black", strokeWidth: 2 }}
+                            id="nosing_tread"
+                            className=""
+                          />{" "}
+                          <text
+                            x="388.5"
+                            y={-55}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            #{index + 2}
+                          </text>
+                        </g>
+                      )}
 
+                      {/* featuer steps */}
                       <g transform="translate(852.5 300)  rotate(180)">
                         {index === 1 && (
                           <>

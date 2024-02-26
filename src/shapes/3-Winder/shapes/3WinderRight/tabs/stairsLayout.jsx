@@ -15,6 +15,8 @@ import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
 import {
+  NONE_STEP_LEFT,
+  NONE_STEP_RIGHT,
   THREE_WINDER,
   ThreeWinderRightLeftTurn,
   ThreeWinderRightRightTurn,
@@ -25,6 +27,10 @@ import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
 import FeatureSteps from "../../../../../components/atom/FeatureSteps";
 import CeilingHeight from "../../../../../components/molecules/CeliningHeight";
 import { useState } from "react";
+import {
+  setLeftFeatureStep,
+  setRightFeatureStep,
+} from "../../../../../toolkit/slices/featureSteps";
 
 const heightLoopArray = [];
 let updatedPositions = [];
@@ -117,6 +123,9 @@ const StairLayout = ({ setAppState, appState }) => {
   // Turning Function Started
   const handleRight = () => {
     dispatch(setShapeTurn(ThreeWinderRightRightTurn));
+    // close feature steps
+    dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
+    dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
   };
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;
@@ -126,6 +135,9 @@ const StairLayout = ({ setAppState, appState }) => {
 
   const handleLeft = () => {
     dispatch(setShapeTurn(ThreeWinderRightLeftTurn));
+    // close feature steps
+    dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
+    dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
   };
 
   const handleTurns = (event) => {
