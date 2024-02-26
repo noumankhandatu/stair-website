@@ -1,7 +1,12 @@
 /* eslint-disable react/prop-types */
 import { Appheading } from "../../../theme";
 import { MenuItem, Paper, Select } from "@mui/material";
-import { setRightArrow, setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
+import {
+  setRightArrow,
+  setHeight,
+  setWidth,
+  setBottomArrow,
+} from "../../../toolkit/slices/stairHeightWidth";
 import { useDispatch, useSelector } from "react-redux";
 import Div from "../../../components/atom/Div";
 import { setShape } from "../../../toolkit/slices/shapes";
@@ -11,16 +16,24 @@ import { T_SHAPE } from "../../../utils/enum";
 import { TShapeWidths, ceilingArray } from "../../../utils/data";
 import { TurnFlex } from "../../../style/global";
 import FeatureSteps from "../../../components/atom/FeatureSteps";
+import { setIsDivisible } from "../../../toolkit/slices/singleFeatures";
+import { useState } from "react";
+import CeilingHeight from "../../../components/molecules/CeliningHeight";
 
 const positionOptions = [];
 let updatedPositions = [];
 
-for (let i = 220; i <= 1500; i += 220) {
+for (let i = 220; i <= 4000; i += 5) {
   positionOptions.push(i);
 }
+const widthLoopArray = [];
 
+for (let i = 600; i <= 1000; i += 5) {
+  widthLoopArray.push(i);
+}
 const StairsLayout = ({ setAppState, appState }) => {
   const reduxShapeName = useSelector((state) => state?.ShapeSlice?.shape);
+  const [selectedValue, setSelectedValue] = useState(null);
 
   // hooks
   const dispatch = useDispatch();
@@ -28,8 +41,15 @@ const StairsLayout = ({ setAppState, appState }) => {
   //  fns
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
+    if (selectedPosition % 220 !== 0) {
+      dispatch(setIsDivisible(true));
+    } else {
+      dispatch(setIsDivisible(false));
+    }
+    const roundedPosition = Math.round(selectedPosition / 220) * 220;
+
     if (selectedPosition !== "") {
-      updatedPositions = positionOptions.filter((pos) => pos <= selectedPosition);
+      updatedPositions = positionOptions.filter((pos) => pos % 220 === 0 && pos <= roundedPosition);
     }
     if (selectedPosition >= 1 && selectedPosition < 1400) {
       setAppState((prevState) => ({
@@ -95,26 +115,39 @@ const StairsLayout = ({ setAppState, appState }) => {
   };
   // width-run 1
   const handleWidthChange = (newValue) => {
+    let x = newValue;
+    x = x / 5041.45870644;
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        width: newValue,
+        width: -x,
       },
     }));
+    dispatch(setBottomArrow(newValue));
   };
   // width-run 1
 
   const handleWidthChange2 = (newValue) => {
-    const positiveValue = Math.abs(newValue);
+    let x = newValue;
+    x = x / 5041.45870644;
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        height: positiveValue,
-        translateY: positiveValue * 2500,
+        height: x,
       },
     }));
+    dispatch(setRightArrow(newValue));
+    // const positiveValue = Math.abs(newValue);
+    // setAppState((prevState) => ({
+    //   ...prevState,
+    //   svgRiser: {
+    //     ...prevState.svgRiser,
+    //     height: positiveValue,
+    //     translateY: positiveValue * 2500,
+    //   },
+    // }));
   };
 
   const handleCelingsHeight = (newHeight) => {
@@ -166,7 +199,12 @@ const StairsLayout = ({ setAppState, appState }) => {
       {/* floor height  */}
 
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
+      <Select
+        defaultValue={positionOptions[216]}
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        onChange={handlePositionChange}
+      >
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
@@ -180,7 +218,7 @@ const StairsLayout = ({ setAppState, appState }) => {
       {/* Individual Going */}
 
       <Appheading sx={{ mt: 1 }}>Individual Going</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }}>
+      <Select defaultValue={ceilingArray[15]} fullWidth sx={{ height: 40, mt: 1 }}>
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
@@ -194,10 +232,14 @@ const StairsLayout = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
+      <CeilingHeight />
 
       {/* Number of Rises */}
       <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
       <Select
+        defaultValue={
+          appState?.svgRiser?.positionsRight[appState?.svgRiser?.positionsRight.length - 1]
+        }
         disabled={appState.svgRiser.allRisers.length <= 0}
         onChange={handlePositionChange}
         sx={{ height: 40, mt: 1 }}
@@ -230,25 +272,26 @@ const StairsLayout = ({ setAppState, appState }) => {
         </MenuItem>
       </Select>
       {/* Width (Run 1)*/}
-
       <Appheading sx={{ mt: 1 }}>Width (Run 1)</Appheading>
       <Select
         fullWidth
+        defaultValue={widthLoopArray[53]}
         sx={{ height: 40, mt: 1 }}
-        // value={appState.svgRiser.width}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
-        {TShapeWidths.map((value, index) => (
+        {widthLoopArray.map((value, index) => (
           <MenuItem
-            onClick={() => dispatch(setWidth(index * 50 + 300))}
+            onClick={() => {
+              setSelectedValue(value);
+            }}
             key={index}
             value={value.toString()}
           >
-            {index === 0 ? null : <> {index * 50 + 300} mm</>}
+            {value}
+            {/* {index === 0 ? null : <> {index * 50 + 300} mm</>} */}
           </MenuItem>
         ))}
       </Select>
-
       {/* Turns -> Left & Right  */}
 
       <Appheading sx={{ mt: 2 }}>Straight EasyStairs - Add a turn</Appheading>
@@ -279,22 +322,24 @@ const StairsLayout = ({ setAppState, appState }) => {
         </Div>
       </Paper>
 
-      {/* Width (Run 2)*/}
+      {/* Wind run 2 */}
 
       <Appheading sx={{ mt: 1 }}>Width (Run 2)</Appheading>
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        // value={appState.svgRiser.width}
+        value={selectedValue ? selectedValue : widthLoopArray[53]}
         onChange={(e) => handleWidthChange2(parseFloat(e.target.value))}
       >
-        {TShapeWidths.map((value, index) => (
+        {widthLoopArray.map((value, index) => (
           <MenuItem
-            onClick={() => dispatch(setRightArrow(index * 50 + 300))}
+            onClick={() => {
+              setSelectedValue(value);
+            }}
             key={index}
             value={value.toString()}
           >
-            {index === 0 ? null : <> {index * 50 + 300} mm</>}
+            {value}
           </MenuItem>
         ))}
       </Select>

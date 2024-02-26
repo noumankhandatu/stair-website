@@ -22,6 +22,7 @@ import {
   RIGHT_D_STEP,
 } from "../../utils/enum";
 import { leftFeatureStep, rightFeatureStep } from "../../toolkit/slices/featureSteps";
+import { selectDivisble } from "../../toolkit/slices/singleFeatures";
 
 const TShape = () => {
   const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
@@ -29,26 +30,27 @@ const TShape = () => {
   const rightArrow = useSelector((state) => state?.stairHeightWidthSlice?.rightArrow);
   const reduxLeftStep = useSelector(leftFeatureStep);
   const reduxRightStep = useSelector(rightFeatureStep);
+  const reduxSelectDivisble = useSelector(selectDivisble);
 
   // states
   const [appState, setAppState] = useState({
     svgRiser: {
       color: "mdf",
-      allRisers: [220],
-      positionsBottom: [220, 440],
-      positionsLeft: [220, 440],
-      positionsRight: [220, 440],
-      translateY: 485,
-      translateX: 540,
-      height: 0.18497349154253975,
-      width: -0.18497349154253975,
+      allRisers: [220, 440, 660, 880, 1100, 1320],
+      positionsLeft: [220, 440, 660, 880, 1100, 1320, 1540],
+      positionsRight: [220, 440, 660, 880, 1100, 1320, 1540],
+      positionsBottom: [220, 440, 660, 880],
 
+      translateY: 385,
+      translateX: 540,
+      height: 0.15,
+      width: -0.15,
       ceilingHeight: 236,
     },
     handRails: {
       color: "mdf",
-      borderLeft: 270,
-      borderBottom: 0,
+      borderLeft: 1670,
+      borderBottom: 1000,
     },
   });
   // fns
@@ -87,7 +89,7 @@ const TShape = () => {
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={9}>
           <div>
-            <svg width={1200} height={"100vh"}>
+            <svg width={"100wh"} height={"100vh"}>
               <defs>
                 {patternsData.map((pattern) => (
                   <pattern
@@ -547,6 +549,8 @@ const TShape = () => {
                   {/* left */}
                   <g transform="translate(-218.5 1004.5)  rotate(90)">
                     {appState.svgRiser.positionsLeft.map((items, index) => {
+                      const isLastIndex = index === appState.svgRiser.positionsLeft.length - 1;
+
                       return (
                         <g key={index} transform={`translate(-140 ${items})  rotate(0)`}>
                           <rect
@@ -573,6 +577,32 @@ const TShape = () => {
                             {appState.svgRiser.positionsBottom.length > 0 &&
                               index + appState.svgRiser.positionsBottom.length + 2}
                           </text>
+                          {isLastIndex && reduxSelectDivisble && (
+                            <g transform="translate(10.5 241)  rotate(0)">
+                              <rect
+                                x={0}
+                                y={-16}
+                                width={842}
+                                height={86}
+                                fill={`url(#${appState.svgRiser.color})`}
+                                style={{ stroke: "black", strokeWidth: 2 }}
+                                id="nosing_tread"
+                                className=""
+                              />{" "}
+                              <text
+                                x="408"
+                                y={-55}
+                                style={{
+                                  fontSize: 55,
+                                  fontFamily: "Arial, Helvetica, sans-serif",
+                                  color: "black",
+                                }}
+                                transform="translate (0,0) rotate(180) scale(-1,1)"
+                              >
+                                #{index + 7}
+                              </text>
+                            </g>
+                          )}
                         </g>
                       );
                     })}
@@ -592,6 +622,8 @@ const TShape = () => {
                   {/* right */}
                   <g transform="translate(218.5 1304.5)  rotate(-90)">
                     {appState.svgRiser.positionsRight.map((items, index) => {
+                      const isLastIndex = index === appState.svgRiser.positionsRight.length - 1;
+
                       return (
                         <g key={index} transform={`translate(-420 ${items})  rotate(0)`}>
                           <rect
@@ -629,6 +661,32 @@ const TShape = () => {
                             {appState.svgRiser.positionsBottom.length > 0 &&
                               index + appState.svgRiser.positionsBottom.length + 2}
                           </text>
+                          {isLastIndex && reduxSelectDivisble && (
+                            <g transform="translate(10.5 241)  rotate(0)">
+                              <rect
+                                x={0}
+                                y={-16}
+                                width={842}
+                                height={86}
+                                fill={`url(#${appState.svgRiser.color})`}
+                                style={{ stroke: "black", strokeWidth: 2 }}
+                                id="nosing_tread"
+                                className=""
+                              />{" "}
+                              <text
+                                x="408"
+                                y={-55}
+                                style={{
+                                  fontSize: 55,
+                                  fontFamily: "Arial, Helvetica, sans-serif",
+                                  color: "black",
+                                }}
+                                transform="translate (0,0) rotate(180) scale(-1,1)"
+                              >
+                                #{index + 7}
+                              </text>
+                            </g>
+                          )}
                         </g>
                       );
                     })}
