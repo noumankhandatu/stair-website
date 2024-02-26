@@ -10,7 +10,7 @@ import {
   setBottomArrow,
 } from "../../../../../toolkit/slices/stairHeightWidth";
 import { setShape } from "../../../../../toolkit/slices/shapes";
-import { ThrreWidnerFirstRight, ceilingArray } from "../../../../../utils/data";
+import { ceilingArray } from "../../../../../utils/data";
 import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
@@ -29,34 +29,45 @@ import { useState } from "react";
 const heightLoopArray = [];
 let updatedPositions = [];
 
-for (let i = 220; i <= 1700; i += 220) {
+const widthLoopArray = [];
+// for height loop
+for (let i = 220; i <= 2000; i += 20) {
   heightLoopArray.push(i);
 }
-
+// for width loop
+for (let i = 600; i <= 1000; i += 15) {
+  widthLoopArray.push(i);
+}
+console.log(widthLoopArray, "widthLoopArray");
 const StairLayout = ({ setAppState, appState }) => {
   // states
-  const [selectedValue, setSelectedValue] = useState(ThrreWidnerFirstRight[6]);
+  const [selectedValue, setSelectedValue] = useState(null);
   // hooks
   const dispatch = useDispatch();
   // width changer
   const handleWidthChange = (newValue) => {
+    let x = newValue;
+    x = x / 2941.45870644;
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        width: newValue,
+        width: -x,
       },
     }));
+    dispatch(setBottomArrow(newValue));
   };
   const handleWidthChange2 = (newValue) => {
-    const positiveValue = Math.abs(newValue);
+    let x = newValue;
+    x = x / 2941.45870644;
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        height: positiveValue - 0.0140416047548291,
+        height: x,
       },
     }));
+    dispatch(setRightArrow(newValue));
   };
   // ceiling height changer
   const handleCelingsHeight = (newHeight) => {
@@ -71,10 +82,12 @@ const StairLayout = ({ setAppState, appState }) => {
   //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
+    const roundedPosition = Math.round(selectedPosition / 220) * 220;
+
     if (selectedPosition !== "") {
-      updatedPositions = heightLoopArray.filter((pos) => pos <= selectedPosition);
+      updatedPositions = heightLoopArray.filter((pos) => pos % 220 === 0 && pos <= roundedPosition);
     }
-    if (selectedPosition >= 1 && selectedPosition < 1600) {
+    if (selectedPosition >= 1 && selectedPosition <= 2000) {
       setAppState((prevState) => ({
         ...prevState,
         svgRiser: {
@@ -181,7 +194,9 @@ const StairLayout = ({ setAppState, appState }) => {
         ))}
       </Select>
       <CeilingHeight />
+
       {/* Number of Rises */}
+
       <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
       <Select
         defaultValue={appState?.svgRiser?.positions[appState?.svgRiser?.positions.length - 1]}
@@ -218,26 +233,28 @@ const StairLayout = ({ setAppState, appState }) => {
           {appState.svgRiser.positions[appState.svgRiser.positions?.length - 1] + 400} mm
         </MenuItem>
       </Select>
+      {/* Wind Run 1 */}
       <Appheading sx={{ mt: 1 }}>Width (Run 1)</Appheading>
       <Select
         fullWidth
-        defaultValue={ThrreWidnerFirstRight[2]}
+        defaultValue={widthLoopArray[0]}
         sx={{ height: 40, mt: 1 }}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
-        {ThrreWidnerFirstRight.map((value, index) => (
+        {widthLoopArray.map((value, index) => (
           <MenuItem
             onClick={() => {
-              dispatch(setBottomArrow(index * 50 + 300));
               setSelectedValue(value);
             }}
             key={index}
             value={value.toString()}
           >
-            {index === 0 ? null : <> {index * 50 + 300} mm</>}
+            {value}
+            {/* {index === 0 ? null : <> {index * 50 + 300} mm</>} */}
           </MenuItem>
         ))}
       </Select>
+      {/* Wind run 2 */}
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
           <Appheading>Turn 1 (Right)</Appheading>
@@ -267,23 +284,24 @@ const StairLayout = ({ setAppState, appState }) => {
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        value={selectedValue}
+        value={selectedValue ? selectedValue : widthLoopArray[11]}
         onChange={(e) => handleWidthChange2(parseFloat(e.target.value))}
       >
-        {ThrreWidnerFirstRight.map((value, index) => (
+        {widthLoopArray.map((value, index) => (
           <MenuItem
             onClick={() => {
-              dispatch(setRightArrow(index * 50 + 300));
               setSelectedValue(value);
             }}
             key={index}
             value={value.toString()}
           >
-            {index === 0 ? null : <> {index * 50 + 300} mm</>}
+            {value}
           </MenuItem>
         ))}
       </Select>
+
       {/* Turns -> Second Left & Right  */}
+
       <TurningArrowCard handleLeft={handleLeft} handletRight={handleRight} />
       <FeatureSteps />
     </div>

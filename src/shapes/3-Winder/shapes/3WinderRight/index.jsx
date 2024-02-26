@@ -932,9 +932,9 @@ const ThreeWinderRight = () => {
                 </g>
                 <line
                   x1={500}
-                  y1={-1916}
+                  y1={-2516}
                   x2={-400}
-                  y2={-1916}
+                  y2={-2516}
                   stroke="black"
                   strokeWidth={3}
                   markerEnd="url(#endarrow)"
@@ -943,7 +943,7 @@ const ThreeWinderRight = () => {
                 />
                 <text
                   x={-10}
-                  y={1940}
+                  y={2516}
                   style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
                   transform="translate (0,0) rotate(180) scale(-1,1)"
                   className=""

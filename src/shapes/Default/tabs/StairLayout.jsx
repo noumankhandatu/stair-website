@@ -123,7 +123,7 @@ const StairLayout = ({ setAppState, appState }) => {
 
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
       <Select
-        defaultValue={heightLoopArray[5]}
+        defaultValue={heightLoopArray[55]}
         fullWidth
         sx={{ height: 40, mt: 1 }}
         onChange={handlePositionChange}
@@ -144,16 +144,16 @@ const StairLayout = ({ setAppState, appState }) => {
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        defaultValue={stairWidth[4]} // Use the actual value from the array for default
+        defaultValue={stairWidth[15]} 
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
         {stairWidth.map((value, index) => (
           <MenuItem
-            onClick={() => dispatch(setWidth(index * 20 + 280))} // Use the actual value from the array
+            onClick={() => dispatch(setWidth(index * 20 + 280))} 
             key={index}
-            value={value.toString()} // Use the actual value from the array
+            value={value.toString()}
           >
-            {index === 0 ? null : <> {index * 20 + 280} mm</>} {/* Calculate desired values */}
+            {index === 0 ? null : <> {index * 20 + 280} mm</>}
           </MenuItem>
         ))}
       </Select>
@@ -176,6 +176,7 @@ const StairLayout = ({ setAppState, appState }) => {
         ))}
       </Select>
       <CeilingHeight />
+
       {/* Number of Rises */}
       <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
       <Select
@@ -210,6 +211,7 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
 
       {/* Turns -> Left & Right  */}
+      
       <TurningArrowCard handleLeft={handleLeft} handletRight={handletRight} />
       <FeatureSteps />
     </div>
