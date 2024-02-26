@@ -3,16 +3,19 @@ import MenuItem from "@mui/material/MenuItem";
 import { Appheading } from "../../theme";
 
 const CeilingHeight = () => {
-  const ceilingArray = Array.from({ length: Math.ceil(2240 / 220) }, (_, i) => (i + 1) * 220);
+  const options = [];
+  for (let i = 2000; i <= 3000; i++) {
+    options.push(i);
+  }
 
   return (
     <div>
       <Appheading sx={{ mt: 1 }}>Ceiling Height</Appheading>
-      <Select defaultValue={ceilingArray[0]} fullWidth sx={{ height: 40, mt: 1 }}>
+      <Select defaultValue={options[350]} fullWidth sx={{ height: 40, mt: 1 }}>
         <MenuItem value="" disabled>
-          Select a position
+          Select a height
         </MenuItem>
-        {ceilingArray.map((option, index) => (
+        {options.map((option, index) => (
           <MenuItem key={index} value={option}>
             {option} mm
           </MenuItem>
