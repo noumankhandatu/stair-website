@@ -23,7 +23,7 @@ import CeilingHeight from "../../../components/molecules/CeliningHeight";
 const positionOptions = [];
 let updatedPositions = [];
 
-for (let i = 220; i <= 4000; i += 5) {
+for (let i = 220; i <= 3000; i += 5) {
   positionOptions.push(i);
 }
 const widthLoopArray = [];
@@ -210,7 +210,7 @@ const StairsLayout = ({ setAppState, appState }) => {
         </MenuItem>
         {positionOptions.map((option, index) => (
           <MenuItem onClick={() => dispatch(setHeight(option + 79))} key={index} value={option}>
-            {option + 79} mm
+            {option} mm
           </MenuItem>
         ))}
       </Select>
@@ -275,7 +275,7 @@ const StairsLayout = ({ setAppState, appState }) => {
       <Appheading sx={{ mt: 1 }}>Width (Run 1)</Appheading>
       <Select
         fullWidth
-        defaultValue={widthLoopArray[53]}
+        defaultValue={widthLoopArray[widthLoopArray.length - 1]}
         sx={{ height: 40, mt: 1 }}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
@@ -288,7 +288,6 @@ const StairsLayout = ({ setAppState, appState }) => {
             value={value.toString()}
           >
             {value}
-            {/* {index === 0 ? null : <> {index * 50 + 300} mm</>} */}
           </MenuItem>
         ))}
       </Select>
@@ -328,7 +327,7 @@ const StairsLayout = ({ setAppState, appState }) => {
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        value={selectedValue ? selectedValue : widthLoopArray[53]}
+        value={selectedValue ? selectedValue : widthLoopArray[40]}
         onChange={(e) => handleWidthChange2(parseFloat(e.target.value))}
       >
         {widthLoopArray.map((value, index) => (

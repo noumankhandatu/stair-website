@@ -43,8 +43,8 @@ const TShape = () => {
 
       translateY: 385,
       translateX: 540,
-      height: 0.15,
-      width: -0.15,
+      height: 0.13,
+      width: -0.13,
       ceilingHeight: 236,
     },
     handRails: {
