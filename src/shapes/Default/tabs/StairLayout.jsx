@@ -122,7 +122,7 @@ const StairLayout = ({ setAppState, appState }) => {
         },
       }));
     }
-    if (selectedPosition > 2940 && selectedPosition < 4000) {
+    if (selectedPosition > 2940 && selectedPosition <= 4000) {
       setAppState((prevState) => ({
         ...prevState,
         svgRiser: {

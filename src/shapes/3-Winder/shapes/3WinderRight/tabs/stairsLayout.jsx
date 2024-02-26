@@ -31,20 +31,21 @@ import {
   setLeftFeatureStep,
   setRightFeatureStep,
 } from "../../../../../toolkit/slices/featureSteps";
+import { setIsDivisible } from "../../../../../toolkit/slices/singleFeatures";
 
 const heightLoopArray = [];
 let updatedPositions = [];
 
-const widthLoopArray = [];
-// for height loop
-for (let i = 220; i <= 2000; i += 20) {
+for (let i = 220; i <= 4000; i += 5) {
   heightLoopArray.push(i);
 }
-// for width loop
-for (let i = 600; i <= 1000; i += 15) {
+
+const widthLoopArray = [];
+
+for (let i = 600; i <= 1000; i += 5) {
   widthLoopArray.push(i);
 }
-console.log(widthLoopArray, "widthLoopArray");
+
 const StairLayout = ({ setAppState, appState }) => {
   // states
   const [selectedValue, setSelectedValue] = useState(null);
@@ -53,7 +54,7 @@ const StairLayout = ({ setAppState, appState }) => {
   // width changer
   const handleWidthChange = (newValue) => {
     let x = newValue;
-    x = x / 2941.45870644;
+    x = x / 5041.45870644;
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
@@ -65,7 +66,7 @@ const StairLayout = ({ setAppState, appState }) => {
   };
   const handleWidthChange2 = (newValue) => {
     let x = newValue;
-    x = x / 2941.45870644;
+    x = x / 5041.45870644;
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
@@ -88,12 +89,17 @@ const StairLayout = ({ setAppState, appState }) => {
   //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
+    if (selectedPosition % 220 !== 0) {
+      dispatch(setIsDivisible(true));
+    } else {
+      dispatch(setIsDivisible(false));
+    }
     const roundedPosition = Math.round(selectedPosition / 220) * 220;
 
     if (selectedPosition !== "") {
       updatedPositions = heightLoopArray.filter((pos) => pos % 220 === 0 && pos <= roundedPosition);
     }
-    if (selectedPosition >= 1 && selectedPosition <= 2000) {
+    if (selectedPosition >= 1 && selectedPosition <= 4000) {
       setAppState((prevState) => ({
         ...prevState,
         svgRiser: {
@@ -101,8 +107,8 @@ const StairLayout = ({ setAppState, appState }) => {
           positions: updatedPositions,
           rightRisers: updatedPositions,
 
-          height: 0.1940416047548291,
-          width: -0.180416047548291,
+          height: 0.15,
+          width: -0.15,
           translateY: 289,
         },
         handRails: {
@@ -173,7 +179,7 @@ const StairLayout = ({ setAppState, appState }) => {
 
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
       <Select
-        defaultValue={heightLoopArray[0]}
+        defaultValue={heightLoopArray[216]}
         fullWidth
         sx={{ height: 40, mt: 1 }}
         onChange={handlePositionChange}
@@ -249,7 +255,7 @@ const StairLayout = ({ setAppState, appState }) => {
       <Appheading sx={{ mt: 1 }}>Width (Run 1)</Appheading>
       <Select
         fullWidth
-        defaultValue={widthLoopArray[0]}
+        defaultValue={widthLoopArray[53]}
         sx={{ height: 40, mt: 1 }}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
@@ -266,7 +272,6 @@ const StairLayout = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
-      {/* Wind run 2 */}
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
           <Appheading>Turn 1 (Right)</Appheading>
@@ -292,11 +297,13 @@ const StairLayout = ({ setAppState, appState }) => {
           </Select>
         </Div>
       </Paper>
+      {/* Wind run 2 */}
+
       <Appheading sx={{ mt: 1 }}>Width (Run 2)</Appheading>
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
-        value={selectedValue ? selectedValue : widthLoopArray[11]}
+        value={selectedValue ? selectedValue : widthLoopArray[53]}
         onChange={(e) => handleWidthChange2(parseFloat(e.target.value))}
       >
         {widthLoopArray.map((value, index) => (
