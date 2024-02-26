@@ -23,7 +23,7 @@ import {
   RIGHT_D_STEP,
   NONE_STEP_LEFT,
 } from "../../../../utils/enum";
-
+import { selectDivisble } from "../../../../toolkit/slices/singleFeatures";
 const ThreeWinderLeft = () => {
   // states
 
@@ -32,7 +32,7 @@ const ThreeWinderLeft = () => {
   const WindRun2Redux = useSelector(WindRun2);
   const reduxLeftStep = useSelector(leftFeatureStep);
   const reduxRightStep = useSelector(rightFeatureStep);
-
+  const reduxSelectDivisble = useSelector(selectDivisble);
   const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const [appState, setAppState] = useState({
@@ -42,22 +42,22 @@ const ThreeWinderLeft = () => {
     },
     svgRiser: {
       color: "mdf",
-      positions: [220],
-      rightRisers: [220],
-      bottomRisers: [],
-      width: -0.2040416047548291,
-      height: 0.2540416047548291,
-      translateX: 658,
-      translateY: 389,
+      positions: [220, 440, 660, 880, 1100],
+      rightRisers: [220, 440, 660, 880, 1100],
+      bottomRisers: [220, 440, 660, 880],
+      width: -0.18,
+      height: 0.18,
+      translateX: 730,
+      translateY: 289,
       rotation: 180,
       ceilingHeight: 236,
     },
     handRails: {
       color: "mdf",
-      borderLeft: 270,
+      borderLeft: 1300,
       borderRight: "",
       borderTop: "",
-      borderBottom: 0,
+      borderBottom: 1000,
     },
   });
   // fns
@@ -712,49 +712,75 @@ const ThreeWinderLeft = () => {
                 </g>
                 {/* right side */}
                 <g transform="translate(-290 510)  rotate(90)">
-                  <g>
-                    {appState.svgRiser.rightRisers.map((items, index) => {
-                      return (
-                        <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
-                          <rect
-                            x={0}
-                            y={-16}
-                            width={962}
-                            height={appState.svgRiser.ceilingHeight}
-                            fill={`url(#${appState.svgRiser.color})`}
-                            style={{ stroke: "black", strokeWidth: 2 }}
-                            id="run1_tread1"
-                            className=""
-                          />
+                  {appState.svgRiser.rightRisers.map((items, index) => {
+                    const isLastIndex = index === appState.svgRiser.positions.length - 1;
+                    return (
+                      <g key={index} transform={`translate(-481 ${items})  rotate(0)`}>
+                        <rect
+                          x={0}
+                          y={-16}
+                          width={962}
+                          height={appState.svgRiser.ceilingHeight}
+                          fill={`url(#${appState.svgRiser.color})`}
+                          style={{ stroke: "black", strokeWidth: 2 }}
+                          id="run1_tread1"
+                          className=""
+                        />
 
-                          <rect
-                            x={0}
-                            y={0}
-                            width={962}
-                            height={10}
-                            fill={`url(#${appState.svgRiser.color})`}
-                            style={{ stroke: "black", strokeWidth: 1 }}
-                            id="run1_tread1"
-                            className=""
-                          />
-                          <text
-                            x={456}
-                            y={-130}
-                            style={{
-                              fontSize: 55,
-                              fontFamily: "Arial, Helvetica, sans-serif",
-                              color: "black",
-                            }}
-                            transform="translate (0,0) rotate(180) scale(-1,1)"
-                          >
-                            # {appState.svgRiser.bottomRisers.length === 0 && index + 4}
-                            {appState.svgRiser.bottomRisers.length > 0 &&
-                              index + appState.svgRiser.bottomRisers.length + 4}
-                          </text>
-                        </g>
-                      );
-                    })}
-                  </g>
+                        <rect
+                          x={0}
+                          y={0}
+                          width={962}
+                          height={10}
+                          fill={`url(#${appState.svgRiser.color})`}
+                          style={{ stroke: "black", strokeWidth: 1 }}
+                          id="run1_tread1"
+                          className=""
+                        />
+                        <text
+                          x={456}
+                          y={-130}
+                          style={{
+                            fontSize: 55,
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                            color: "black",
+                          }}
+                          transform="translate (0,0) rotate(180) scale(-1,1)"
+                        >
+                          # {appState.svgRiser.bottomRisers.length === 0 && index + 4}
+                          {appState.svgRiser.bottomRisers.length > 0 &&
+                            index + appState.svgRiser.bottomRisers.length + 4}
+                        </text>
+                        {/* half layer */}
+                        {isLastIndex && reduxSelectDivisble && (
+                          <g transform="translate(10.5 241)  rotate(0)">
+                            <rect
+                              x={0}
+                              y={-16}
+                              width={942}
+                              height={86}
+                              fill={`url(#${appState.svgRiser.color})`}
+                              style={{ stroke: "black", strokeWidth: 2 }}
+                              id="nosing_tread"
+                              className=""
+                            />{" "}
+                            <text
+                              x="458"
+                              y={-55}
+                              style={{
+                                fontSize: 55,
+                                fontFamily: "Arial, Helvetica, sans-serif",
+                                color: "black",
+                              }}
+                              transform="translate (0,0) rotate(180) scale(-1,1)"
+                            >
+                              #{index + 9}
+                            </text>
+                          </g>
+                        )}
+                      </g>
+                    );
+                  })}
                 </g>
               </g>
               {/* pencil borders */}
