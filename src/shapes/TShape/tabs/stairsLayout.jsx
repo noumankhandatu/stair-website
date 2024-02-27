@@ -31,6 +31,12 @@ const widthLoopArray = [];
 for (let i = 600; i <= 1000; i += 5) {
   widthLoopArray.push(i);
 }
+
+const indiviualGoingArray = [];
+for (let i = 222; i <= 280; i++) {
+  indiviualGoingArray.push(i);
+}
+
 const StairsLayout = ({ setAppState, appState }) => {
   const reduxShapeName = useSelector((state) => state?.ShapeSlice?.shape);
   const [selectedValue, setSelectedValue] = useState(null);
@@ -150,12 +156,32 @@ const StairsLayout = ({ setAppState, appState }) => {
     // }));
   };
 
-  const handleCelingsHeight = (newHeight) => {
+  const handleCeilingsHeight = (newHeight) => {
+    const updatedPositionsRightLeft = Array.from(
+      { length: appState.svgRiser.positionsRight.length },
+      (_, index) => newHeight + index * newHeight
+    );
+    const updatedPositionsBottom = Array.from(
+      { length: appState.svgRiser.positionsBottom.length },
+      (_, index) => newHeight + index * newHeight
+    );
+    const postionAllRisers = Array.from(
+      { length: appState.svgRiser.allRisers.length },
+      (_, index) => newHeight + index * newHeight
+    );
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        ceilingHeight: newHeight,
+        positionsLeft: updatedPositionsRightLeft,
+        positionsRight: updatedPositionsRightLeft,
+        positionsBottom: updatedPositionsBottom,
+        allRisers: postionAllRisers,
+      },
+      handRails: {
+        ...prevState.handRails,
+        borderBottom: newHeight * 4.5,
+        borderLeft: newHeight * 13.5,
       },
     }));
   };
@@ -218,13 +244,13 @@ const StairsLayout = ({ setAppState, appState }) => {
       {/* Individual Going */}
 
       <Appheading sx={{ mt: 1 }}>Individual Going</Appheading>
-      <Select defaultValue={ceilingArray[15]} fullWidth sx={{ height: 40, mt: 1 }}>
+      <Select defaultValue={indiviualGoingArray[0]} fullWidth sx={{ height: 40, mt: 1 }}>
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
-        {ceilingArray.map((option, index) => (
+        {indiviualGoingArray.map((option, index) => (
           <MenuItem
-            onClick={() => handleCelingsHeight(parseFloat(option))}
+            onClick={() => handleCeilingsHeight(parseFloat(option))}
             key={index}
             value={option}
           >

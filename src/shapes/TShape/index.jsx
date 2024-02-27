@@ -128,7 +128,7 @@ const TShape = () => {
               >
                 <g>
                   {/* bottom  */}
-                  <g transform={`translate(0 1082)  rotate(180)`}>
+                  <g transform={`translate(0 1130)  rotate(180)`}>
                     {appState.svgRiser.positionsBottom.map((items, index) => {
                       const reversedIndex = appState.svgRiser.positionsBottom.length - index - 1;
                       return (
@@ -137,7 +137,7 @@ const TShape = () => {
                             x={0}
                             y={-16}
                             width={852}
-                            height={appState.svgRiser.ceilingHeight}
+                            height={290}
                             fill={`url(#${appState.svgRiser.color})`}
                             style={{ stroke: "black", strokeWidth: 2 }}
                             id="run1_tread1"
@@ -519,7 +519,7 @@ const TShape = () => {
                         points="418.5,-16,-418.5,-16,-418.5,-2.5,-416.5,-2.5,-416.5,835,416.5,835,416.5,-2.5,418.5,-2.5"
                         stroke="black"
                         strokeWidth={2}
-                        height={appState.svgRiser.ceilingHeight}
+                        height={290}
                         fill={`url(#${appState.svgRiser.color})`}
                       />
 
@@ -547,7 +547,7 @@ const TShape = () => {
                     <g transform="translate(419 -2.5)  rotate(0)" />
                   </g>
                   {/* left */}
-                  <g transform="translate(-218.5 1004.5)  rotate(90)">
+                  <g transform="translate(-118.5 1004.5)  rotate(90)">
                     {appState.svgRiser.positionsLeft.map((items, index) => {
                       const isLastIndex = index === appState.svgRiser.positionsLeft.length - 1;
 
@@ -557,7 +557,7 @@ const TShape = () => {
                             x={0}
                             y={-18}
                             width={862}
-                            height={appState.svgRiser.ceilingHeight}
+                            height={290}
                             fill={`url(#${appState.svgRiser.color})`}
                             style={{ stroke: "black", strokeWidth: 2 }}
                             id="run1_tread1"
@@ -620,7 +620,7 @@ const TShape = () => {
                     </text>
                   </g>
                   {/* right */}
-                  <g transform="translate(218.5 1304.5)  rotate(-90)">
+                  <g transform="translate(160 1304.5)  rotate(-90)">
                     {appState.svgRiser.positionsRight.map((items, index) => {
                       const isLastIndex = index === appState.svgRiser.positionsRight.length - 1;
 
@@ -630,7 +630,7 @@ const TShape = () => {
                             x={0}
                             y={-16}
                             width={842}
-                            height={appState.svgRiser.ceilingHeight}
+                            height={290}
                             fill={`url(#${appState.svgRiser.color})`}
                             style={{ stroke: "black", strokeWidth: 2 }}
                             id="run1_tread1"

@@ -84,28 +84,24 @@ const StairLayout = ({ setAppState, appState }) => {
       { length: appState.svgRiser.positions.length },
       (_, index) => newHeight + index * newHeight
     );
+    const bottomCeling = Array.from(
+      { length: appState.svgRiser.bottomRisers.length },
+      (_, index) => newHeight + index * newHeight
+    );
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
         positions: updatedPositions,
         rightRisers: updatedPositions,
-        bottomRisers: updatedPositions,
+        bottomRisers: bottomCeling,
       },
       handRails: {
         ...prevState.handRails,
-        borderBottom: newHeight * 5.5,
-        borderLeft: newHeight * 5.5,
+        borderBottom: newHeight * 4.5,
+        borderLeft: newHeight * 12,
       },
     }));
-    if (newHeight > 250) {
-      setAppState((prevState) => ({
-        ...prevState,
-        svgRiser: {
-          ...prevState.svgRiser,
-        },
-      }));
-    }
   };
   //height and risers changer
   const handlePositionChange = (event) => {
