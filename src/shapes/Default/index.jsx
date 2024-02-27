@@ -42,7 +42,6 @@ const DefaultShape = () => {
       width: -0.25,
       height: 0.25,
       rotation: 180,
-      ceilingHeight: 236,
     },
     leftRightPencilBorder: {
       height: 2950,
@@ -150,7 +149,7 @@ const DefaultShape = () => {
                         x={0}
                         y={106}
                         width={862}
-                        height={appState.svgRiser.ceilingHeight}
+                        height={296}
                         fill={`url(#${appState.svgRiser.color})`}
                         style={{ stroke: "black", strokeWidth: 2 }}
                         id="run1_tread1"

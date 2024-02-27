@@ -4,7 +4,6 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
 import { setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
-import { ceilingArray } from "../../../utils/data/index";
 import { setShape } from "../../../toolkit/slices/shapes";
 import {
   NONE_STEP_LEFT,
@@ -22,7 +21,7 @@ import { setIsDivisible } from "../../../toolkit/slices/singleFeatures";
 const heightLoopArray = [];
 let updatedPositions = [];
 
-for (let i = 220; i <= 4000; i += 5) {
+for (let i = 300; i <= 4000; i += 5) {
   heightLoopArray.push(i);
 }
 
@@ -30,6 +29,11 @@ const widthLoopArray = [];
 
 for (let i = 600; i <= 1000; i += 5) {
   widthLoopArray.push(i);
+}
+
+const indiviualGoingArray = [];
+for (let i = 222; i <= 280; i++) {
+  indiviualGoingArray.push(i);
 }
 
 // eslint-disable-next-line react/prop-types
@@ -50,17 +54,34 @@ const StairLayout = ({ setAppState, appState }) => {
 
     dispatch(setWidth(newValue));
   };
-  // ceiling height changer
-  const handleCelingsHeight = (newHeight) => {
+
+  const handleCeilingsHeight = (newHeight) => {
+    const updatedPositions = Array.from(
+      { length: appState.svgRiser.positions.length },
+      (_, index) => newHeight + index * newHeight
+    );
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        ceilingHeight: newHeight,
+        positions: updatedPositions,
+        height: 0.25,
+      },
+      leftRightPencilBorder: {
+        ...prevState.leftRightPencilBorder,
+        height: newHeight * 13.2,
       },
     }));
+    if (newHeight > 250) {
+      setAppState((prevState) => ({
+        ...prevState,
+        svgRiser: {
+          ...prevState.svgRiser,
+          height: 0.2,
+        },
+      }));
+    }
   };
-
   //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
@@ -145,7 +166,6 @@ const StairLayout = ({ setAppState, appState }) => {
       },
     }));
   };
-
   // Turning Function Started
   const handleLeft = () => {
     dispatch(setShape(THREE_WINDER));
@@ -199,13 +219,13 @@ const StairLayout = ({ setAppState, appState }) => {
       {/* Individual Going */}
 
       <Appheading sx={{ mt: 1 }}>Individual Going</Appheading>
-      <Select defaultValue={ceilingArray[15]} fullWidth sx={{ height: 40, mt: 1 }}>
+      <Select defaultValue={indiviualGoingArray[0]} fullWidth sx={{ height: 40, mt: 1 }}>
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
-        {ceilingArray.map((option, index) => (
+        {indiviualGoingArray.map((option, index) => (
           <MenuItem
-            onClick={() => handleCelingsHeight(parseFloat(option))}
+            onClick={() => handleCeilingsHeight(parseFloat(option))}
             key={index}
             value={option}
           >

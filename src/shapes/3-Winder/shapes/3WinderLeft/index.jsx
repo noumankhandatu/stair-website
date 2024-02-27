@@ -284,7 +284,7 @@ const ThreeWinderLeft = () => {
             >
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
-                <g transform="translate(0 -0)  rotate(180)">
+                <g transform="translate(0 40)  rotate(180)">
                   {/* bottom */}
                   {appState.svgRiser.bottomRisers.map((items, index) => {
                     const reversedIndex = appState.svgRiser.bottomRisers.length - index - 1;
@@ -294,7 +294,7 @@ const ThreeWinderLeft = () => {
                           x={0}
                           y={-216}
                           width={962}
-                          height={appState.svgRiser.ceilingHeight}
+                          height={290}
                           fill={`url(#${appState.svgRiser.color})`}
                           style={{ stroke: "black", strokeWidth: 2 }}
                           id="run1_tread1"
@@ -711,7 +711,7 @@ const ThreeWinderLeft = () => {
                   </g>
                 </g>
                 {/* right side */}
-                <g transform="translate(-290 510)  rotate(90)">
+                <g transform="translate(-235 510)  rotate(90)">
                   {appState.svgRiser.rightRisers.map((items, index) => {
                     const isLastIndex = index === appState.svgRiser.positions.length - 1;
                     return (
@@ -720,7 +720,7 @@ const ThreeWinderLeft = () => {
                           x={0}
                           y={-16}
                           width={962}
-                          height={appState.svgRiser.ceilingHeight}
+                          height={290}
                           fill={`url(#${appState.svgRiser.color})`}
                           style={{ stroke: "black", strokeWidth: 2 }}
                           id="run1_tread1"

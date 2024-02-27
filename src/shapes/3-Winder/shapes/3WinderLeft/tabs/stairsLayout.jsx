@@ -10,7 +10,6 @@ import {
   setBottomArrow,
 } from "../../../../../toolkit/slices/stairHeightWidth";
 import { setShape } from "../../../../../toolkit/slices/shapes";
-import { ceilingArray } from "../../../../../utils/data";
 import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
@@ -36,7 +35,7 @@ import { setIsDivisible } from "../../../../../toolkit/slices/singleFeatures";
 const heightLoopArray = [];
 let updatedPositions = [];
 
-for (let i = 220; i <= 4000; i += 5) {
+for (let i = 200; i <= 4000; i += 5) {
   heightLoopArray.push(i);
 }
 
@@ -45,7 +44,10 @@ const widthLoopArray = [];
 for (let i = 600; i <= 1000; i += 5) {
   widthLoopArray.push(i);
 }
-
+const indiviualGoingArray = [];
+for (let i = 222; i <= 280; i++) {
+  indiviualGoingArray.push(i);
+}
 const StairLayout = ({ setAppState, appState }) => {
   // states
   const [selectedValue, setSelectedValue] = useState(null);
@@ -77,14 +79,33 @@ const StairLayout = ({ setAppState, appState }) => {
     dispatch(setRightArrow(newValue));
   };
   // ceiling height changer
-  const handleCelingsHeight = (newHeight) => {
+  const handleCeilingsHeight = (newHeight) => {
+    const updatedPositions = Array.from(
+      { length: appState.svgRiser.positions.length },
+      (_, index) => newHeight + index * newHeight
+    );
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        ceilingHeight: newHeight,
+        positions: updatedPositions,
+        rightRisers: updatedPositions,
+        bottomRisers: updatedPositions,
+      },
+      handRails: {
+        ...prevState.handRails,
+        borderBottom: newHeight * 5.5,
+        borderLeft: newHeight * 5.5,
       },
     }));
+    if (newHeight > 250) {
+      setAppState((prevState) => ({
+        ...prevState,
+        svgRiser: {
+          ...prevState.svgRiser,
+        },
+      }));
+    }
   };
   //height and risers changer
   const handlePositionChange = (event) => {
@@ -107,8 +128,8 @@ const StairLayout = ({ setAppState, appState }) => {
           positions: updatedPositions,
           rightRisers: updatedPositions,
 
-          height: 0.13,
-          width: -0.13,
+          height: 0.15,
+          width: -0.15,
           translateY: 289,
         },
         handRails: {
@@ -195,15 +216,14 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
 
       {/* Individual Going */}
-
       <Appheading sx={{ mt: 1 }}>Individual Going</Appheading>
-      <Select defaultValue={ceilingArray[15]} fullWidth sx={{ height: 40, mt: 1 }}>
+      <Select defaultValue={indiviualGoingArray[0]} fullWidth sx={{ height: 40, mt: 1 }}>
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
-        {ceilingArray.map((option, index) => (
+        {indiviualGoingArray.map((option, index) => (
           <MenuItem
-            onClick={() => handleCelingsHeight(parseFloat(option))}
+            onClick={() => handleCeilingsHeight(parseFloat(option))}
             key={index}
             value={option}
           >
@@ -211,6 +231,7 @@ const StairLayout = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
+
       <CeilingHeight />
 
       {/* Number of Rises */}
@@ -274,7 +295,7 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
-          <Appheading>Turn 1 (Right)</Appheading>
+          <Appheading>Turn 1 (Left)</Appheading>
           <AppDeleteIcon />
         </Div>
 
