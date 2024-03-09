@@ -12,14 +12,25 @@ import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
 import { THREE_WINDER } from "../../../../../utils/enum";
 import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
+import { setIsDivisible } from "../../../../../toolkit/slices/singleFeatures";
+import CeilingHeight from "../../../../../components/molecules/CeliningHeight";
 
-const positionOptions = [];
+const heightLoopArray = [];
 let updatedPositions = [];
 
-for (let i = 1; i <= 3000; i += 220) {
-  positionOptions.push(i);
+for (let i = 200; i <= 4000; i += 5) {
+  heightLoopArray.push(i);
 }
 
+const widthLoopArray = [];
+
+for (let i = 600; i <= 1000; i += 5) {
+  widthLoopArray.push(i);
+}
+const indiviualGoingArray = [];
+for (let i = 222; i <= 280; i++) {
+  indiviualGoingArray.push(i);
+}
 const StairLayout = ({ setAppState, appState }) => {
   // hooks
   const dispatch = useDispatch();
@@ -47,50 +58,40 @@ const StairLayout = ({ setAppState, appState }) => {
   //height and risers changer
   const handlePositionChange = (event) => {
     const selectedPosition = parseInt(event.target.value);
+    if (selectedPosition % 220 !== 0) {
+      dispatch(setIsDivisible(true));
+    } else {
+      dispatch(setIsDivisible(false));
+    }
+    const roundedPosition = Math.round(selectedPosition / 220) * 220;
+
     if (selectedPosition !== "") {
-      updatedPositions = positionOptions.filter((pos) => pos <= selectedPosition);
+      updatedPositions = heightLoopArray.filter((pos) => pos % 220 === 0 && pos <= roundedPosition);
     }
-    if (selectedPosition >= 1 && selectedPosition < 1400) {
+    if (selectedPosition >= 1 && selectedPosition <= 4000) {
       setAppState((prevState) => ({
         ...prevState,
         svgRiser: {
           ...prevState.svgRiser,
-          positionsBottom: updatedPositions,
-          height: 0.2540416047548291,
-          translateY: 489,
+          rightBottomRisers: updatedPositions,
+          // leftBottomRisers: updatedPositions,
+
+          // height: 0.15,
+          // width: -0.15,
+          // translateY: 289,
         },
+        // handRails: {
+        //   ...prevState.handRails,
+        //   borderLeft: updatedPositions.length * 250,
+        // },
       }));
     }
-    if (selectedPosition >= 1400 && selectedPosition < 2940) {
-      setAppState((prevState) => ({
-        ...prevState,
-        svgRiser: {
-          ...prevState.svgRiser,
-          positionsBottom: updatedPositions,
-          height: 0.1440416047548291,
-          width: -0.140416047548291,
-          translateY: 289,
-        },
-      }));
-    }
-    if (selectedPosition >= 1400 && selectedPosition >= 2940) {
-      setAppState((prevState) => ({
-        ...prevState,
-        svgRiser: {
-          ...prevState.svgRiser,
-          positionsBottom: updatedPositions,
-          height: 0.1440416047548291,
-          width: -0.140416047548291,
-          translateY: 289,
-        },
-      }));
-    }
-    // update states here
     setAppState((prevState) => ({
       ...prevState,
       svgRiser: {
         ...prevState.svgRiser,
-        positionsBottom: updatedPositions,
+        rightBottomRisers: updatedPositions,
+        // leftBottomRisers: updatedPositions,
       },
     }));
   };
@@ -104,26 +105,102 @@ const StairLayout = ({ setAppState, appState }) => {
     // Dispatch the setShape action with the selected value
     dispatch(setShape(selectedValue));
   };
-
+  // ceiling height changer
+  const handleCeilingsHeight = (newHeight) => {
+    const bottomCeling = Array.from(
+      { length: appState.svgRiser.leftBottomRisers.length },
+      (_, index) => newHeight + index * newHeight
+    );
+    const centerCeiling = Array.from(
+      { length: appState.svgRiser.centerRightRisers.length },
+      (_, index) => newHeight + index * newHeight
+    );
+    const rightCeling = Array.from(
+      { length: appState.svgRiser.rightBottomRisers.length },
+      (_, index) => newHeight + index * newHeight
+    );
+    setAppState((prevState) => ({
+      ...prevState,
+      svgRiser: {
+        ...prevState.svgRiser,
+        rightBottomRisers: rightCeling,
+        centerRightRisers: centerCeiling,
+        leftBottomRisers: bottomCeling,
+      },
+      handRails: {
+        ...prevState.handRails,
+        height: newHeight * 24.5,
+      },
+    }));
+  };
   return (
     <div>
       {/* Floor Height */}
 
       <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
+      <Select
+        defaultValue={heightLoopArray[216]}
+        fullWidth
+        sx={{ height: 40, mt: 1 }}
+        onChange={handlePositionChange}
+      >
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
-        {positionOptions.map((option, index) => (
+        {heightLoopArray.map((option, index) => (
           <MenuItem onClick={() => dispatch(setHeight(option + 79))} key={index} value={option}>
-            {option + 79} mm
+            {option} mm
           </MenuItem>
         ))}
       </Select>
 
+      {/* Number of Rises */}
+      <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
+      <Select
+        defaultValue={
+          appState?.svgRiser?.rightBottomRisers[appState?.svgRiser?.rightBottomRisers.length - 1]
+        }
+        disabled={appState.svgRiser.rightBottomRisers.length <= 0}
+        onChange={handlePositionChange}
+        sx={{ height: 40, mt: 1 }}
+        fullWidth
+      >
+        {appState.svgRiser.rightBottomRisers.map((items, index) => {
+          return (
+            <MenuItem key={items} value={items}>
+              {index + 4} @ {items}.mm
+            </MenuItem>
+          );
+        })}
+        <MenuItem
+          value={
+            appState.svgRiser.rightBottomRisers &&
+            appState.svgRiser.rightBottomRisers[appState.svgRiser.rightBottomRisers?.length - 1] +
+              220
+          }
+        >
+          {" "}
+          {appState.svgRiser.rightBottomRisers?.length + 4} @
+          {appState.svgRiser.rightBottomRisers[appState.svgRiser.rightBottomRisers?.length - 1] +
+            220}{" "}
+          mm
+        </MenuItem>
+        <MenuItem
+          value={
+            appState?.svgRiser.rightBottomRisers[
+              appState?.svgRiser?.rightBottomRisers?.length - 1
+            ] + 440
+          }
+        >
+          {appState.svgRiser.rightBottomRisers?.length + 5} @
+          {appState.svgRiser.rightBottomRisers[appState.svgRiser.rightBottomRisers?.length - 1] +
+            400}{" "}
+          mm
+        </MenuItem>
+      </Select>
       {/* Floor Width */}
 
-      <Appheading sx={{ mt: 1 }}>Floor Width</Appheading>
+      {/* <Appheading sx={{ mt: 1 }}>Floor Width</Appheading>
       <Select
         fullWidth
         sx={{ height: 40, mt: 1 }}
@@ -139,18 +216,18 @@ const StairLayout = ({ setAppState, appState }) => {
             {index === 0 ? null : <> {index * 50 + 300} mm</>}
           </MenuItem>
         ))}
-      </Select>
+      </Select> */}
 
       {/* Individual Going */}
 
       <Appheading sx={{ mt: 1 }}>Individual Going</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }}>
+      <Select defaultValue={indiviualGoingArray[0]} fullWidth sx={{ height: 40, mt: 1 }}>
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
-        {ceilingArray.map((option, index) => (
+        {indiviualGoingArray.map((option, index) => (
           <MenuItem
-            onClick={() => handleCelingsHeight(parseFloat(option))}
+            onClick={() => handleCeilingsHeight(parseFloat(option))}
             key={index}
             value={option}
           >
@@ -158,33 +235,30 @@ const StairLayout = ({ setAppState, appState }) => {
           </MenuItem>
         ))}
       </Select>
-
-      {/* Number of Rises */}
-
-      <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
-      <Select
-        disabled={updatedPositions.length === 0}
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
-        onChange={handlePositionChange}
-      >
-        <MenuItem value="" disabled>
-          Select a position
-        </MenuItem>
-        {updatedPositions.slice(-3).map((option, index) => {
-          return (
-            <MenuItem key={index} value={option}>
-              {index + updatedPositions.length - 1} @ {option + 79}
-            </MenuItem>
-          );
-        })}
-        <MenuItem value={updatedPositions && updatedPositions[updatedPositions?.length - 1] + 220}>
-          {updatedPositions?.length + 2} @ {updatedPositions[updatedPositions?.length - 1] + 220}
-        </MenuItem>
-      </Select>
-
+      {/* celing height */}
+      <CeilingHeight />
       {/* Turns -> First Left & Right  */}
-
+      {/* Wind Run 1 */}
+      <Appheading sx={{ mt: 1 }}>Width (Run 1)</Appheading>
+      <Select
+        fullWidth
+        defaultValue={widthLoopArray[53]}
+        sx={{ height: 40, mt: 1 }}
+        onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
+      >
+        {widthLoopArray.map((value, index) => (
+          <MenuItem
+            onClick={() => {
+              setSelectedValue(value);
+            }}
+            key={index}
+            value={value.toString()}
+          >
+            {value}
+            {/* {index === 0 ? null : <> {index * 50 + 300} mm</>} */}
+          </MenuItem>
+        ))}
+      </Select>
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
           <Appheading>Turn 1 (Right)</Appheading>
@@ -212,4 +286,3 @@ const StairLayout = ({ setAppState, appState }) => {
 };
 
 export default StairLayout;
-
