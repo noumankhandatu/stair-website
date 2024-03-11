@@ -30,6 +30,7 @@ const DefaultShape = () => {
   const reduxLeftStep = useSelector(leftFeatureStep);
   const reduxRightStep = useSelector(rightFeatureStep);
   const reduxSelectDivisble = useSelector(selectDivisble);
+
   // states
   const [appState, setAppState] = useState({
     svgInsideContainer: {
@@ -53,6 +54,8 @@ const DefaultShape = () => {
   const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const [individualState, setindividualState] = useState(208);
+  const [showHeaderRoomChecker, setShowViewHeadRoomChecker] = useState(false);
+
   // fns
   const handleshowStairLayout = () => {
     setshowStairsLayout((prev) => !prev);
@@ -597,66 +600,69 @@ const DefaultShape = () => {
                 );
               })}
               {/* head checker */}
-              <g>
-                <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width={80} height={80}>
-                  <path
-                    d="M-20,20 l40,-40
+              {showHeaderRoomChecker && (
+                <g>
+                  <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width={80} height={80}>
+                    <path
+                      d="M-20,20 l40,-40
                      M0,80 l80,-80
                      M60,100 l40,-40"
-                    style={{ stroke: "grey", strokeWidth: 4 }}
-                  />
-                </pattern>
+                      style={{ stroke: "grey", strokeWidth: 4 }}
+                    />
+                  </pattern>
+                  <g></g>
+                  {individualState !== 0 && (
+                    <path
+                      d={`M-500 550 L-500 ${
+                        individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                      }  L400  ${
+                        individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                      } L400 550 L-500 550`}
+                      fill="url(#diagonalHatch)"
+                      fillOpacity={1}
+                      strokeWidth={6}
+                      stroke="black"
+                    />
+                  )}
+                  {individualState === 0 && (
+                    <path
+                      d={`M-500 550 L-500 ${
+                        165 * (appState.svgRiser.positions.length + 2.5) + 10
+                      }  L400  ${
+                        165 * (appState.svgRiser.positions.length + 2.5) + 10
+                      } L400 550 L-500 550`}
+                      fill="url(#diagonalHatch)"
+                      fillOpacity={1}
+                      strokeWidth={6}
+                      stroke="black"
+                    />
+                  )}
 
-                {individualState !== 0 && (
-                  <path
-                    d={`M-500 550 L-500 ${
-                      individualState * (appState.svgRiser.positions.length + 2.5) + 10
-                    }  L400  ${
-                      individualState * (appState.svgRiser.positions.length + 2.5) + 10
-                    } L400 550 L-500 550`}
-                    fill="url(#diagonalHatch)"
-                    fillOpacity={1}
-                    strokeWidth={6}
-                    stroke="black"
-                  />
-                )}
-                {individualState === 0 && (
-                  <path
-                    d={`M-500 550 L-500 ${
-                      165 * (appState.svgRiser.positions.length + 2.5) + 10
-                    }  L400  ${
-                      165 * (appState.svgRiser.positions.length + 2.5) + 10
-                    } L400 550 L-500 550`}
-                    fill="url(#diagonalHatch)"
-                    fillOpacity={1}
-                    strokeWidth={6}
-                    stroke="black"
-                  />
-                )}
+                  {individualState !== 0 && (
+                    <path
+                      d={`M-500 550 L-500 ${
+                        individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                      }  L400  ${
+                        individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                      } L400 550 L-500 550`}
+                      fill="white"
+                      fillOpacity="0.3"
+                    />
+                  )}
+                  {individualState === 0 && (
+                    <path
+                      d={`M-500 550 L-500 ${
+                        165 * (appState.svgRiser.positions.length + 2.5) + 10
+                      }  L400  ${
+                        165 * (appState.svgRiser.positions.length + 2.5) + 10
+                      } L400 550 L-500 550`}
+                      fill="white"
+                      fillOpacity="0.3"
+                    />
+                  )}
+                </g>
+              )}
 
-                {individualState !== 0 && (
-                  <path
-                    d={`M-500 550 L-500 ${
-                      individualState * (appState.svgRiser.positions.length + 2.5) + 10
-                    }  L400  ${
-                      individualState * (appState.svgRiser.positions.length + 2.5) + 10
-                    } L400 550 L-500 550`}
-                    fill="white"
-                    fillOpacity="0.3"
-                  />
-                )}
-                {individualState === 0 && (
-                  <path
-                    d={`M-500 550 L-500 ${
-                      165 * (appState.svgRiser.positions.length + 2.5) + 10
-                    }  L400  ${
-                      165 * (appState.svgRiser.positions.length + 2.5) + 10
-                    } L400 550 L-500 550`}
-                    fill="white"
-                    fillOpacity="0.3"
-                  />
-                )}
-              </g>
               {/* make this dynamic */}
               {[600, -500].map((items, index) => {
                 return (
@@ -765,6 +771,9 @@ const DefaultShape = () => {
               Show More Dimensions
             </Paper>
             <Button
+              onClick={() => {
+                setShowViewHeadRoomChecker(!showHeaderRoomChecker);
+              }}
               fullWidth
               variant="contained"
               sx={{
