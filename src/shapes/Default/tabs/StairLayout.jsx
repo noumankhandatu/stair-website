@@ -86,8 +86,8 @@ const StairLayout = ({ setAppState, appState, setindividualState }) => {
   //height and risers changer
   const handlePositionChange = (event) => {
     setindividualState(222);
-
     const selectedPosition = parseInt(event.target.value);
+
     // it will pop up half riser
     if (selectedPosition % 220 !== 0) {
       dispatch(setIsDivisible(true));
@@ -98,11 +98,26 @@ const StairLayout = ({ setAppState, appState, setindividualState }) => {
     const roundedPosition = Math.round(selectedPosition / 220) * 220;
 
     updatedPositions = [roundedPosition];
+
     if (selectedPosition !== "") {
       updatedPositions = heightLoopArray.filter((pos) => pos % 220 === 0 && pos <= roundedPosition);
     }
-
-    if (selectedPosition >= 1 && selectedPosition <= 600) {
+    if (selectedPosition < 555) {
+      setindividualState(0);
+      setAppState((prevState) => ({
+        ...prevState,
+        svgRiser: {
+          ...prevState.svgRiser,
+          positions: [220],
+        },
+        leftRightPencilBorder: {
+          ...prevState.leftRightPencilBorder,
+          height: selectedPosition + 300,
+        },
+      }));
+      return;
+    }
+    if (selectedPosition >= 555 && selectedPosition <= 600) {
       setAppState((prevState) => ({
         ...prevState,
         svgRiser: {

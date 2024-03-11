@@ -76,7 +76,13 @@ const DefaultShape = () => {
             showStairsLayout={showStairsLayout}
             handleshowStairLayout={handleshowStairLayout}
           />
-          {showStairsLayout && <StairLayout appState={appState} setAppState={setAppState} setindividualState={setindividualState} />}
+          {showStairsLayout && (
+            <StairLayout
+              appState={appState}
+              setAppState={setAppState}
+              setindividualState={setindividualState}
+            />
+          )}
           <Div height={20} />
           <FeatureCard
             title={"Material & Construction"}
@@ -600,26 +606,56 @@ const DefaultShape = () => {
                     style={{ stroke: "grey", strokeWidth: 4 }}
                   />
                 </pattern>
-                <path
-                  d={`M-500 550 L-500 ${
-                    individualState * (appState.svgRiser.positions.length + 2.5) + 10
-                  }  L400  ${
-                    individualState * (appState.svgRiser.positions.length + 2.5) + 10
-                  } L400 550 L-500 550`}
-                  fill="white"
-                  fillOpacity="0.3"
-                />
-                <path
-                  d={`M-500 550 L-500 ${
-                    individualState * (appState.svgRiser.positions.length + 2.5) + 10
-                  }  L400  ${
-                    individualState * (appState.svgRiser.positions.length + 2.5) + 10
-                  } L400 550 L-500 550`}
-                  fill="url(#diagonalHatch)"
-                  fillOpacity={1}
-                  strokeWidth={6}
-                  stroke="black"
-                />
+
+                {individualState !== 0 && (
+                  <path
+                    d={`M-500 550 L-500 ${
+                      individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                    }  L400  ${
+                      individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                    } L400 550 L-500 550`}
+                    fill="url(#diagonalHatch)"
+                    fillOpacity={1}
+                    strokeWidth={6}
+                    stroke="black"
+                  />
+                )}
+                {individualState === 0 && (
+                  <path
+                    d={`M-500 550 L-500 ${
+                      165 * (appState.svgRiser.positions.length + 2.5) + 10
+                    }  L400  ${
+                      165 * (appState.svgRiser.positions.length + 2.5) + 10
+                    } L400 550 L-500 550`}
+                    fill="url(#diagonalHatch)"
+                    fillOpacity={1}
+                    strokeWidth={6}
+                    stroke="black"
+                  />
+                )}
+
+                {individualState !== 0 && (
+                  <path
+                    d={`M-500 550 L-500 ${
+                      individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                    }  L400  ${
+                      individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                    } L400 550 L-500 550`}
+                    fill="white"
+                    fillOpacity="0.3"
+                  />
+                )}
+                {individualState === 0 && (
+                  <path
+                    d={`M-500 550 L-500 ${
+                      165 * (appState.svgRiser.positions.length + 2.5) + 10
+                    }  L400  ${
+                      165 * (appState.svgRiser.positions.length + 2.5) + 10
+                    } L400 550 L-500 550`}
+                    fill="white"
+                    fillOpacity="0.3"
+                  />
+                )}
               </g>
               {/* make this dynamic */}
               {[600, -500].map((items, index) => {
