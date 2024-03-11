@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Divider, Tooltip } from "@mui/material";
+import { Button, Divider, Paper, Radio, Tooltip } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import { useSelector } from "react-redux";
@@ -44,7 +44,7 @@ const DefaultShape = () => {
       rotation: 180,
     },
     leftRightPencilBorder: {
-      height: 2950,
+      height: 3000,
       towardsLeftRight: [373, -500],
       rotation: 0,
       color: "mdf",
@@ -68,6 +68,7 @@ const DefaultShape = () => {
       <Divider sx={{ mt: 1 }} />
       <Div height={40} />
       <Grid container>
+        {/* first col */}
         <Grid xs={2}>
           <FeatureCard
             title={"Stairs Layout"}
@@ -85,7 +86,8 @@ const DefaultShape = () => {
             <MaterialConstruction appState={appState} setAppState={setAppState} />
           )}
         </Grid>
-        <Grid sx={{ textAlign: "center", justifyContent: "center" }} xs={9}>
+        {/* mid col */}
+        <Grid sx={{ textAlign: "center", justifyContent: "center" }} xs={8}>
           <svg
             width={appState.svgInsideContainer.width}
             height={appState.svgInsideContainer.height}
@@ -587,7 +589,29 @@ const DefaultShape = () => {
                   </g>
                 );
               })}
-
+              {/* head checker */}
+              <g>
+                <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width={80} height={80}>
+                  <path
+                    d="M-20,20 l40,-40
+                     M0,80 l80,-80
+                     M60,100 l40,-40"
+                    style={{ stroke: "grey", strokeWidth: 4 }}
+                  />
+                </pattern>
+                <path
+                  d={`M-500 500 L-500 ${appState.leftRightPencilBorder.height} L400 ${appState.leftRightPencilBorder.height} L400 500 L-500 500`}
+                  fill="white"
+                  fillOpacity="0.3"
+                />
+                <path
+                  d={`M-500 500 L-500 ${appState.leftRightPencilBorder.height} L400 ${appState.leftRightPencilBorder.height} L400 500 L-500 500`}
+                  fill="url(#diagonalHatch)"
+                  fillOpacity={1}
+                  strokeWidth={6}
+                  stroke="black"
+                />
+              </g>
               {/* make this dynamic */}
               {[600, -500].map((items, index) => {
                 return (
@@ -665,7 +689,8 @@ const DefaultShape = () => {
             </g>
           </svg>
         </Grid>
-        <Grid xs={1}>
+        {/* third col */}
+        <Grid xs={2}>
           <Tooltip title="New Design">
             <NoteAddIcon sx={iconCol} onClick={() => window.location.reload()} />
           </Tooltip>
@@ -677,6 +702,36 @@ const DefaultShape = () => {
                 ml: 3,
               }}
             />
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: primary,
+                color: "black",
+                mt: 3,
+                mb: 3,
+                textTransform: "capitalize",
+              }}
+            >
+              Details
+            </Button>
+            <Paper sx={{ p: 2 }}>
+              <Radio />
+              Show More Dimensions
+            </Paper>
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: primary,
+                color: "black",
+                mt: 3,
+                mb: 3,
+                textTransform: "capitalize",
+              }}
+            >
+              View stair-well Opening (headroom checker)
+            </Button>
           </Tooltip>
         </Grid>
       </Grid>

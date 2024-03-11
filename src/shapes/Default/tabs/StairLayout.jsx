@@ -95,7 +95,6 @@ const StairLayout = ({ setAppState, appState }) => {
     const roundedPosition = Math.round(selectedPosition / 220) * 220;
 
     updatedPositions = [roundedPosition];
-
     if (selectedPosition !== "") {
       updatedPositions = heightLoopArray.filter((pos) => pos % 220 === 0 && pos <= roundedPosition);
     }
@@ -108,10 +107,6 @@ const StairLayout = ({ setAppState, appState }) => {
           positions: updatedPositions,
           height: 0.25,
         },
-        leftRightPencilBorder: {
-          ...prevState.leftRightPencilBorder,
-          height: selectedPosition * 1.9,
-        },
       }));
     }
 
@@ -123,10 +118,6 @@ const StairLayout = ({ setAppState, appState }) => {
           positions: updatedPositions,
           height: 0.25,
         },
-        leftRightPencilBorder: {
-          ...prevState.leftRightPencilBorder,
-          height: selectedPosition * 1.4,
-        },
       }));
     }
     if (selectedPosition > 1400 && selectedPosition < 2940) {
@@ -136,10 +127,6 @@ const StairLayout = ({ setAppState, appState }) => {
           ...prevState.svgRiser,
           positions: updatedPositions,
           height: 0.25,
-        },
-        leftRightPencilBorder: {
-          ...prevState.leftRightPencilBorder,
-          height: selectedPosition * 1.1,
         },
       }));
     }
@@ -151,10 +138,6 @@ const StairLayout = ({ setAppState, appState }) => {
           positions: updatedPositions,
           height: 0.19,
         },
-        leftRightPencilBorder: {
-          ...prevState.leftRightPencilBorder,
-          height: selectedPosition * 1.1,
-        },
       }));
     }
     // update states here
@@ -163,6 +146,10 @@ const StairLayout = ({ setAppState, appState }) => {
       svgRiser: {
         ...prevState.svgRiser,
         positions: updatedPositions,
+      },
+      leftRightPencilBorder: {
+        ...prevState.leftRightPencilBorder,
+        height: selectedPosition + 300,
       },
     }));
   };
@@ -194,7 +181,7 @@ const StairLayout = ({ setAppState, appState }) => {
           Select a position
         </MenuItem>
         {heightLoopArray.map((option, index) => (
-          <MenuItem onClick={() => dispatch(setHeight(option + 79))} key={index} value={option}>
+          <MenuItem onClick={() => dispatch(setHeight(option))} key={index} value={option}>
             {option} mm
           </MenuItem>
         ))}
