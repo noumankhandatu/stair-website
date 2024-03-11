@@ -52,6 +52,7 @@ const DefaultShape = () => {
   });
   const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
+  const [individualState, setindividualState] = useState(208);
   // fns
   const handleshowStairLayout = () => {
     setshowStairsLayout((prev) => !prev);
@@ -75,7 +76,7 @@ const DefaultShape = () => {
             showStairsLayout={showStairsLayout}
             handleshowStairLayout={handleshowStairLayout}
           />
-          {showStairsLayout && <StairLayout appState={appState} setAppState={setAppState} />}
+          {showStairsLayout && <StairLayout appState={appState} setAppState={setAppState} setindividualState={setindividualState} />}
           <Div height={20} />
           <FeatureCard
             title={"Material & Construction"}
@@ -600,12 +601,20 @@ const DefaultShape = () => {
                   />
                 </pattern>
                 <path
-                  d={`M-500 500 L-500 ${appState.leftRightPencilBorder.height} L400 ${appState.leftRightPencilBorder.height} L400 500 L-500 500`}
+                  d={`M-500 550 L-500 ${
+                    individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                  }  L400  ${
+                    individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                  } L400 550 L-500 550`}
                   fill="white"
                   fillOpacity="0.3"
                 />
                 <path
-                  d={`M-500 500 L-500 ${appState.leftRightPencilBorder.height} L400 ${appState.leftRightPencilBorder.height} L400 500 L-500 500`}
+                  d={`M-500 550 L-500 ${
+                    individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                  }  L400  ${
+                    individualState * (appState.svgRiser.positions.length + 2.5) + 10
+                  } L400 550 L-500 550`}
                   fill="url(#diagonalHatch)"
                   fillOpacity={1}
                   strokeWidth={6}

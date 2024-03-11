@@ -37,7 +37,7 @@ for (let i = 222; i <= 280; i++) {
 }
 
 // eslint-disable-next-line react/prop-types
-const StairLayout = ({ setAppState, appState }) => {
+const StairLayout = ({ setAppState, appState, setindividualState }) => {
   // hooks
   const dispatch = useDispatch();
   // width changer
@@ -56,6 +56,7 @@ const StairLayout = ({ setAppState, appState }) => {
   };
 
   const handleCeilingsHeight = (newHeight) => {
+    setindividualState(newHeight - 20);
     const updatedPositions = Array.from(
       { length: appState.svgRiser.positions.length },
       (_, index) => newHeight + index * newHeight
@@ -84,6 +85,8 @@ const StairLayout = ({ setAppState, appState }) => {
   };
   //height and risers changer
   const handlePositionChange = (event) => {
+    setindividualState(222);
+
     const selectedPosition = parseInt(event.target.value);
     // it will pop up half riser
     if (selectedPosition % 220 !== 0) {
