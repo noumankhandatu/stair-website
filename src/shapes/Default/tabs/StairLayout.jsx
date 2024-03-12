@@ -17,6 +17,7 @@ import FeatureSteps from "../../../components/atom/FeatureSteps";
 import CeilingHeight from "./../../../components/molecules/CeliningHeight";
 import { setLeftFeatureStep, setRightFeatureStep } from "../../../toolkit/slices/featureSteps";
 import { setIsDivisible } from "../../../toolkit/slices/singleFeatures";
+import { useEffect } from "react";
 
 const heightLoopArray = [];
 let updatedPositions = [];
@@ -84,6 +85,7 @@ const StairLayout = ({ setAppState, appState, setindividualState }) => {
     }
   };
   //height and risers changer
+
   const handlePositionChange = (event) => {
     setindividualState(222);
     const selectedPosition = parseInt(event.target.value);
@@ -171,6 +173,14 @@ const StairLayout = ({ setAppState, appState, setindividualState }) => {
       },
     }));
   };
+  useEffect(() => {
+    const event = {
+      target: {
+        value: 2879,
+      },
+    };
+    handlePositionChange(event);
+  }, []);
   // Turning Function Started
   const handleLeft = () => {
     dispatch(setShape(THREE_WINDER));

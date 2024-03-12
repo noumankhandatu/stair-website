@@ -73,9 +73,17 @@ const DefaultShape = () => {
   const [tower2, settower2] = useState(false);
   const [tower3, settower3] = useState(false);
   const [tower4, settower4] = useState(false);
+  const [appBalustrade, setappBalustrade] = useState(true);
   const [leftLineBalustrade, setleftLineBalustrade] = useState(false);
   const [rightLineBalustrade, setrightLineBalustrade] = useState(false);
 
+  const positionsLength = appState.svgRiser.positions.length;
+  const increment = 135.5;
+
+  const yCoordinates = [];
+  for (let i = 0; i < positionsLength * 1.6; i++) {
+    yCoordinates.push(89.75 + i * increment);
+  }
   return (
     <>
       <AppMainheading sx={{ mt: 4 }}>
@@ -113,7 +121,7 @@ const DefaultShape = () => {
             showStairsLayout={showBalustrade}
             handleshowStairLayout={handleShowBalustrade}
           />
-          {showBalustrade && <Balustrade />}
+          {showBalustrade && <Balustrade appBalustrade={appBalustrade} setappBalustrade={setappBalustrade}/>}
         </Grid>
         {/* mid col */}
         <Grid sx={{ textAlign: "center", justifyContent: "center" }} xs={8}>
@@ -681,9 +689,9 @@ const DefaultShape = () => {
                 </g>
               )}
               {/* balustrade lines */}
-
-              {showBalustrade && (
+              {showBalustrade && appBalustrade && (
                 <g transform="translate(-50 370)  rotate(0)">
+                  {/* the two lines */}
                   <g transform="translate(0 0)  rotate(0)">
                     <g
                       onClick={() => setleftLineBalustrade(!leftLineBalustrade)}
@@ -693,7 +701,7 @@ const DefaultShape = () => {
                         x="-29.5"
                         y={0}
                         width={59}
-                        height={2574}
+                        height={individualState * (appState.svgRiser.positions.length + 0.9) + 10}
                         fill="url(#redwood)"
                         className={!leftLineBalustrade ? "balLeftLight" : "balLeftLightDef"}
                         id="run1_leftBalustrade"
@@ -707,7 +715,7 @@ const DefaultShape = () => {
                         x="-29.5"
                         y={0}
                         width={59}
-                        height={2574}
+                        height={individualState * (appState.svgRiser.positions.length + 0.9) + 10}
                         fill="url(#redwood)"
                         className={!rightLineBalustrade ? "balRightLine" : "balRightLineDef"}
                         id="run1_rightBalustrade"
@@ -715,7 +723,7 @@ const DefaultShape = () => {
                     </g>
                   </g>
                   {/* towers */}
-                  <g transform="translate(0 0)  rotate(0)">
+                  <g transform={"translate(0 150)  rotate(0)"}>
                     <g onClick={() => settower1(!tower1)} transform="translate(-419 0)  rotate(0)">
                       {" "}
                       <rect
@@ -742,7 +750,7 @@ const DefaultShape = () => {
                     </g>
                   </g>
                   {/* dots */}
-                  <g transform="translate(0 0)  rotate(0)">
+                  <g transform="translate(0 120)  rotate(0)">
                     <g>
                       <g transform="translate(-419 45)  rotate(0)">
                         <g
@@ -752,197 +760,18 @@ const DefaultShape = () => {
                             setleftLineBalustrade(!leftLineBalustrade);
                           }}
                         >
-                          {" "}
-                          <rect
-                            x="-20.5"
-                            y="89.75"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="220.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="351.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y={482}
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="612.75"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="743.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="874.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y={1005}
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1135.75"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1266.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1397.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y={1528}
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1658.75"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1789.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1920.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y={2051}
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="2181.75"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="2312.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="2443.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_leftBalustrade"
-                            className="balustradeMode"
-                          />
+                          {yCoordinates.map((y, index) => (
+                            <rect
+                              key={index}
+                              x="-20.5"
+                              y={y}
+                              width={41}
+                              height={41}
+                              fill="lightgrey"
+                              style={{ stroke: "black", strokeWidth: 3 }}
+                              className="balustradeMode"
+                            />
+                          ))}
                         </g>
                         <g />
                       </g>
@@ -954,206 +783,28 @@ const DefaultShape = () => {
                         }}
                         transform="translate(419 45)  rotate(0)"
                       >
-                        <g>
-                          {" "}
+                        {yCoordinates.map((y, index) => (
                           <rect
+                            key={index}
                             x="-20.5"
-                            y="89.75"
+                            y={y}
                             width={41}
                             height={41}
                             fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="220.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="351.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y={482}
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="612.75"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="743.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="874.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y={1005}
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1135.75"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1266.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1397.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y={1528}
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1658.75"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1789.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="1920.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y={2051}
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="2181.75"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="2312.5"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
-                            className="balustradeMode"
-                          />{" "}
-                          <rect
-                            x="-20.5"
-                            y="2443.25"
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
-                            id="run1_rightBalustrade"
+                            style={{ stroke: "black", strokeWidth: 3 }}
                             className="balustradeMode"
                           />
-                        </g>
+                        ))}
                         <g />
                       </g>
                     </g>
                   </g>
                   {/* towers */}
-                  <g transform="translate(0 2664)  rotate(0)">
-                    <g onClick={() => settower3(!tower3)} transform="translate(-419 0)  rotate(0)">
+                  <g transform={`translate(0 ${yCoordinates.length * 145})  rotate(0)`}>
+                    <g
+                      onClick={() => settower3(!tower3)}
+                      transform={"translate(-419 0)  rotate(0)"}
+                    >
                       {" "}
                       <rect
                         x={-45}
