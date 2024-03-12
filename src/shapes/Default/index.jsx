@@ -23,7 +23,8 @@ import {
   RIGHT_D_STEP,
 } from "../../utils/enum";
 import { selectDivisble } from "../../toolkit/slices/singleFeatures";
-
+import "./style.css";
+import Balustrade from "./tabs/Balustrade";
 const DefaultShape = () => {
   const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
   const heightArrow = useSelector((state) => state?.stairHeightWidthSlice?.height);
@@ -55,6 +56,7 @@ const DefaultShape = () => {
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const [individualState, setindividualState] = useState(208);
   const [showHeaderRoomChecker, setShowViewHeadRoomChecker] = useState(false);
+  const [showBalustrade, setshowBalustrade] = useState(false);
 
   // fns
   const handleshowStairLayout = () => {
@@ -63,6 +65,16 @@ const DefaultShape = () => {
   const handleshowMaterialConstruciton = () => {
     setshowMaterialConstruction((prev) => !prev);
   };
+  const handleShowBalustrade = () => {
+    setshowBalustrade((prev) => !prev);
+  };
+  // balustrade
+  const [tower1, settower1] = useState(false);
+  const [tower2, settower2] = useState(false);
+  const [tower3, settower3] = useState(false);
+  const [tower4, settower4] = useState(false);
+  const [leftLineBalustrade, setleftLineBalustrade] = useState(false);
+  const [rightLineBalustrade, setrightLineBalustrade] = useState(false);
 
   return (
     <>
@@ -95,6 +107,13 @@ const DefaultShape = () => {
           {showMaterialConstruction && (
             <MaterialConstruction appState={appState} setAppState={setAppState} />
           )}
+          <Div height={20} />
+          <FeatureCard
+            title={"Balustrade"}
+            showStairsLayout={showBalustrade}
+            handleshowStairLayout={handleShowBalustrade}
+          />
+          {showBalustrade && <Balustrade />}
         </Grid>
         {/* mid col */}
         <Grid sx={{ textAlign: "center", justifyContent: "center" }} xs={8}>
@@ -146,7 +165,6 @@ const DefaultShape = () => {
               </marker>
             </defs>
             {/* its the layout  */}
-            {/* entire height can be set from here */}
             <g
               transform={`translate (530.5,890) rotate(${appState.svgRiser.rotation}) scale(${appState.svgRiser.width},${appState.svgRiser.height})`}
             >
@@ -660,6 +678,505 @@ const DefaultShape = () => {
                       fillOpacity="0.3"
                     />
                   )}
+                </g>
+              )}
+              {/* balustrade lines */}
+
+              {showBalustrade && (
+                <g transform="translate(-50 370)  rotate(0)">
+                  <g transform="translate(0 0)  rotate(0)">
+                    <g
+                      onClick={() => setleftLineBalustrade(!leftLineBalustrade)}
+                      transform="translate(-419 45)  rotate(0)"
+                    >
+                      <rect
+                        x="-29.5"
+                        y={0}
+                        width={59}
+                        height={2574}
+                        fill="url(#redwood)"
+                        className={!leftLineBalustrade ? "balLeftLight" : "balLeftLightDef"}
+                        id="run1_leftBalustrade"
+                      />
+                    </g>
+                    <g
+                      onClick={() => setrightLineBalustrade(!rightLineBalustrade)}
+                      transform="translate(419 45)  rotate(0)"
+                    >
+                      <rect
+                        x="-29.5"
+                        y={0}
+                        width={59}
+                        height={2574}
+                        fill="url(#redwood)"
+                        className={!rightLineBalustrade ? "balRightLine" : "balRightLineDef"}
+                        id="run1_rightBalustrade"
+                      />
+                    </g>
+                  </g>
+                  {/* towers */}
+                  <g transform="translate(0 0)  rotate(0)">
+                    <g onClick={() => settower1(!tower1)} transform="translate(-419 0)  rotate(0)">
+                      {" "}
+                      <rect
+                        x={-45}
+                        y={-45}
+                        width={90}
+                        height={90}
+                        fill="url(#redwood)"
+                        className={!tower1 ? "tower1" : "tower1Def"}
+                        id="stair_start_left"
+                      />
+                    </g>
+                    <g onClick={() => settower2(!tower2)} transform="translate(419 0)  rotate(0)">
+                      {" "}
+                      <rect
+                        x={-45}
+                        y={-45}
+                        width={90}
+                        height={90}
+                        fill="url(#redwood)"
+                        className={!tower2 ? "tower2" : "tower2Def"}
+                        id="stair_start_right"
+                      />
+                    </g>
+                  </g>
+                  {/* dots */}
+                  <g transform="translate(0 0)  rotate(0)">
+                    <g>
+                      <g transform="translate(-419 45)  rotate(0)">
+                        <g
+                          onClick={() => {
+                            settower1(!tower1);
+                            settower3(!tower3);
+                            setleftLineBalustrade(!leftLineBalustrade);
+                          }}
+                        >
+                          {" "}
+                          <rect
+                            x="-20.5"
+                            y="89.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="220.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="351.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y={482}
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="612.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="743.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="874.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y={1005}
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1135.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1266.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1397.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y={1528}
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1658.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1789.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1920.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y={2051}
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="2181.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="2312.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="2443.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_leftBalustrade"
+                            className="balustradeMode"
+                          />
+                        </g>
+                        <g />
+                      </g>
+                      <g
+                        onClick={() => {
+                          settower2(!tower2);
+                          settower4(!tower4);
+                          setrightLineBalustrade(!rightLineBalustrade);
+                        }}
+                        transform="translate(419 45)  rotate(0)"
+                      >
+                        <g>
+                          {" "}
+                          <rect
+                            x="-20.5"
+                            y="89.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="220.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="351.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y={482}
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="612.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="743.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="874.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y={1005}
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1135.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1266.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1397.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y={1528}
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1658.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1789.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="1920.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y={2051}
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="2181.75"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="2312.5"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />{" "}
+                          <rect
+                            x="-20.5"
+                            y="2443.25"
+                            width={41}
+                            height={41}
+                            fill="lightgrey"
+                            style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                            id="run1_rightBalustrade"
+                            className="balustradeMode"
+                          />
+                        </g>
+                        <g />
+                      </g>
+                    </g>
+                  </g>
+                  {/* towers */}
+                  <g transform="translate(0 2664)  rotate(0)">
+                    <g onClick={() => settower3(!tower3)} transform="translate(-419 0)  rotate(0)">
+                      {" "}
+                      <rect
+                        x={-45}
+                        y={-45}
+                        width={90}
+                        height={90}
+                        fill="url(#redwood)"
+                        className={!tower3 ? "tower3" : "tower3Def"}
+                        id="nosing_left"
+                      />
+                    </g>
+                    <g onClick={() => settower4(!tower4)} transform="translate(419 0)  rotate(0)">
+                      <rect
+                        x={-45}
+                        y={-45}
+                        width={90}
+                        height={90}
+                        fill="url(#redwood)"
+                        className={!tower4 ? "tower4" : "tower4Def"}
+                        id="nosing_right"
+                      />
+                    </g>
+                  </g>
                 </g>
               )}
 

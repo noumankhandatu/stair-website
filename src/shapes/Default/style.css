@@ -1,0 +1,51 @@
+.tower1,
+.tower2,
+.tower3,
+.tower4,
+.balLeftLight,
+.balRightLine,
+.tower1Def,
+.tower2Def,
+.tower3Def,
+.tower4Def,
+.balLeftLightDef,
+.balRightLineDef {
+  stroke: black;
+  stroke-width: 2;
+}
+
+.tower1,
+.tower2,
+.tower3,
+.tower4,
+.balLeftLight,
+.balRightLine {
+  fill: #ff9d9d;
+}
+
+.tower1:hover,
+.tower2:hover,
+.tower3:hover,
+.tower4:hover,
+.balLeftLight:hover,
+.balRightLine:hover {
+  fill: #ff5b5b;
+}
+
+.tower1Def,
+.tower2Def,
+.tower3Def,
+.tower4Def,
+.balLeftLightDef,
+.balRightLineDef {
+  fill: #8cc98c;
+}
+
+.tower1Def:hover,
+.tower2Def:hover,
+.tower3Def:hover,
+.tower4Def:hover,
+.balLeftLightDef:hover,
+.balRightLineDef:hover {
+  fill: rgb(1, 99, 1);
+}
