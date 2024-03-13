@@ -3,7 +3,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Button, Divider, Paper, Radio, Tooltip } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppMainheading } from "../../theme";
 import Div from "../../components/atom/Div";
 import FeatureCard from "./../../components/molecules/FeatureCard";
@@ -25,12 +25,18 @@ import {
 import { selectDivisble } from "../../toolkit/slices/singleFeatures";
 import "./style.css";
 import Balustrade from "./tabs/Balustrade";
+import {
+  headCheckerVerticalArrow,
+  setheadCheckerVerticalArrow,
+} from "../../toolkit/slices/stairHeightWidth";
 const DefaultShape = () => {
+  const dispatch = useDispatch();
   const widhtArrow = useSelector((state) => state?.stairHeightWidthSlice?.width);
   const heightArrow = useSelector((state) => state?.stairHeightWidthSlice?.height);
   const reduxLeftStep = useSelector(leftFeatureStep);
   const reduxRightStep = useSelector(rightFeatureStep);
   const reduxSelectDivisble = useSelector(selectDivisble);
+  const headCheckerVerticalArrows = useSelector(headCheckerVerticalArrow);
 
   // states
   const [appState, setAppState] = useState({
@@ -76,7 +82,7 @@ const DefaultShape = () => {
   const [appBalustrade, setappBalustrade] = useState(true);
   const [leftLineBalustrade, setleftLineBalustrade] = useState(false);
   const [rightLineBalustrade, setrightLineBalustrade] = useState(false);
-
+  const [balustradeStyles, setbalustradeStyles] = useState("Square spindles (Square posts)");
   const positionsLength = appState.svgRiser.positions.length;
   const increment = 135.5;
 
@@ -94,6 +100,7 @@ const DefaultShape = () => {
       <Grid container>
         {/* first col */}
         <Grid xs={2}>
+          {/* Stair Layout */}
           <FeatureCard
             title={"Stairs Layout"}
             showStairsLayout={showStairsLayout}
@@ -106,6 +113,21 @@ const DefaultShape = () => {
               setindividualState={setindividualState}
             />
           )}
+          {/* balustrade */}
+          <Div height={20} />
+          <FeatureCard
+            title={"Balustrade"}
+            showStairsLayout={showBalustrade}
+            handleshowStairLayout={handleShowBalustrade}
+          />
+          {showBalustrade && (
+            <Balustrade
+              appBalustrade={appBalustrade}
+              setappBalustrade={setappBalustrade}
+              setbalustradeStyles={setbalustradeStyles}
+            />
+          )}
+          {/* Material  */}
           <Div height={20} />
           <FeatureCard
             title={"Material & Construction"}
@@ -115,13 +137,6 @@ const DefaultShape = () => {
           {showMaterialConstruction && (
             <MaterialConstruction appState={appState} setAppState={setAppState} />
           )}
-          <Div height={20} />
-          <FeatureCard
-            title={"Balustrade"}
-            showStairsLayout={showBalustrade}
-            handleshowStairLayout={handleShowBalustrade}
-          />
-          {showBalustrade && <Balustrade appBalustrade={appBalustrade} setappBalustrade={setappBalustrade}/>}
         </Grid>
         {/* mid col */}
         <Grid sx={{ textAlign: "center", justifyContent: "center" }} xs={8}>
@@ -750,15 +765,40 @@ const DefaultShape = () => {
                     </g>
                   </g>
                   {/* dots */}
-                  <g transform="translate(0 120)  rotate(0)">
-                    <g>
-                      <g transform="translate(-419 45)  rotate(0)">
+
+                  {balustradeStyles === "Square spindles (Square posts)" && (
+                    <g transform="translate(0 120)  rotate(0)">
+                      <g>
+                        <g transform="translate(-419 45)  rotate(0)">
+                          <g
+                            onClick={() => {
+                              settower1(!tower1);
+                              settower3(!tower3);
+                              setleftLineBalustrade(!leftLineBalustrade);
+                            }}
+                          >
+                            {yCoordinates.map((y, index) => (
+                              <rect
+                                key={index}
+                                x="-20.5"
+                                y={y}
+                                width={41}
+                                height={41}
+                                fill="lightgrey"
+                                style={{ stroke: "black", strokeWidth: 3 }}
+                                className="balustradeMode"
+                              />
+                            ))}
+                          </g>
+                          <g />
+                        </g>
                         <g
                           onClick={() => {
-                            settower1(!tower1);
-                            settower3(!tower3);
-                            setleftLineBalustrade(!leftLineBalustrade);
+                            settower2(!tower2);
+                            settower4(!tower4);
+                            setrightLineBalustrade(!rightLineBalustrade);
                           }}
+                          transform="translate(419 45)  rotate(0)"
                         >
                           {yCoordinates.map((y, index) => (
                             <rect
@@ -772,33 +812,288 @@ const DefaultShape = () => {
                               className="balustradeMode"
                             />
                           ))}
+                          <g />
                         </g>
-                        <g />
-                      </g>
-                      <g
-                        onClick={() => {
-                          settower2(!tower2);
-                          settower4(!tower4);
-                          setrightLineBalustrade(!rightLineBalustrade);
-                        }}
-                        transform="translate(419 45)  rotate(0)"
-                      >
-                        {yCoordinates.map((y, index) => (
-                          <rect
-                            key={index}
-                            x="-20.5"
-                            y={y}
-                            width={41}
-                            height={41}
-                            fill="lightgrey"
-                            style={{ stroke: "black", strokeWidth: 3 }}
-                            className="balustradeMode"
-                          />
-                        ))}
-                        <g />
                       </g>
                     </g>
-                  </g>
+                  )}
+                  {balustradeStyles === "Chamfer spindles (Square posts)" && (
+                    <g transform="translate(0 120)  rotate(0)">
+                      <g>
+                        <g transform="translate(-419 45)  rotate(0)">
+                          <g
+                            onClick={() => {
+                              settower1(!tower1);
+                              settower3(!tower3);
+                              setleftLineBalustrade(!leftLineBalustrade);
+                            }}
+                          >
+                            {yCoordinates.map((y, index) => (
+                              <rect
+                                key={index}
+                                x="-20.5"
+                                y={y}
+                                width={41}
+                                height={41}
+                                fill="lightgrey"
+                                style={{ stroke: "black", strokeWidth: 3 }}
+                                className="balustradeMode"
+                              />
+                            ))}
+                          </g>
+                          <g />
+                        </g>
+                        <g
+                          onClick={() => {
+                            settower2(!tower2);
+                            settower4(!tower4);
+                            setrightLineBalustrade(!rightLineBalustrade);
+                          }}
+                          transform="translate(419 45)  rotate(0)"
+                        >
+                          {yCoordinates.map((y, index) => (
+                            <rect
+                              key={index}
+                              x="-20.5"
+                              y={y}
+                              width={41}
+                              height={41}
+                              fill="lightgrey"
+                              style={{ stroke: "black", strokeWidth: 3 }}
+                              className="balustradeMode"
+                            />
+                          ))}
+                          <g />
+                        </g>
+                      </g>
+                    </g>
+                  )}
+                  {balustradeStyles === "Oak Twist spindles (Square posts)" && (
+                    <g transform="translate(0 120)  rotate(0)">
+                      <g>
+                        <g transform="translate(-419 45)  rotate(0)">
+                          <g
+                            onClick={() => {
+                              settower1(!tower1);
+                              settower3(!tower3);
+                              setleftLineBalustrade(!leftLineBalustrade);
+                            }}
+                          >
+                            {yCoordinates.map((y, index) => (
+                              <rect
+                                key={index}
+                                x="-20.5"
+                                y={y}
+                                width={41}
+                                height={41}
+                                fill="lightgrey"
+                                style={{ stroke: "black", strokeWidth: 3 }}
+                                className="balustradeMode"
+                              />
+                            ))}
+                          </g>
+                          <g />
+                        </g>
+                        <g
+                          onClick={() => {
+                            settower2(!tower2);
+                            settower4(!tower4);
+                            setrightLineBalustrade(!rightLineBalustrade);
+                          }}
+                          transform="translate(419 45)  rotate(0)"
+                        >
+                          {yCoordinates.map((y, index) => (
+                            <rect
+                              key={index}
+                              x="-20.5"
+                              y={y}
+                              width={41}
+                              height={41}
+                              fill="lightgrey"
+                              style={{ stroke: "black", strokeWidth: 3 }}
+                              className="balustradeMode"
+                            />
+                          ))}
+                          <g />
+                        </g>
+                      </g>
+                    </g>
+                  )}
+                  {balustradeStyles === "Turned spindles (Turned posts)" && (
+                    <g transform="translate(0 120)  rotate(0)">
+                      <g>
+                        <g transform="translate(-419 45)  rotate(0)">
+                          <g
+                            onClick={() => {
+                              settower1(!tower1);
+                              settower3(!tower3);
+                              setleftLineBalustrade(!leftLineBalustrade);
+                            }}
+                          >
+                            {yCoordinates.map((y, index) => (
+                              <>
+                                <rect
+                                  key={index}
+                                  x="-20.5"
+                                  y={y}
+                                  width={41}
+                                  height={41}
+                                  fill="lightgrey"
+                                  style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                                  className="balustradeMode"
+                                />
+                                <circle
+                                  cx="-0.5"
+                                  key={index}
+                                  cy={y + 18}
+                                  r={10}
+                                  fill="none"
+                                  stroke="black"
+                                  strokeWidth="2px"
+                                />
+                              </>
+                            ))}
+                          </g>
+                          <g />
+                        </g>
+                        <g
+                          onClick={() => {
+                            settower2(!tower2);
+                            settower4(!tower4);
+                            setrightLineBalustrade(!rightLineBalustrade);
+                          }}
+                          transform="translate(419 45)  rotate(0)"
+                        >
+                          {yCoordinates.map((y, index) => (
+                            <>
+                              <rect
+                                key={index}
+                                x="-20.5"
+                                y={y}
+                                width={41}
+                                height={41}
+                                fill="lightgrey"
+                                style={{ stroke: "black", strokeWidth: 3, fill: "lightgrey" }}
+                                className="balustradeMode"
+                              />
+                              <circle
+                                cx="-0.5"
+                                key={index}
+                                cy={y + 18}
+                                r={10}
+                                fill="none"
+                                stroke="black"
+                                strokeWidth="2px"
+                              />
+                            </>
+                          ))}
+                          <g />
+                        </g>
+                      </g>
+                    </g>
+                  )}
+                  {balustradeStyles === "Embedded Glass (Square posts)" && (
+                    <g transform="translate(0 120)  rotate(0)">
+                      <g>
+                        <g transform="translate(-419 45)  rotate(0)">
+                          <g
+                            onClick={() => {
+                              settower1(!tower1);
+                              settower3(!tower3);
+                              setleftLineBalustrade(!leftLineBalustrade);
+                            }}
+                          >
+                            {yCoordinates.map((y, index) => (
+                              <rect
+                                key={index}
+                                x={-4}
+                                y={100 * index}
+                                width={8}
+                                height="791.33333333333"
+                                fill="#868992"
+                                id=""
+                                className="balustradeMode"
+                              />
+                            ))}
+                          </g>
+                          <g />
+                        </g>
+                        <g
+                          onClick={() => {
+                            settower2(!tower2);
+                            settower4(!tower4);
+                            setrightLineBalustrade(!rightLineBalustrade);
+                          }}
+                          transform="translate(419 45)  rotate(0)"
+                        >
+                          {yCoordinates.map((y, index) => (
+                            <rect
+                              key={index}
+                              x={-4}
+                              y={100 * index}
+                              width={8}
+                              height="791.33333333333"
+                              fill="#868992"
+                              id=""
+                              className="balustradeMode"
+                            />
+                          ))}
+                          <g />
+                        </g>
+                      </g>
+                    </g>
+                  )}
+                  {balustradeStyles === "Clamped Glass (Square posts)" && (
+                    <g transform="translate(0 120)  rotate(0)">
+                      <g>
+                        <g transform="translate(-419 45)  rotate(0)">
+                          <g
+                            onClick={() => {
+                              settower1(!tower1);
+                              settower3(!tower3);
+                              setleftLineBalustrade(!leftLineBalustrade);
+                            }}
+                          >
+                            {yCoordinates.map((y, index) => (
+                              <rect
+                                key={index}
+                                x={-4}
+                                y={100 * index}
+                                width={8}
+                                height="791.33333333333"
+                                fill="#868992"
+                                id=""
+                                className="balustradeMode"
+                              />
+                            ))}
+                          </g>
+                          <g />
+                        </g>
+                        <g
+                          onClick={() => {
+                            settower2(!tower2);
+                            settower4(!tower4);
+                            setrightLineBalustrade(!rightLineBalustrade);
+                          }}
+                          transform="translate(419 45)  rotate(0)"
+                        >
+                          {yCoordinates.map((y, index) => (
+                            <rect
+                              key={index}
+                              x={-4}
+                              y={100 * index}
+                              width={8}
+                              height="791.33333333333"
+                              fill="#868992"
+                              id=""
+                              className="balustradeMode"
+                            />
+                          ))}
+                          <g />
+                        </g>
+                      </g>
+                    </g>
+                  )}
                   {/* towers */}
                   <g transform={`translate(0 ${yCoordinates.length * 145})  rotate(0)`}>
                     <g
@@ -832,79 +1127,70 @@ const DefaultShape = () => {
               )}
 
               {/* make this dynamic */}
-              {[600, -500].map((items, index) => {
-                return (
-                  <g key={index}>
-                    {heightArrow && (
-                      <line
-                        x1={500}
-                        y1={heightArrow}
-                        x2={500}
-                        y2={0}
-                        stroke="black"
-                        strokeWidth={3}
-                        markerEnd="url(#endarrow)"
-                        markerStart="url(#startarrow)"
+              <g transform={`translate(0 500)  rotate(0)`}>
+                {[600, -500].map((items, index) => {
+                  return (
+                    <g key={index}>
+                      {heightArrow && (
+                        <line
+                          x1={500}
+                          y1={heightArrow}
+                          x2={500}
+                          y2={-heightArrow + 240 * appState.svgRiser.positions.length}
+                          stroke="black"
+                          strokeWidth={3}
+                          markerEnd="url(#endarrow)"
+                          markerStart="url(#startarrow)"
+                          className=""
+                        />
+                      )}
+                      <text
+                        x={545}
+                        y={-heightArrow + 100 * appState.svgRiser.positions.length}
+                        style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                        className=""
+                      >
+                        {headCheckerVerticalArrows ? headCheckerVerticalArrows : heightArrow}
+                      </text>
+                      {widhtArrow && (
+                        <line
+                          x1={-500}
+                          y1={-250}
+                          x2={500}
+                          y2={-250}
+                          stroke="black"
+                          strokeWidth={3}
+                          markerEnd="url(#endarrow)"
+                          markerStart="url(#startarrow)"
+                          className=""
+                        />
+                      )}
+
+                      <rect
+                        x={-50}
+                        y={-250}
+                        width={200}
+                        height={100}
+                        fill="white"
+                        transform="translate (-20,-30)"
+                        opacity="0.6"
                         className=""
                       />
-                    )}
-
-                    <rect
-                      x={-50}
-                      y={-250}
-                      width={200}
-                      height={100}
-                      fill="white"
-                      transform="translate (-20,-30)"
-                      opacity="0.6"
-                      className=""
-                    />
-                    <text
-                      x={545}
-                      y={-1047}
-                      style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                      className=""
-                    >
-                      {heightArrow}
-                    </text>
-                    {widhtArrow && (
-                      <line
-                        x1={-500}
-                        y1={-250}
-                        x2={500}
-                        y2={-250}
-                        stroke="black"
-                        strokeWidth={3}
-                        markerEnd="url(#endarrow)"
-                        markerStart="url(#startarrow)"
+                      <text
+                        x={-50}
+                        y={270}
+                        style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
                         className=""
-                      />
-                    )}
-
-                    <rect
-                      x={-50}
-                      y={-250}
-                      width={200}
-                      height={100}
-                      fill="white"
-                      transform="translate (-20,-30)"
-                      opacity="0.6"
-                      className=""
-                    />
-                    <text
-                      x={-50}
-                      y={270}
-                      style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                      className=""
-                    >
-                      {widhtArrow}
-                      {/* {Math.floor(Math.abs(appState.svgRiser.width) * 1000)} */}
-                    </text>
-                  </g>
-                );
-              })}
+                      >
+                        {widhtArrow}
+                        {/* {Math.floor(Math.abs(appState.svgRiser.width) * 1000)} */}
+                      </text>
+                    </g>
+                  );
+                })}
+              </g>
             </g>
           </svg>
         </Grid>
@@ -941,6 +1227,7 @@ const DefaultShape = () => {
             <Button
               onClick={() => {
                 setShowViewHeadRoomChecker(!showHeaderRoomChecker);
+                dispatch(!showHeaderRoomChecker && setheadCheckerVerticalArrow(heightArrow - 225));
               }}
               fullWidth
               variant="contained"

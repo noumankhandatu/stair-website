@@ -2,11 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   width: null,
-  height: null,
+  height: 2795,
   leftArrow: null,
   bottomArrow: null,
   topArrow: null,
   rightArrow: null,
+  headCheckerVerticalArrow: null,
 };
 
 export const stairHeightWidthSlice = createSlice({
@@ -31,15 +32,27 @@ export const stairHeightWidthSlice = createSlice({
     setBottomArrow: (state, action) => {
       state.bottomArrow = action.payload;
     },
+    setheadCheckerVerticalArrow: (state, action) => {
+      state.headCheckerVerticalArrow = action.payload;
+    },
   },
 });
 
-export const { setWidth, setHeight, setLeftArrow, setRightArrow, setTopArrow, setBottomArrow } =
-  stairHeightWidthSlice.actions;
+export const {
+  setWidth,
+  setHeight,
+  setLeftArrow,
+  setRightArrow,
+  setTopArrow,
+  setBottomArrow,
+  setheadCheckerVerticalArrow,
+} = stairHeightWidthSlice.actions;
 
 export const ArrowHeight = (state) => state.stairHeightWidthSlice.height;
 export const ArrowWidth = (state) => state.stairHeightWidthSlice.width;
 export const WindRun1 = (state) => state.stairHeightWidthSlice.rightArrow;
 export const WindRun2 = (state) => state.stairHeightWidthSlice.bottomArrow;
+export const headCheckerVerticalArrow = (state) =>
+  state.stairHeightWidthSlice.headCheckerVerticalArrow;
 
 export default stairHeightWidthSlice.reducer;

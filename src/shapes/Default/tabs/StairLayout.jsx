@@ -3,7 +3,11 @@ import { Appheading } from "../../../theme/index";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
-import { setHeight, setWidth } from "../../../toolkit/slices/stairHeightWidth";
+import {
+  setHeight,
+  setWidth,
+  setheadCheckerVerticalArrow,
+} from "../../../toolkit/slices/stairHeightWidth";
 import { setShape } from "../../../toolkit/slices/shapes";
 import {
   NONE_STEP_LEFT,
@@ -209,7 +213,14 @@ const StairLayout = ({ setAppState, appState, setindividualState }) => {
           Select a position
         </MenuItem>
         {heightLoopArray.map((option, index) => (
-          <MenuItem onClick={() => dispatch(setHeight(option))} key={index} value={option}>
+          <MenuItem
+            onClick={() => {
+              dispatch(setHeight(option + 115));
+              dispatch(setheadCheckerVerticalArrow(null));
+            }}
+            key={index}
+            value={option}
+          >
             {option} mm
           </MenuItem>
         ))}
