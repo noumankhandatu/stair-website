@@ -678,7 +678,6 @@ const DefaultShape = () => {
                       stroke="black"
                     />
                   )}
-
                   {individualState !== 0 && (
                     <path
                       d={`M-500 550 L-500 ${
@@ -1127,32 +1126,47 @@ const DefaultShape = () => {
               )}
 
               {/* make this dynamic */}
-              <g transform={`translate(0 500)  rotate(0)`}>
+              <g transform={`translate(0 0)  rotate(0)`}>
                 {[600, -500].map((items, index) => {
                   return (
                     <g key={index}>
-                      {heightArrow && (
-                        <line
-                          x1={500}
-                          y1={heightArrow}
-                          x2={500}
-                          y2={-heightArrow + 240 * appState.svgRiser.positions.length}
-                          stroke="black"
-                          strokeWidth={3}
-                          markerEnd="url(#endarrow)"
-                          markerStart="url(#startarrow)"
-                          className=""
-                        />
-                      )}
-                      <text
-                        x={545}
-                        y={-heightArrow + 100 * appState.svgRiser.positions.length}
-                        style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                        className=""
+                      <g
+                        transform={`translate(0 1220)  rotate(0)`}
+                        style={{ position: "relative" }}
                       >
-                        {headCheckerVerticalArrows ? headCheckerVerticalArrows : heightArrow}
-                      </text>
+                        {heightArrow && (
+                          <line
+                            x1={500}
+                            y1={individualState * (appState.svgRiser.positions.length - 3) + 10}
+                            x2={500}
+                            y2={-700}
+                            stroke="black"
+                            strokeWidth={3}
+                            markerEnd="url(#endarrow)"
+                            markerStart="url(#startarrow)"
+                            className=""
+                          />
+                        )}
+                        <g
+                          transform={`translate(0 ${
+                            individualState * (appState.svgRiser.positions.length - 3) + 10
+                          })  rotate(0)`}
+                        >
+                          <text
+                            x={545}
+                            y={230}
+                            style={{
+                              fontSize: 75,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              position: "absolute",
+                              top: "50%",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            {headCheckerVerticalArrows ? headCheckerVerticalArrows : heightArrow}
+                          </text>
+                        </g>
+                      </g>
                       {widhtArrow && (
                         <line
                           x1={-500}
