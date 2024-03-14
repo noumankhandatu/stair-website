@@ -27,12 +27,25 @@ export const QUARTER_LANDING = "quarter landing";
 
 //  <-- all lefts
 
+// 3 winder
 export const ThreeWinderLeftTurn = "three-winder-left-turn";
 export const ThreeWinderLeftLeftTurn = "three-winder-left-left-turn";
 export const ThreeWinderLeftRightTurn = "three-winder-left-right-turn";
+// half landing
+
+export const HalfLandingLeftTurn = "half-landing-left-turn";
+export const HalfLandingLeftLeftTurn = "half-landing-left-left-turn";
+export const HalfLandingLeftRightTurn = "half-landing-left-right-turn";
 
 // all rights -->
 
+// 3winder
 export const ThreeWinderRightTurn = "three-winder-right-turn";
 export const ThreeWinderRightRightTurn = "three-winder-right-right-turn";
 export const ThreeWinderRightLeftTurn = "three-winder-right-left-turn";
+// half landing
+
+export const HalfLandingRightTurn = "half-landing-right-turn";
+export const HalfLandingRightRightTurn = "half-landing-right-right-turn";
+export const HalfLandingRightLeftTurn = "half-landing-right-left-turn";
+
