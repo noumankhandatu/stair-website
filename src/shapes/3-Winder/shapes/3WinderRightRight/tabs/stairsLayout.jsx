@@ -1,18 +1,23 @@
 /* eslint-disable react/prop-types */
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Paper } from "@mui/material";
 import { Appheading } from "../../../../../theme";
-import { setHeight, setWidth } from "../../../../../toolkit/slices/stairHeightWidth";
+import { setHeight } from "../../../../../toolkit/slices/stairHeightWidth";
 import { setShape } from "../../../../../toolkit/slices/shapes";
-import { ThrreWidnerFirstRight, ceilingArray } from "../../../../../utils/data";
 import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
-import { THREE_WINDER } from "../../../../../utils/enum";
+import { QUARTER_LANDING, THREE_WINDER } from "../../../../../utils/enum";
 import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
-import { setIsDivisible } from "../../../../../toolkit/slices/singleFeatures";
+import {
+  selectDefaultValueTwo,
+  selectedDefaultValue,
+  setIsDivisible,
+  setSelectDefaultValue,
+  setSelectDefaultValue2,
+} from "../../../../../toolkit/slices/singleFeatures";
 import CeilingHeight from "../../../../../components/molecules/CeliningHeight";
 
 const heightLoopArray = [];
@@ -32,6 +37,9 @@ for (let i = 222; i <= 280; i++) {
   indiviualGoingArray.push(i);
 }
 const StairLayout = ({ setAppState, appState }) => {
+  const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
+  const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
+
   // hooks
   const dispatch = useDispatch();
   // width changer
@@ -102,8 +110,18 @@ const StairLayout = ({ setAppState, appState }) => {
 
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;
-    // Dispatch the setShape action with the selected value
     dispatch(setShape(selectedValue));
+    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setSelectDefaultValue(selectedValue));
+    }
+  };
+  // select shape from selectbox
+  const handleSelectShapeTwo = (event) => {
+    const selectedValue = event.target.value;
+    dispatch(setShape(selectedValue));
+    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setSelectDefaultValue2(selectedValue));
+    }
   };
   // ceiling height changer
   const handleCeilingsHeight = (newHeight) => {
@@ -246,7 +264,7 @@ const StairLayout = ({ setAppState, appState }) => {
         sx={{ height: 40, mt: 1 }}
         onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
       >
-        {widthLoopArray.map((value, index) => (
+        {/* {widthLoopArray.map((value, index) => (
           <MenuItem
             onClick={() => {
               setSelectedValue(value);
@@ -255,9 +273,8 @@ const StairLayout = ({ setAppState, appState }) => {
             value={value.toString()}
           >
             {value}
-            {/* {index === 0 ? null : <> {index * 50 + 300} mm</>} */}
           </MenuItem>
-        ))}
+        ))} */}
       </Select>
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
@@ -266,7 +283,10 @@ const StairLayout = ({ setAppState, appState }) => {
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Turn Shape</Appheading>
-          <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
+          <ShapesSelect
+            defaultShape={firstSelectDefaultValueRedux}
+            handleSelectShape={handleSelectShape}
+          />
         </Div>
       </Paper>
       {/* Turns -> Second Left & Right  */}
@@ -278,7 +298,10 @@ const StairLayout = ({ setAppState, appState }) => {
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Turn Shape</Appheading>
-          <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
+          <ShapesSelect
+            defaultShape={secondSelectDefaultValueRedux}
+            handleSelectShape={handleSelectShapeTwo}
+          />
         </Div>
       </Paper>
     </div>

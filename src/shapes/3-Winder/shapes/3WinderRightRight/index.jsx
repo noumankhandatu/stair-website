@@ -9,12 +9,20 @@ import FeatureCard from "../../../../components/molecules/FeatureCard";
 import { useState } from "react";
 import MaterialConstruction from "./tabs/MaterialConstruction";
 import StairsLayout from "./tabs/stairsLayout";
-import { markersData, patternsData } from "../../../../utils/data";
+import {
+  selectDefaultValueTwo,
+  selectedDefaultValue,
+} from "../../../../toolkit/slices/singleFeatures";
+import { useSelector } from "react-redux";
+import { QUARTER_LANDING } from "../../../../utils/enum";
 
 const ThreeWinderRightRight = () => {
   // states
   const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
+  const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
+  const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
+
   const [appState, setAppState] = useState({
     svgInsideContainer: {
       height: "100vh",
@@ -407,7 +415,11 @@ const ThreeWinderRightRight = () => {
                         <polyline
                           points="418.5,0,-418.5,0,-418.5,10,418.5,10"
                           fill="url(#turn1_tread1)"
-                          stroke="black"
+                          stroke={
+                            firstSelectDefaultValueRedux === QUARTER_LANDING
+                              ? "transparent"
+                              : "black"
+                          }
                           strokeWidth={1}
                         />
                         <text
@@ -434,7 +446,11 @@ const ThreeWinderRightRight = () => {
                         <polyline
                           points="374,21.51,-418.5,480.91,-418.5,861,-66.91,861,419,55.5"
                           fill="url(#turn1_tread2)"
-                          stroke="black"
+                          stroke={
+                            firstSelectDefaultValueRedux === QUARTER_LANDING
+                              ? "transparent"
+                              : "black"
+                          }
                           strokeWidth={2}
                         />
                         <text
@@ -446,7 +462,11 @@ const ThreeWinderRightRight = () => {
                         <polyline
                           points="374,40,-418.5,499.41,-418.5,510.97,374,51.56"
                           fill="url(#turn1_tread2)"
-                          stroke="black"
+                          stroke={
+                            firstSelectDefaultValueRedux === QUARTER_LANDING
+                              ? "transparent"
+                              : "black"
+                          }
                           strokeWidth={1}
                         />
                         <text
@@ -473,7 +493,11 @@ const ThreeWinderRightRight = () => {
                         <polyline
                           points="400.31,55.5,-85.59,861,442.5,861,442.5,24,419,24"
                           fill="url(#turn1_tread3)"
-                          stroke="black"
+                          stroke={
+                            firstSelectDefaultValueRedux === QUARTER_LANDING
+                              ? "transparent"
+                              : "black"
+                          }
                           strokeWidth={2}
                         />
                         <text
@@ -485,7 +509,11 @@ const ThreeWinderRightRight = () => {
                         <polyline
                           points="419,55.5,-66.91,861,-55.23,861,430.68,55.5"
                           fill="url(#turn1_tread3)"
-                          stroke="black"
+                          stroke={
+                            firstSelectDefaultValueRedux === QUARTER_LANDING
+                              ? "transparent"
+                              : "black"
+                          }
                           strokeWidth={1}
                         />
                         <text
@@ -610,7 +638,11 @@ const ThreeWinderRightRight = () => {
                         <polyline
                           points="374,21.51,-418.5,480.91,-418.5,861,-66.91,861,419,55.5"
                           fill="url(#turn2_tread2)"
-                          stroke="black"
+                          stroke={
+                            secondSelectDefaultValueRedux === QUARTER_LANDING
+                              ? "transparent"
+                              : "black"
+                          }
                           strokeWidth={2}
                         />
                         <text
@@ -622,7 +654,11 @@ const ThreeWinderRightRight = () => {
                         <polyline
                           points="374,40,-418.5,499.41,-418.5,510.97,374,51.56"
                           fill="url(#turn2_tread2)"
-                          stroke="black"
+                          stroke={
+                            secondSelectDefaultValueRedux === QUARTER_LANDING
+                              ? "transparent"
+                              : "black"
+                          }
                           strokeWidth={1}
                         />
                         <text
@@ -649,7 +685,11 @@ const ThreeWinderRightRight = () => {
                         <polyline
                           points="400.31,55.5,-85.59,861,442.5,861,442.5,24,419,24"
                           fill="url(#turn2_tread3)"
-                          stroke="black"
+                          stroke={
+                            secondSelectDefaultValueRedux === QUARTER_LANDING
+                              ? "transparent"
+                              : "black"
+                          }
                           strokeWidth={2}
                         />
                         <text
@@ -661,7 +701,11 @@ const ThreeWinderRightRight = () => {
                         <polyline
                           points="419,55.5,-66.91,861,-55.23,861,430.68,55.5"
                           fill="url(#turn2_tread3)"
-                          stroke="black"
+                          stroke={
+                            secondSelectDefaultValueRedux === QUARTER_LANDING
+                              ? "transparent"
+                              : "black"
+                          }
                           strokeWidth={1}
                         />
                         <text

@@ -11,8 +11,7 @@ const AppShapes = () => {
     <div>
       {currentShape === DEFAULT_SHAPE && <DefaultShape />}
       {currentShape === T_SHAPE && <TShape />}
-      {currentShape === THREE_WINDER && <ThreeWinderShape />}
-      {currentShape === QUARTER_LANDING && <ThreeWinderShape />}
+      {(currentShape === THREE_WINDER || currentShape === QUARTER_LANDING) && <ThreeWinderShape />}
       {currentShape === HALF_LANDING && <HalfLandingShape />}
     </div>
   );

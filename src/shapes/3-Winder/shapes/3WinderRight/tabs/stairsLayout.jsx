@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Paper } from "@mui/material";
 import { Appheading } from "../../../../../theme";
 import {
@@ -17,6 +17,7 @@ import {
   HalfLandingRightTurn,
   NONE_STEP_LEFT,
   NONE_STEP_RIGHT,
+  QUARTER_LANDING,
   THREE_WINDER,
   ThreeWinderRightLeftTurn,
   ThreeWinderRightRightTurn,
@@ -31,7 +32,11 @@ import {
   setLeftFeatureStep,
   setRightFeatureStep,
 } from "../../../../../toolkit/slices/featureSteps";
-import { setIsDivisible } from "../../../../../toolkit/slices/singleFeatures";
+import {
+  selectedDefaultValue,
+  setIsDivisible,
+  setSelectDefaultValue,
+} from "../../../../../toolkit/slices/singleFeatures";
 
 const heightLoopArray = [];
 let updatedPositions = [];
@@ -52,6 +57,7 @@ for (let i = 222; i <= 280; i++) {
 const StairLayout = ({ setAppState, appState }) => {
   // states
   const [selectedValue, setSelectedValue] = useState(null);
+  const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   // hooks
   const dispatch = useDispatch();
   // width changer
@@ -156,6 +162,9 @@ const StairLayout = ({ setAppState, appState }) => {
     // Dispatch the setShape action with the selected value
     dispatch(setShape(selectedValue));
     dispatch(setHalfLandingTurn(HalfLandingRightTurn));
+    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setSelectDefaultValue(selectedValue));
+    }
   };
 
   const handleLeft = () => {
@@ -299,7 +308,10 @@ const StairLayout = ({ setAppState, appState }) => {
 
         <Div sx={TurnFlex}>
           <Appheading>Type </Appheading>
-          <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
+          <ShapesSelect
+            defaultShape={firstSelectDefaultValueRedux}
+            handleSelectShape={handleSelectShape}
+          />
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Treads before turn:</Appheading>

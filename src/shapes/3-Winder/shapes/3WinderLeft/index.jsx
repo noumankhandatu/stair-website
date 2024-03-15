@@ -22,8 +22,9 @@ import {
   RIGHT_CURTAIL_BULLNOSE,
   RIGHT_D_STEP,
   NONE_STEP_LEFT,
+  QUARTER_LANDING,
 } from "../../../../utils/enum";
-import { selectDivisble } from "../../../../toolkit/slices/singleFeatures";
+import { selectDivisble, selectedDefaultValue } from "../../../../toolkit/slices/singleFeatures";
 const ThreeWinderLeft = () => {
   // states
 
@@ -33,6 +34,7 @@ const ThreeWinderLeft = () => {
   const reduxLeftStep = useSelector(leftFeatureStep);
   const reduxRightStep = useSelector(rightFeatureStep);
   const reduxSelectDivisble = useSelector(selectDivisble);
+  const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const [appState, setAppState] = useState({
@@ -67,6 +69,7 @@ const ThreeWinderLeft = () => {
   const handleshowMaterialConstruciton = () => {
     setshowMaterialConstruction((prev) => !prev);
   };
+
   return (
     <div>
       <AppMainheading sx={{ mt: 4 }}>
@@ -663,11 +666,14 @@ const ThreeWinderLeft = () => {
                       #{appState.svgRiser.bottomRisers.length + 1}
                     </text>
                   </g>
+                  {firstSelectDefaultValueRedux}
                   <g transform="translate(0 0)  rotate(0)">
                     <polyline
                       points="441.5,21.51,-486,558.86,-486,996,-77.35,996,486.5,55.5"
                       fill={`url(#${appState.svgRiser.color})`}
-                      stroke="black"
+                      stroke={
+                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
                       strokeWidth={2}
                     />
                     <text
@@ -687,13 +693,17 @@ const ThreeWinderLeft = () => {
                     <polyline
                       points="467.84,55.5,-96.01,996,510,996,510,24,486.5,24"
                       fill={`url(#${appState.svgRiser.color})`}
-                      stroke="black"
+                      stroke={
+                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
                       strokeWidth={2}
                     />
                     <polyline
                       points="486.5,55.5,-77.35,996,-65.69,996,498.16,55.5"
                       fill={`url(#${appState.svgRiser.color})`}
-                      stroke="black"
+                      stroke={
+                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
                       strokeWidth={1}
                     />
                     <text
