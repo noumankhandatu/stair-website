@@ -14,6 +14,7 @@ import TwoXHalfLandingLeft from "./shapes/2xHalfLandingLeft";
 import ThreeWinderHalfLandingLeftLeftShape from "./shapes/3wHlLeftLeft";
 import HalfLandingRightRight from "./shapes/HalfLandingRightRight";
 import TwoXHalfLandingRight from "./shapes/2zHalfLandingRight";
+import ThreeWinderHalfLandingRightRighttShape from "./shapes/3wHLRightRight";
 
 // setHalfLandingTurn
 const HalfLandingShape = () => {
@@ -30,6 +31,9 @@ const HalfLandingShape = () => {
       {shapeTurn === HalfLandingRightTurn && <HalfLandingRight />}
       {shapeTurn === HalfLandingRightRightTurn && <HalfLandingRightRight />}
       {shapeTurn === "TwoxHalfLandingRight" && <TwoXHalfLandingRight />}
+      {shapeTurn === "ThreeWinderHalfLandingRightRighttShape" && <ThreeWinderHalfLandingRightRighttShape />}
+
+      
     </>
   );
 };
