@@ -23,9 +23,11 @@ import {
   THREE_WINDER,
   ThreeWinderLeftLeftTurn,
   ThreeWinderLeftRightTurn,
+  TwoxHalfLandingLeft,
 } from "../../../../../utils/enum";
 import {
   selectHalfLandingTurn,
+  selectShapeTurn,
   setHalfLandingTurn,
   setShapeTurn,
 } from "../../../../../toolkit/slices/shapeTurns";
@@ -64,13 +66,14 @@ for (let i = 222; i <= 280; i++) {
 }
 const StairLayout = ({ setAppState, appState }) => {
   // states
-
   const [selectedValue, setSelectedValue] = useState(null);
 
   // hooks
 
   const dispatch = useDispatch();
   const reduxDefaultSelected = useSelector(selectDefaultValueTwo);
+  const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
+
   // width changer
   const handleWidthChange = (newValue) => {
     let x = newValue;
@@ -162,20 +165,6 @@ const StairLayout = ({ setAppState, appState }) => {
     }));
   };
 
-  const handleSelectShape = (event) => {
-    const selectedValue = event.target.value;
-    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
-      dispatch(setHalfLandingTurn("3winderhalflandingleftleft"));
-      dispatch(setSelectDefaultValue(THREE_WINDER));
-    }
-  };
-  const handleSelectShapeTwo = (event) => {
-    const selectedValue = event.target.value;
-    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
-      dispatch(setHalfLandingTurn(HalfLandingLeftLeftTurn));
-      dispatch(setSelectDefaultValue2(selectedValue));
-    }
-  };
   const handleTurns = (event) => {
     const selectedValue = parseInt(event.target.value);
     const rightArray = [];
@@ -201,6 +190,26 @@ const StairLayout = ({ setAppState, appState }) => {
         borderLeft: updatedPositions.length * 250,
       },
     }));
+  };
+  const handleSelectShape1 = (event) => {
+    const selectedValue = event.target.value;
+    // Dispatch the setShape action with the selected value
+    // dispatch(setHalfLandingTurn(TwoxHalfLandingLeft));
+    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setSelectDefaultValue(selectedValue));
+    }
+    if (selectedValue === HALF_LANDING) {
+      dispatch(setHalfLandingTurn(TwoxHalfLandingLeft));
+      dispatch(setSelectDefaultValue2(HALF_LANDING));
+    }
+  };
+  const handleSelectShape2 = (event) => {
+    const selectedValue = event.target.value;
+    // Dispatch the setShape action with the selected value
+    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setShape(THREE_WINDER));
+      dispatch(setShapeTurn(ThreeWinderLeftLeftTurn));
+    }
   };
 
   return (
@@ -310,7 +319,10 @@ const StairLayout = ({ setAppState, appState }) => {
 
         <Div sx={TurnFlex}>
           <Appheading>Type </Appheading>
-          <ShapesSelect defaultShape={HALF_LANDING} handleSelectShape={handleSelectShape} />
+          <ShapesSelect
+            defaultShape={firstSelectDefaultValueRedux}
+            handleSelectShape={handleSelectShape1}
+          />
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Treads before turn:</Appheading>
@@ -349,6 +361,7 @@ const StairLayout = ({ setAppState, appState }) => {
         ))}
       </Select>
 
+      {/* Turns -> Second Left & Right  */}
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
           <Appheading>Turn 2 (Left)</Appheading>
@@ -357,10 +370,7 @@ const StairLayout = ({ setAppState, appState }) => {
 
         <Div sx={TurnFlex}>
           <Appheading>Type </Appheading>
-          <ShapesSelect
-            defaultShape={reduxDefaultSelected}
-            handleSelectShape={handleSelectShapeTwo}
-          />
+          <ShapesSelect defaultShape={HALF_LANDING} handleSelectShape={handleSelectShape2} />
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Treads before turn:</Appheading>

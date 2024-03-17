@@ -24,8 +24,12 @@ import {
   NONE_STEP_LEFT,
   QUARTER_LANDING,
 } from "../../../../utils/enum";
-import { selectDivisble, selectedDefaultValue } from "../../../../toolkit/slices/singleFeatures";
-const ThreeWinderHalflandingLeftLeft = () => {
+import {
+  selectDefaultValueTwo,
+  selectDivisble,
+  selectedDefaultValue,
+} from "../../../../toolkit/slices/singleFeatures";
+const ThreeWinderHalfLandingLeftLeftShape = () => {
   // states
 
   const ArrowHeightRedux = useSelector(ArrowHeight);
@@ -35,6 +39,8 @@ const ThreeWinderHalflandingLeftLeft = () => {
   const reduxRightStep = useSelector(rightFeatureStep);
   const reduxSelectDivisble = useSelector(selectDivisble);
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
+  const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
+
   const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const [appState, setAppState] = useState({
@@ -96,7 +102,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
           )}{" "}
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={9}>
-          <svg width={564} height={700}>
+          <svg width={981} height={700}>
             <defs>
               {" "}
               <pattern id="mdf" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
@@ -202,6 +208,90 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   transform="translate (0,0) rotate(0)"
                 />
               </pattern>{" "}
+              <pattern
+                id="turn1_tread2"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn1_tread2"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn1_tread3"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn1_tread3"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn2_tread1"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn2_tread1"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
               <marker
                 id="startarrow"
                 markerWidth={10}
@@ -224,7 +314,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                 <polygon points="0 0, 10 3.5, 0 7" fill="red" />
               </marker>
             </defs>{" "}
-            <g transform="translate (376.22295897223376,457.72689598010777) rotate(180) scale(-0.2030667219229175,0.2030667219229175)">
+            <g transform="translate (638.2105409927495,586.8014500836587) rotate(180) scale(-0.27328499721137756,0.27328499721137756)">
               {" "}
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
@@ -390,36 +480,34 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   </text>
                 </g>
                 <g transform="translate(0 888)  rotate(0)">
+                  <g transform="translate(405.5 0)  rotate(0)" />
+                  <g transform="translate(0 875)  rotate(-90)" />
                   <g transform="translate(0 0)  rotate(0)">
                     {" "}
                     <polyline
-                      points="-522,-16,418.5,-16,418.5,835,-1346.5,835,-1346.5,0,-451,0,-451,-15.5,-432.5,-15.5,-522,-15.5"
+                      points="-418.5,-16,418.5,-16,418.5,499.41,-374,40,-418.5,40"
                       fill="url(#turn1_tread1)"
                       stroke="black"
                       strokeWidth={2}
                     />
                     <text
-                      style={{ fontSize: 60 }}
+                      style={{ fontSize: "" }}
                       className="heavy"
-                      textAnchor="end"
-                      transform="translate(200,400) rotate(180) scale(-1,1)"
-                    >
-                      * Half Landings not supplied by StairBox *
-                    </text>{" "}
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
                     <polyline
-                      points="-522,0,418.5,0,418.5,10,-522,10"
+                      points="-418.5,0,418.5,0,418.5,10,-418.5,10"
                       fill="url(#turn1_tread1)"
                       stroke="black"
                       strokeWidth={1}
                     />
                     <text
-                      style={{ fontSize: 60 }}
+                      style={{ fontSize: "" }}
                       className="heavy"
-                      textAnchor="end"
-                      transform="translate(200,400) rotate(180) scale(-1,1)"
-                    >
-                      * Half Landings not supplied by StairBox *
-                    </text>{" "}
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
                     <text
                       x="-69.2"
                       y={-100}
@@ -433,8 +521,96 @@ const ThreeWinderHalflandingLeftLeft = () => {
                       #5
                     </text>
                   </g>
+                  <g transform="translate(0 0)  rotate(0)">
+                    {" "}
+                    <polyline
+                      points="-374,21.51,418.5,480.91,418.5,861,66.91,861,-419,55.5"
+                      fill="url(#turn1_tread2)"
+                      stroke={
+                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
+                      strokeWidth={2}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <polyline
+                      points="-374,40,418.5,499.41,418.5,510.97,-374,51.56"
+                      fill="url(#turn1_tread2)"
+                      stroke={
+                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
+                      strokeWidth={1}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <text
+                      x={-173}
+                      y={-280}
+                      style={{
+                        fontSize: 55,
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        color: "black",
+                      }}
+                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                    >
+                      #6
+                    </text>
+                  </g>
+                  <g transform="translate(0 0)  rotate(0)">
+                    {" "}
+                    <polyline
+                      points="-400.31,55.5,85.59,861,-442.5,861,-442.5,24,-419,24"
+                      fill="url(#turn1_tread3)"
+                      stroke={
+                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
+                      strokeWidth={2}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <polyline
+                      points="-419,55.5,66.91,861,55.23,861,-430.68,55.5"
+                      fill="url(#turn1_tread3)"
+                      stroke={
+                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
+                      strokeWidth={1}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <text
+                      x={-346}
+                      y={-400}
+                      style={{
+                        fontSize: 55,
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        color: "black",
+                      }}
+                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                    >
+                      #7
+                    </text>
+                  </g>
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
                 </g>
-                <g transform="translate(-923 888)  rotate(180)">
+                <g transform="translate(-442.5 1330.5)  rotate(90)">
                   <g>
                     <g transform="translate(-413.5 0)  rotate(0)">
                       {" "}
@@ -445,7 +621,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         height={238}
                         fill="url(#mdf)"
                         style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread1"
+                        id="run2_tread1"
                         className=""
                       />{" "}
                       <rect
@@ -455,77 +631,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         height={10}
                         fill="none"
                         style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread1"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #6
-                      </text>
-                    </g>
-                    <g transform="translate(-413.5 222)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread2"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread2"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #7
-                      </text>
-                    </g>
-                    <g transform="translate(-413.5 444)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread3"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread3"
+                        id="run2_tread1"
                         className=""
                       />{" "}
                       <text
@@ -541,7 +647,73 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         #8
                       </text>
                     </g>
-                    <g transform="translate(-413.5 666)  rotate(0)">
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)" />
+                    <g transform="translate(-432.5 0)  rotate(0)" />
+                  </g>
+                  <g />{" "}
+                  <text
+                    x={0}
+                    y={-0}
+                    style={{
+                      fontSize: 55,
+                      fontFamily: "Arial, Helvetica, sans-serif",
+                      color: "black",
+                    }}
+                    transform="translate (0,0) rotate(180) scale(-1,1)"
+                  >
+                    run2
+                  </text>
+                </g>
+                <g transform="translate(-664.5 1330.5)  rotate(90)">
+                  <g transform="translate(0 0)  rotate(0)">
+                    {" "}
+                    <polyline
+                      points="-522,-16,418.5,-16,418.5,835,-1346.5,835,-1346.5,0,-451,0,-451,-15.5,-432.5,-15.5,-522,-15.5"
+                      fill="url(#turn2_tread1)"
+                      stroke="black"
+                      strokeWidth={2}
+                    />
+                    <text
+                      style={{ fontSize: 60 }}
+                      className="heavy"
+                      textAnchor="start"
+                      transform="translate(200,400) rotate(0) scale(-1,1)"
+                    >
+                      * Half Landings not supplied by StairBox *
+                    </text>{" "}
+                    <polyline
+                      points="-522,0,418.5,0,418.5,10,-522,10"
+                      fill="url(#turn2_tread1)"
+                      stroke="black"
+                      strokeWidth={1}
+                    />
+                    <text
+                      style={{ fontSize: 60 }}
+                      className="heavy"
+                      textAnchor="start"
+                      transform="translate(200,400) rotate(0) scale(-1,1)"
+                    >
+                      * Half Landings not supplied by StairBox *
+                    </text>{" "}
+                    <text
+                      x="-69.2"
+                      y={-100}
+                      style={{
+                        fontSize: 55,
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        color: "black",
+                      }}
+                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                    >
+                      #9
+                    </text>
+                  </g>
+                </g>
+                <g transform="translate(-664.5 407.5)  rotate(270)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)">
                       {" "}
                       <rect
                         x={0}
@@ -550,7 +722,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         height={238}
                         fill="url(#mdf)"
                         style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread4"
+                        id="run4_tread1"
                         className=""
                       />{" "}
                       <rect
@@ -560,42 +732,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         height={10}
                         fill="none"
                         style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread4"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #9
-                      </text>
-                    </g>
-                    <g transform="translate(-413.5 888)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread5"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread5"
+                        id="run4_tread1"
                         className=""
                       />{" "}
                       <text
@@ -611,7 +748,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         #10
                       </text>
                     </g>
-                    <g transform="translate(-413.5 1110)  rotate(0)">
+                    <g transform="translate(-413.5 222)  rotate(0)">
                       {" "}
                       <rect
                         x={0}
@@ -620,7 +757,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         height={238}
                         fill="url(#mdf)"
                         style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread6"
+                        id="run4_tread2"
                         className=""
                       />{" "}
                       <rect
@@ -630,7 +767,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         height={10}
                         fill="none"
                         style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread6"
+                        id="run4_tread2"
                         className=""
                       />{" "}
                       <text
@@ -646,7 +783,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         #11
                       </text>
                     </g>
-                    <g transform="translate(-413.5 1332)  rotate(0)">
+                    <g transform="translate(-413.5 444)  rotate(0)">
                       {" "}
                       <rect
                         x={0}
@@ -655,7 +792,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         height={238}
                         fill="url(#mdf)"
                         style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread7"
+                        id="run4_tread3"
                         className=""
                       />{" "}
                       <rect
@@ -665,7 +802,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         height={10}
                         fill="none"
                         style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread7"
+                        id="run4_tread3"
                         className=""
                       />{" "}
                       <text
@@ -697,10 +834,10 @@ const ThreeWinderHalflandingLeftLeft = () => {
                     }}
                     transform="translate (0,0) rotate(180) scale(-1,1)"
                   >
-                    run3
+                    run4
                   </text>
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(1.5 407.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)">
                     {" "}
                     <rect
@@ -754,7 +891,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         x={0}
                         y={-120}
                         width={27}
-                        height="1005.5"
+                        height="1031.5"
                         fill="url(#whitewood)"
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run1_rightString"
@@ -767,7 +904,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         x={0}
                         y={-120}
                         width={27}
-                        height="1005.5"
+                        height="986.5"
                         fill="url(#whitewood)"
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run1_leftString"
@@ -778,17 +915,80 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   <g />
                 </g>
                 <g transform="translate(0 888)  rotate(0)">
+                  <g transform="translate(405.5 0)  rotate(0)">
+                    {" "}
+                    <rect
+                      x={0}
+                      y="23.5"
+                      width={27}
+                      height="824.5"
+                      fill="url(#whitewood)"
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn1_string1"
+                      className=""
+                    />
+                  </g>
+                  <g transform="translate(0 875)  rotate(-90)">
+                    {" "}
+                    <rect
+                      x={0}
+                      y={-419}
+                      width={27}
+                      height="851.5"
+                      fill="url(#whitewood)"
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn1_string2"
+                      className=""
+                    />
+                  </g>
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                </g>
+                <g transform="translate(-442.5 1330.5)  rotate(90)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)" />
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)">
+                      {" "}
+                      <rect
+                        x={0}
+                        y="-23.5"
+                        width={27}
+                        height={243}
+                        fill="url(#whitewood)"
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="run2_rightString"
+                        className=""
+                      />
+                    </g>
+                    <g transform="translate(-432.5 0)  rotate(0)">
+                      {" "}
+                      <rect
+                        x={0}
+                        y="21.5"
+                        width={27}
+                        height={198}
+                        fill="url(#whitewood)"
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="run2_leftString"
+                        className=""
+                      />
+                    </g>
+                  </g>
+                  <g />
+                </g>
+                <g transform="translate(-664.5 1330.5)  rotate(90)">
                   <g transform="translate(0 0)  rotate(0)" />
                 </g>
-                <g transform="translate(-923 888)  rotate(180)">
+                <g transform="translate(-664.5 407.5)  rotate(270)">
                   <g>
                     <g transform="translate(-413.5 0)  rotate(0)" />
                     <g transform="translate(-413.5 222)  rotate(0)" />
                     <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                    <g transform="translate(-413.5 888)  rotate(0)" />
-                    <g transform="translate(-413.5 1110)  rotate(0)" />
-                    <g transform="translate(-413.5 1332)  rotate(0)" />
                   </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)">
@@ -797,10 +997,10 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         x={0}
                         y="2.5"
                         width={27}
-                        height="1671.5"
+                        height="783.5"
                         fill="url(#whitewood)"
                         style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_rightString"
+                        id="run4_rightString"
                         className=""
                       />
                     </g>
@@ -810,17 +1010,17 @@ const ThreeWinderHalflandingLeftLeft = () => {
                         x={0}
                         y="2.5"
                         width={27}
-                        height="1671.5"
+                        height="783.5"
                         fill="url(#whitewood)"
                         style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_leftString"
+                        id="run4_leftString"
                         className=""
                       />
                     </g>
                   </g>
                   <g />
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(1.5 407.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>
               </g>
@@ -856,17 +1056,17 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   <g />
                 </g>
                 <g transform="translate(0 888)  rotate(0)">
+                  <g transform="translate(405.5 0)  rotate(0)" />
+                  <g transform="translate(0 875)  rotate(-90)" />
                   <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
                 </g>
-                <g transform="translate(-923 888)  rotate(180)">
+                <g transform="translate(-442.5 1330.5)  rotate(90)">
                   <g>
                     <g transform="translate(-413.5 0)  rotate(0)" />
-                    <g transform="translate(-413.5 222)  rotate(0)" />
-                    <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                    <g transform="translate(-413.5 888)  rotate(0)" />
-                    <g transform="translate(-413.5 1110)  rotate(0)" />
-                    <g transform="translate(-413.5 1332)  rotate(0)" />
                   </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)" />
@@ -874,7 +1074,22 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   </g>
                   <g />
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(-664.5 1330.5)  rotate(90)">
+                  <g transform="translate(0 0)  rotate(0)" />
+                </g>
+                <g transform="translate(-664.5 407.5)  rotate(270)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)" />
+                    <g transform="translate(-413.5 222)  rotate(0)" />
+                    <g transform="translate(-413.5 444)  rotate(0)" />
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)" />
+                    <g transform="translate(-432.5 0)  rotate(0)" />
+                  </g>
+                  <g />
+                </g>
+                <g transform="translate(1.5 407.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>
               </g>
@@ -894,17 +1109,41 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   <g />
                 </g>
                 <g transform="translate(0 888)  rotate(0)">
+                  <g transform="translate(405.5 0)  rotate(0)" />
+                  <g transform="translate(0 875)  rotate(-90)" />
                   <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)">
+                    {" "}
+                    <rect
+                      x={-45}
+                      y={-45}
+                      width={90}
+                      height={90}
+                      fill="url(#redwood)"
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn1_winderPost"
+                      className="balustrade"
+                    />
+                  </g>
+                  <g transform="translate(-419 23.5)  rotate(0)">
+                    {" "}
+                    <rect
+                      x={-45}
+                      y={-45}
+                      width={90}
+                      height={90}
+                      fill="url(#redwood)"
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn1_winderPost"
+                      className="balustrade"
+                    />
+                  </g>
                 </g>
-                <g transform="translate(-923 888)  rotate(180)">
+                <g transform="translate(-442.5 1330.5)  rotate(90)">
                   <g>
                     <g transform="translate(-413.5 0)  rotate(0)" />
-                    <g transform="translate(-413.5 222)  rotate(0)" />
-                    <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                    <g transform="translate(-413.5 888)  rotate(0)" />
-                    <g transform="translate(-413.5 1110)  rotate(0)" />
-                    <g transform="translate(-413.5 1332)  rotate(0)" />
                   </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)" />
@@ -912,7 +1151,22 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   </g>
                   <g />
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(-664.5 1330.5)  rotate(90)">
+                  <g transform="translate(0 0)  rotate(0)" />
+                </g>
+                <g transform="translate(-664.5 407.5)  rotate(270)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)" />
+                    <g transform="translate(-413.5 222)  rotate(0)" />
+                    <g transform="translate(-413.5 444)  rotate(0)" />
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)" />
+                    <g transform="translate(-432.5 0)  rotate(0)" />
+                  </g>
+                  <g />
+                </g>
+                <g transform="translate(1.5 407.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>
               </g>
@@ -932,17 +1186,17 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   <g />
                 </g>
                 <g transform="translate(0 888)  rotate(0)">
+                  <g transform="translate(405.5 0)  rotate(0)" />
+                  <g transform="translate(0 875)  rotate(-90)" />
                   <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
                 </g>
-                <g transform="translate(-923 888)  rotate(180)">
+                <g transform="translate(-442.5 1330.5)  rotate(90)">
                   <g>
                     <g transform="translate(-413.5 0)  rotate(0)" />
-                    <g transform="translate(-413.5 222)  rotate(0)" />
-                    <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                    <g transform="translate(-413.5 888)  rotate(0)" />
-                    <g transform="translate(-413.5 1110)  rotate(0)" />
-                    <g transform="translate(-413.5 1332)  rotate(0)" />
                   </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)" />
@@ -950,14 +1204,29 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   </g>
                   <g />
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(-664.5 1330.5)  rotate(90)">
+                  <g transform="translate(0 0)  rotate(0)" />
+                </g>
+                <g transform="translate(-664.5 407.5)  rotate(270)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)" />
+                    <g transform="translate(-413.5 222)  rotate(0)" />
+                    <g transform="translate(-413.5 444)  rotate(0)" />
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)" />
+                    <g transform="translate(-432.5 0)  rotate(0)" />
+                  </g>
+                  <g />
+                </g>
+                <g transform="translate(1.5 407.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>{" "}
                 <line
                   x1="532.5"
                   y1={-16}
                   x2="532.5"
-                  y2={1737}
+                  y2={1763}
                   stroke="black"
                   strokeWidth={3}
                   markerEnd="url(#endarrow)"
@@ -966,7 +1235,7 @@ const ThreeWinderHalflandingLeftLeft = () => {
                 />{" "}
                 <rect
                   x="477.5"
-                  y="850.5"
+                  y="863.5"
                   width={200}
                   height={100}
                   fill="white"
@@ -976,18 +1245,18 @@ const ThreeWinderHalflandingLeftLeft = () => {
                 />
                 <text
                   x="477.5"
-                  y="-850.5"
+                  y="-863.5"
                   style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
                   transform="translate (0,0) rotate(180) scale(-1,1)"
                   className=""
                 >
-                  1753
+                  1779
                 </text>{" "}
                 <line
-                  x1="-1360.5"
-                  y1={1837}
+                  x1="-1513.5"
+                  y1={1863}
                   x2="432.5"
-                  y2={1837}
+                  y2={1863}
                   stroke="black"
                   strokeWidth={3}
                   markerEnd="url(#endarrow)"
@@ -995,8 +1264,8 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   className=""
                 />{" "}
                 <rect
-                  x={-514}
-                  y={1837}
+                  x="-590.5"
+                  y={1863}
                   width={200}
                   height={100}
                   fill="white"
@@ -1005,8 +1274,38 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   className=""
                 />
                 <text
-                  x={-514}
-                  y={-1817}
+                  x="-590.5"
+                  y={-1843}
+                  style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                  transform="translate (0,0) rotate(180) scale(-1,1)"
+                  className=""
+                >
+                  1946
+                </text>{" "}
+                <line
+                  x1="-1613.5"
+                  y1={-30}
+                  x2="-1613.5"
+                  y2={1763}
+                  stroke="black"
+                  strokeWidth={3}
+                  markerEnd="url(#endarrow)"
+                  markerStart="url(#startarrow)"
+                  className=""
+                />{" "}
+                <rect
+                  x="-1668.5"
+                  y="856.5"
+                  width={200}
+                  height={100}
+                  fill="white"
+                  transform="translate (-20,-30)"
+                  opacity="0.6"
+                  className=""
+                />
+                <text
+                  x="-1668.5"
+                  y="-856.5"
                   style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
                   transform="translate (0,0) rotate(180) scale(-1,1)"
                   className=""
@@ -1014,10 +1313,10 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   1793
                 </text>{" "}
                 <line
-                  x1="-1460.5"
-                  y1={-676}
-                  x2="-1460.5"
-                  y2={1737}
+                  x1="-1513.5"
+                  y1={-130}
+                  x2="11.5"
+                  y2={-130}
                   stroke="black"
                   strokeWidth={3}
                   markerEnd="url(#endarrow)"
@@ -1025,8 +1324,8 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   className=""
                 />{" "}
                 <rect
-                  x="-1515.5"
-                  y="520.5"
+                  x={-801}
+                  y={-130}
                   width={200}
                   height={100}
                   fill="white"
@@ -1035,13 +1334,13 @@ const ThreeWinderHalflandingLeftLeft = () => {
                   className=""
                 />
                 <text
-                  x="-1515.5"
-                  y="-520.5"
+                  x={-801}
+                  y={150}
                   style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
                   transform="translate (0,0) rotate(180) scale(-1,1)"
                   className=""
                 >
-                  2413
+                  1525
                 </text>{" "}
                 <line
                   x1="-432.5"
@@ -1096,4 +1395,4 @@ const ThreeWinderHalflandingLeftLeft = () => {
   );
 };
 
-export default ThreeWinderHalflandingLeftLeft;
+export default ThreeWinderHalfLandingLeftLeftShape;

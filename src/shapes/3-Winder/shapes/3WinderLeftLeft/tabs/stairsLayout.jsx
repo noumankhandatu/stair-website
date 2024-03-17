@@ -131,10 +131,14 @@ const StairLayout = ({ setAppState, appState }) => {
   // select shape from selectbox
   const handleSelectShapeTwo = (event) => {
     const selectedValue = event.target.value;
-    dispatch(setShape(selectedValue));
+    if (selectedValue === HALF_LANDING) {
+      dispatch(setShape(HALF_LANDING));
+      dispatch(setHalfLandingTurn("3winderhalflandingleftleft"));
+    }
     if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
       dispatch(setSelectDefaultValue2(selectedValue));
     }
+    dispatch(setShape(selectedValue));
   };
   console.log(appState, "appState");
 
