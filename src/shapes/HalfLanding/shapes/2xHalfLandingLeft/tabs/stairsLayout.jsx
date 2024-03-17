@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Paper } from "@mui/material";
 import { Appheading } from "../../../../../theme";
 import {
@@ -14,15 +14,22 @@ import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
 import {
+  HALF_LANDING,
+  HalfLandingLeftLeftTurn,
   HalfLandingLeftTurn,
   NONE_STEP_LEFT,
   NONE_STEP_RIGHT,
+  QUARTER_LANDING,
   THREE_WINDER,
   ThreeWinderLeftLeftTurn,
   ThreeWinderLeftRightTurn,
 } from "../../../../../utils/enum";
-import { setHalfLandingTurn, setShapeTurn } from "../../../../../toolkit/slices/shapeTurns";
-import TurningArrowCard from "./../../../../../components/atom/TurningArrowCard";
+import {
+  selectHalfLandingTurn,
+  setHalfLandingTurn,
+  setShapeTurn,
+} from "../../../../../toolkit/slices/shapeTurns";
+import TurningArrowCard from "../../../../../components/atom/TurningArrowCard";
 import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
 import FeatureSteps from "../../../../../components/atom/FeatureSteps";
 import CeilingHeight from "../../../../../components/molecules/CeliningHeight";
@@ -31,7 +38,12 @@ import {
   setLeftFeatureStep,
   setRightFeatureStep,
 } from "../../../../../toolkit/slices/featureSteps";
-import { setIsDivisible } from "../../../../../toolkit/slices/singleFeatures";
+import {
+  selectDefaultValueTwo,
+  selectedDefaultValue,
+  setIsDivisible,
+  setSelectDefaultValue,
+} from "../../../../../toolkit/slices/singleFeatures";
 
 const heightLoopArray = [];
 let updatedPositions = [];
@@ -51,9 +63,13 @@ for (let i = 222; i <= 280; i++) {
 }
 const StairLayout = ({ setAppState, appState }) => {
   // states
+
   const [selectedValue, setSelectedValue] = useState(null);
+
   // hooks
+
   const dispatch = useDispatch();
+  const reduxDefaultSelected = useSelector(selectDefaultValueTwo);
   // width changer
   const handleWidthChange = (newValue) => {
     let x = newValue;
@@ -144,25 +160,15 @@ const StairLayout = ({ setAppState, appState }) => {
       },
     }));
   };
-  // Turning Function Started
-  const handleRight = () => {
-    dispatch(setShapeTurn(ThreeWinderLeftRightTurn));
-    // close feature steps
-    dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
-    dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
-  };
+
   const handleSelectShape = (event) => {
     const selectedValue = event.target.value;
     // Dispatch the setShape action with the selected value
     dispatch(setShape(selectedValue));
     dispatch(setHalfLandingTurn(HalfLandingLeftTurn));
-  };
-
-  const handleLeft = () => {
-    dispatch(setShapeTurn(ThreeWinderLeftLeftTurn));
-    // close feature steps
-    dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
-    dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
+    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setSelectDefaultValue(selectedValue));
+    }
   };
 
   const handleTurns = (event) => {
@@ -299,7 +305,7 @@ const StairLayout = ({ setAppState, appState }) => {
 
         <Div sx={TurnFlex}>
           <Appheading>Type </Appheading>
-          <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
+          <ShapesSelect defaultShape={HALF_LANDING} handleSelectShape={handleSelectShape} />
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Treads before turn:</Appheading>
@@ -338,9 +344,31 @@ const StairLayout = ({ setAppState, appState }) => {
         ))}
       </Select>
 
-      {/* Turns -> Second Left & Right  */}
+      <Paper elevation={3} sx={TurnPaperStyle}>
+        <Div sx={TurnFlex}>
+          <Appheading>Turn 2 (Left)</Appheading>
+          <AppDeleteIcon />
+        </Div>
 
-      <TurningArrowCard handleLeft={handleLeft} handletRight={handleRight} />
+        <Div sx={TurnFlex}>
+          <Appheading>Type </Appheading>
+          <ShapesSelect defaultShape={reduxDefaultSelected} handleSelectShape={handleSelectShape} />
+        </Div>
+        <Div sx={TurnFlex}>
+          <Appheading>Treads before turn:</Appheading>
+          <Select
+            disabled={appState.svgRiser.positions.length <= 0}
+            sx={{ height: 30, borderRadius: 10, width: 70 }}
+            onChange={handleTurns}
+          >
+            {[...Array(appState.svgRiser.positions.length).keys()].map((item, index) => (
+              <MenuItem key={index + 1} value={index + 1}>
+                {index + 1}
+              </MenuItem>
+            ))}
+          </Select>
+        </Div>
+      </Paper>
       <FeatureSteps />
     </div>
   );

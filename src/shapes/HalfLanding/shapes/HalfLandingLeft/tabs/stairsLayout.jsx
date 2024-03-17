@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Paper } from "@mui/material";
 import { Appheading } from "../../../../../theme";
 import {
@@ -14,15 +14,22 @@ import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
 import {
-  HalfLandingRightTurn,
+  HALF_LANDING,
+  HalfLandingLeftLeftTurn,
+  HalfLandingLeftTurn,
   NONE_STEP_LEFT,
   NONE_STEP_RIGHT,
+  QUARTER_LANDING,
   THREE_WINDER,
-  ThreeWinderRightLeftTurn,
-  ThreeWinderRightRightTurn,
+  ThreeWinderLeftLeftTurn,
+  ThreeWinderLeftRightTurn,
 } from "../../../../../utils/enum";
-import { setHalfLandingTurn, setShapeTurn } from "../../../../../toolkit/slices/shapeTurns";
-import TurningArrowCard from "./../../../../../components/atom/TurningArrowCard";
+import {
+  selectHalfLandingTurn,
+  setHalfLandingTurn,
+  setShapeTurn,
+} from "../../../../../toolkit/slices/shapeTurns";
+import TurningArrowCard from "../../../../../components/atom/TurningArrowCard";
 import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
 import FeatureSteps from "../../../../../components/atom/FeatureSteps";
 import CeilingHeight from "../../../../../components/molecules/CeliningHeight";
@@ -31,7 +38,11 @@ import {
   setLeftFeatureStep,
   setRightFeatureStep,
 } from "../../../../../toolkit/slices/featureSteps";
-import { setIsDivisible } from "../../../../../toolkit/slices/singleFeatures";
+import {
+  selectedDefaultValue,
+  setIsDivisible,
+  setSelectDefaultValue,
+} from "../../../../../toolkit/slices/singleFeatures";
 
 const heightLoopArray = [];
 let updatedPositions = [];
@@ -52,8 +63,11 @@ for (let i = 222; i <= 280; i++) {
 const StairLayout = ({ setAppState, appState }) => {
   // states
   const [selectedValue, setSelectedValue] = useState(null);
+
   // hooks
+
   const dispatch = useDispatch();
+  const reduxDefaultSelected = useSelector(selectedDefaultValue);
   // width changer
   const handleWidthChange = (newValue) => {
     let x = newValue;
@@ -146,7 +160,7 @@ const StairLayout = ({ setAppState, appState }) => {
   };
   // Turning Function Started
   const handleRight = () => {
-    dispatch(setShapeTurn(ThreeWinderRightRightTurn));
+    dispatch(setShapeTurn(ThreeWinderLeftRightTurn));
     // close feature steps
     dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
     dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
@@ -155,11 +169,14 @@ const StairLayout = ({ setAppState, appState }) => {
     const selectedValue = event.target.value;
     // Dispatch the setShape action with the selected value
     dispatch(setShape(selectedValue));
-    dispatch(setHalfLandingTurn(HalfLandingRightTurn));
+    dispatch(setHalfLandingTurn(HalfLandingLeftTurn));
+    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setSelectDefaultValue(selectedValue));
+    }
   };
 
   const handleLeft = () => {
-    dispatch(setShapeTurn(ThreeWinderRightLeftTurn));
+    dispatch(setHalfLandingTurn(HalfLandingLeftLeftTurn));
     // close feature steps
     dispatch(setLeftFeatureStep(NONE_STEP_LEFT));
     dispatch(setRightFeatureStep(NONE_STEP_RIGHT));
@@ -293,13 +310,13 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
-          <Appheading>Turn 1 (Right)</Appheading>
+          <Appheading>Turn 1 (Left)</Appheading>
           <AppDeleteIcon />
         </Div>
 
         <Div sx={TurnFlex}>
           <Appheading>Type </Appheading>
-          <ShapesSelect defaultShape={THREE_WINDER} handleSelectShape={handleSelectShape} />
+          <ShapesSelect defaultShape={HALF_LANDING} handleSelectShape={handleSelectShape} />
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Treads before turn:</Appheading>

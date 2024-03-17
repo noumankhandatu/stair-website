@@ -36,7 +36,7 @@ export const ThreeWinderLeftRightTurn = "three-winder-left-right-turn";
 export const HalfLandingLeftTurn = "half-landing-left-turn";
 export const HalfLandingLeftLeftTurn = "half-landing-left-left-turn";
 export const HalfLandingLeftRightTurn = "half-landing-left-right-turn";
-
+export const TwoxHalfLandingLeft = "twox-half-landing-left-turn";
 // all rights -->
 
 // 3winder

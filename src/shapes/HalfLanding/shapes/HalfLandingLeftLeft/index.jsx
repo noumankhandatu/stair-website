@@ -24,8 +24,12 @@ import {
   NONE_STEP_LEFT,
   QUARTER_LANDING,
 } from "../../../../utils/enum";
-import { selectDivisble, selectedDefaultValue } from "../../../../toolkit/slices/singleFeatures";
-const HalfLandingLeft = () => {
+import {
+  selectDefaultValueTwo,
+  selectDivisble,
+  selectedDefaultValue,
+} from "../../../../toolkit/slices/singleFeatures";
+const HalfLandingLeftLeft = () => {
   // states
 
   const ArrowHeightRedux = useSelector(ArrowHeight);
@@ -35,6 +39,8 @@ const HalfLandingLeft = () => {
   const reduxRightStep = useSelector(rightFeatureStep);
   const reduxSelectDivisble = useSelector(selectDivisble);
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
+  const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
+
   const [showStairsLayout, setshowStairsLayout] = useState(true);
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const [appState, setAppState] = useState({
@@ -202,6 +208,90 @@ const HalfLandingLeft = () => {
                   transform="translate (0,0) rotate(0)"
                 />
               </pattern>{" "}
+              <pattern
+                id="turn2_tread1"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn2_tread1"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn2_tread2"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn2_tread2"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn2_tread3"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
+              <pattern
+                id="turn2_tread3"
+                patternUnits="userSpaceOnUse"
+                width="1000px"
+                height="1000px"
+              >
+                <image
+                  href="https://cdn.stairbox.com/assets/stairbuilder/textures/mdf.jpg"
+                  width="1000px"
+                  height="1000px"
+                  preserveAspectRatio="none"
+                  transform="translate (0,0) rotate(0)"
+                />
+              </pattern>{" "}
               <marker
                 id="startarrow"
                 markerWidth={10}
@@ -224,7 +314,7 @@ const HalfLandingLeft = () => {
                 <polygon points="0 0, 10 3.5, 0 7" fill="red" />
               </marker>
             </defs>{" "}
-            <g transform="translate (376.22295897223376,457.72689598010777) rotate(180) scale(-0.2030667219229175,0.2030667219229175)">
+            <g transform="translate (384.16798661461235,493.7838259899609) rotate(180) scale(-0.22018962632459563,0.22018962632459563)">
               {" "}
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
@@ -506,7 +596,159 @@ const HalfLandingLeft = () => {
                         #7
                       </text>
                     </g>
-                    <g transform="translate(-413.5 444)  rotate(0)">
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)" />
+                    <g transform="translate(-432.5 0)  rotate(0)" />
+                  </g>
+                  <g />{" "}
+                  <text
+                    x={0}
+                    y={-0}
+                    style={{
+                      fontSize: 55,
+                      fontFamily: "Arial, Helvetica, sans-serif",
+                      color: "black",
+                    }}
+                    transform="translate (0,0) rotate(180) scale(-1,1)"
+                  >
+                    run3
+                  </text>
+                </g>
+                <g transform="translate(-923 444)  rotate(180)">
+                  <g transform="translate(405.5 0)  rotate(0)" />
+                  <g transform="translate(0 875)  rotate(-90)" />
+                  <g transform="translate(0 0)  rotate(0)">
+                    {" "}
+                    <polyline
+                      points="-418.5,-16,418.5,-16,418.5,499.41,-374,40,-418.5,40"
+                      fill="url(#turn2_tread1)"
+                      stroke="black"
+                      strokeWidth={2}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <polyline
+                      points="-418.5,0,418.5,0,418.5,10,-418.5,10"
+                      fill="url(#turn2_tread1)"
+                      stroke="black"
+                      strokeWidth={1}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <text
+                      x="-69.2"
+                      y={-100}
+                      style={{
+                        fontSize: 55,
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        color: "black",
+                      }}
+                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                    >
+                      #8
+                    </text>
+                  </g>
+                  <g transform="translate(0 0)  rotate(0)">
+                    {" "}
+                    <polyline
+                      points="-374,21.51,418.5,480.91,418.5,861,66.91,861,-419,55.5"
+                      fill="url(#turn2_tread2)"
+                      stroke={
+                        secondSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
+                      strokeWidth={2}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <polyline
+                      points="-374,40,418.5,499.41,418.5,510.97,-374,51.56"
+                      fill="url(#turn2_tread2)"
+                      stroke={
+                        secondSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
+                      strokeWidth={1}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <text
+                      x={-173}
+                      y={-280}
+                      style={{
+                        fontSize: 55,
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        color: "black",
+                      }}
+                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                    >
+                      #9
+                    </text>
+                  </g>
+                  <g transform="translate(0 0)  rotate(0)">
+                    {" "}
+                    <polyline
+                      points="-400.31,55.5,85.59,861,-442.5,861,-442.5,24,-419,24"
+                      fill="url(#turn2_tread3)"
+                      stroke={
+                        secondSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
+                      strokeWidth={2}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <polyline
+                      points="-419,55.5,66.91,861,55.23,861,-430.68,55.5"
+                      fill="url(#turn2_tread3)"
+                      stroke={
+                        secondSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                      }
+                      strokeWidth={1}
+                    />
+                    <text
+                      style={{ fontSize: "" }}
+                      className="heavy"
+                      textAnchor=""
+                      transform="translate(0,400) rotate(0) scale(-1,1)"
+                    />{" "}
+                    <text
+                      x={-346}
+                      y={-400}
+                      style={{
+                        fontSize: 55,
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        color: "black",
+                      }}
+                      transform="translate (0,0) rotate(180) scale(-1,1)"
+                    >
+                      #10
+                    </text>
+                  </g>
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                </g>
+                <g transform="translate(-480.5 1.5)  rotate(270)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)">
                       {" "}
                       <rect
                         x={0}
@@ -515,7 +757,7 @@ const HalfLandingLeft = () => {
                         height={238}
                         fill="url(#mdf)"
                         style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread3"
+                        id="run4_tread1"
                         className=""
                       />{" "}
                       <rect
@@ -525,112 +767,7 @@ const HalfLandingLeft = () => {
                         height={10}
                         fill="none"
                         style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread3"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #8
-                      </text>
-                    </g>
-                    <g transform="translate(-413.5 666)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread4"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread4"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #9
-                      </text>
-                    </g>
-                    <g transform="translate(-413.5 888)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread5"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread5"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #10
-                      </text>
-                    </g>
-                    <g transform="translate(-413.5 1110)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread6"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread6"
+                        id="run4_tread1"
                         className=""
                       />{" "}
                       <text
@@ -646,7 +783,7 @@ const HalfLandingLeft = () => {
                         #11
                       </text>
                     </g>
-                    <g transform="translate(-413.5 1332)  rotate(0)">
+                    <g transform="translate(-413.5 222)  rotate(0)">
                       {" "}
                       <rect
                         x={0}
@@ -655,7 +792,7 @@ const HalfLandingLeft = () => {
                         height={238}
                         fill="url(#mdf)"
                         style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread7"
+                        id="run4_tread2"
                         className=""
                       />{" "}
                       <rect
@@ -665,7 +802,7 @@ const HalfLandingLeft = () => {
                         height={10}
                         fill="none"
                         style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread7"
+                        id="run4_tread2"
                         className=""
                       />{" "}
                       <text
@@ -697,10 +834,10 @@ const HalfLandingLeft = () => {
                     }}
                     transform="translate (0,0) rotate(180) scale(-1,1)"
                   >
-                    run3
+                    run4
                   </text>
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(-36.5 1.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)">
                     {" "}
                     <rect
@@ -784,11 +921,6 @@ const HalfLandingLeft = () => {
                   <g>
                     <g transform="translate(-413.5 0)  rotate(0)" />
                     <g transform="translate(-413.5 222)  rotate(0)" />
-                    <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                    <g transform="translate(-413.5 888)  rotate(0)" />
-                    <g transform="translate(-413.5 1110)  rotate(0)" />
-                    <g transform="translate(-413.5 1332)  rotate(0)" />
                   </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)">
@@ -797,7 +929,7 @@ const HalfLandingLeft = () => {
                         x={0}
                         y="2.5"
                         width={27}
-                        height="1671.5"
+                        height={465}
                         fill="url(#whitewood)"
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run3_rightString"
@@ -810,7 +942,7 @@ const HalfLandingLeft = () => {
                         x={0}
                         y="2.5"
                         width={27}
-                        height="1671.5"
+                        height={420}
                         fill="url(#whitewood)"
                         style={{ stroke: "black", strokeWidth: 1 }}
                         id="run3_leftString"
@@ -820,7 +952,75 @@ const HalfLandingLeft = () => {
                   </g>
                   <g />
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(-923 444)  rotate(180)">
+                  <g transform="translate(405.5 0)  rotate(0)">
+                    {" "}
+                    <rect
+                      x={0}
+                      y="23.5"
+                      width={27}
+                      height="824.5"
+                      fill="url(#whitewood)"
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn2_string1"
+                      className=""
+                    />
+                  </g>
+                  <g transform="translate(0 875)  rotate(-90)">
+                    {" "}
+                    <rect
+                      x={0}
+                      y={-419}
+                      width={27}
+                      height="851.5"
+                      fill="url(#whitewood)"
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn2_string2"
+                      className=""
+                    />
+                  </g>
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                </g>
+                <g transform="translate(-480.5 1.5)  rotate(270)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)" />
+                    <g transform="translate(-413.5 222)  rotate(0)" />
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)">
+                      {" "}
+                      <rect
+                        x={0}
+                        y="-23.5"
+                        width={27}
+                        height="587.5"
+                        fill="url(#whitewood)"
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="run4_rightString"
+                        className=""
+                      />
+                    </g>
+                    <g transform="translate(-432.5 0)  rotate(0)">
+                      {" "}
+                      <rect
+                        x={0}
+                        y="21.5"
+                        width={27}
+                        height="542.5"
+                        fill="url(#whitewood)"
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="run4_leftString"
+                        className=""
+                      />
+                    </g>
+                  </g>
+                  <g />
+                </g>
+                <g transform="translate(-36.5 1.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>
               </g>
@@ -862,11 +1062,6 @@ const HalfLandingLeft = () => {
                   <g>
                     <g transform="translate(-413.5 0)  rotate(0)" />
                     <g transform="translate(-413.5 222)  rotate(0)" />
-                    <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                    <g transform="translate(-413.5 888)  rotate(0)" />
-                    <g transform="translate(-413.5 1110)  rotate(0)" />
-                    <g transform="translate(-413.5 1332)  rotate(0)" />
                   </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)" />
@@ -874,7 +1069,27 @@ const HalfLandingLeft = () => {
                   </g>
                   <g />
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(-923 444)  rotate(180)">
+                  <g transform="translate(405.5 0)  rotate(0)" />
+                  <g transform="translate(0 875)  rotate(-90)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                </g>
+                <g transform="translate(-480.5 1.5)  rotate(270)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)" />
+                    <g transform="translate(-413.5 222)  rotate(0)" />
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)" />
+                    <g transform="translate(-432.5 0)  rotate(0)" />
+                  </g>
+                  <g />
+                </g>
+                <g transform="translate(-36.5 1.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>
               </g>
@@ -900,11 +1115,6 @@ const HalfLandingLeft = () => {
                   <g>
                     <g transform="translate(-413.5 0)  rotate(0)" />
                     <g transform="translate(-413.5 222)  rotate(0)" />
-                    <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                    <g transform="translate(-413.5 888)  rotate(0)" />
-                    <g transform="translate(-413.5 1110)  rotate(0)" />
-                    <g transform="translate(-413.5 1332)  rotate(0)" />
                   </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)" />
@@ -912,7 +1122,51 @@ const HalfLandingLeft = () => {
                   </g>
                   <g />
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(-923 444)  rotate(180)">
+                  <g transform="translate(405.5 0)  rotate(0)" />
+                  <g transform="translate(0 875)  rotate(-90)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)">
+                    {" "}
+                    <rect
+                      x={-45}
+                      y={-45}
+                      width={90}
+                      height={90}
+                      fill="url(#redwood)"
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn2_winderPost"
+                      className="balustrade"
+                    />
+                  </g>
+                  <g transform="translate(-419 23.5)  rotate(0)">
+                    {" "}
+                    <rect
+                      x={-45}
+                      y={-45}
+                      width={90}
+                      height={90}
+                      fill="url(#redwood)"
+                      style={{ stroke: "black", strokeWidth: 1 }}
+                      id="turn2_winderPost"
+                      className="balustrade"
+                    />
+                  </g>
+                </g>
+                <g transform="translate(-480.5 1.5)  rotate(270)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)" />
+                    <g transform="translate(-413.5 222)  rotate(0)" />
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)" />
+                    <g transform="translate(-432.5 0)  rotate(0)" />
+                  </g>
+                  <g />
+                </g>
+                <g transform="translate(-36.5 1.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>
               </g>
@@ -938,11 +1192,6 @@ const HalfLandingLeft = () => {
                   <g>
                     <g transform="translate(-413.5 0)  rotate(0)" />
                     <g transform="translate(-413.5 222)  rotate(0)" />
-                    <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                    <g transform="translate(-413.5 888)  rotate(0)" />
-                    <g transform="translate(-413.5 1110)  rotate(0)" />
-                    <g transform="translate(-413.5 1332)  rotate(0)" />
                   </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)" />
@@ -950,7 +1199,27 @@ const HalfLandingLeft = () => {
                   </g>
                   <g />
                 </g>
-                <g transform="translate(-923 -666)  rotate(180)">
+                <g transform="translate(-923 444)  rotate(180)">
+                  <g transform="translate(405.5 0)  rotate(0)" />
+                  <g transform="translate(0 875)  rotate(-90)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(0 0)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                  <g transform="translate(-419 23.5)  rotate(0)" />
+                </g>
+                <g transform="translate(-480.5 1.5)  rotate(270)">
+                  <g>
+                    <g transform="translate(-413.5 0)  rotate(0)" />
+                    <g transform="translate(-413.5 222)  rotate(0)" />
+                  </g>
+                  <g>
+                    <g transform="translate(405.5 0)  rotate(0)" />
+                    <g transform="translate(-432.5 0)  rotate(0)" />
+                  </g>
+                  <g />
+                </g>
+                <g transform="translate(-36.5 1.5)  rotate(270)">
                   <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>{" "}
                 <line
@@ -1015,7 +1284,7 @@ const HalfLandingLeft = () => {
                 </text>{" "}
                 <line
                   x1="-1460.5"
-                  y1={-676}
+                  y1={-431}
                   x2="-1460.5"
                   y2={1737}
                   stroke="black"
@@ -1026,7 +1295,7 @@ const HalfLandingLeft = () => {
                 />{" "}
                 <rect
                   x="-1515.5"
-                  y="520.5"
+                  y={643}
                   width={200}
                   height={100}
                   fill="white"
@@ -1036,12 +1305,42 @@ const HalfLandingLeft = () => {
                 />
                 <text
                   x="-1515.5"
-                  y="-520.5"
+                  y={-643}
                   style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
                   transform="translate (0,0) rotate(180) scale(-1,1)"
                   className=""
                 >
-                  2413
+                  2168
+                </text>{" "}
+                <line
+                  x1="-1360.5"
+                  y1={-531}
+                  x2="-41.5"
+                  y2={-531}
+                  stroke="black"
+                  strokeWidth={3}
+                  markerEnd="url(#endarrow)"
+                  markerStart="url(#startarrow)"
+                  className=""
+                />{" "}
+                <rect
+                  x={-751}
+                  y={-531}
+                  width={200}
+                  height={100}
+                  fill="white"
+                  transform="translate (-20,-30)"
+                  opacity="0.6"
+                  className=""
+                />
+                <text
+                  x={-751}
+                  y={551}
+                  style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                  transform="translate (0,0) rotate(180) scale(-1,1)"
+                  className=""
+                >
+                  1319
                 </text>{" "}
                 <line
                   x1="-432.5"
@@ -1096,4 +1395,4 @@ const HalfLandingLeft = () => {
   );
 };
 
-export default HalfLandingLeft;
+export default HalfLandingLeftLeft;
