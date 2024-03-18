@@ -18,6 +18,8 @@ import ThreeWinderHalfLandingRightRighttShape from "./shapes/3wHLRightRight";
 import ThreeWinderHalfLandingLeftRightShape from "./shapes/3wHLLeftRight";
 import HalfLandingThreeWinderLeftRightShape from "./shapes/Hl3wLeftRight";
 import TwoHalfLandingLeftRight from "./shapes/2xHalfLandingLeftRight";
+import HalfLandingThreeWinderLeftRight from "./shapes/Right-Left/Hl-3W-LeftRight";
+import TwoHalfLadingLeftRight from "./shapes/Right-Left/2xHL-LeftRight";
 
 // setHalfLandingTurn
 const HalfLandingShape = () => {
@@ -44,6 +46,10 @@ const HalfLandingShape = () => {
         <HalfLandingThreeWinderLeftRightShape />
       )}
       {shapeTurn === "TwoHalfLandingLeftRight" && <TwoHalfLandingLeftRight />}
+
+      {/* Left Right */}
+      {shapeTurn === "TwoHalfLandingRightLeft" && <HalfLandingThreeWinderLeftRight />}
+      {shapeTurn === "TwoHalfLandingRightLeftops" && <TwoHalfLadingLeftRight />}
     </>
   );
 };
