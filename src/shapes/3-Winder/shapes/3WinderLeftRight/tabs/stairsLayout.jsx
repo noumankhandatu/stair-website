@@ -10,7 +10,7 @@ import { ThrreWidnerFirstRight, ceilingArray } from "../../../../../utils/data";
 import AppDeleteIcon from "../../../../../components/atom/DeleteIcon";
 import Div from "../../../../../components/atom/Div";
 import ShapesSelect from "../../../../../components/atom/ShapesSelect";
-import { QUARTER_LANDING, THREE_WINDER } from "../../../../../utils/enum";
+import { HALF_LANDING, QUARTER_LANDING, THREE_WINDER } from "../../../../../utils/enum";
 import { TurnFlex, TurnPaperStyle } from "../../../../../style/global";
 import {
   selectDefaultValueTwo,
@@ -18,6 +18,7 @@ import {
   setSelectDefaultValue,
   setSelectDefaultValue2,
 } from "../../../../../toolkit/slices/singleFeatures";
+import { setHalfLandingTurn } from "../../../../../toolkit/slices/shapeTurns";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -114,12 +115,20 @@ const StairLayout = ({ setAppState, appState }) => {
     if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
       dispatch(setSelectDefaultValue(selectedValue));
     }
+    if (selectedValue === HALF_LANDING) {
+      dispatch(setHalfLandingTurn("HalfLandingThreeWinderLeftRightShape"));
+      dispatch(setSelectDefaultValue(selectedValue));
+    }
   };
   // select shape from selectbox
   const handleSelectShapeTwo = (event) => {
     const selectedValue = event.target.value;
     dispatch(setShape(selectedValue));
     if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setSelectDefaultValue2(selectedValue));
+    }
+    if (selectedValue === HALF_LANDING) {
+      dispatch(setHalfLandingTurn("ThreeWinderHalfLandingLeftRightShape"));
       dispatch(setSelectDefaultValue2(selectedValue));
     }
   };

@@ -13,8 +13,11 @@ import HalfLandingLeftLeft from "./shapes/HalfLandingLeftLeft";
 import TwoXHalfLandingLeft from "./shapes/2xHalfLandingLeft";
 import ThreeWinderHalfLandingLeftLeftShape from "./shapes/3wHlLeftLeft";
 import HalfLandingRightRight from "./shapes/HalfLandingRightRight";
-import TwoXHalfLandingRight from "./shapes/2zHalfLandingRight";
+import TwoXHalfLandingRight from "./shapes/2xHalfLandingRight";
 import ThreeWinderHalfLandingRightRighttShape from "./shapes/3wHLRightRight";
+import ThreeWinderHalfLandingLeftRightShape from "./shapes/3wHLLeftRight";
+import HalfLandingThreeWinderLeftRightShape from "./shapes/Hl3wLeftRight";
+import TwoHalfLandingLeftRight from "./shapes/2xHalfLandingLeftRight";
 
 // setHalfLandingTurn
 const HalfLandingShape = () => {
@@ -31,9 +34,16 @@ const HalfLandingShape = () => {
       {shapeTurn === HalfLandingRightTurn && <HalfLandingRight />}
       {shapeTurn === HalfLandingRightRightTurn && <HalfLandingRightRight />}
       {shapeTurn === "TwoxHalfLandingRight" && <TwoXHalfLandingRight />}
-      {shapeTurn === "ThreeWinderHalfLandingRightRighttShape" && <ThreeWinderHalfLandingRightRighttShape />}
-
-      
+      {shapeTurn === "ThreeWinderHalfLandingRightRighttShape" && (
+        <ThreeWinderHalfLandingRightRighttShape />
+      )}
+      {shapeTurn === "ThreeWinderHalfLandingLeftRightShape" && (
+        <ThreeWinderHalfLandingLeftRightShape />
+      )}
+      {shapeTurn === "HalfLandingThreeWinderLeftRightShape" && (
+        <HalfLandingThreeWinderLeftRightShape />
+      )}
+      {shapeTurn === "TwoHalfLandingLeftRight" && <TwoHalfLandingLeftRight />}
     </>
   );
 };

@@ -130,7 +130,6 @@ const StairLayout = ({ setAppState, appState }) => {
     const selectedValue = event.target.value;
     dispatch(setShape(selectedValue));
     if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
-      alert(selectedValue);
       dispatch(setShape(selectedValue));
       dispatch(setSelectDefaultValue2(selectedValue));
     }

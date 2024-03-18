@@ -23,9 +23,11 @@ import {
   THREE_WINDER,
   ThreeWinderLeftLeftTurn,
   ThreeWinderLeftRightTurn,
+  TwoxHalfLandingLeft,
 } from "../../../../../utils/enum";
 import {
   selectHalfLandingTurn,
+  selectShapeTurn,
   setHalfLandingTurn,
   setShapeTurn,
 } from "../../../../../toolkit/slices/shapeTurns";
@@ -45,7 +47,6 @@ import {
   setSelectDefaultValue,
   setSelectDefaultValue2,
 } from "../../../../../toolkit/slices/singleFeatures";
-import TwoXHalfLandingRight from "../../2xHalfLandingRight";
 
 const heightLoopArray = [];
 let updatedPositions = [];
@@ -65,13 +66,14 @@ for (let i = 222; i <= 280; i++) {
 }
 const StairLayout = ({ setAppState, appState }) => {
   // states
-  const firstReduxSelectedVal = useSelector(selectedDefaultValue);
   const [selectedValue, setSelectedValue] = useState(null);
 
   // hooks
 
   const dispatch = useDispatch();
   const reduxDefaultSelected = useSelector(selectDefaultValueTwo);
+  const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
+
   // width changer
   const handleWidthChange = (newValue) => {
     let x = newValue;
@@ -163,25 +165,6 @@ const StairLayout = ({ setAppState, appState }) => {
     }));
   };
 
-  const handleSelectShape = (event) => {
-    const selectedValue = event.target.value;
-    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
-      dispatch(setShape(THREE_WINDER));
-      dispatch(setSelectDefaultValue(THREE_WINDER));
-    }
-  };
-  const handleSelectShapeTwo = (event) => {
-    const selectedValue = event.target.value;
-    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
-      // dispatch(setHalfLandingTurn(HalfLandingLeftLeftTurn));
-      dispatch(setSelectDefaultValue2(selectedValue));
-    }
-
-    if (selectedValue === HALF_LANDING) {
-      dispatch(setSelectDefaultValue2(selectedValue));
-      dispatch(setHalfLandingTurn("TwoxHalfLandingRight"));
-    }
-  };
   const handleTurns = (event) => {
     const selectedValue = parseInt(event.target.value);
     const rightArray = [];
@@ -207,6 +190,28 @@ const StairLayout = ({ setAppState, appState }) => {
         borderLeft: updatedPositions.length * 250,
       },
     }));
+  };
+  const handleSelectShape1 = (event) => {
+    const selectedValue = event.target.value;
+    // Dispatch the setShape action with the selected value
+    // dispatch(setHalfLandingTurn(TwoxHalfLandingLeft));
+    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setSelectDefaultValue(selectedValue));
+    }
+    if (selectedValue === HALF_LANDING) {
+      dispatch(setHalfLandingTurn("TwoHalfLandingLeftRight"));
+      dispatch(setSelectDefaultValue(HALF_LANDING));
+      dispatch(setSelectDefaultValue2(HALF_LANDING));
+    }
+  };
+  const handleSelectShape2 = (event) => {
+    const selectedValue = event.target.value;
+    // Dispatch the setShape action with the selected value
+    if (selectedValue === QUARTER_LANDING || selectedValue === THREE_WINDER) {
+      dispatch(setShape(THREE_WINDER));
+      dispatch(setShapeTurn(ThreeWinderLeftLeftTurn));
+      dispatch(setSelectDefaultValue2(QUARTER_LANDING));
+    }
   };
 
   return (
@@ -317,8 +322,8 @@ const StairLayout = ({ setAppState, appState }) => {
         <Div sx={TurnFlex}>
           <Appheading>Type </Appheading>
           <ShapesSelect
-            defaultShape={firstReduxSelectedVal}
-            handleSelectShape={handleSelectShape}
+            defaultShape={firstSelectDefaultValueRedux}
+            handleSelectShape={handleSelectShape1}
           />
         </Div>
         <Div sx={TurnFlex}>
@@ -358,6 +363,7 @@ const StairLayout = ({ setAppState, appState }) => {
         ))}
       </Select>
 
+      {/* Turns -> Second Left & Right  */}
       <Paper elevation={3} sx={TurnPaperStyle}>
         <Div sx={TurnFlex}>
           <Appheading>Turn 2 (Left)</Appheading>
@@ -366,10 +372,7 @@ const StairLayout = ({ setAppState, appState }) => {
 
         <Div sx={TurnFlex}>
           <Appheading>Type </Appheading>
-          <ShapesSelect
-            defaultShape={reduxDefaultSelected}
-            handleSelectShape={handleSelectShapeTwo}
-          />
+          <ShapesSelect defaultShape={HALF_LANDING} handleSelectShape={handleSelectShape2} />
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Treads before turn:</Appheading>
