@@ -27,6 +27,9 @@ import {
   selectHalfLandingTurn,
   setHalfLandingTurn,
 } from "../../../../../toolkit/slices/shapeTurns";
+import AppFloorHeight from "../../../../../global/components/FloorHeight";
+import ThreadsCard from "../../../../../global/layout/ThreadsCard";
+import { GlobalSliceData } from "../../../../../toolkit/globalSlice";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -39,6 +42,8 @@ for (let i = 1; i <= 5000; i += 220) {
 const StairLayout = ({ setAppState, appState }) => {
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
+  const { threadTurnZero } = useSelector(GlobalSliceData);
+  console.log(threadTurnZero, "threadTurnZero");
   // hooks
   const dispatch = useDispatch();
   // width changer
@@ -146,8 +151,8 @@ const StairLayout = ({ setAppState, appState }) => {
     <div>
       {/* Floor Height */}
 
-      <Appheading sx={{ mt: 2 }}>Floor Height</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
+      <AppFloorHeight />
+      {/* <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
         <MenuItem value="" disabled>
           Select a position
         </MenuItem>
@@ -156,8 +161,7 @@ const StairLayout = ({ setAppState, appState }) => {
             {option + 79} mm
           </MenuItem>
         ))}
-      </Select>
-
+      </Select> */}
       {/* Floor Width */}
 
       <Appheading sx={{ mt: 1 }}>Floor Width</Appheading>
@@ -221,35 +225,18 @@ const StairLayout = ({ setAppState, appState }) => {
       </Select>
 
       {/* Turns -> First Left & Right  */}
+      <ThreadsCard
+        defaultShape={firstSelectDefaultValueRedux}
+        fnHandler={handleSelectShape}
+        numberOfOptions={threadTurnZero}
+      />
 
-      <Paper elevation={3} sx={TurnPaperStyle}>
-        <Div sx={TurnFlex}>
-          <Appheading>Turn 1 (Left)</Appheading>
-          <AppDeleteIcon />
-        </Div>
-        <Div sx={TurnFlex}>
-          <Appheading>Turn </Appheading>
-          <ShapesSelect
-            defaultShape={firstSelectDefaultValueRedux}
-            handleSelectShape={handleSelectShape}
-          />
-        </Div>
-      </Paper>
       {/* Turns -> Second Left & Right  */}
-
-      <Paper elevation={3} sx={TurnPaperStyle}>
-        <Div sx={TurnFlex}>
-          <Appheading>Turn 2 (Left)</Appheading>
-          <AppDeleteIcon />
-        </Div>
-        <Div sx={TurnFlex}>
-          <Appheading>Turn </Appheading>
-          <ShapesSelect
-            defaultShape={secondSelectDefaultValueRedux}
-            handleSelectShape={handleSelectShapeTwo}
-          />
-        </Div>
-      </Paper>
+      <ThreadsCard
+        defaultShape={secondSelectDefaultValueRedux}
+        fnHandler={handleSelectShapeTwo}
+        numberOfOptions={threadTurnZero}
+      />
     </div>
   );
 };
