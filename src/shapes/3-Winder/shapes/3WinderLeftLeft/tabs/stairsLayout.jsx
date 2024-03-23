@@ -29,7 +29,7 @@ import {
 } from "../../../../../toolkit/slices/shapeTurns";
 import AppFloorHeight from "../../../../../global/components/FloorHeight";
 import ThreadsCard from "../../../../../global/layout/ThreadsCard";
-import { GlobalSliceData } from "../../../../../toolkit/globalSlice";
+import { GlobalSliceData, setThreadOne, setThreadTwo } from "../../../../../toolkit/globalSlice";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -42,8 +42,8 @@ for (let i = 1; i <= 5000; i += 220) {
 const StairLayout = ({ setAppState, appState }) => {
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
-  const { threadTurnZero } = useSelector(GlobalSliceData);
-  console.log(threadTurnZero, "threadTurnZero");
+  const { defaultThread, threadTurnOne, threadTurnTwo } = useSelector(GlobalSliceData);
+
   // hooks
   const dispatch = useDispatch();
   // width changer
@@ -145,8 +145,15 @@ const StairLayout = ({ setAppState, appState }) => {
     }
     dispatch(setShape(selectedValue));
   };
-  console.log(appState, "appState");
 
+  const handleSelectChange = (event) => {
+    const selectedValue = event.target.value;
+    dispatch(setThreadOne(selectedValue));
+  };
+  const handleSelectChangeTwo = (event) => {
+    const selectedValue = event.target.value;
+    dispatch(setThreadTwo(selectedValue));
+  };
   return (
     <div>
       {/* Floor Height */}
@@ -228,14 +235,16 @@ const StairLayout = ({ setAppState, appState }) => {
       <ThreadsCard
         defaultShape={firstSelectDefaultValueRedux}
         fnHandler={handleSelectShape}
-        numberOfOptions={threadTurnZero}
+        numberOfOptions={defaultThread}
+        handleTurn={handleSelectChange}
       />
 
       {/* Turns -> Second Left & Right  */}
       <ThreadsCard
         defaultShape={secondSelectDefaultValueRedux}
         fnHandler={handleSelectShapeTwo}
-        numberOfOptions={threadTurnZero}
+        numberOfOptions={threadTurnTwo.initialThreadTurnTwo}
+        handleTurn={handleSelectChangeTwo}
       />
     </div>
   );

@@ -1,0 +1,43 @@
+
+Example to Map
+
+  {threadTurnOne.map((items, index) => {
+                      const id = threadTurnOne.length - index; // Calculate the reverse index
+                      console.log(items, "itemsitems");
+                      return (
+                        <g key={index} transform={`translate(-413.5 ${items})  rotate(0)`}>
+                          <rect
+                            x={0}
+                            y={-16}
+                            width={827}
+                            height={238}
+                            fill="url(#mdf)"
+                            style={{ stroke: "black", strokeWidth: 2 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+                          <rect
+                            x={0}
+                            y={0}
+                            width={827}
+                            height={10}
+                            fill="none"
+                            style={{ stroke: "black", strokeWidth: 1 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+                          <text
+                            x="388.5"
+                            y={-131}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (800,0) rotate(0) scale(-1,1)"
+                          >
+                            #{id}
+                          </text>
+                        </g>
+                      );
+                    })}

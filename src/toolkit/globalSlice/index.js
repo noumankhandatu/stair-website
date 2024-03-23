@@ -14,14 +14,19 @@ const calculateRisers = (floorHeight) => {
 
 const initialFloorHeight = 2600;
 const initialFloorHeightRisers = calculateRisers(initialFloorHeight);
-const initialThreadTurnZero = initialFloorHeightRisers.slice(0, -6);
+const initialDefaultThread = initialFloorHeightRisers.slice(0, -6);
+const initialThreadTurnOne = initialDefaultThread.slice(0, 4);
+const initialThreadTurnTwo = initialDefaultThread.slice(0, 1);
 
 const initialState = {
   floorHeight: initialFloorHeight,
   floorHeightRisers: initialFloorHeightRisers,
-  threadTurnZero: initialThreadTurnZero,
-  threadTurnOne: [],
-  threadTurnTwo: [],
+  defaultThread: initialDefaultThread,
+  threadTurnOne: initialThreadTurnOne,
+  threadTurnTwo: {
+    initialThreadTurnTwo: initialThreadTurnTwo,
+    shapeThreadTurnTwo: [],
+  },
 };
 
 const GlobalStairsLayoutSlice = createSlice({
@@ -31,12 +36,22 @@ const GlobalStairsLayoutSlice = createSlice({
     setFloorHeight(state, action) {
       state.floorHeight = action.payload;
       state.floorHeightRisers = calculateRisers(action.payload);
-      state.threadTurnZero = state.floorHeightRisers.slice(0, -6);
+      state.defaultThread = state.floorHeightRisers.slice(0, -6);
+    },
+    setThreadOne(state, action) {
+      const risersForTurnOne = action.payload;
+      state.defaultThread.length - risersForTurnOne;
+      state.threadTurnOne = state.defaultThread.slice(0, risersForTurnOne);
+      state.threadTurnTwo.initialThreadTurnTwo = state.defaultThread.slice(risersForTurnOne);
+    },
+    setThreadTwo(state, action) {
+      const risersForTurnTwo = action.payload;
+      state.threadTurnTwo.shapeThreadTurnTwo = state.defaultThread.slice(0, risersForTurnTwo);
     },
   },
 });
 
-export const { setFloorHeight } = GlobalStairsLayoutSlice.actions;
+export const { setFloorHeight, setThreadOne, setThreadTwo } = GlobalStairsLayoutSlice.actions;
 export const GlobalSliceData = (state) => state.GlobalStairsLayoutSlice;
 
 export default GlobalStairsLayoutSlice.reducer;

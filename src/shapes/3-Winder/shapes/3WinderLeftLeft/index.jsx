@@ -16,6 +16,7 @@ import {
 } from "../../../../toolkit/slices/singleFeatures";
 import { useSelector } from "react-redux";
 import { QUARTER_LANDING } from "../../../../utils/enum";
+import { GlobalSliceData } from "../../../../toolkit/globalSlice";
 
 const ThreeWinderLeftLeft = () => {
   // states
@@ -23,6 +24,9 @@ const ThreeWinderLeftLeft = () => {
   const [showMaterialConstruction, setshowMaterialConstruction] = useState(false);
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
+
+  const { defaultThread, threadTurnOne, threadTurnTwo } = useSelector(GlobalSliceData);
+  console.log(threadTurnTwo, "asd");
   const [appState, setAppState] = useState({
     svgInsideContainer: {
       height: "200vh",
@@ -349,168 +353,53 @@ const ThreeWinderLeftLeft = () => {
             <g transform="translate (392.81227180527384,524.8771805273834) rotate(180) scale(-0.20020283975659228,0.20020283975659228)">
               {" "}
               <g>
-                <g transform="translate(0 0)  rotate(0)" />
-                <g transform="translate(0 0)  rotate(0)">
+                <g transform="translate(0 1080)  rotate(180)">
+                  {/* right bottom */}
                   <g>
-                    <g transform="translate(-413.5 0)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run1_tread1"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run1_tread1"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #1
-                      </text>
-                    </g>
-                    <g transform="translate(-413.5 222)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run1_tread2"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run1_tread2"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #2
-                      </text>
-                    </g>
-                    <g transform="translate(-413.5 444)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run1_tread3"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run1_tread3"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #3
-                      </text>
-                    </g>
-                    <g transform="translate(-413.5 666)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run1_tread4"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run1_tread4"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #4
-                      </text>
-                    </g>
-                  </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
+                    {threadTurnOne.map((items, index) => {
+                      const id = threadTurnOne.length - index; // Calculate the reverse index
+                      console.log(items, "itemsitems");
+                      return (
+                        <g key={index} transform={`translate(-413.5 ${items})  rotate(0)`}>
+                          <rect
+                            x={0}
+                            y={-16}
+                            width={827}
+                            height={238}
+                            fill="url(#mdf)"
+                            style={{ stroke: "black", strokeWidth: 2 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+                          <rect
+                            x={0}
+                            y={0}
+                            width={827}
+                            height={10}
+                            fill="none"
+                            style={{ stroke: "black", strokeWidth: 1 }}
+                            id="run1_tread1"
+                            className=""
+                          />
+                          <text
+                            x="388.5"
+                            y={131}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (800,0) rotate(0) scale(-1,1)"
+                          >
+                            #{id}
+                          </text>
+                        </g>
+                      );
+                    })}
                   </g>
                   <g />{" "}
-                  <text
-                    x={0}
-                    y={-0}
-                    style={{
-                      fontSize: 55,
-                      fontFamily: "Arial, Helvetica, sans-serif",
-                      color: "black",
-                    }}
-                    transform="translate (0,0) rotate(180) scale(-1,1)"
-                  >
-                    run1
-                  </text>
                 </g>
+                {/* right top center */}
                 <g transform="translate(0 888)  rotate(0)">
                   <g transform="translate(405.5 0)  rotate(0)" />
                   <g transform="translate(0 875)  rotate(-90)" />
@@ -550,7 +439,7 @@ const ThreeWinderLeftLeft = () => {
                       }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                     >
-                      #5
+                      #{threadTurnOne.length + 1}
                     </text>
                   </g>
                   <g transform="translate(0 0)  rotate(0)">
@@ -593,7 +482,7 @@ const ThreeWinderLeftLeft = () => {
                       }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                     >
-                      #6
+                      #{threadTurnOne.length + 2}
                     </text>
                   </g>
                   <g transform="translate(0 0)  rotate(0)">
@@ -636,49 +525,54 @@ const ThreeWinderLeftLeft = () => {
                       }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                     >
-                      #7
+                      #{threadTurnOne.length + 3}
                     </text>
                   </g>
                   <g transform="translate(-419 23.5)  rotate(0)" />
                   <g transform="translate(-419 23.5)  rotate(0)" />
                 </g>
-                <g transform="translate(-442.5 1330.5)  rotate(90)">
+                <g transform="translate(-850 1330.5)  rotate(270)">
                   <g>
-                    <g transform="translate(-413.5 0)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run2_tread1"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run2_tread1"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #8
-                      </text>
-                    </g>
+                    {threadTurnTwo.shapeThreadTurnTwo.map((items, index) => {
+                      const id = threadTurnOne.length - index;
+                      return (
+                        <g key={id} transform={`translate(-413.5 ${items})  rotate(0)`}>
+                          {" "}
+                          <rect
+                            x={0}
+                            y={-16}
+                            width={827}
+                            height={238}
+                            fill="url(#mdf)"
+                            style={{ stroke: "black", strokeWidth: 2 }}
+                            id="run2_tread1"
+                            className=""
+                          />{" "}
+                          <rect
+                            x={0}
+                            y={0}
+                            width={827}
+                            height={10}
+                            fill="none"
+                            style={{ stroke: "black", strokeWidth: 1 }}
+                            id="run2_tread1"
+                            className=""
+                          />{" "}
+                          <text
+                            x="388.5"
+                            y={-131}
+                            style={{
+                              fontSize: 55,
+                              fontFamily: "Arial, Helvetica, sans-serif",
+                              color: "black",
+                            }}
+                            transform="translate (0,0) rotate(180) scale(-1,1)"
+                          >
+                            #{id}
+                          </text>
+                        </g>
+                      );
+                    })}
                   </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)" />
