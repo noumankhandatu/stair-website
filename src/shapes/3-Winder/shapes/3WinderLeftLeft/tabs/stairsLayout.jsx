@@ -243,7 +243,7 @@ const StairLayout = ({ setAppState, appState }) => {
       <ThreadsCard
         defaultShape={secondSelectDefaultValueRedux}
         fnHandler={handleSelectShapeTwo}
-        numberOfOptions={threadTurnTwo.initialThreadTurnTwo}
+        numberOfOptions={threadTurnTwo}
         handleTurn={handleSelectChangeTwo}
       />
     </div>

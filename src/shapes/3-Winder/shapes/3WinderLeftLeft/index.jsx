@@ -25,7 +25,7 @@ const ThreeWinderLeftLeft = () => {
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
 
-  const { defaultThread, threadTurnOne, threadTurnTwo } = useSelector(GlobalSliceData);
+  const { threadTurnOne, threadTurnTwo, threadTurnThree } = useSelector(GlobalSliceData);
   console.log(threadTurnTwo, "asd");
   const [appState, setAppState] = useState({
     svgInsideContainer: {
@@ -400,7 +400,7 @@ const ThreeWinderLeftLeft = () => {
                   <g />{" "}
                 </g>
                 {/* right top center */}
-                <g transform="translate(0 888)  rotate(0)">
+                <g transform={`translate(0 888)  rotate(0)`}>
                   <g transform="translate(405.5 0)  rotate(0)" />
                   <g transform="translate(0 875)  rotate(-90)" />
                   <g transform="translate(0 0)  rotate(0)">
@@ -531,9 +531,10 @@ const ThreeWinderLeftLeft = () => {
                   <g transform="translate(-419 23.5)  rotate(0)" />
                   <g transform="translate(-419 23.5)  rotate(0)" />
                 </g>
-                <g transform="translate(-850 1330.5)  rotate(270)">
+                {/* thread two -center */}
+                <g transform="translate(1080 1330.5)  rotate(90)">
                   <g>
-                    {threadTurnTwo.shapeThreadTurnTwo.map((items, index) => {
+                    {threadTurnTwo.map((items, index) => {
                       const id = threadTurnOne.length - index;
                       return (
                         <g key={id} transform={`translate(-413.5 ${items})  rotate(0)`}>
@@ -568,7 +569,7 @@ const ThreeWinderLeftLeft = () => {
                             }}
                             transform="translate (0,0) rotate(180) scale(-1,1)"
                           >
-                            #{id}
+                            #{threadTurnOne.length + index + 4}
                           </text>
                         </g>
                       );
@@ -592,6 +593,7 @@ const ThreeWinderLeftLeft = () => {
                     run2
                   </text>
                 </g>
+                {/* left top center */}
                 <g transform="translate(-664.5 1330.5)  rotate(90)">
                   <g transform="translate(405.5 0)  rotate(0)" />
                   <g transform="translate(0 875)  rotate(-90)" />
@@ -631,7 +633,7 @@ const ThreeWinderLeftLeft = () => {
                       }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                     >
-                      #9
+                      #{threadTurnOne.length + 5}
                     </text>
                   </g>
                   <g transform="translate(0 0)  rotate(0)">
@@ -674,7 +676,7 @@ const ThreeWinderLeftLeft = () => {
                       }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                     >
-                      #10
+                      #{threadTurnOne.length + 6}
                     </text>
                   </g>
                   <g transform="translate(0 0)  rotate(0)">
@@ -717,104 +719,101 @@ const ThreeWinderLeftLeft = () => {
                       }}
                       transform="translate (0,0) rotate(180) scale(-1,1)"
                     >
-                      #11
+                      #{threadTurnOne.length + 7}
                     </text>
                   </g>
                   <g transform="translate(-419 23.5)  rotate(0)" />
                   <g transform="translate(-419 23.5)  rotate(0)" />
                 </g>
-                <g transform="translate(-1107 888)  rotate(180)">
+                {/* left - bottom */}
+                <g transform="translate(-1100 -880)  rotate(360)">
                   <g>
-                    <g transform="translate(-413.5 0)  rotate(0)">
-                      {" "}
-                      <rect
-                        x={0}
-                        y={-16}
-                        width={827}
-                        height={238}
-                        fill="url(#mdf)"
-                        style={{ stroke: "black", strokeWidth: 2 }}
-                        id="run3_tread1"
-                        className=""
-                      />{" "}
-                      <rect
-                        x={0}
-                        y={0}
-                        width={827}
-                        height={10}
-                        fill="none"
-                        style={{ stroke: "black", strokeWidth: 1 }}
-                        id="run3_tread1"
-                        className=""
-                      />{" "}
-                      <text
-                        x="388.5"
-                        y={-131}
-                        style={{
-                          fontSize: 55,
-                          fontFamily: "Arial, Helvetica, sans-serif",
-                          color: "black",
-                        }}
-                        transform="translate (0,0) rotate(180) scale(-1,1)"
-                      >
-                        #12
-                      </text>
-                    </g>
+                    {threadTurnThree.slice(1).map((items, index) => {
+                      const lastIndex = threadTurnThree.length;
+                      const number =
+                        threadTurnOne.length + threadTurnTwo.length + lastIndex - index + 5;
+
+                      return (
+                        <g key={index}>
+                          <g transform={`translate(-413.5 ${items})  rotate(0)`}>
+                            {index !== lastIndex - 1 && (
+                              <g>
+                                <rect
+                                  x={0}
+                                  y={-16}
+                                  width={827}
+                                  height={238}
+                                  fill="url(#mdf)"
+                                  style={{ stroke: "black", strokeWidth: 2 }}
+                                  id="run3_tread1"
+                                  className=""
+                                />
+                                <rect
+                                  x={0}
+                                  y={0}
+                                  width={827}
+                                  height={10}
+                                  fill="none"
+                                  style={{ stroke: "black", strokeWidth: 1 }}
+                                  id="run3_tread1"
+                                  className=""
+                                />
+                                <text
+                                  x="388.5"
+                                  y={-131}
+                                  style={{
+                                    fontSize: 55,
+                                    fontFamily: "Arial, Helvetica, sans-serif",
+                                    color: "black",
+                                  }}
+                                  transform="translate (0,0) rotate(180) scale(-1,1)"
+                                >
+                                  #{number}
+                                </text>
+                              </g>
+                            )}
+                            {index === lastIndex - 1 && (
+                              <g>
+                                <rect
+                                  x={0}
+                                  y={136}
+                                  width={827}
+                                  height={86}
+                                  fill="url(#mdf)"
+                                  style={{ stroke: "black", strokeWidth: 2 }}
+                                  id="nosing_tread"
+                                  className=""
+                                />{" "}
+                                <rect
+                                  x={0}
+                                  y={116}
+                                  width={827}
+                                  height={10}
+                                  fill="none"
+                                  style={{ stroke: "black", strokeWidth: 1 }}
+                                  id="nosing_tread"
+                                  className=""
+                                />{" "}
+                                <text
+                                  x="388.5"
+                                  y={-135}
+                                  style={{
+                                    fontSize: 55,
+                                    fontFamily: "Arial, Helvetica, sans-serif",
+                                    color: "black",
+                                  }}
+                                  transform="translate (0,0) rotate(180) scale(-1,1)"
+                                >
+                                  #{number}
+                                </text>
+                              </g>
+                            )}
+                          </g>
+                        </g>
+                      );
+                    })}
                   </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
-                  </g>
-                  <g />{" "}
-                  <text
-                    x={0}
-                    y={-0}
-                    style={{
-                      fontSize: 55,
-                      fontFamily: "Arial, Helvetica, sans-serif",
-                      color: "black",
-                    }}
-                    transform="translate (0,0) rotate(180) scale(-1,1)"
-                  >
-                    run3
-                  </text>
-                </g>
-                <g transform="translate(-1107 666)  rotate(180)">
-                  <g transform="translate(-413.5 0)  rotate(0)">
-                    {" "}
-                    <rect
-                      x={0}
-                      y={-16}
-                      width={827}
-                      height={86}
-                      fill="url(#mdf)"
-                      style={{ stroke: "black", strokeWidth: 2 }}
-                      id="nosing_tread"
-                      className=""
-                    />{" "}
-                    <rect
-                      x={0}
-                      y={0}
-                      width={827}
-                      height={10}
-                      fill="none"
-                      style={{ stroke: "black", strokeWidth: 1 }}
-                      id="nosing_tread"
-                      className=""
-                    />{" "}
-                    <text
-                      x="388.5"
-                      y={-55}
-                      style={{
-                        fontSize: 55,
-                        fontFamily: "Arial, Helvetica, sans-serif",
-                        color: "black",
-                      }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                    >
-                      #13
-                    </text>
-                  </g>
+                  <g />
                 </g>
               </g>
               <g>
