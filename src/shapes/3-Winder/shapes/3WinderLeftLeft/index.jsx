@@ -27,6 +27,9 @@ const ThreeWinderLeftLeft = () => {
 
   const { threadTurnOne, threadTurnTwo, threadTurnThree } = useSelector(GlobalSliceData);
   console.log(threadTurnTwo, "asd");
+  console.log(threadTurnThree, "asd");
+  console.log(threadTurnOne, "asd");
+
   const [appState, setAppState] = useState({
     svgInsideContainer: {
       height: "200vh",
@@ -728,86 +731,48 @@ const ThreeWinderLeftLeft = () => {
                 {/* left - bottom */}
                 <g transform="translate(-1100 -880)  rotate(360)">
                   <g>
-                    {threadTurnThree.slice(1).map((items, index) => {
+                    {threadTurnThree.map((items, index) => {
                       const lastIndex = threadTurnThree.length;
                       const number =
                         threadTurnOne.length + threadTurnTwo.length + lastIndex - index + 5;
-
                       return (
                         <g key={index}>
                           <g transform={`translate(-413.5 ${items})  rotate(0)`}>
-                            {index !== lastIndex - 1 && (
-                              <g>
-                                <rect
-                                  x={0}
-                                  y={-16}
-                                  width={827}
-                                  height={238}
-                                  fill="url(#mdf)"
-                                  style={{ stroke: "black", strokeWidth: 2 }}
-                                  id="run3_tread1"
-                                  className=""
-                                />
-                                <rect
-                                  x={0}
-                                  y={0}
-                                  width={827}
-                                  height={10}
-                                  fill="none"
-                                  style={{ stroke: "black", strokeWidth: 1 }}
-                                  id="run3_tread1"
-                                  className=""
-                                />
-                                <text
-                                  x="388.5"
-                                  y={-131}
-                                  style={{
-                                    fontSize: 55,
-                                    fontFamily: "Arial, Helvetica, sans-serif",
-                                    color: "black",
-                                  }}
-                                  transform="translate (0,0) rotate(180) scale(-1,1)"
-                                >
-                                  #{number}
-                                </text>
-                              </g>
-                            )}
-                            {index === lastIndex - 1 && (
-                              <g>
-                                <rect
-                                  x={0}
-                                  y={136}
-                                  width={827}
-                                  height={86}
-                                  fill="url(#mdf)"
-                                  style={{ stroke: "black", strokeWidth: 2 }}
-                                  id="nosing_tread"
-                                  className=""
-                                />{" "}
-                                <rect
-                                  x={0}
-                                  y={116}
-                                  width={827}
-                                  height={10}
-                                  fill="none"
-                                  style={{ stroke: "black", strokeWidth: 1 }}
-                                  id="nosing_tread"
-                                  className=""
-                                />{" "}
-                                <text
-                                  x="388.5"
-                                  y={-135}
-                                  style={{
-                                    fontSize: 55,
-                                    fontFamily: "Arial, Helvetica, sans-serif",
-                                    color: "black",
-                                  }}
-                                  transform="translate (0,0) rotate(180) scale(-1,1)"
-                                >
-                                  #{number}
-                                </text>
-                              </g>
-                            )}
+                            <g>
+                              <rect
+                                transform={`translate(813.5 360 )   rotate(180)`}
+                                x={0}
+                                y={136}
+                                width={827}
+                                height={220}
+                                fill="url(#mdf)"
+                                style={{ stroke: "black", strokeWidth: 2 }}
+                                id="nosing_tread"
+                                className=""
+                              />{" "}
+                              <rect
+                                x={0}
+                                y={16}
+                                width={827}
+                                height={10}
+                                fill="none"
+                                style={{ stroke: "black", strokeWidth: 1 }}
+                                id="nosing_tread"
+                                className=""
+                              />{" "}
+                              <text
+                                x="388.5"
+                                y={-135}
+                                style={{
+                                  fontSize: 55,
+                                  fontFamily: "Arial, Helvetica, sans-serif",
+                                  color: "black",
+                                }}
+                                transform="translate (0,0) rotate(180) scale(-1,1)"
+                              >
+                                #{number}
+                              </text>
+                            </g>
                           </g>
                         </g>
                       );

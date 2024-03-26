@@ -17,7 +17,7 @@ const initialFloorHeightRisers = calculateRisers(initialFloorHeight);
 const initialDefaultThread = initialFloorHeightRisers.slice(0, -6);
 const initialThreadTurnOne = initialDefaultThread.slice(0, 4);
 const initialThreadTurnTwo = initialDefaultThread.slice(-1);
-const initialThreadTurnThree = initialDefaultThread.slice(-3);
+const initialThreadTurnThree = initialDefaultThread.slice(-2);
 
 const initialState = {
   floorHeight: initialFloorHeight,
@@ -27,7 +27,6 @@ const initialState = {
   threadTurnTwo: initialThreadTurnTwo,
   threadTurnThree: initialThreadTurnThree,
 };
-
 const GlobalStairsLayoutSlice = createSlice({
   name: "stairsLayout",
   initialState,
@@ -44,7 +43,20 @@ const GlobalStairsLayoutSlice = createSlice({
       state.threadTurnThree = state.defaultThread.slice(risersForTurnOne);
     },
     setThreadTwo(state, action) {
-      const risersForTurnTwo = action.payload;
+      const risersToAdd = action.payload;
+      if (risersToAdd === 0) {
+        state.threadTurnTwo = [];
+      } else if (risersToAdd === 1) {
+        state.threadTurnTwo = [initialThreadTurnTwo[0]];
+      } else {
+        state.threadTurnTwo = [
+          initialThreadTurnTwo[0],
+          ...Array.from(
+            { length: risersToAdd - 1 },
+            (_, index) => initialThreadTurnTwo[0] - (index + 1) * riserHeight
+          ),
+        ];
+      }
     },
   },
 });

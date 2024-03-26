@@ -1,7 +1,6 @@
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch, useSelector } from "react-redux";
-import { Paper } from "@mui/material";
 import { Appheading } from "../../../../../theme";
 import { setHeight, setWidth } from "../../../../../toolkit/slices/stairHeightWidth";
 import { setShape } from "../../../../../toolkit/slices/shapes";
@@ -16,7 +15,6 @@ import {
   QUARTER_LANDING,
   THREE_WINDER,
 } from "../../../../../utils/enum";
-import { TurnFlex, TurnPaperStyle } from "./../../../../../style/global";
 import {
   selectDefaultValueTwo,
   selectedDefaultValue,
@@ -39,10 +37,12 @@ for (let i = 1; i <= 5000; i += 220) {
 }
 
 // eslint-disable-next-line react/prop-types
-const StairLayout = ({ setAppState, appState }) => {
+const StairLayout = ({ setAppState }) => {
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
-  const { defaultThread, threadTurnOne, threadTurnTwo } = useSelector(GlobalSliceData);
+  const { defaultThread, threadTurnThree, threadTurnTwo } = useSelector(GlobalSliceData);
+  console.log(threadTurnThree, "threadTurnThreeasd");
+  console.log(threadTurnTwo, "threadTurnThreeasd");
 
   // hooks
   const dispatch = useDispatch();
@@ -243,7 +243,7 @@ const StairLayout = ({ setAppState, appState }) => {
       <ThreadsCard
         defaultShape={secondSelectDefaultValueRedux}
         fnHandler={handleSelectShapeTwo}
-        numberOfOptions={threadTurnTwo}
+        numberOfOptions={threadTurnThree.length > 1 ? threadTurnThree : threadTurnTwo}
         handleTurn={handleSelectChangeTwo}
       />
     </div>

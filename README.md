@@ -12,7 +12,7 @@ Components Behavoirs
 4 : Width Runs (1,2,3) are simple width of risers
 
 5 : Thread before (1st turn) = All Risers - 3
-5.5 : Thread before (2nd turn) = All risers - 1st turn
+5.5 : Thread before (2nd turn) = All risers - 1st turn - 3rd riser
 
 <!-- Global Layout Started from below component -->
 
