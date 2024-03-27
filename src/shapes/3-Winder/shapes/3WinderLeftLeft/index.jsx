@@ -82,7 +82,7 @@ const ThreeWinderLeftLeft = () => {
           )}{" "}
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={8}>
-          <svg width={"1000px"} height={"1000px"}>
+          <svg style={{ position: "relative", left: 200 }} width={"100%"} height={"100%"}>
             <defs>
               <pattern id="mdf" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
                 <image
@@ -1238,7 +1238,7 @@ const ThreeWinderLeftLeft = () => {
             </g>
           </svg>
         </Grid>
-        <Grid xs={2}>
+        <Grid sx={{ zIndex: 99999 }} xs={2}>
           <Tooltip title="New Design">
             <NoteAddIcon sx={iconCol} onClick={() => window.location.reload()} />
           </Tooltip>

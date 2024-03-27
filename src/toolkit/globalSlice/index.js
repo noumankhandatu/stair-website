@@ -49,9 +49,17 @@ const GlobalStairsLayoutSlice = createSlice({
       const initialThreadTurnTwoLength = initialThreadTurnTwo.length;
 
       if (risersToAdd === 0) {
+        const initialValue = 0;
+        state.threadTurnThree = state.threadTurnTwo.map(
+          (riser, index) => initialValue + (index + 1) * riserHeight
+        );
         state.threadTurnTwo = [];
       } else if (risersToAdd === 1) {
-        state.threadTurnTwo = [initialThreadTurnTwo[0]];
+        const initialValue = 0;
+        state.threadTurnThree = state.threadTurnTwo.map(
+          (riser, index) => initialValue + (index + 1) * riserHeight
+        );
+        state.threadTurnTwo =  [initialThreadTurnTwo[0]]     ;
       } else {
         state.threadTurnTwo = [
           initialThreadTurnTwo[0],
