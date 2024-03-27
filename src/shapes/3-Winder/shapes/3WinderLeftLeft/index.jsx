@@ -26,10 +26,6 @@ const ThreeWinderLeftLeft = () => {
   const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
 
   const { threadTurnOne, threadTurnTwo, threadTurnThree } = useSelector(GlobalSliceData);
-  console.log(threadTurnTwo, "asd");
-  console.log(threadTurnThree, "asd");
-  console.log(threadTurnOne, "asd");
-
   const [appState, setAppState] = useState({
     svgInsideContainer: {
       height: "200vh",
@@ -86,7 +82,7 @@ const ThreeWinderLeftLeft = () => {
           )}{" "}
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={8}>
-          <svg width={564} height={700}>
+          <svg width={"1000px"} height={"1000px"}>
             <defs>
               <pattern id="mdf" patternUnits="userSpaceOnUse" width="1000px" height="1000px">
                 <image
@@ -356,12 +352,11 @@ const ThreeWinderLeftLeft = () => {
             <g transform="translate (392.81227180527384,524.8771805273834) rotate(180) scale(-0.20020283975659228,0.20020283975659228)">
               {" "}
               <g>
-                <g transform="translate(0 1080)  rotate(180)">
+                <g transform={`translate(${threadTurnTwo.length * 220} 1080)  rotate(180)`}>
                   {/* right bottom */}
-                  <g>
+                  <g transform="translate(220 0)  rotate(0)">
                     {threadTurnOne.map((items, index) => {
                       const id = threadTurnOne.length - index; // Calculate the reverse index
-                      console.log(items, "itemsitems");
                       return (
                         <g key={index} transform={`translate(-413.5 ${items})  rotate(0)`}>
                           <rect
@@ -403,136 +398,134 @@ const ThreeWinderLeftLeft = () => {
                   <g />{" "}
                 </g>
                 {/* right top center */}
-                <g transform={`translate(0 888)  rotate(0)`}>
-                  <g transform="translate(405.5 0)  rotate(0)" />
-                  <g transform="translate(0 875)  rotate(-90)" />
-                  <g transform="translate(0 0)  rotate(0)">
-                    {" "}
-                    <polyline
-                      points="-418.5,-16,418.5,-16,418.5,499.41,-374,40,-418.5,40"
-                      fill="url(#turn1_tread1)"
-                      stroke={"black"}
-                      strokeWidth={2}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
-                    />{" "}
-                    <polyline
-                      points="-418.5,0,418.5,0,418.5,10,-418.5,10"
-                      fill="url(#turn1_tread1)"
-                      stroke="black"
-                      strokeWidth={1}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
-                    />{" "}
-                    <text
-                      x="-69.2"
-                      y={-100}
-                      style={{
-                        fontSize: 55,
-                        fontFamily: "Arial, Helvetica, sans-serif",
-                        color: "black",
-                      }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                    >
-                      #{threadTurnOne.length + 1}
-                    </text>
+                <g transform="translate(-220 0)  rotate(0)">
+                  <g transform={`translate(${threadTurnTwo.length * 220} 888)  rotate(0)`}>
+                    <g transform="translate(0 0)  rotate(0)">
+                      {" "}
+                      <polyline
+                        points="-418.5,-16,418.5,-16,418.5,499.41,-374,40,-418.5,40"
+                        fill="url(#turn1_tread1)"
+                        stroke={"black"}
+                        strokeWidth={2}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />{" "}
+                      <polyline
+                        points="-418.5,0,418.5,0,418.5,10,-418.5,10"
+                        fill="url(#turn1_tread1)"
+                        stroke="black"
+                        strokeWidth={1}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />{" "}
+                      <text
+                        x="-69.2"
+                        y={-100}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #{threadTurnOne.length + 1}
+                      </text>
+                    </g>
+                    <g transform="translate(0 0)  rotate(0)">
+                      {" "}
+                      <polyline
+                        points="-374,21.51,418.5,480.91,418.5,861,66.91,861,-419,55.5"
+                        fill="url(#turn1_tread2)"
+                        stroke={
+                          firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                        }
+                        strokeWidth={2}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />{" "}
+                      <polyline
+                        points="-374,40,418.5,499.41,418.5,510.97,-374,51.56"
+                        fill="url(#turn1_tread2)"
+                        stroke={
+                          firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                        }
+                        strokeWidth={1}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />{" "}
+                      <text
+                        x={-173}
+                        y={-280}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #{threadTurnOne.length + 2}
+                      </text>
+                    </g>
+                    <g transform="translate(0 0)  rotate(0)">
+                      {" "}
+                      <polyline
+                        points="-400.31,55.5,85.59,861,-442.5,861,-442.5,24,-419,24"
+                        fill="url(#turn1_tread3)"
+                        stroke={
+                          firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                        }
+                        strokeWidth={2}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />{" "}
+                      <polyline
+                        points="-419,55.5,66.91,861,55.23,861,-430.68,55.5"
+                        fill="url(#turn1_tread3)"
+                        stroke={
+                          firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
+                        }
+                        strokeWidth={1}
+                      />
+                      <text
+                        style={{ fontSize: "" }}
+                        className="heavy"
+                        textAnchor=""
+                        transform="translate(0,400) rotate(0) scale(-1,1)"
+                      />{" "}
+                      <text
+                        x={-346}
+                        y={-400}
+                        style={{
+                          fontSize: 55,
+                          fontFamily: "Arial, Helvetica, sans-serif",
+                          color: "black",
+                        }}
+                        transform="translate (0,0) rotate(180) scale(-1,1)"
+                      >
+                        #{threadTurnOne.length + 3}
+                      </text>
+                    </g>
                   </g>
-                  <g transform="translate(0 0)  rotate(0)">
-                    {" "}
-                    <polyline
-                      points="-374,21.51,418.5,480.91,418.5,861,66.91,861,-419,55.5"
-                      fill="url(#turn1_tread2)"
-                      stroke={
-                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
-                      }
-                      strokeWidth={2}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
-                    />{" "}
-                    <polyline
-                      points="-374,40,418.5,499.41,418.5,510.97,-374,51.56"
-                      fill="url(#turn1_tread2)"
-                      stroke={
-                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
-                      }
-                      strokeWidth={1}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
-                    />{" "}
-                    <text
-                      x={-173}
-                      y={-280}
-                      style={{
-                        fontSize: 55,
-                        fontFamily: "Arial, Helvetica, sans-serif",
-                        color: "black",
-                      }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                    >
-                      #{threadTurnOne.length + 2}
-                    </text>
-                  </g>
-                  <g transform="translate(0 0)  rotate(0)">
-                    {" "}
-                    <polyline
-                      points="-400.31,55.5,85.59,861,-442.5,861,-442.5,24,-419,24"
-                      fill="url(#turn1_tread3)"
-                      stroke={
-                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
-                      }
-                      strokeWidth={2}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
-                    />{" "}
-                    <polyline
-                      points="-419,55.5,66.91,861,55.23,861,-430.68,55.5"
-                      fill="url(#turn1_tread3)"
-                      stroke={
-                        firstSelectDefaultValueRedux === QUARTER_LANDING ? "transparent" : "black"
-                      }
-                      strokeWidth={1}
-                    />
-                    <text
-                      style={{ fontSize: "" }}
-                      className="heavy"
-                      textAnchor=""
-                      transform="translate(0,400) rotate(0) scale(-1,1)"
-                    />{" "}
-                    <text
-                      x={-346}
-                      y={-400}
-                      style={{
-                        fontSize: 55,
-                        fontFamily: "Arial, Helvetica, sans-serif",
-                        color: "black",
-                      }}
-                      transform="translate (0,0) rotate(180) scale(-1,1)"
-                    >
-                      #{threadTurnOne.length + 3}
-                    </text>
-                  </g>
-                  <g transform="translate(-419 23.5)  rotate(0)" />
-                  <g transform="translate(-419 23.5)  rotate(0)" />
                 </g>
                 {/* thread two -center */}
                 <g transform="translate(1080 1330.5)  rotate(90)">
@@ -729,68 +722,59 @@ const ThreeWinderLeftLeft = () => {
                   <g transform="translate(-419 23.5)  rotate(0)" />
                 </g>
                 {/* left - bottom */}
-                <g transform="translate(-1100 -880)  rotate(360)">
-                  <g>
-                    {threadTurnThree.map((items, index) => {
-                      const lastIndex = threadTurnThree.length;
-                      const number =
-                        threadTurnOne.length + threadTurnTwo.length + lastIndex - index + 5;
-                      return (
-                        <g key={index}>
-                          <g transform={`translate(-413.5 ${items})  rotate(0)`}>
-                            <g>
-                              <rect
-                                transform={`translate(813.5 360 )   rotate(180)`}
-                                x={0}
-                                y={136}
-                                width={827}
-                                height={220}
-                                fill="url(#mdf)"
-                                style={{ stroke: "black", strokeWidth: 2 }}
-                                id="nosing_tread"
-                                className=""
-                              />{" "}
-                              <rect
-                                x={0}
-                                y={16}
-                                width={827}
-                                height={10}
-                                fill="none"
-                                style={{ stroke: "black", strokeWidth: 1 }}
-                                id="nosing_tread"
-                                className=""
-                              />{" "}
-                              <text
-                                x="388.5"
-                                y={-135}
-                                style={{
-                                  fontSize: 55,
-                                  fontFamily: "Arial, Helvetica, sans-serif",
-                                  color: "black",
-                                }}
-                                transform="translate (0,0) rotate(180) scale(-1,1)"
-                              >
-                                #{number}
-                              </text>
-                            </g>
+                <g transform={"translate(-1100 1110)  rotate(180)"}>
+                  {threadTurnThree.slice(0, threadTurnThree.length - 1).map((items, index) => {
+                    const number = threadTurnOne.length + threadTurnTwo.length + 7 + index;
+                    return (
+                      <g key={index}>
+                        <g transform={`translate(-413.5 ${items})  rotate(0)`}>
+                          <g>
+                            <rect
+                              transform={`translate(813.5 360 )   rotate(180)`}
+                              x={0}
+                              y={136}
+                              width={827}
+                              height={220}
+                              fill="url(#mdf)"
+                              style={{ stroke: "black", strokeWidth: 2 }}
+                              id="nosing_tread"
+                              className=""
+                            />{" "}
+                            <rect
+                              x={0}
+                              y={16}
+                              width={827}
+                              height={10}
+                              fill="none"
+                              style={{ stroke: "black", strokeWidth: 1 }}
+                              id="nosing_tread"
+                              className=""
+                            />{" "}
+                            <text
+                              x="388.5"
+                              y={-135}
+                              style={{
+                                fontSize: 55,
+                                fontFamily: "Arial, Helvetica, sans-serif",
+                                color: "black",
+                              }}
+                              transform="translate (840,300) rotate(0) scale(-1,1)"
+                            >
+                              #{number}
+                            </text>
                           </g>
                         </g>
-                      );
-                    })}
-                  </g>
-                  <g />
+                      </g>
+                    );
+                  })}
                 </g>
+                <g />
               </g>
               <g>
                 <g transform="translate(0 0)  rotate(0)" />
-                <g transform="translate(0 0)  rotate(0)">
-                  <g>
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                    <g transform="translate(-413.5 222)  rotate(0)" />
-                    <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                  </g>
-                  <g>
+                {/* right bottom borders */}
+                <g transform="translate(-220 0)  rotate(0)">
+                  <g transform={`translate(${threadTurnTwo.length * 220} 0)  rotate(0)`}>
                     <g transform="translate(405.5 0)  rotate(0)">
                       {" "}
                       <rect
@@ -817,46 +801,41 @@ const ThreeWinderLeftLeft = () => {
                         className=""
                       />
                     </g>
+                    <g />
                   </g>
-                  <g />
                 </g>
-                <g transform="translate(0 888)  rotate(0)">
-                  <g transform="translate(405.5 0)  rotate(0)">
-                    {" "}
-                    <rect
-                      x={0}
-                      y="23.5"
-                      width={27}
-                      height="824.5"
-                      fill="url(#whitewood)"
-                      style={{ stroke: "black", strokeWidth: 1 }}
-                      id="turn1_string1"
-                      className=""
-                    />
+                {/* right top bottom border */}
+                <g transform="translate(-220 0)  rotate(0)">
+                  <g transform={`translate(${threadTurnTwo.length * 220} 888)  rotate(0)`}>
+                    <g transform="translate(405.5 0)  rotate(0)">
+                      {" "}
+                      <rect
+                        x={0}
+                        y="23.5"
+                        width={27}
+                        height="824.5"
+                        fill="url(#whitewood)"
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="turn1_string1"
+                        className=""
+                      />
+                    </g>
+                    <g transform="translate(0 875)  rotate(90)">
+                      {" "}
+                      <rect
+                        x={-30}
+                        y={-419}
+                        width={27}
+                        height={threadTurnTwo.length * 420}
+                        fill="url(#whitewood)"
+                        style={{ stroke: "black", strokeWidth: 1 }}
+                        id="turn1_string2"
+                        className=""
+                      />
+                    </g>
                   </g>
-                  <g transform="translate(0 875)  rotate(-90)">
-                    {" "}
-                    <rect
-                      x={0}
-                      y={-419}
-                      width={27}
-                      height="851.5"
-                      fill="url(#whitewood)"
-                      style={{ stroke: "black", strokeWidth: 1 }}
-                      id="turn1_string2"
-                      className=""
-                    />
-                  </g>
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(-419 23.5)  rotate(0)" />
-                  <g transform="translate(-419 23.5)  rotate(0)" />
                 </g>
                 <g transform="translate(-442.5 1330.5)  rotate(90)">
-                  <g>
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
                   <g>
                     <g transform="translate(405.5 0)  rotate(0)">
                       {" "}
@@ -885,7 +864,6 @@ const ThreeWinderLeftLeft = () => {
                       />
                     </g>
                   </g>
-                  <g />
                 </g>
                 <g transform="translate(-664.5 1330.5)  rotate(90)">
                   <g transform="translate(405.5 0)  rotate(0)">
@@ -953,9 +931,6 @@ const ThreeWinderLeftLeft = () => {
                     </g>
                   </g>
                   <g />
-                </g>
-                <g transform="translate(-1107 666)  rotate(180)">
-                  <g transform="translate(-413.5 0)  rotate(0)" />
                 </g>
               </g>
               <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width={80} height={80}>
@@ -1137,91 +1112,38 @@ const ThreeWinderLeftLeft = () => {
                 </g>
               </g>
               <g>
-                <g transform="translate(0 0)  rotate(0)" />
-                <g transform="translate(0 0)  rotate(0)">
-                  <g>
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                    <g transform="translate(-413.5 222)  rotate(0)" />
-                    <g transform="translate(-413.5 444)  rotate(0)" />
-                    <g transform="translate(-413.5 666)  rotate(0)" />
-                  </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
-                  </g>
-                  <g />
+                <g transform={`translate(${threadTurnTwo.length * 220} 0)`}>
+                  <line
+                    x1="532.5"
+                    y1={-16}
+                    x2="532.5"
+                    y2={1763}
+                    stroke="black"
+                    strokeWidth={3}
+                    markerEnd="url(#endarrow)"
+                    markerStart="url(#startarrow)"
+                    className=""
+                  />{" "}
+                  <rect
+                    x="477.5"
+                    y="863.5"
+                    width={200}
+                    height={100}
+                    fill="white"
+                    transform="translate (-20,-30)"
+                    opacity="0.6"
+                    className=""
+                  />
+                  <text
+                    x="477.5"
+                    y="-863.5"
+                    style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
+                    transform="translate (0,0) rotate(180) scale(-1,1)"
+                    className=""
+                  >
+                    1779
+                  </text>{" "}
                 </g>
-                <g transform="translate(0 888)  rotate(0)">
-                  <g transform="translate(405.5 0)  rotate(0)" />
-                  <g transform="translate(0 875)  rotate(-90)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(-419 23.5)  rotate(0)" />
-                  <g transform="translate(-419 23.5)  rotate(0)" />
-                </g>
-                <g transform="translate(-442.5 1330.5)  rotate(90)">
-                  <g>
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
-                  </g>
-                  <g />
-                </g>
-                <g transform="translate(-664.5 1330.5)  rotate(90)">
-                  <g transform="translate(405.5 0)  rotate(0)" />
-                  <g transform="translate(0 875)  rotate(-90)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(0 0)  rotate(0)" />
-                  <g transform="translate(-419 23.5)  rotate(0)" />
-                  <g transform="translate(-419 23.5)  rotate(0)" />
-                </g>
-                <g transform="translate(-1107 888)  rotate(180)">
-                  <g>
-                    <g transform="translate(-413.5 0)  rotate(0)" />
-                  </g>
-                  <g>
-                    <g transform="translate(405.5 0)  rotate(0)" />
-                    <g transform="translate(-432.5 0)  rotate(0)" />
-                  </g>
-                  <g />
-                </g>
-                <g transform="translate(-1107 666)  rotate(180)">
-                  <g transform="translate(-413.5 0)  rotate(0)" />
-                </g>{" "}
-                <line
-                  x1="532.5"
-                  y1={-16}
-                  x2="532.5"
-                  y2={1763}
-                  stroke="black"
-                  strokeWidth={3}
-                  markerEnd="url(#endarrow)"
-                  markerStart="url(#startarrow)"
-                  className=""
-                />{" "}
-                <rect
-                  x="477.5"
-                  y="863.5"
-                  width={200}
-                  height={100}
-                  fill="white"
-                  transform="translate (-20,-30)"
-                  opacity="0.6"
-                  className=""
-                />
-                <text
-                  x="477.5"
-                  y="-863.5"
-                  style={{ fontSize: 75, fontFamily: "Arial, Helvetica, sans-serif" }}
-                  transform="translate (0,0) rotate(180) scale(-1,1)"
-                  className=""
-                >
-                  1779
-                </text>{" "}
                 <line
                   x1="-1539.5"
                   y1={1863}

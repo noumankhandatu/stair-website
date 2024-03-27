@@ -237,6 +237,7 @@ const StairLayout = ({ setAppState }) => {
         fnHandler={handleSelectShape}
         numberOfOptions={defaultThread}
         handleTurn={handleSelectChange}
+        defaultThreadValue={4}
       />
 
       {/* Turns -> Second Left & Right  */}
@@ -245,6 +246,7 @@ const StairLayout = ({ setAppState }) => {
         fnHandler={handleSelectShapeTwo}
         numberOfOptions={threadTurnThree.length > 1 ? threadTurnThree : threadTurnTwo}
         handleTurn={handleSelectChangeTwo}
+        defaultThreadValue={1}
       />
     </div>
   );

@@ -17,8 +17,7 @@ const initialFloorHeightRisers = calculateRisers(initialFloorHeight);
 const initialDefaultThread = initialFloorHeightRisers.slice(0, -6);
 const initialThreadTurnOne = initialDefaultThread.slice(0, 4);
 const initialThreadTurnTwo = initialDefaultThread.slice(-1);
-const initialThreadTurnThree = initialDefaultThread.slice(-2);
-
+const initialThreadTurnThree = initialDefaultThread.slice(0, 3);
 const initialState = {
   floorHeight: initialFloorHeight,
   floorHeightRisers: initialFloorHeightRisers,
@@ -38,12 +37,17 @@ const GlobalStairsLayoutSlice = createSlice({
     },
     setThreadOne(state, action) {
       const risersForTurnOne = action.payload;
-      state.defaultThread.length - risersForTurnOne;
       state.threadTurnOne = state.defaultThread.slice(0, risersForTurnOne);
-      state.threadTurnThree = state.defaultThread.slice(risersForTurnOne);
+      const remainingRisers = state.defaultThread.length - risersForTurnOne;
+      state.threadTurnThree = Array.from(
+        { length: remainingRisers },
+        (_, index) => 220 + index * riserHeight
+      );
     },
     setThreadTwo(state, action) {
       const risersToAdd = action.payload;
+      const initialThreadTurnTwoLength = initialThreadTurnTwo.length;
+
       if (risersToAdd === 0) {
         state.threadTurnTwo = [];
       } else if (risersToAdd === 1) {
@@ -56,6 +60,22 @@ const GlobalStairsLayoutSlice = createSlice({
             (_, index) => initialThreadTurnTwo[0] - (index + 1) * riserHeight
           ),
         ];
+      }
+
+      // Adjust threadTurnThree
+      const difference = state.threadTurnTwo.length - initialThreadTurnTwoLength;
+      if (difference > 0) {
+        // Increase in threadTurnTwo length, decrease same number of elements from threadTurnThree
+        state.threadTurnThree.splice(-difference, difference);
+      } else if (difference < 0) {
+        // Decrease in threadTurnTwo length, increase same number of elements in threadTurnThree
+        const risersToAddToThreadThree = Math.abs(difference);
+        const lastRiserInThreadThree = state.threadTurnThree[state.threadTurnThree.length - 1];
+        const newRisersForThreadThree = Array.from(
+          { length: risersToAddToThreadThree },
+          (_, index) => lastRiserInThreadThree + (index + 1) * riserHeight
+        );
+        state.threadTurnThree = state.threadTurnThree.concat(newRisersForThreadThree);
       }
     },
   },

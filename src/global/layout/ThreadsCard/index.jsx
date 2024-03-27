@@ -7,7 +7,13 @@ import AppDeleteIcon from "../../../components/atom/DeleteIcon";
 import ShapesSelect from "../../../components/atom/ShapesSelect";
 import { floorHeightStyle } from "../../styles";
 
-const ThreadsCard = ({ defaultShape, fnHandler, numberOfOptions, handleTurn }) => {
+const ThreadsCard = ({
+  defaultShape,
+  fnHandler,
+  numberOfOptions,
+  handleTurn,
+  defaultThreadValue,
+}) => {
   return (
     <div>
       <Paper elevation={3} sx={TurnPaperStyle}>
@@ -21,7 +27,7 @@ const ThreadsCard = ({ defaultShape, fnHandler, numberOfOptions, handleTurn }) =
         </Div>
         <Div sx={TurnFlex}>
           <Appheading>Treads before turn:</Appheading>
-          <Select onChange={handleTurn} sx={floorHeightStyle} defaultValue={1}>
+          <Select onChange={handleTurn} sx={floorHeightStyle} defaultValue={defaultThreadValue}>
             {[...Array(numberOfOptions.length)].map((_, index) => (
               <MenuItem key={index} value={index}>
                 {index}

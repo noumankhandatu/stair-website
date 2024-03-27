@@ -14,10 +14,11 @@ const AppFloorHeight = () => {
 
   const handleFloorHeightChange = (event) => {
     const newFloorHeight = event.target.value;
+    alert(newFloorHeight);
     dispatch(setFloorHeight(newFloorHeight));
   };
   const floorHeightRisers = useSelector((state) => state);
-  console.log(floorHeightRisers.GlobalStairsLayoutSlice);
+  console.log(floorHeightRisers.GlobalStairsLayoutSlice, "asdsad");
 
   return (
     <div>
@@ -26,7 +27,7 @@ const AppFloorHeight = () => {
         MenuProps={floorHeightStyleProps}
         sx={floorHeightStyle}
         fullWidth
-        defaultValue={300}
+        defaultValue={2600}
         onChange={handleFloorHeightChange}
       >
         {options.map((option) => (
