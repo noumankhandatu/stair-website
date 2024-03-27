@@ -723,7 +723,7 @@ const ThreeWinderLeftLeft = () => {
                 </g>
                 {/* left - bottom */}
                 <g transform={"translate(-1100 1110)  rotate(180)"}>
-                  {threadTurnThree.slice(0, threadTurnThree.length - 1).map((items, index) => {
+                  {threadTurnThree.map((items, index) => {
                     const number = threadTurnOne.length + threadTurnTwo.length + 7 + index;
                     return (
                       <g key={index}>
