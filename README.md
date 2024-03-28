@@ -9,7 +9,8 @@ Components Behavoirs
 
 3 : Indiviual Goings = 200 these are height of risers
 
-4 : Width Runs (1,2,3) are simple width of risers
+4 : Width Runs (1,2,3) are simple width of risers  
+Width Run 1 is vertical width increase simple
 
 5 : Thread before (1st turn) = All Risers - 3
 5.5 : Thread before (2nd turn) = All risers - 1st turn - 3rd riser

@@ -1,11 +1,15 @@
 import { Select, MenuItem } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { Appheading } from "../../../theme";
 import { floorHeightStyle, floorHeightStyleProps } from "../../styles";
+import { setWidthRun2 } from "../../../toolkit/globalSlice";
+const defaultValue = 865;
 
 const AppWidthRun2 = () => {
+  const dispatch = useDispatch();
+
   const options = [];
 
-  // Generate options from 665mm to 1000mm
   for (let i = 665; i <= 1000; i++) {
     options.push({
       label: `${i}mm`,
@@ -13,16 +17,20 @@ const AppWidthRun2 = () => {
     });
   }
 
-  const defaultValue = 865; // Default value
+  const handleWidthChange = (event) => {
+    const selectedValue = event.target.value;
+    dispatch(setWidthRun2(selectedValue));
+  };
 
   return (
     <div>
       <Appheading sx={{ mt: 2 }}>Width (Run 2)</Appheading>
       <Select
-        defaultValue={defaultValue} // Set the default value to 865mm
+        defaultValue={defaultValue}
         MenuProps={floorHeightStyleProps}
         sx={floorHeightStyle}
         fullWidth
+        onChange={handleWidthChange}
       >
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>
