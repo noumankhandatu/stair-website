@@ -25,8 +25,8 @@ const ThreeWinderRightRight = () => {
 
   const [appState, setAppState] = useState({
     svgInsideContainer: {
-      height: "100vh",
-      width: "100wh",
+      height: "100",
+      width: "100%",
     },
     svgRiser: {
       // risers

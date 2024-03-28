@@ -46,7 +46,7 @@ const TwoHalfLandingLeftRight = () => {
   const [appState, setAppState] = useState({
     svgInsideContainer: {
       height: "200vh",
-      width: "100wh",
+      width: "100%",
     },
     svgRiser: {
       color: "mdf",

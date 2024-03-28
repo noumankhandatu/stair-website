@@ -14,7 +14,6 @@ const AppFloorHeight = () => {
 
   const handleFloorHeightChange = (event) => {
     const newFloorHeight = event.target.value;
-    alert(newFloorHeight);
     dispatch(setFloorHeight(newFloorHeight));
   };
   const floorHeightRisers = useSelector((state) => state);

@@ -89,7 +89,7 @@ const TShape = () => {
         </Grid>
         <Grid sx={{ textAlign: "center" }} xs={9}>
           <div>
-            <svg width={"100wh"} height={"100vh"}>
+            <svg width={"100%"} height={"1"}>
               <defs>
                 {patternsData.map((pattern) => (
                   <pattern

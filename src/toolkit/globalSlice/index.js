@@ -31,16 +31,47 @@ const GlobalStairsLayoutSlice = createSlice({
   initialState,
   reducers: {
     setFloorHeight(state, action) {
-      state.floorHeight = action.payload;
-      state.floorHeightRisers = calculateRisers(action.payload);
-      state.defaultThread = state.floorHeightRisers.slice(0, -6);
+      const newFloorHeight = action.payload;
+      const currentFloorHeight = state.floorHeight;
+      const riserDifference = Math.ceil((newFloorHeight - currentFloorHeight) / riserHeight);
+
+      // Update floorHeight and floorHeightRisers
+      state.floorHeight = newFloorHeight;
+      state.floorHeightRisers = calculateRisers(newFloorHeight);
+
+      // Update threadTurnThree based on riser difference
+      if (riserDifference > 0) {
+        // Increase in floor height, increase the number of risers in threadTurnThree
+        const newThreadThreeLength = state.threadTurnThree.length + riserDifference;
+        state.threadTurnThree = Array.from(
+          { length: newThreadThreeLength },
+          (_, index) => 220 + index * riserHeight
+        );
+
+        // Increase defaultThread accordingly
+        const defaultThreadDifference = riserDifference + 6; // Compensate for the 6 risers removed in initialDefaultThread
+        state.defaultThread = calculateRisers(newFloorHeight).slice(0, -defaultThreadDifference);
+      } else if (riserDifference < 0) {
+        // Decrease in floor height, remove the corresponding number of risers from threadTurnThree
+        state.threadTurnThree.splice(riserDifference);
+
+        // If both threadTurnOne and threadTurnThree are empty, decrease threadTurnTwo
+        if (state.threadTurnOne.length === 0 && state.threadTurnThree.length === 0) {
+          const newLength = state.threadTurnTwo.length + riserDifference; // riserDifference is negative
+          state.threadTurnTwo = state.threadTurnTwo.slice(0, newLength);
+        } else if (state.threadTurnThree.length === 0) {
+          // If threadTurnThree is empty, but threadTurnOne is not, decrease threadTurnOne
+          const newLength = state.threadTurnOne.length + riserDifference; // riserDifference is negative
+          state.threadTurnOne = state.threadTurnOne.slice(0, newLength);
+        }
+      }
     },
     setThreadOne(state, action) {
       const risersForTurnOne = action.payload;
       state.threadTurnOne = state.defaultThread.slice(0, risersForTurnOne);
       const remainingRisers = state.defaultThread.length - risersForTurnOne;
       state.threadTurnThree = Array.from(
-        { length: remainingRisers - 1 }, 
+        { length: remainingRisers - 1 },
         (_, index) => 220 + index * riserHeight
       );
     },

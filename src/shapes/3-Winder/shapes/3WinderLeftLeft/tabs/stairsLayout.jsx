@@ -41,8 +41,6 @@ const StairLayout = ({ setAppState }) => {
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
   const { defaultThread, threadTurnThree, threadTurnTwo } = useSelector(GlobalSliceData);
-  console.log(threadTurnThree, "threadTurnThreeasd");
-  console.log(threadTurnTwo, "threadTurnThreeasd");
 
   // hooks
   const dispatch = useDispatch();
