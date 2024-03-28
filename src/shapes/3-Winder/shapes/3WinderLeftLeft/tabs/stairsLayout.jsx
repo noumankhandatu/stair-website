@@ -28,6 +28,8 @@ import {
 import AppFloorHeight from "../../../../../global/components/FloorHeight";
 import ThreadsCard from "../../../../../global/layout/ThreadsCard";
 import { GlobalSliceData, setThreadOne, setThreadTwo } from "../../../../../toolkit/globalSlice";
+import AppCeilingHeight from "../../../../../global/components/CeilingHeight";
+import AppIndividualGoing from "../../../../../global/components/IndividualGoing";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -154,56 +156,9 @@ const StairLayout = ({ setAppState }) => {
   };
   return (
     <div>
-      {/* Floor Height */}
-
       <AppFloorHeight />
-      {/* <Select fullWidth sx={{ height: 40, mt: 1 }} onChange={handlePositionChange}>
-        <MenuItem value="" disabled>
-          Select a position
-        </MenuItem>
-        {positionOptions.map((option, index) => (
-          <MenuItem onClick={() => dispatch(setHeight(option + 79))} key={index} value={option}>
-            {option + 79} mm
-          </MenuItem>
-        ))}
-      </Select> */}
-      {/* Floor Width */}
-
-      <Appheading sx={{ mt: 1 }}>Floor Width</Appheading>
-      <Select
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
-        // value={appState.svgRiser.width}
-        onChange={(e) => handleWidthChange(parseFloat(e.target.value))}
-      >
-        {ThrreWidnerFirstRight.map((value, index) => (
-          <MenuItem
-            onClick={() => dispatch(setWidth(index * 50 + 300))}
-            key={index}
-            value={value.toString()}
-          >
-            {index === 0 ? null : <> {index * 50 + 300} mm</>}
-          </MenuItem>
-        ))}
-      </Select>
-
-      {/* Individual Going */}
-
-      <Appheading sx={{ mt: 1 }}>Individual Going</Appheading>
-      <Select fullWidth sx={{ height: 40, mt: 1 }}>
-        <MenuItem value="" disabled>
-          Select a position
-        </MenuItem>
-        {ceilingArray.map((option, index) => (
-          <MenuItem
-            onClick={() => handleCelingsHeight(parseFloat(option))}
-            key={index}
-            value={option}
-          >
-            {option} mm
-          </MenuItem>
-        ))}
-      </Select>
+      <AppCeilingHeight />
+      <AppIndividualGoing />
 
       {/* Number of Rises */}
 
