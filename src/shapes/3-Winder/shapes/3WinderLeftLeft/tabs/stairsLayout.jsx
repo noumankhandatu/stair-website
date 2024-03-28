@@ -30,6 +30,11 @@ import ThreadsCard from "../../../../../global/layout/ThreadsCard";
 import { GlobalSliceData, setThreadOne, setThreadTwo } from "../../../../../toolkit/globalSlice";
 import AppCeilingHeight from "../../../../../global/components/CeilingHeight";
 import AppIndividualGoing from "../../../../../global/components/IndividualGoing";
+import AppNumberOfRisers from "../../../../../global/components/NumberOfRisers";
+import AppWidthRun1 from "../../../../../global/components/WidthRun1";
+import AppWidthRun2 from "../../../../../global/components/WidthRun2";
+import AppRegulation from "../../../../../global/components/Regulation";
+import AppStaircaseRef from "../../../../../global/components/StaircaseRef";
 
 const positionOptions = [];
 let updatedPositions = [];
@@ -156,35 +161,13 @@ const StairLayout = ({ setAppState }) => {
   };
   return (
     <div>
+      <AppStaircaseRef />
+      <AppRegulation />
       <AppFloorHeight />
+      <AppNumberOfRisers />
       <AppCeilingHeight />
       <AppIndividualGoing />
-
-      {/* Number of Rises */}
-
-      <Appheading sx={{ mt: 2 }}>Number of Risers</Appheading>
-      <Select
-        disabled={updatedPositions.length === 0}
-        fullWidth
-        sx={{ height: 40, mt: 1 }}
-        onChange={handlePositionChange}
-      >
-        <MenuItem value="" disabled>
-          Select a position
-        </MenuItem>
-        {updatedPositions.slice(-3).map((option, index) => {
-          return (
-            <MenuItem key={index} value={option}>
-              {index + updatedPositions.length - 1} @ {option + 79}
-            </MenuItem>
-          );
-        })}
-        <MenuItem value={updatedPositions && updatedPositions[updatedPositions?.length - 1] + 220}>
-          {updatedPositions?.length + 2} @ {updatedPositions[updatedPositions?.length - 1] + 220}
-        </MenuItem>
-      </Select>
-
-      {/* Turns -> First Left & Right  */}
+      <AppWidthRun1 />
       <ThreadsCard
         defaultShape={firstSelectDefaultValueRedux}
         fnHandler={handleSelectShape}
@@ -192,8 +175,7 @@ const StairLayout = ({ setAppState }) => {
         handleTurn={handleSelectChange}
         defaultThreadValue={4}
       />
-
-      {/* Turns -> Second Left & Right  */}
+      <AppWidthRun2 />
       <ThreadsCard
         defaultShape={secondSelectDefaultValueRedux}
         fnHandler={handleSelectShapeTwo}
