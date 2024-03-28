@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const riserHeight = 220;
+const individualGoing = 220;
 
 const calculateRisers = (floorHeight) => {
   const numberOfRisers = Math.ceil(floorHeight / riserHeight);
@@ -18,6 +19,7 @@ const initialDefaultThread = initialFloorHeightRisers.slice(0, -6);
 const initialThreadTurnOne = initialDefaultThread.slice(0, 4);
 const initialThreadTurnTwo = initialDefaultThread.slice(-1);
 const initialThreadTurnThree = initialDefaultThread.slice(0, 2);
+
 const initialState = {
   floorHeight: initialFloorHeight,
   floorHeightRisers: initialFloorHeightRisers,
@@ -25,6 +27,7 @@ const initialState = {
   threadTurnOne: initialThreadTurnOne,
   threadTurnTwo: initialThreadTurnTwo,
   threadTurnThree: initialThreadTurnThree,
+  individualGoing: individualGoing,
 };
 const GlobalStairsLayoutSlice = createSlice({
   name: "stairsLayout",
@@ -117,10 +120,15 @@ const GlobalStairsLayoutSlice = createSlice({
         state.threadTurnThree = state.threadTurnThree.concat(newRisersForThreadThree);
       }
     },
+    setIndividualGoing(state, action) {
+      state.individualGoing = action.payload;
+    },
   },
 });
 
-export const { setFloorHeight, setThreadOne, setThreadTwo } = GlobalStairsLayoutSlice.actions;
+export const { setFloorHeight, setThreadOne, setThreadTwo, setIndividualGoing } =
+  GlobalStairsLayoutSlice.actions;
+
 export const GlobalSliceData = (state) => state.GlobalStairsLayoutSlice;
 
 export default GlobalStairsLayoutSlice.reducer;

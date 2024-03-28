@@ -25,7 +25,9 @@ const ThreeWinderLeftLeft = () => {
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
 
-  const { threadTurnOne, threadTurnTwo, threadTurnThree } = useSelector(GlobalSliceData);
+  const { threadTurnOne, threadTurnTwo, threadTurnThree, individualGoing } =
+    useSelector(GlobalSliceData);
+  console.log(individualGoing, "individualGoingindividualGoing");
   const [appState, setAppState] = useState({
     svgInsideContainer: {
       height: "200vh",
@@ -363,7 +365,7 @@ const ThreeWinderLeftLeft = () => {
                             x={0}
                             y={-16}
                             width={827}
-                            height={238}
+                            height={individualGoing}
                             fill="url(#mdf)"
                             style={{ stroke: "black", strokeWidth: 2 }}
                             id="run1_tread1"
@@ -539,7 +541,7 @@ const ThreeWinderLeftLeft = () => {
                             x={0}
                             y={-16}
                             width={827}
-                            height={238}
+                            height={individualGoing}
                             fill="url(#mdf)"
                             style={{ stroke: "black", strokeWidth: 2 }}
                             id="run2_tread1"
@@ -730,11 +732,11 @@ const ThreeWinderLeftLeft = () => {
                         <g transform={`translate(-413.5 ${items})  rotate(0)`}>
                           <g>
                             <rect
-                              transform={`translate(813.5 360 )   rotate(180)`}
+                              transform={`translate(0 -120 )   rotate(360)`}
                               x={0}
-                              y={136}
+                              y={130}
                               width={827}
-                              height={220}
+                              height={individualGoing}
                               fill="url(#mdf)"
                               style={{ stroke: "black", strokeWidth: 2 }}
                               id="nosing_tread"
