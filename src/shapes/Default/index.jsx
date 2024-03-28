@@ -41,7 +41,7 @@ const DefaultShape = () => {
   // states
   const [appState, setAppState] = useState({
     svgInsideContainer: {
-      height: "200vh",
+      height: "100%",
       width: "100%",
     },
     svgRiser: {
