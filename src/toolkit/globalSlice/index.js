@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const riserHeight = 220;
 const individualGoing = 220;
-const widthRun2 = 865;
+const widthRun1 = 865;
 const calculateRisers = (floorHeight) => {
   const numberOfRisers = Math.ceil(floorHeight / riserHeight);
   const risersArray = Array.from(
@@ -28,7 +28,8 @@ const initialState = {
   threadTurnTwo: initialThreadTurnTwo,
   threadTurnThree: initialThreadTurnThree,
   individualGoing: individualGoing,
-  widthRun2: widthRun2,
+  widthRun1: widthRun1,
+  widthRun2: widthRun1,
 };
 const GlobalStairsLayoutSlice = createSlice({
   name: "stairsLayout",
@@ -124,14 +125,23 @@ const GlobalStairsLayoutSlice = createSlice({
     setIndividualGoing(state, action) {
       state.individualGoing = action.payload;
     },
+    setWidthRun1(state, action) {
+      state.widthRun1 = action.payload;
+    },
     setWidthRun2(state, action) {
       state.widthRun2 = action.payload;
     },
   },
 });
 
-export const { setFloorHeight, setThreadOne, setThreadTwo, setIndividualGoing, setWidthRun2 } =
-  GlobalStairsLayoutSlice.actions;
+export const {
+  setFloorHeight,
+  setThreadOne,
+  setThreadTwo,
+  setIndividualGoing,
+  setWidthRun1,
+  setWidthRun2,
+} = GlobalStairsLayoutSlice.actions;
 
 export const GlobalSliceData = (state) => state.GlobalStairsLayoutSlice;
 

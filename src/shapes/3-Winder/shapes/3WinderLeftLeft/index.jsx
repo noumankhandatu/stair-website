@@ -25,7 +25,7 @@ const ThreeWinderLeftLeft = () => {
   const firstSelectDefaultValueRedux = useSelector(selectedDefaultValue);
   const secondSelectDefaultValueRedux = useSelector(selectDefaultValueTwo);
 
-  const { threadTurnOne, threadTurnTwo, threadTurnThree, individualGoing, widthRun2 } =
+  const { threadTurnOne, threadTurnTwo, threadTurnThree, individualGoing, widthRun1, widthRun2 } =
     useSelector(GlobalSliceData);
   console.log(individualGoing, "individualGoingindividualGoing");
   const [appState, setAppState] = useState({
@@ -60,8 +60,9 @@ const ThreeWinderLeftLeft = () => {
   };
 
   // The Width Runs Manipulation
-  const compressWidthRunsOne = -0.2 + 0.0002 * widthRun2 + 0.23;
+  const compressWidthRunsOne = -0.2 + 0.0002 * widthRun1 + 0.23;
   const compressWidthRunsTwo = -0.2 + 0.0002 * widthRun2 + 0.23;
+
   return (
     <div>
       <AppMainheading sx={{ mt: 4 }}>
@@ -355,7 +356,9 @@ const ThreeWinderLeftLeft = () => {
                 <polygon points="0 0, 10 3.5, 0 7" fill="red" />
               </marker>
             </defs>{" "}
-            <g transform={`translate (392,524) rotate(180) scale(-${compressWidthRunsOne}, ${compressWidthRunsTwo})`}>
+            <g
+              transform={`translate (392,524) rotate(180) scale(-${compressWidthRunsOne}, ${compressWidthRunsTwo})`}
+            >
               {" "}
               <g>
                 <g transform={`translate(${threadTurnTwo.length * 220} 1080)  rotate(180)`}>
